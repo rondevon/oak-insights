@@ -8,12 +8,12 @@ import { ShareModule } from './share/share.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ShareModule
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]

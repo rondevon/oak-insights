@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ShareRoutingModule } from './share-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { NgsAvaterModule } from 'ngs-avater';
 
 
 @NgModule({
@@ -15,7 +15,12 @@ import { FooterComponent } from './footer/footer.component';
   ],
   imports: [
     CommonModule,
-    ShareRoutingModule
+    NgsAvaterModule
+  ],
+  exports: [
+    HeaderComponent,
+    NavbarComponent,
+    FooterComponent
   ]
 })
 export class ShareModule { }
