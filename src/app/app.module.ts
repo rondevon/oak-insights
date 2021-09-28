@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShareModule } from './share/share.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +12,6 @@ import { ShareModule } from './share/share.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ShareModule
   ],
   providers: [],
   bootstrap: [AppComponent]

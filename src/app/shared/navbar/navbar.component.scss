@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  max-width: 100vw;
+  height: 48px;
+  padding: 0px 16px;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+div {
+  height: 56px;
+  margin-bottom: -18px;
+  padding: 12px;
+  border-radius: 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+} :hover {
+    background-color: blue;
+}
