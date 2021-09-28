@@ -4,7 +4,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, children: [
-    // { path: ''}
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: 'home', loadChildren: () => import('../home/home.module').then(m => m.HomeModule) }
   ] },
 ];
 

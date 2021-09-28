@@ -23,4 +23,4 @@ import { NgsAvaterModule } from 'ngs-avater';
     FooterComponent
   ]
 })
-export class ShareModule { }
+export class SharedModule { }
