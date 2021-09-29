@@ -1,0 +1,42 @@
+<h1>Insights at a Glance</h1>
+<mat-grid-list cols="4" rowHeight="72px">
+  <mat-grid-tile colspan="2" rowspan="5" class="background-theme">
+    <div class="card">
+      <app-insight-item-tile [data]="card" *ngFor="let card of cards" style="width: 47%"></app-insight-item-tile>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="5" class="background-theme">
+    <div class="Overview">
+      <mat-card class="score"> Consumption Overview </mat-card>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="2.5" class="background-theme">
+    <mat-card class="score">OAK Score</mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="2.5" class="background-theme">
+    <mat-card class="score">Google Weather </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="5" class="background-theme">
+    <mat-card class="score">Calendar Heat Map</mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="4" class="background-theme">
+    <mat-card class="score">List of Events</mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<h1></h1>
+
+<mat-grid-list cols="5" rowHeight="96px">
+  <mat-grid-tile colspan="3" rowspan="5" class="background-theme">
+    <mat-card class="score">Operating Hours Analysis</mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="4" class="background-theme">
+    <mat-card class="score">Top Consuming Appliances </mat-card></mat-grid-tile
+  >
+  <mat-grid-tile colspan="2" rowspan="6" class="background-theme">
+    <mat-card class="score">Google News</mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="5" class="background-theme">
+    <mat-card class="score">Energy Cost throughout the day</mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

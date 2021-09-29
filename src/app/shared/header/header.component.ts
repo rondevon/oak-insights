@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  notification = false;
+  notification = true;
   constructor() { }
 
   ngOnInit(): void {
