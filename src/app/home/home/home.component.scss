@@ -1,25 +1,39 @@
 .score {
-height: 100%;
-width: 100%;
-box-sizing: border-box !important;
-border-radius: 15px;
-box-shadow: 0 0 20px #7e7a7a;}
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box !important;
+    border-radius: 15px;
+    box-shadow: 0 0 20px #7e7a7a;
+}
 
 ::ng-deep .mat-grid-tile-content {
     // padding: 8px !important;
     box-sizing: border-box !important;
 }
 
-.Overview {
+.overview {
     height: 100%;
-    margin: 16px;
+    width: 100%;
+}
+
+.two {
+    margin: 0 8px;
 }
 
 .card {
+    margin-right: 16px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
     height: 100%;
+}
+
+.three {
+    margin-left: 16px;
+}
+
+.four {
+    margin-right: 8px;
 }
