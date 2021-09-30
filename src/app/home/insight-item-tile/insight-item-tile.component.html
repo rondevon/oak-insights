@@ -1,7 +1,7 @@
-<mat-card style="display: flex; flex-direction: row; height: 64px;">
-    <img [src]="data.image" [alt]="data.title" style="height: 100%;">
-    <div>
-        {{data.title}}
-        {{data.value}}
-    </div>
+<mat-card style="display: flex; flex-direction: row; height: 64px" class="mat-elevation-z8">
+  <img [src]="data.image" [alt]="data.title" style="height: 100%" />
+  <div>
+      <mat-card-subtitle>{{ data.title }}</mat-card-subtitle>
+      <mat-card-title>{{ data.value }}<span>{{data.unit}}</span></mat-card-title>
+  </div>
 </mat-card>

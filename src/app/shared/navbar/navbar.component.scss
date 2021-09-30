@@ -2,11 +2,17 @@
   display: flex;
   flex-direction: row;
   max-width: 100vw;
-  height: 48px;
+  height: 52px;
   padding: 0px 24px;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+  padding-top: 32px;
+}
+
+a {
+  font-size: 16px;
+  font-weight: bolder;
 }
 
 div {
@@ -17,7 +23,11 @@ div {
   box-sizing: border-box;
   cursor: pointer;
 } :hover {
-    background-color: blue;
+    background-color: #364096;
     color: white;
+}
 
+.selected {
+  background-color: #364096;
+  color: white;
 }

@@ -7,7 +7,6 @@
 }
 
 ::ng-deep .mat-grid-tile-content {
-    // padding: 8px !important;
     box-sizing: border-box !important;
 }
 
@@ -36,4 +35,12 @@
 
 .four {
     margin-right: 8px;
+}
+
+.tile {
+width: 47%; 
+border-color: coral;
+border-style: solid;
+border-width: thin;
+border-radius: 6px;
 }
