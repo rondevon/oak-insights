@@ -36,5 +36,8 @@ $oak-insights-theme: mat.define-light-theme((
 .background-theme {
     background-color: #e5f2fb;
 }
+// html, body { height: 100%; }
+// * { margin: 0; font-family: Avenir, 'Roman', Bold; }
+
 html, body { height: 100%; }
-* { margin: 0; font-family: Avenir, 'Roman', Bold !important; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

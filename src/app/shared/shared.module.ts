@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgsAvaterModule } from 'ngs-avater';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { NgsAvaterModule } from 'ngs-avater';
   ],
   imports: [
     CommonModule,
+    RouterModule, 
     NgsAvaterModule
   ],
   exports: [

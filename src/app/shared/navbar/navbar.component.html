@@ -1,3 +1,3 @@
-<div *ngFor="let item of menu; let i = index" [class.selected]="i === 0">
-    <a>{{item}}</a>
+<div [routerLink]="item.path" *ngFor="let item of menu; let i = index" [class.selected]="i === 0">
+    <a>{{item.name}}</a>
 </div>
