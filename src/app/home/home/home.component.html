@@ -2,7 +2,11 @@
 <mat-grid-list cols="4" rowHeight="72px">
   <mat-grid-tile colspan="2" rowspan="5">
     <div class="card">
-      <app-insight-item-tile [data]="card" *ngFor="let card of cards" class="tile"></app-insight-item-tile>
+      <app-insight-item-tile
+        [data]="card"
+        *ngFor="let card of cards"
+        class="tile"
+      ></app-insight-item-tile>
     </div>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="5">
@@ -14,13 +18,19 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="2.5">
     <mat-card class="score">
-      <mat-card-title>OAK Score</mat-card-title>
-      <img src="/assets/icons/icon-oakscore-green.svg" style="width:180px; height:180px;">
+      <mat-card-title>
+        <img
+          src="/assets/icons/icon-oakscore-green.svg"
+          class="image"
+        />
+        <span class="">OAK Score</span>
+        <span class="">{{ num }}</span>
+      </mat-card-title>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="2.5">
     <mat-card class="score">
-   <mat-card-title> Weather </mat-card-title>
+      <mat-card-title> Weather </mat-card-title>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="5">
@@ -31,7 +41,12 @@
   <mat-grid-tile colspan="1" rowspan="4">
     <mat-card class="score">
       <mat-card-title>List of Events</mat-card-title>
-      </mat-card>
+     <h6>A list of non-trading days</h6>
+    <span *ngFor="let event of events"> 
+      {{event.list}}
+     {{event.name}}
+    </span>
+    </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
 
@@ -45,23 +60,17 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="4">
     <mat-card class="score">
-      <mat-card-title>
-      Top Consuming Appliances 
-    </mat-card-title>
+      <mat-card-title> Top Consuming Appliances </mat-card-title>
     </mat-card>
-    </mat-grid-tile>
+  </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="6">
     <mat-card class="score">
-      <mat-card-title>
-      Google News
-    </mat-card-title>
+      <mat-card-title> Google News </mat-card-title>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="3" rowspan="5">
     <mat-card class="score">
-    <mat-card-title>
-      Energy Cost throughout the day
-    </mat-card-title>
-  </mat-card>
+      <mat-card-title> Energy Cost throughout the day </mat-card-title>
+    </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

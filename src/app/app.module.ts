@@ -5,10 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { DateSuffixPipe } from './date-suffix.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DateSuffixPipe,
 
   ],
   imports: [

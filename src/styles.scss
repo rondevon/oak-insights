@@ -40,7 +40,7 @@ $oak-insights-theme: mat.define-light-theme((
 // * { margin: 0; font-family: Avenir, 'Roman', Bold; }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Avenir-Roman' }
 
 @font-face {
   font-family: Avenir-Black;
@@ -52,6 +52,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   src: url(assets/Font/Avenir/Avenir-Roman.woff2) format("woff2");
 }
 
+@font-face {
+  font-family: Avenir-Light;
+  src: url(assets/Font/Avenir/Avenir-Light.woff2) format("woff2");
+}
+
 :root {--color1: #465DA4;
 --color2: #F3837A;
 --color3: #364096;
@@ -60,4 +65,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 --color6: #F8A992;
 --color7: #FCC294;
 --color8: #4164AD;
+--fontRegular: 'Avenir-Roman';
+--fontBold: 'Avenir-Black';
+--fontLight: 'Avenir-Light';
+
 }
+
