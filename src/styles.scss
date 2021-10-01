@@ -41,3 +41,23 @@ $oak-insights-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face {
+  font-family: Avenir-Black;
+  src: url(assets/Font/Avenir/Avenir-Black.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: Avenir-Roman;
+  src: url(assets/Font/Avenir/Avenir-Roman.woff2) format("woff2");
+}
+
+:root {--color1: #465DA4;
+--color2: #F3837A;
+--color3: #364096;
+--color4: #F3A7AB;
+--color5: #7DC3BE;
+--color6: #F8A992;
+--color7: #FCC294;
+--color8: #4164AD;
+}
