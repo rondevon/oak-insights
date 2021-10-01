@@ -18,14 +18,17 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="2.5">
     <mat-card class="score">
-      <mat-card-title>
+      <div class="oakscore">
         <img
           src="/assets/icons/icon-oakscore-green.svg"
-          class="image"
+
         />
-        <span class="">OAK Score</span>
-        <span class="">{{ num }}</span>
-      </mat-card-title>
+        <span>
+          OAK Score
+        <br>
+        {{ num }}
+        </span>
+      </div>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="2.5">
@@ -42,10 +45,11 @@
     <mat-card class="score">
       <mat-card-title>List of Events</mat-card-title>
      <h6>A list of non-trading days</h6>
-    <span *ngFor="let event of events"> 
-      {{event.list}}
-     {{event.name}}
-    </span>
+      <p style="display: flex;" *ngFor="let event of events">
+        <b style="margin-right: 16px">{{event.list | dateSuffix}}</b>
+        <span>{{event.name}}</span>
+      </p>
+      <button mat-raised-button class="login">LOGIN</button>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
