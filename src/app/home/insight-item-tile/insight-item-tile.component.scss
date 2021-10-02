@@ -1,12 +1,15 @@
+.card-custom{
+    border-radius: 1rem !important;
+}
+
 .unit {
     color: var(--color9);
-    font-size: 1rem !important;
+    font-size: 1.2vw !important;
     font: var(--fontRegular);
-    font-weight: 800;
 }
 
 .val {
-    font-size: 2rem!important;
+    font-size: 2.5vw!important;
     font-weight: 900 !important;
 }
 
