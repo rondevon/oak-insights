@@ -60,6 +60,17 @@ export class HomeComponent implements OnInit {
     { list: new Date(), name: 'Spring Bank Holiday 4' },
   ];
 
+  news: any[] = [
+    {
+      title: 'Four consecutive years of 100% renewable energy—and what’s next.',
+      description:'The path to 100% starts with reducing the amount of energy we use in the first place. Researchers recently found that worldwide data center electricity stayed close to flat in the last decade, even as computing needs grew 550 percent'
+    },
+    {
+      title: 'Announcing ‘round-the-clock clean energy for cloud',
+      description:'But wind and solar power don’t work in all places at all times. Though we buy enough renewable energy on average to match our data centers’ electricity consumption, that average is an annual average. Thus, for a particular data center, at any given time we may have too much renewable power, or too little'
+    },
+  ];
+
   num = 92;
 
   constructor() {}

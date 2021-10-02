@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-google-news',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./google-news.component.scss']
 })
 export class GoogleNewsComponent implements OnInit {
+
+  @Input('data') data: any;
 
   constructor() { }
 

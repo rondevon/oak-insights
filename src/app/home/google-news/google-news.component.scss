@@ -1,0 +1,25 @@
+.news-updates span{
+    display: flex;
+}
+.news-item{
+    margin-top: 4vh;
+    }
+.news-bullet{
+        position: relative;
+        margin: 50px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: #000000;
+}
+
+.news-heading{
+    font-size: 1.5vw;
+    font-weight: 800;
+    line-height: 2vw;
+    
+}
+.news-body{
+    font-size: 1vw;
+    font-weight: 400;
+}

@@ -79,7 +79,7 @@ export class ActivityGaugeComponent implements OnInit {
     },
 
     series: [{
-        name: 'Move',
+        name: 'Target',
         type: 'solidgauge',
         data: [{
             color:{
@@ -91,10 +91,10 @@ export class ActivityGaugeComponent implements OnInit {
     				},
             radius: '100%',
             innerRadius: '88%',
-            y: 100
+            y: 80
         }]
     }, {
-        name: 'Exercise',
+        name: 'Actual',
         type: 'solidgauge',
         data: [{
         color:{
@@ -107,7 +107,7 @@ export class ActivityGaugeComponent implements OnInit {
     				},
             radius: '75%',
             innerRadius: '63%',
-            y: 100
+            y: 60
         }]
     }]
   });
