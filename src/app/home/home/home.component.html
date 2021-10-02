@@ -53,9 +53,9 @@
           </div>
         </div>
         <div class="row">
-          <div class="card">
+          <div class="card p-4">
             <mat-card-title>List of Events</mat-card-title>
-           <h6>A list of non-trading days</h6>
+            <span class="widget-subtitle">A list of non-trading days</span>
             <p style="display: flex;" *ngFor="let event of events">
               <b style="margin-right: 16px">{{event.list | dateSuffix}}</b>
               <span>{{event.name}}</span>
@@ -84,14 +84,17 @@
       </div>
       <div class="col-lg-4">
         <div class="row">
-          <mat-card class="score">
-            <mat-card-title> Top Consuming Appliances </mat-card-title>
-          </mat-card>
+          <div class="card p-4">
+            <mat-card-title>Top Consuming Appliances</mat-card-title>
+            <span class="widget-subtitle">A list of appliances in decreasing order of consumption</span>
+            <app-appliance-consumption></app-appliance-consumption>
+          </div>
         </div>
         <div class="row">
-          <mat-card class="score">
-            <mat-card-title> Google News</mat-card-title>
-          </mat-card>
+          <div class="card p-4">
+            <mat-card-title>Google News</mat-card-title>
+            <app-google-news></app-google-news>
+          </div>
         </div>
       </div>
     </div>
