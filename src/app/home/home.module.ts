@@ -11,12 +11,16 @@ import { HomeComponent } from './home/home.component';
 import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
 import { ChartModule } from 'angular-highcharts';
 import { WeatherComponent } from './weather/weather.component';
+import { GoogleNewsComponent } from './google-news/google-news.component';
+import { ApplianceConsumptionComponent } from './appliance-consumption/appliance-consumption.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     InsightItemTileComponent,
-    WeatherComponent
+    WeatherComponent,
+    GoogleNewsComponent,
+    ApplianceConsumptionComponent
   ],
   imports: [
     CommonModule,
