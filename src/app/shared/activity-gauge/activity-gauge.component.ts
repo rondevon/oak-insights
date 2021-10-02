@@ -76,8 +76,8 @@ export class ActivityGaugeComponent implements OnInit {
             color:{
             linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1},
       			stops: [
-        				[0, '#f79685'],
-        				[1, '#f45c42']
+        				[0, '#465DA4'],
+        				[1, '#7DC3BE'],
       							]
     				},
             radius: '100%',
@@ -91,8 +91,9 @@ export class ActivityGaugeComponent implements OnInit {
         color:{
             linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1},
       			stops: [
-        				[0, '#f699ff'],
-       					 [1, '#d71ee8']
+        				[0, '#F3837A'],
+       					 [0.5, '#F8A992'],
+                            [1, '#F3837A']
       							]
     				},
             radius: '75%',

@@ -55,9 +55,9 @@ export class HomeComponent implements OnInit {
 
   events: any[] = [
     { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday' },
+    { list: new Date(), name: 'Spring Bank Holiday 2' },
+    { list: new Date(), name: 'Spring Bank Holiday 3' },
+    { list: new Date(), name: 'Spring Bank Holiday 4' },
   ];
 
   num = 92;
