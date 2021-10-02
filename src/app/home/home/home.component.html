@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-lg-9">
         <div class="row">
-          <div class="col-lg-9">
+          <div class="col-lg-8">
               <div class="insights-row">
                 <div class="insights-column" *ngFor="let card of cards">
                   <app-insight-item-tile
@@ -15,28 +15,27 @@
                 </div>
               </div>
           </div>
-          <div class="col-lg-3">
-            <div class="row">
-              <div class="card p-4">
+          <div class="col-lg-4">
+              <div class="card p-4 mb-4">
                 <mat-card-title>Consumption Overview</mat-card-title>
                 <app-activity-gauge></app-activity-gauge>
               </div>
-            </div>
           </div>
         </div>
         <div class="row">
-          <mat-card class="score">
+          <div class="col-lg-12">
+            <div class="card p-4 mb-4">
             <mat-card-title>Calendar Heat Map</mat-card-title>
             <app-heatmap></app-heatmap>
-          </mat-card>
+          </div>
+        </div>
         </div>
       </div>
       <div class="col-lg-3">
-        <div class="row">
-          <div class="card p-4">
+
+          <div class="card p-4 mb-4">
             <div class="oakscore">
-              <img
-                src="/assets/icons/icon-oakscore-green.svg"/>
+              <img class="img-res" src="/assets/icons/icon-oakscore-green.svg"/>
               <div class="oak-score-label">
                 OAK Score
               </div>
@@ -45,15 +44,15 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="card p-4">
+
+
+          <div class="card p-4 mb-4">
             <mat-card-title>Google Weather</mat-card-title>
             <app-weather></app-weather>
           </div>
-        </div>
-        <div class="row">
-          <div class="card">
+
+
+          <div class="card p-4 mb-4">
             <mat-card-title>List of Events</mat-card-title>
            <h6>A list of non-trading days</h6>
             <p style="display: flex;" *ngFor="let event of events">
@@ -62,7 +61,7 @@
             </p>
             <button mat-raised-button class="login">LOGIN</button>
           </div>
-        </div>
+
       </div>
     </div>
   </div>
