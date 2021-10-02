@@ -14,7 +14,7 @@ export class ActivityGaugeComponent implements OnInit {
     title: {
         text: '',
         style: {
-            fontSize: '24px'
+            fontSize: '12px'
         }
     },
     exporting: { enabled: false },

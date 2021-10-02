@@ -10,11 +10,13 @@ import { InsightItemTileComponent } from './insight-item-tile/insight-item-tile.
 import { HomeComponent } from './home/home.component';
 import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
 import { ChartModule } from 'angular-highcharts';
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    InsightItemTileComponent
+    InsightItemTileComponent,
+    WeatherComponent
   ],
   imports: [
     CommonModule,

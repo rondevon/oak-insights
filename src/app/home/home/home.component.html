@@ -17,10 +17,10 @@
           </div>
           <div class="col-lg-3">
             <div class="row">
-              <mat-card>
+              <div class="card mt-8">
                 <mat-card-title>Consumption Overview</mat-card-title>
                 <app-activity-gauge></app-activity-gauge>
-              </mat-card>
+              </div>
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
       </div>
       <div class="col-lg-3">
         <div class="row">
-          <mat-card class="score">
+          <div class="card">
             <div class="oakscore">
               <img
                 src="/assets/icons/icon-oakscore-green.svg"/>
@@ -44,15 +44,16 @@
                {{ num }}
               </div>
             </div>
-          </mat-card>
+          </div>
         </div>
         <div class="row">
-          <mat-card class="score">
-            <mat-card-title> Weather </mat-card-title>
-          </mat-card>
+          <div class="card">
+            <mat-card-title>Google Weather</mat-card-title>
+            <app-weather></app-weather>
+          </div>
         </div>
         <div class="row">
-          <mat-card class="score">
+          <div class="card">
             <mat-card-title>List of Events</mat-card-title>
            <h6>A list of non-trading days</h6>
             <p style="display: flex;" *ngFor="let event of events">
@@ -60,7 +61,7 @@
               <span>{{event.name}}</span>
             </p>
             <button mat-raised-button class="login">LOGIN</button>
-          </mat-card>
+          </div>
         </div>
       </div>
     </div>
