@@ -8,16 +8,20 @@ import { NgsAvaterModule } from 'ngs-avater';
 import { RouterModule } from '@angular/router';
 import { ChartComponent } from './chart/chart.component';
 import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
+import { HeatMapComponent } from './heatmap/heatmap.component';
+import { ActivityGaugeComponent } from './activity-gauge/activity-gauge.component';
 
 import { HIGHCHARTS_MODULES, ChartModule } from 'angular-highcharts';
 import more from 'highcharts/highcharts-more.src';
 import exporting from 'highcharts/modules/exporting.src';
 import highmaps from 'highcharts/modules/map.src';
-import { HeatMapComponent } from './heatmap/heatmap.component';
+import solidgauge from 'highcharts/modules/solid-gauge.src';
+import accessibility from 'highcharts/modules/accessibility.src';
+import exportdata from 'highcharts/modules/export-data.src';
 
 export function highchartsModules() { 
   // apply Highcharts Modules to this array
-  return [ more, exporting, highmaps];
+  return [ more, exporting, highmaps,solidgauge,accessibility,exportdata];
 }
 
 @NgModule({
@@ -27,7 +31,8 @@ export function highchartsModules() {
     FooterComponent,
     ChartComponent,
     StackedBarChartComponent,
-    HeatMapComponent
+    HeatMapComponent,
+    ActivityGaugeComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +46,8 @@ export function highchartsModules() {
     FooterComponent,
     ChartComponent,
     StackedBarChartComponent,
-    HeatMapComponent
+    HeatMapComponent,
+    ActivityGaugeComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }

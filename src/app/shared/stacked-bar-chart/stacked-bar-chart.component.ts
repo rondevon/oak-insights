@@ -12,12 +12,12 @@ export class StackedBarChartComponent implements OnInit {
       text: ''
   },
   xAxis: {
-      categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+      categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday']
   },
   yAxis: {
       min: 0,
       title: {
-          text: 'Total fruit consumption'
+          text: 'Consumption (kwh)'
       },
       stackLabels: {
           enabled: true,
