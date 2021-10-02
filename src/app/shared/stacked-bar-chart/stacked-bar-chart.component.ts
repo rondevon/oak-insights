@@ -20,7 +20,7 @@ export class StackedBarChartComponent implements OnInit {
           text: 'Consumption (kwh)'
       },
       stackLabels: {
-          enabled: true,
+          enabled: false,
           style: {
               fontWeight: 'bold',
               color:  'gray'
@@ -46,22 +46,25 @@ export class StackedBarChartComponent implements OnInit {
       column: {
           stacking: 'normal',
           dataLabels: {
-              enabled: true
+              enabled: false
           }
       }
   },
   series: [{
-      name: 'John',
+      name: 'Non-Operating',
       type: 'column',
-      data: [5, 3, 4, 7, 2]
+      color: '#cccccc',
+      data: [1200, 3600, 4800, 6000, 2000, 2500, 4000]
   }, {
-      name: 'Jane',
+      name: 'Operating',
       type: 'column',
-      data: [2, 2, 3, 2, 1]
+      color: '#4164ADCC',
+      data: [1400, 2400, 3600, 8000, 1000, 3500, 4200]
   }, {
-      name: 'Joe',
+      name: 'Preparatory',
       type: 'column',
-      data: [3, 4, 4, 2, 5]
+      color: '#7DC3BE',
+      data: [300, 400, 400, 200, 500, 200, 500]
   }]
   });
 
