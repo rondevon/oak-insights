@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     },
     {
       image: '/assets/icons/icon-closed-hours.svg',
-      title: 'Closed-hours Consumption',
+      title: 'Closed-hours',
       value: '2,044',
       unit: 'kWh',
       color: 'var(--color8)',
