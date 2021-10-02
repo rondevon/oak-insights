@@ -1,4 +1,63 @@
-<h1>Insights at a Glance</h1>
+<div class="container">
+  <div class="row top-container">
+    <div class="row">
+      <h1>Insights at a Glance</h1>
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="row">
+              Insight Tiles
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="row">
+              <div class="overview">
+                <mat-card class="score">
+                  <mat-card-title>Consumption Overview</mat-card-title>
+                  <app-activity-gauge></app-activity-gauge>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">Heat Map</div>
+      </div>
+      <div class="col-lg-3">
+        <div class="row">
+          <mat-card class="score">
+            <div class="oakscore">
+              <img
+                src="/assets/icons/icon-oakscore-green.svg"/>
+              <div class="oak-score-label">
+                OAK Score
+              </div>
+              <div class="oak-score-text">
+               {{ num }}
+              </div>
+            </div>
+          </mat-card>
+        </div>
+        <div class="row">Google Weather</div>
+        <div class="row">Events</div>
+      </div>
+    </div>
+  </div>
+  <div class="row bottom-container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="row">Operating Hours</div>
+        <div class="row">Energy Cost throughout the day</div>
+      </div>
+      <div class="col-lg-5">
+        <div class="row">Top Consuming Appliances</div>
+        <div class="row">Google News</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <mat-grid-list cols="4" rowHeight="72px">
   <mat-grid-tile colspan="2" rowspan="5">
     <div class="card">
@@ -9,14 +68,7 @@
       ></app-insight-item-tile>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="5">
-    <div class="overview">
-      <mat-card class="score">
-        <mat-card-title>Consumption Overview</mat-card-title>
-        <app-activity-gauge></app-activity-gauge>
-      </mat-card>
-    </div>
-  </mat-grid-tile>
+
   <mat-grid-tile colspan="1" rowspan="2.5">
     <mat-card class="score">
       <div class="oakscore">
