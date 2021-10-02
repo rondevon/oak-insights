@@ -11,6 +11,7 @@ export class StackedBarChartComponent implements OnInit {
     title: {
       text: ''
   },
+  exporting: { enabled: false },
   xAxis: {
       categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday']
   },

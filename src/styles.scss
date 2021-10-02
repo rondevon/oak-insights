@@ -56,6 +56,10 @@ body { margin: 0; font-family: 'Avenir-Roman'!important }
   font-family: Avenir-Light;
   src: url(assets/Font/Avenir/Avenir-Light.woff2) format("woff2");
 }
+.card-custom{
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
 
 :root {--color1: #465DA4;
 --color2: #F3837A;

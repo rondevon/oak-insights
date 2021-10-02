@@ -15,6 +15,7 @@ export class ChartComponent implements OnInit {
     legend: {
       enabled: false
     },
+    exporting: { enabled: false },
     xAxis: {
       title: {
           text: 'Hours',

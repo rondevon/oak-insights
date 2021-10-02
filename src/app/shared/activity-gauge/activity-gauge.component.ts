@@ -19,18 +19,19 @@ export class ActivityGaugeComponent implements OnInit {
     },
     exporting: { enabled: false },
     tooltip: {
+        enabled:false,
         borderWidth: 0,
         backgroundColor: 'none',
         shadow: false,
         style: {
-            fontSize: '16px'
+            fontSize: '1vw'
         },
         valueSuffix: '%',
         pointFormat: '{series.name}<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}</span>',
         positioner: function (labelWidth) {
             return {
                 x: (this.chart.chartWidth - labelWidth) / 2,
-                y: (this.chart.plotHeight / 2) + 15
+                y: (this.chart.plotHeight / 2 -15)
             };
         }
     },
@@ -61,8 +62,16 @@ export class ActivityGaugeComponent implements OnInit {
     plotOptions: {
         solidgauge: {
             dataLabels: {
-                enabled: false
+                style: {
+                    fontFamily:'Avenir-Roman',
+                    fontSize: '1vw'
+                },
+                borderWidth: 0,
+                backgroundColor: 'none',
+                y: -24,
+                format:'<div style="width:100%;text-align:center;"><span style="font-size:1.2vw; color: {point.color}; font-weight: bold">1,526 kwh</span><br><spanstyle="font-size:1vw; color: black; font-weight: bold">Above Target</span></div>',
             },
+
             linecap: 'round',
             stickyTracking: false,
             rounded: true
@@ -82,7 +91,7 @@ export class ActivityGaugeComponent implements OnInit {
     				},
             radius: '100%',
             innerRadius: '88%',
-            y: 80
+            y: 100
         }]
     }, {
         name: 'Exercise',
@@ -98,7 +107,7 @@ export class ActivityGaugeComponent implements OnInit {
     				},
             radius: '75%',
             innerRadius: '63%',
-            y: 65
+            y: 100
         }]
     }]
   });
