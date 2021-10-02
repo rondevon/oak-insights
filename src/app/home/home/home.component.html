@@ -8,7 +8,13 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="row">
-              Insight Tiles
+              <div class="card">
+                <app-insight-item-tile
+                  [data]="card"
+                  *ngFor="let card of cards"
+                  class="tile"
+                ></app-insight-item-tile>
+              </div>
             </div>
           </div>
           <div class="col-lg-3">
@@ -22,7 +28,12 @@
             </div>
           </div>
         </div>
-        <div class="row">Heat Map</div>
+        <div class="row">
+          <mat-card class="score">
+            <mat-card-title>Calendar Heat Map</mat-card-title>
+            <app-heatmap></app-heatmap>
+          </mat-card>
+        </div>
       </div>
       <div class="col-lg-3">
         <div class="row">
@@ -39,97 +50,53 @@
             </div>
           </mat-card>
         </div>
-        <div class="row">Google Weather</div>
-        <div class="row">Events</div>
+        <div class="row">
+          <mat-card class="score">
+            <mat-card-title> Weather </mat-card-title>
+          </mat-card>
+        </div>
+        <div class="row">
+          <mat-card class="score">
+            <mat-card-title>List of Events</mat-card-title>
+           <h6>A list of non-trading days</h6>
+            <p style="display: flex;" *ngFor="let event of events">
+              <b style="margin-right: 16px">{{event.list | dateSuffix}}</b>
+              <span>{{event.name}}</span>
+            </p>
+            <button mat-raised-button class="login">LOGIN</button>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
   <div class="row bottom-container">
     <div class="row">
       <div class="col-lg-7">
-        <div class="row">Operating Hours</div>
-        <div class="row">Energy Cost throughout the day</div>
+        <div class="row">
+          <mat-card class="score">
+            <mat-card-title>Operating Hours Analysis</mat-card-title>
+            <app-stacked-bar-chart></app-stacked-bar-chart>
+          </mat-card>
+        </div>
+        <div class="row">
+          <mat-card class="score">
+            <mat-card-title> Energy Cost throughout the day </mat-card-title>
+            <app-chart></app-chart>
+          </mat-card>
+        </div>
       </div>
       <div class="col-lg-5">
-        <div class="row">Top Consuming Appliances</div>
-        <div class="row">Google News</div>
+        <div class="row">
+          <mat-card class="score">
+            <mat-card-title> Top Consuming Appliances </mat-card-title>
+          </mat-card>
+        </div>
+        <div class="row">
+          <mat-card class="score">
+            <mat-card-title> Google News</mat-card-title>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<mat-grid-list cols="4" rowHeight="72px">
-  <mat-grid-tile colspan="2" rowspan="5">
-    <div class="card">
-      <app-insight-item-tile
-        [data]="card"
-        *ngFor="let card of cards"
-        class="tile"
-      ></app-insight-item-tile>
-    </div>
-  </mat-grid-tile>
-
-  <mat-grid-tile colspan="1" rowspan="2.5">
-    <mat-card class="score">
-      <div class="oakscore">
-        <img
-          src="/assets/icons/icon-oakscore-green.svg"/>
-        <div class="oak-score-label">
-          OAK Score
-        </div>
-        <div class="oak-score-text">
-         {{ num }}
-        </div>
-      </div>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="2.5">
-    <mat-card class="score">
-      <mat-card-title> Weather </mat-card-title>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="3" rowspan="5">
-    <mat-card class="score">
-      <mat-card-title>Calendar Heat Map</mat-card-title>
-      <app-heatmap></app-heatmap>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="4">
-    <mat-card class="score">
-      <mat-card-title>List of Events</mat-card-title>
-     <h6>A list of non-trading days</h6>
-      <p style="display: flex;" *ngFor="let event of events">
-        <b style="margin-right: 16px">{{event.list | dateSuffix}}</b>
-        <span>{{event.name}}</span>
-      </p>
-      <button mat-raised-button class="login">LOGIN</button>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
-
-<h1></h1>
-
-<mat-grid-list cols="5" rowHeight="96px">
-  <mat-grid-tile colspan="3" rowspan="5">
-    <mat-card class="score">
-      <mat-card-title>Operating Hours Analysis</mat-card-title>
-      <app-stacked-bar-chart></app-stacked-bar-chart>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2" rowspan="4">
-    <mat-card class="score">
-      <mat-card-title> Top Consuming Appliances </mat-card-title>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="2" rowspan="6">
-    <mat-card class="score">
-      <mat-card-title> Google News </mat-card-title>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="3" rowspan="5">
-    <mat-card class="score">
-      <mat-card-title> Energy Cost throughout the day </mat-card-title>
-      <app-chart></app-chart>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
