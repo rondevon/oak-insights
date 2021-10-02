@@ -1,9 +1,19 @@
-<mat-card style="display: flex; flex-direction: row; height: 64px" class="mat-elevation-z8">
-  <img [src]="data.image" [alt]="data.title" style="height: 100%" />
-  <div>
-      <mat-card-subtitle class="unit">{{ data.title }}</mat-card-subtitle>
-      <mat-card-title [style.color]="data.color"><span class="val">{{ data.value }}</span>
+<!-- <mat-card class="mat-elevation-z8">
+  <img [src]="data.image" [alt]="data.title" class="card-image" />
+  <mat-card-subtitle class="unit">{{ data.title }}</mat-card-subtitle>
+  <mat-card-title [style.color]="data.color">
+    <span class="val">{{ data.value }}</span>
+    <span class="unit">{{data.unit}}</span>
+  </mat-card-title>
+</mat-card> -->
+
+  <div class="card flex-row">
+    <img class="card-img-left insights-image" [src]="data.image" [alt]="data.title" />
+    <div class="card-body">
+      <h4 class="card-title h5 h4-sm">{{ data.title }}</h4>
+      <div class="card-text">
+        <span class="val" [style.color]="data.color">{{ data.value }}</span>
         <span class="unit">{{data.unit}}</span>
-      </mat-card-title>
+      </div>
+    </div>
   </div>
-</mat-card>

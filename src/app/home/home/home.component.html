@@ -6,25 +6,21 @@
     <div class="row">
       <div class="col-lg-9">
         <div class="row">
-          <div class="col-lg-6">
-            <div class="row">
-              <div class="card">
-                <app-insight-item-tile
-                  [data]="card"
-                  *ngFor="let card of cards"
-                  class="tile"
-                ></app-insight-item-tile>
+          <div class="col-lg-9">
+              <div class="insights-row">
+                <div class="insights-column" *ngFor="let card of cards">
+                  <app-insight-item-tile
+                    [data]="card"
+                  ></app-insight-item-tile> 
+                </div>
               </div>
-            </div>
           </div>
           <div class="col-lg-3">
             <div class="row">
-              <div class="overview">
-                <mat-card class="score">
-                  <mat-card-title>Consumption Overview</mat-card-title>
-                  <app-activity-gauge></app-activity-gauge>
-                </mat-card>
-              </div>
+              <mat-card>
+                <mat-card-title>Consumption Overview</mat-card-title>
+                <app-activity-gauge></app-activity-gauge>
+              </mat-card>
             </div>
           </div>
         </div>
@@ -71,7 +67,7 @@
   </div>
   <div class="row bottom-container">
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-lg-8">
         <div class="row">
           <mat-card class="score">
             <mat-card-title>Operating Hours Analysis</mat-card-title>
@@ -85,7 +81,7 @@
           </mat-card>
         </div>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <div class="row">
           <mat-card class="score">
             <mat-card-title> Top Consuming Appliances </mat-card-title>
