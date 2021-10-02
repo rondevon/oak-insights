@@ -20,14 +20,13 @@
     <mat-card class="score">
       <div class="oakscore">
         <img
-          src="/assets/icons/icon-oakscore-green.svg"
-
-        />
-        <span>
+          src="/assets/icons/icon-oakscore-green.svg"/>
+        <div class="oak-score-label">
           OAK Score
-        <br>
-        {{ num }}
-        </span>
+        </div>
+        <div class="oak-score-text">
+         {{ num }}
+        </div>
       </div>
     </mat-card>
   </mat-grid-tile>
@@ -39,6 +38,7 @@
   <mat-grid-tile colspan="3" rowspan="5">
     <mat-card class="score">
       <mat-card-title>Calendar Heat Map</mat-card-title>
+      <app-heatmap></app-heatmap>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="4">
@@ -60,6 +60,7 @@
   <mat-grid-tile colspan="3" rowspan="5">
     <mat-card class="score">
       <mat-card-title>Operating Hours Analysis</mat-card-title>
+      <app-stacked-bar-chart></app-stacked-bar-chart>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="4">
@@ -75,6 +76,7 @@
   <mat-grid-tile colspan="3" rowspan="5">
     <mat-card class="score">
       <mat-card-title> Energy Cost throughout the day </mat-card-title>
+      <app-chart></app-chart>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
