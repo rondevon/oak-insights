@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 
-import { HomeRoutingModule } from './home-routing.module';
+import { PagesRoutingModule } from './pages-routing.module';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from "@angular/material/card";
@@ -24,7 +24,7 @@ import { ApplianceConsumptionComponent } from './appliance-consumption/appliance
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
+    PagesRoutingModule,
     CustomPipesModule,
     MatGridListModule,
     MatCardModule,
@@ -32,4 +32,4 @@ import { ApplianceConsumptionComponent } from './appliance-consumption/appliance
     SharedModule
   ]
 })
-export class HomeModule { }
+export class PagesModule { }
