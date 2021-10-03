@@ -4,11 +4,12 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)), url("../../../assets/oak-login-bg.svg") no-repeat fixed center;
 }
 
 input {
-  width: 400px;
-  margin-bottom: 16px;
+  width: 320px;
+  margin-bottom: 24px;
   height: 40px;
   outline: 0;
   border: 3px solid var(--color1);
@@ -16,14 +17,21 @@ input {
   font-size: 14px;
 }
 
-.login {
-  width: 180px;
+.btn-login {
+  width: 160px;
   border-radius: 25px;
-  height: 44px;
-  margin: 24px 0;
-  background-color: var(--color3);
+  height: 40px;
+  margin: 16px 0 32px 0;
+  background-image: linear-gradient(to right, #364096 0%, #4164AD  51%, #364096  100%);
+  text-transform: uppercase;
+  color: white;
 }
 
 .password {
   font-weight: 300;
+}
+
+.oak-logo {
+  margin-bottom: 44px; 
+  width: 512px;
 }
