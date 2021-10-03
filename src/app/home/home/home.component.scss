@@ -11,10 +11,6 @@
     box-shadow: 0 0 10px #c5baba;
 }
 
-::ng-deep .mat-grid-tile-content {
-    box-sizing: border-box !important;
-}
-
 .overview {
     height: 98%;
     width: 98%;
@@ -39,20 +35,20 @@
 .add-new-btn {
     background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
     width:100%;
-   margin-top: 1.5vw;
-   padding: 0.5vw 2vw;
-   text-align: center;
-   text-transform: uppercase;
-   transition: 0.5s;
-   background-size: 200% auto;
-   color: white;
-   border-width:0;            
-   border-radius: 100px;
-   border-color: #ffffff;
-   display: block;
-   font-weight: 800;
-   font-size: 1vw;
-   letter-spacing: 2;
+    margin-top: 1.5vw;
+    padding: 0.5vw 2vw;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-width:0;            
+    border-radius: 100px;
+    border-color: #ffffff;
+    display: block;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 2;
  }
 
  .add-new-btn:hover {
@@ -69,7 +65,7 @@
     position:relative;
 }
 .oak-score{
-        height: 100%;
+    height: 100%;
 }
 .oak-score-label {
     margin: 0;
@@ -102,17 +98,10 @@
 }
 
 .top-container {
-    h1 {
+    h2 {
         font-family: var(--fontRegular);
+        margin: 16px 0;
     }
-}
-
-.bottom-container {
-    // background-color: lightgreen;
-}
-
-.card-container {
-    
 }
 
 .insights-column {
