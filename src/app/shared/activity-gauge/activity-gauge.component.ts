@@ -10,7 +10,9 @@ import { Chart } from 'angular-highcharts';
 export class ActivityGaugeComponent implements OnInit {
 
   chart = new Chart({
-
+    chart: {
+        height: '100%'
+    },
     title: {
         text: '',
         style: {

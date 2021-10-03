@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   
   cards: any[] = [
     {
-      image: '/assets/icons/icon-energy-usage.svg',
+      image: '/assets/icons/Icon-Energy-Usage.svg',
       title: 'Energy Usage',
       value: '10,067',
       unit: 'kWh',
