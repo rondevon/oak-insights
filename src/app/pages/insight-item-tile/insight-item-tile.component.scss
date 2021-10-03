@@ -1,0 +1,24 @@
+.insights-card {
+    border-radius: 1rem !important;
+    padding: 0vw 1vw;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.unit {
+    color: var(--color9);
+    font-size: 1.2vw !important;
+    font: var(--fontRegular);
+}
+
+.val {
+    font-size: 2.5vw!important;
+    font-weight: 900 !important;
+}
+
+.insights-image {
+    width: 22%;
+}
+
+.card-indent {
+    margin-top: -0.5rem;
+}

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Chart } from 'angular-highcharts';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  
   cards: any[] = [
     {
       image: '/assets/icons/Icon-Energy-Usage.svg',
@@ -23,7 +25,7 @@ export class HomeComponent implements OnInit {
     },
     {
       image: '/assets/icons/icon-closed-hours.svg',
-      title: 'Closed-hours Consumption',
+      title: 'Closed-hours',
       value: '2,044',
       unit: 'kWh',
       color: 'var(--color8)',
@@ -31,7 +33,7 @@ export class HomeComponent implements OnInit {
     {
       image: '/assets/icons/icon-energy-intensity.svg',
       title: 'Energy Intensity ',
-      value: '2517',
+      value: '2,517',
       unit: 'kWh/m2',
       color: 'var(--color5)',
     },
@@ -53,12 +55,23 @@ export class HomeComponent implements OnInit {
 
   events: any[] = [
     { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday' },
+    { list: new Date(), name: 'Spring Bank Holiday 2' },
+    { list: new Date(), name: 'Spring Bank Holiday 3' },
+    { list: new Date(), name: 'Spring Bank Holiday 4' },
   ];
 
-  num = 92;
+  newsData: any[] = [
+    {
+      title: 'Four consecutive years of 100% renewable energy—and what’s next.',
+      description:'The path to 100% starts with reducing the amount of energy we use in the first place. Researchers recently found that worldwide data center electricity stayed close to flat in the last decade, even as computing needs grew 550 percent'
+    },
+    {
+      title: 'Announcing ‘round-the-clock clean energy for cloud',
+      description:'But wind and solar power don’t work in all places at all times. Though we buy enough renewable energy on average to match our data centers’ electricity consumption, that average is an annual average. Thus, for a particular data center, at any given time we may have too much renewable power, or too little'
+    },
+  ];
+
+  oakScore = 92;
 
   constructor() {}
 

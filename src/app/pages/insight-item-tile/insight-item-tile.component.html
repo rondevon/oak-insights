@@ -1,0 +1,10 @@
+<div class="card flex-row insights-card" [style.borderColor]="data.color">
+  <img class="card-img-left insights-image" [src]="data.image" [alt]="data.title" />
+  <div class="card-body">
+    <h4 class="card-title unit">{{ data.title }}</h4>
+    <div class="card-text card-indent">
+      <span class="val" [style.color]="data.color">{{ data.value }}</span>
+      <span class="unit">&nbsp;{{data.unit}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.weather-container {
+    font-family: var(--fontRegular);
+}
+.weather-stats {
+    font-size: 0.8vw;
+    color: gray;
+}
+.degree{
+    font-size: 1.5vw;
+    color: gray;
+}
+.google-weather-image {
+    width: 80%;
+}
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+.temperature {
+    font-size: 4vw;
+}
+.day,.date{
+    font: var(--fontBold);
+    font-size: 1vw;
+    font-weight: 700;
+    color: gray;
+}
+

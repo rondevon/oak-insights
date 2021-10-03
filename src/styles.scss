@@ -40,7 +40,7 @@ $oak-insights-theme: mat.define-light-theme((
 // * { margin: 0; font-family: Avenir, 'Roman', Bold; }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Avenir-Roman' }
+body { margin: 0; font-family: 'Avenir-Roman'!important }
 
 @font-face {
   font-family: Avenir-Black;
@@ -65,9 +65,13 @@ body { margin: 0; font-family: 'Avenir-Roman' }
 --color6: #F8A992;
 --color7: #FCC294;
 --color8: #4164AD;
+--color9: #444444;
 --fontRegular: 'Avenir-Roman';
 --fontBold: 'Avenir-Black';
 --fontLight: 'Avenir-Light';
 
 }
 
+.highcharts-credits{
+  visibility:hidden;
+}
