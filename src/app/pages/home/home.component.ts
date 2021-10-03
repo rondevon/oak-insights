@@ -53,6 +53,14 @@ export class HomeComponent implements OnInit {
     },
   ];
 
+  heatmapranges: any[] = [
+    {range:'100-200',color:'var(--heatmap-color1)'},
+    {range:'200-400',color:'var(--heatmap-color2)'},
+    {range:'400-600',color:'var(--heatmap-color3)'},
+    {range:'600-800',color:'var(--heatmap-color4)'},
+    {range:'800-1000',color:'var(--heatmap-color5)'},
+  ];
+
   events: any[] = [
     { list: new Date(), name: 'Spring Bank Holiday' },
     { list: new Date(), name: 'Spring Bank Holiday 2' },

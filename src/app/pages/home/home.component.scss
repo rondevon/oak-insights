@@ -1,3 +1,7 @@
+.nomargin{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 .card-heading{
     font:var(--fontBold);
     font-size: 1.5vw;
@@ -140,7 +144,29 @@
 .activity-gauge-container {
     padding-left: 0;
 }
+.heatmap-legends{
+    align-self: flex-end;
+}
+.rectangle{
+    width:5rem;
+    height:1.5rem;
+    display: inline-block;
+    margin-left: 2rem;
 
+}
+.range-text{
+    width:5rem;
+    height:1.5rem;
+    display: inline-block;
+    margin-left: 2rem;
+    text-align: center;
+    font-weight: 800;
+}
+.heatmap-legend-title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color11);
+}
 
 .opetaring-hours-totals{
     margin-top: 2rem;
