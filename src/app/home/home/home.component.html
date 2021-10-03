@@ -1,4 +1,4 @@
-<div class="">
+<div>
   <div class="row top-container">
     <div class="row">
       <h2>Insights at a Glance</h2>
@@ -14,15 +14,15 @@
                 </div>
           </div>
           <div class="col-lg-4">
-              <div class="card card-custom mb-4" style="height: 380px;">
-                <div class="card-heading p-4">Consumption Overview</div>
+              <div class="card card-custom" style="height: 380px;">
+                <div class="card-heading">Consumption Overview</div>
                 <app-activity-gauge></app-activity-gauge>
               </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <div class="card card-custom p-4 mb-4">
+            <div class="card card-custom">
               <div class="card-heading">Calendar Heat Map</div>
               <span class="widget-subtitle">Compare areas of high consumption with respect to other day</span>
             <app-heatmap></app-heatmap>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="col-lg-3">
-          <div class="card card-custom  p-4 mb-4">
+          <div class="card card-custom">
             <div class="oakscore">
               <div class="oak-score-badge">
               <img class="img-res" src="/assets/icons/icon-oakscore-green.svg"/>
@@ -41,20 +41,20 @@
                   OAK Score
                 </div>
                 <div class="oak-score-text">
-                 {{ num }}
+                 {{ oakScore }}
                 </div>
               </div>
             </div>
           </div>
 
 
-          <div class="card card-custom p-4 mb-4">
+          <div class="card card-custom">
             <div class="card-heading">Current Weather</div>
             <app-weather></app-weather>
           </div>
 
 
-          <div class="card card-custom p-4 mb-4">
+          <div class="card card-custom">
             <div class="card-heading">List of Events</div>
             <span class="widget-subtitle">A list of non-trading days</span>
               <div class="events-list" *ngFor="let event of events">
@@ -72,13 +72,13 @@
   
   <div class="row bottom-container">
       <div class="col-lg-8">
-        <div class="card card-custom p-4 mb-4">
+        <div class="card card-custom">
             <div class="card-heading">Operating Hours Analysis</div>
             <span class="widget-subtitle">Comparison of energy consumption during Trading and Nontrading for each weekday</span>
             <app-stacked-bar-chart></app-stacked-bar-chart>
         </div>
 
-          <div class="card card-custom p-4 mb-4">
+          <div class="card card-custom">
             <div class="card-heading"> Energy Cost throughout the day </div>
             <span class="widget-subtitle">Mean energy consumption during the various time of the day</span>
             <app-chart></app-chart>
@@ -88,17 +88,17 @@
       
       
       <div class="col-lg-4">
-          <div class="card card-custom p-4 mb-4">
+          <div class="card card-custom card-indent">
             <div class="card-heading">Top Consuming Appliances</div>
             <span class="widget-subtitle">A list of appliances in decreasing order of consumption</span>
             <app-appliance-consumption></app-appliance-consumption>
           </div>
 
-          <div class="card card-custom p-4 mb-4">
+          <div class="card card-custom card-indent">
             <div class="card-heading">News Updates</div>
-            <div *ngFor="let news1 of news">
-            <app-google-news [data]="news1"></app-google-news>
-          </div>
+            <div *ngFor="let news of newsData">
+              <app-google-news [data]="news"></app-google-news>
+            </div>
           </div>
       </div>
     </div>

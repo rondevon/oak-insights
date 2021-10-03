@@ -111,25 +111,26 @@
     margin-bottom: 3%;
 }
   
-// .insights-row:after {
-//     content: "";
-//     display: table;
-//     clear: both;
-// }
-
-.mt-8 {
-    margin-top:8px;
-}
-
 .widget-subtitle {
     font-size: 1vw;
     color: gray;
     margin-bottom: 1rem;
 }
 
-.img-res{
+.img-res {
     max-width: 80%; 
     height: auto;
+}
+
+.card-indent {
+    margin-right: 1rem;
+}
+
+.card-custom {
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 

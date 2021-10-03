@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     {
       image: '/assets/icons/icon-energy-intensity.svg',
       title: 'Energy Intensity ',
-      value: '2517',
+      value: '2,517',
       unit: 'kWh/m2',
       color: 'var(--color5)',
     },
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
     { list: new Date(), name: 'Spring Bank Holiday 4' },
   ];
 
-  news: any[] = [
+  newsData: any[] = [
     {
       title: 'Four consecutive years of 100% renewable energy—and what’s next.',
       description:'The path to 100% starts with reducing the amount of energy we use in the first place. Researchers recently found that worldwide data center electricity stayed close to flat in the last decade, even as computing needs grew 550 percent'
@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
     },
   ];
 
-  num = 92;
+  oakScore = 92;
 
   constructor() {}
 

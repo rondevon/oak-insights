@@ -1,6 +1,8 @@
-.custom-card{
+.insights-card {
     border-radius: 1rem !important;
     padding: 0vw 1vw;
+    max-height: 110px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .unit {
@@ -16,4 +18,8 @@
 
 .insights-image {
     width: 22%;
+}
+
+.card-indent {
+    margin-top: -0.5rem;
 }
