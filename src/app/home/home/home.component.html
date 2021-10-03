@@ -6,15 +6,15 @@
     <div class="row">
       <div class="col-lg-9">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-8 insights-container">
                 <div class="insights-column" *ngFor="let card of cards">
                   <app-insight-item-tile
                     [data]="card"
                   ></app-insight-item-tile> 
                 </div>
           </div>
-          <div class="col-lg-4">
-              <div class="card card-custom" style="height: 380px;">
+          <div class="col-lg-4 activity-gauge-container">
+              <div class="card card-custom">
                 <div class="card-heading">Consumption Overview</div>
                 <app-activity-gauge></app-activity-gauge>
               </div>
