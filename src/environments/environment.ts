@@ -6,6 +6,8 @@ export const environment = {
   production: false
 };
 
+export const serviceBaseUrl = `http://18.169.122.251:9010/`;
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

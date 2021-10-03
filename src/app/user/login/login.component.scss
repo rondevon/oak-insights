@@ -1,9 +1,9 @@
-:host {
+.login-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)), url("../../../assets/oak-login-bg.svg") no-repeat fixed center;
 }
 
@@ -34,4 +34,10 @@ input {
 .oak-logo {
   margin-bottom: 44px; 
   width: 512px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
