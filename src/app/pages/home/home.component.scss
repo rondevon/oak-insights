@@ -28,12 +28,12 @@
     font-size: 1.1vw;
 }
 
-.add-new{
+.add-new-event{
     align-self: center;
 }
 
 .add-new-btn {
-    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%);
+    background-image: linear-gradient(to right, var(--color3) 0%, var(--color5)  51%, var(--color3)  100%);
     width:100%;
     margin-top: 1.5vw;
     padding: 0.5vw 2vw;
@@ -142,6 +142,68 @@
 }
 
 
+.opetaring-hours-totals{
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.total-text{
+    font-size:1rem;
+    color: gray;
+
+}
+
+.total-value{
+    font-size:1.2rem;
+    font-weight: 800;
+}
+
+.open-closed{
+    float: right;
+    margin-bottom: 1rem;
+}
+.open-days-button{
+    background-image: linear-gradient(to right, var(--color3) 0%, var(--color5)  51%, var(--color3)  100%);
+    padding: 0.5vw 1.65vw;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-width:0;            
+    border-radius: 100px;
+    border-color: #ffffff;
+    display: block;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 5;
+    margin-bottom: 0.6rem;
+}
+
+.open-days-button:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
 
 
+  .closed-days-button{
+    background-image: linear-gradient(to right, var(--color11) 0%, var(--color12)  51%, var(--color11)  100%);
+    padding: 0.5vw 1.5vw;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;
+    border-width:0;            
+    border-radius: 100px;
+    border-color: #ffffff;
+    display: block;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 5;
+}
 
+.closed-days-button:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #000;
+    text-decoration: none;
+  }

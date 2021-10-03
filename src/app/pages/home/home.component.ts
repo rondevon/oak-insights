@@ -10,7 +10,7 @@ export class HomeComponent implements OnInit {
   
   cards: any[] = [
     {
-      image: '/assets/icons/Icon-Energy-Usage.svg',
+      image: '/assets/icons/icon-energy-usage.svg',
       title: 'Energy Usage',
       value: '10,067',
       unit: 'kWh',
@@ -60,6 +60,11 @@ export class HomeComponent implements OnInit {
     { list: new Date(), name: 'Spring Bank Holiday 4' },
   ];
 
+  operatingHoursTotals: any[] = [
+    {type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
+    {type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
+    {type:'Closed Hours', value: '1000 kWH', color:'gray'},
+  ];
   newsData: any[] = [
     {
       title: 'Four consecutive years of 100% renewable energy—and what’s next.',
