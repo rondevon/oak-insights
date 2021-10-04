@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DateSuffix } from './date-suffix.pipe';
+import { DateSuffix, DateSuffixFull } from './date-suffix.pipe';
 
 
 
 @NgModule({
   declarations: [
-    DateSuffix
+    DateSuffix, DateSuffixFull
   ],
   imports: [
     CommonModule
   ],
-  exports: [DateSuffix]
+  exports: [DateSuffix, DateSuffixFull]
 })
 export class CustomPipesModule { }

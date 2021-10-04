@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-home',
@@ -73,20 +74,24 @@ export class HomeComponent implements OnInit {
     {type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
     {type:'Closed Hours', value: '1000 kWH', color:'gray'},
   ];
-  newsData: any[] = [
-    {
-      title: 'Four consecutive years of 100% renewable energy—and what’s next.',
-      description:'The path to 100% starts with reducing the amount of energy we use in the first place. Researchers recently found that worldwide data center electricity stayed close to flat in the last decade, even as computing needs grew 550 percent'
-    },
-    {
-      title: 'Announcing ‘round-the-clock clean energy for cloud',
-      description:'But wind and solar power don’t work in all places at all times. Though we buy enough renewable energy on average to match our data centers’ electricity consumption, that average is an annual average. Thus, for a particular data center, at any given time we may have too much renewable power, or too little'
-    },
-  ];
+
 
   oakScore = 92;
+  newsData = [];
+  weatherData: any;
 
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.apiService.getNews().subscribe((data: any) => {
+      this.newsData = data.articles.slice(0, 3);
+    })
+
+    this.apiService.getWeather('kolkata,IN').subscribe((data: any) => {
+      if (data.data && data.data.length > 0) {
+        this.weatherData = data.data[0];      
+      }
+    })
+
+  }
 }

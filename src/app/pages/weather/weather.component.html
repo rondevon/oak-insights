@@ -1,24 +1,24 @@
-<div class=".weather-container row vertical-align">
+<div class=".-container row vertical-align">
     <div class="col-lg-6">
 
         <div class="temperature">
-            <label>25<span class="degree">&deg;C</span></label>
+            <label>{{data?.temp}}<span class="degree">&deg;C</span></label>
         </div>
         <div class="day">
-            <label>Wednesday</label>
+            <label>{{data?.ob_time | date: 'EEEE'}}</label>
         </div>
         <div class="date">
-            <label>25th June, 2021</label>
+            <label>{{data?.ob_time | dateSuffixFull}}</label>
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="weather-icon">
-            <img class="card-img-left google-weather-image" [src]="imgPath"/>
+        <div class="-icon">
+            <img class="card-img-left google--image" [src]="imgPath"/>
         </div>
-        <div class="weather-stats">
-            <label>Precipitation: 16%</label>
-            <label>Humidity: 78%</label>
-            <label>Wind: 18km/h</label>
+        <div class="-stats">
+            <label>Precipitation: {{data?.precip}}%</label>
+            <label>Humidity: {{data?.rh}}%</label>
+            <label>Wind: {{data?.wind_spd}}km/h</label>
         </div>
     </div>
 </div>
