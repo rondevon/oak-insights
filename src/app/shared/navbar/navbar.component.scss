@@ -10,17 +10,18 @@
 }
 
 a {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bolder;
-}
+} 
 
 div {
-  margin-bottom: -8px;
-  padding: 12px 9px;
+  margin-bottom: -12px;
+  padding: 8px 14px 16px 14px;
   border-radius: 16px;
   box-sizing: border-box;
   cursor: pointer;
   text-align: center;
+  color: var(--color3);
 } :hover {
     background-color: #364096;
     color: white;
@@ -29,4 +30,10 @@ div {
 .selected {
   background-color: #364096;
   color: white;
+}
+
+@media only screen and (min-width: 1400px) {
+  a {
+    font-size: 16px;
+  }
 }

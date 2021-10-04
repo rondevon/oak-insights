@@ -1,5 +1,5 @@
 <div>
-  <div class="row top-container">
+  <div class="row nomargin top-container">
     <div class="row">
       <h2>Insights at a Glance</h2>
     </div>
@@ -26,6 +26,13 @@
               <div class="card-heading">Calendar Heat Map</div>
               <span class="widget-subtitle">Compare areas of high consumption with respect to other day</span>
             <app-heatmap></app-heatmap>
+            <div class="heatmap-legends">
+              <span class="heatmap-legend-title">Energy (kWh)</span><span *ngFor="let heatmaprange of heatmapranges" class="rectangle"[style.backgroundColor]="heatmaprange.color">
+              </span>
+            </div>
+            <div class="heatmap-legends">
+              <span *ngFor="let heatmaprange of heatmapranges"class="range-text">{{heatmaprange.range}}</span>
+            </div>
           </div>
         </div>
         </div>
@@ -61,7 +68,7 @@
                 <b>{{event.list | dateSuffix}}</b>
                 <span>{{event.name}}</span>
               </div>
-              <div class="add-new">
+              <div class="add-new-event">
               <button class="add-new-btn">Add an Event</button>
             </div>
           </div>
@@ -71,16 +78,34 @@
   </div>
   
   <div class="row bottom-container">
+    <div class="row">
       <div class="col-lg-8">
         <div class="card card-custom">
             <div class="card-heading">Operating Hours Analysis</div>
             <span class="widget-subtitle">Comparison of energy consumption during Trading and Nontrading for each weekday</span>
             <app-stacked-bar-chart></app-stacked-bar-chart>
+            <div class="opetaring-hours-totals">
+                <div class="row">
+                  <div class="col-lg-4" *ngFor="let operatingHoursTotal of operatingHoursTotals">
+                    <span class="total-text">{{operatingHoursTotal.type}}&nbsp;</span><span class="total-value" [style.color]="operatingHoursTotal.color"> {{operatingHoursTotal.value}}</span>
+                  </div>
+                </div>
+            </div>
         </div>
 
           <div class="card card-custom">
-            <div class="card-heading"> Energy Cost throughout the day </div>
-            <span class="widget-subtitle">Mean energy consumption during the various time of the day</span>
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="card-heading"> Energy Cost throughout the day </div>
+                <span class="widget-subtitle">Mean energy consumption during the various time of the day</span>
+              </div>
+              <div class="col-lg-4">
+                <div class="open-closed">
+                  <button class="open-days-button">Open Days</button>
+                  <button class="closed-days-button">Closed Days</button>
+                </div>
+              </div>
+            </div>
             <app-chart></app-chart>
           </div>
       </div>
@@ -88,19 +113,20 @@
       
       
       <div class="col-lg-4">
-          <div class="card card-custom card-indent">
+          <div class="card card-custom">
             <div class="card-heading">Top Consuming Appliances</div>
             <span class="widget-subtitle">A list of appliances in decreasing order of consumption</span>
             <app-appliance-consumption></app-appliance-consumption>
           </div>
 
-          <div class="card card-custom card-indent">
+          <div class="card card-custom">
             <div class="card-heading">News Updates</div>
             <div *ngFor="let news of newsData">
               <app-google-news [data]="news"></app-google-news>
             </div>
           </div>
       </div>
+    </div>
     </div>
 
   </div>
