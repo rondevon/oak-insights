@@ -6,6 +6,7 @@ export const environment = {
   NewsApi: 'https://newsapi.org/v2/everything?q=+energy+sustainability&sortBy=popularity&apiKey=a8b31036bef04509b6c03193f6acb6d3',
   WeatherApi:'https://api.weatherbit.io/v2.0/current?',
   WeatherKey: '&key=59cacdb4dc6845ed92ec5b45ac97123d',
+  HomepageApi: 'http://18.169.122.251:9010/site/home?',
   production: false
 };
 

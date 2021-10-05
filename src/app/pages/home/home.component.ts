@@ -91,6 +91,10 @@ export class HomeComponent implements OnInit {
       if (data.data && data.data.length > 0) {
         this.weatherData = data.data[0];      
       }
+      this.apiService.getHomepageApi('January').subscribe((data: any) => {
+        console.log(data.data.consumption_overview)
+        
+      })
     })
 
   }

@@ -16,4 +16,10 @@ export class ApiService {
   public getWeather(location: string): Observable<any> {
     return this.httpClient.get(environment.WeatherApi + 'city=' + location + environment.WeatherKey);
   }
+ public getHomepageApi(month: string): Observable<any> {
+   return this.httpClient.get(environment.HomepageApi + 'month=' + month)
+ }
+
 }
+
+
