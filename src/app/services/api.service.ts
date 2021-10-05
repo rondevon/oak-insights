@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,12 +14,17 @@ export class ApiService {
   }
 
   public getWeather(location: string): Observable<any> {
-    return this.httpClient.get(environment.WeatherApi + 'city=' + location + environment.WeatherKey);
+    return this.httpClient.get(
+      environment.WeatherApi + 'city=' + location + environment.WeatherKey
+    );
   }
- public getHomepageApi(month: string): Observable<any> {
-   return this.httpClient.get(environment.HomepageApi + 'month=' + month)
- }
-
+  public getHomepageApi(month: string): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(environment.HomepageApi + 'month=' + month, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
 }
-
-
