@@ -1,4 +1,4 @@
-import { LandingComponent } from './../landing/landing.component';
+import { LandingComponent } from './landing/landing.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

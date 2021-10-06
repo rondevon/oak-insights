@@ -10,6 +10,8 @@ import { ChartComponent } from './chart/chart.component';
 import { StackedBarChartComponent } from './stacked-bar-chart/stacked-bar-chart.component';
 import { HeatMapComponent } from './heatmap/heatmap.component';
 import { ActivityGaugeComponent } from './activity-gauge/activity-gauge.component';
+import { ApplianceConsumptionComponent } from './appliance-consumption/appliance-consumption.component';
+import { InsightItemTileComponent } from './insight-item-tile/insight-item-tile.component';
 
 import { HIGHCHARTS_MODULES, ChartModule } from 'angular-highcharts';
 import more from 'highcharts/highcharts-more.src';
@@ -32,7 +34,9 @@ export function highchartsModules() {
     ChartComponent,
     StackedBarChartComponent,
     HeatMapComponent,
-    ActivityGaugeComponent
+    ActivityGaugeComponent,
+    ApplianceConsumptionComponent,
+    InsightItemTileComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +51,9 @@ export function highchartsModules() {
     ChartComponent,
     StackedBarChartComponent,
     HeatMapComponent,
-    ActivityGaugeComponent
+    ActivityGaugeComponent,
+    ApplianceConsumptionComponent,
+    InsightItemTileComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
