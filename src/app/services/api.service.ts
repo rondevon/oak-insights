@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment, serviceBaseUrl } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,7 @@ export class ApiService {
   }
   public getHomepageApi(month: string): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(environment.HomepageApi + 'month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -28,3 +28,4 @@ export class ApiService {
     } else return of(null);
   }
 }
+

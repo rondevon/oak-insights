@@ -20,4 +20,12 @@ export class AuthService {
     // };
     return this.http.post(`${serviceBaseUrl}auth/login`, formdata);
   }
+
+  logout(): Observable<any> {
+    return this.http.get(serviceBaseUrl + 'auth/logout', {
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token'),
+      }
+    });
+  }
 }
