@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/user/auth.service';
 
 @Component({
@@ -9,10 +10,17 @@ import { AuthService } from 'src/app/user/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  [x: string]: any;
   notification = true;
-  constructor(private authService: AuthService, private router: Router) {}
+  photo: any;
+  constructor(private authService: AuthService, private router: Router, private apiService: ApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.apiService.getMyprofileApi().subscribe((data: any)=> {
+      console.log(data.data.photo);
+      this.photo= data.data.photo;
+    });
+  }
 
   logout() {
     this.authService.logout().subscribe((result) => {

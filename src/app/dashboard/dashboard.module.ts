@@ -6,6 +6,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
+import { NgsAvaterModule } from 'ngs-avater';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    CustomPipesModule
+    CustomPipesModule,
+    NgsAvaterModule
   ]
 })
 export class DashboardModule { }

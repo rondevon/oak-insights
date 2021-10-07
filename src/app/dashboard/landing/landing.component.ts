@@ -14,12 +14,14 @@ export class LandingComponent implements OnInit {
   consumptionData: any;
   oakScore: number = 0;
   today= new Date();
+  name: any;
+  photo: any;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.apiService.getHomepageApi(this.month).subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
 
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
@@ -46,6 +48,11 @@ export class LandingComponent implements OnInit {
           color: 'var(--color8)',
         },
       ]
+    });
+    this.apiService.getMyprofileApi().subscribe((data: any)=> {
+      console.log(data.data);
+      this.name= data.data.name;
+      this.photo= data.data.photo;
     });
   }
 }
