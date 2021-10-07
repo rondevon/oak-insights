@@ -8,8 +8,8 @@
     </div>
     <div class="col-lg-4">
       <div *ngIf="showButtons" class="open-closed">
-        <button class="open-days-button">Open Days</button>
-        <button class="closed-days-button">Closed Days</button>
+        <button type="button" class="open-days-button" (click)="switchChart('Open')">Open Days</button>
+        <button type="button" class="closed-days-button" (click)="switchChart('Closed')">Closed Days</button>
       </div>
     </div>
   </div>

@@ -19,19 +19,6 @@ export class ChartComponent implements OnInit {
   }
 
   setHourlyCostData() {
-
-  //   console.log(this.data.x_axis);
-  //   this.data.x_axis.forEach((value: any, index: any) => {
-  //     this.data.open_values.forEach((item: any, index2:any) =>{
-  //       this.openValues[index].push(value);
-  //       this.openValues[index2].push(item);
-  //     })
-          
-  // });
-
-  console.log(this.openValues);
-
-
     this.chart = new Chart({
       title: {
         text: '',
@@ -83,6 +70,16 @@ export class ChartComponent implements OnInit {
       ],
     });
   }
+
+  switchChart(switchType: string){
+    if(switchType === 'Open'){
+      this.chart.options.series[0].data = this.data.values_open;
+    } else {
+      this.chart.options.series[0].data = this.data.values_closed;
+    }
+    this.chart.redraw();
+  }
+
   constructor() {}
 
   ngOnInit(): void {}
