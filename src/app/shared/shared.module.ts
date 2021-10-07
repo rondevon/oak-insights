@@ -12,6 +12,7 @@ import { HeatMapComponent } from './heatmap/heatmap.component';
 import { ActivityGaugeComponent } from './activity-gauge/activity-gauge.component';
 import { ApplianceConsumptionComponent } from './appliance-consumption/appliance-consumption.component';
 import { InsightItemTileComponent } from './insight-item-tile/insight-item-tile.component';
+import { PredictiveRangeChartComponent } from './predictive-range-chart/predictive-range-chart.component';
 
 import { HIGHCHARTS_MODULES, ChartModule } from 'angular-highcharts';
 import more from 'highcharts/highcharts-more.src';
@@ -20,7 +21,6 @@ import highmaps from 'highcharts/modules/map.src';
 import solidgauge from 'highcharts/modules/solid-gauge.src';
 import accessibility from 'highcharts/modules/accessibility.src';
 import exportdata from 'highcharts/modules/export-data.src';
-import { YearlyUsagePredictionComponent } from './yearly-usage-prediction/yearly-usage-prediction.component';
 
 export function highchartsModules() { 
   // apply Highcharts Modules to this array
@@ -38,7 +38,7 @@ export function highchartsModules() {
     ActivityGaugeComponent,
     ApplianceConsumptionComponent,
     InsightItemTileComponent,
-    YearlyUsagePredictionComponent
+    PredictiveRangeChartComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +56,7 @@ export function highchartsModules() {
     ActivityGaugeComponent,
     ApplianceConsumptionComponent,
     InsightItemTileComponent,
-    YearlyUsagePredictionComponent
+    PredictiveRangeChartComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }

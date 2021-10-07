@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiService.getMyprofileApi().subscribe((data: any)=> {
-      console.log(data.data.photo);
       this.photo= data.data.photo;
     });
   }
@@ -25,7 +24,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe((result) => {
       if (result.success) {
-        // console.log(result.data.token);
         localStorage.clear();
         this.router.navigate(['/user/login']);
       }
