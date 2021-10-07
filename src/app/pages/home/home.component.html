@@ -43,13 +43,6 @@
               <div class="card-heading">Calendar Heat Map</div>
               <span class="widget-subtitle">Compare areas of high consumption with respect to other day</span>
             <app-heatmap></app-heatmap>
-            <div class="heatmap-legends">
-              <span class="heatmap-legend-title">Energy (kWh)</span><span *ngFor="let heatmaprange of heatmapranges" class="rectangle"[style.backgroundColor]="heatmaprange.color">
-              </span>
-            </div>
-            <div class="heatmap-legends">
-              <span *ngFor="let heatmaprange of heatmapranges"class="range-text">{{heatmaprange.range}}</span>
-            </div>
           </div>
         </div>
         </div>
@@ -101,7 +94,7 @@
             <div class="card-heading">Operating Hours Analysis</div>
             <span class="widget-subtitle">Comparison of energy consumption during Trading and Nontrading for each weekday</span>
             <app-stacked-bar-chart></app-stacked-bar-chart>
-            <div class="opetaring-hours-totals">
+            <div class="operating-hours-totals">
                 <div class="row">
                   <div class="col-lg-4" *ngFor="let operatingHoursTotal of operatingHoursTotals">
                     <span class="total-text">{{operatingHoursTotal.type}}&nbsp;</span><span class="total-value" [style.color]="operatingHoursTotal.color"> {{operatingHoursTotal.value}}</span>

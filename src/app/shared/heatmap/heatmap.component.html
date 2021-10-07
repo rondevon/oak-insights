@@ -1,1 +1,9 @@
 <div [chart]="chart"></div>
+
+<div class="heatmap-legends">
+    <span class="heatmap-legend-title">Energy (kWh)</span><span *ngFor="let heatmaprange of heatmapranges" class="rectangle"[style.backgroundColor]="heatmaprange.color">
+    </span>
+  </div>
+  <div class="heatmap-legends">
+    <span *ngFor="let heatmaprange of heatmapranges"class="range-text">{{heatmaprange.range}}</span>
+  </div>    

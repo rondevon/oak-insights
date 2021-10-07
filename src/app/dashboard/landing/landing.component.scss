@@ -88,3 +88,20 @@
   text-transform: uppercase;
   color: white;
 }
+
+.user-name{
+  font-size: 2vw;
+  color: var(--color8);
+
+}
+.datetoday{
+      font-size:1vw;
+      color: var(--color11);
+}
+
+.avatar-big{
+  vertical-align:middle;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}

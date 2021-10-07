@@ -8,11 +8,19 @@
         <div class="col-md-9">
           <div class="row">
             <div class="greeting col-md-9">
-              <ngs-avater size='150px' isFixedColor="#FFFFFF" imageSize='150px' [photoUrl]="photo"></ngs-avater>
+                <div>
+                    <img class="avatar-big" [src]="photo">
+                    <div style="display:inline-block;vertical-align:middle">
+                    <span class="user-name">{{name}}<br></span>
+                    <span class="datetoday">{{ today | dateSuffixFull }}</span>
+                    </div>
+                  </div>
+              <!-- <ngs-avater size='150px' isFixedColor="#FFFFFF" imageSize='150px' [photoUrl]="photo"></ngs-avater>
                 <span>{{name}}</span>
               <span>
                 <label>{{ today | dateSuffixFull }}</label>
-              </span></div>
+              </span>-->
+            </div> 
             <div class="activity col-md-3">Last Activity
               <span><button mat-raised-button class="btn-login" routerLink="/home">GO TO DASHBOARD</button>
               </span>
