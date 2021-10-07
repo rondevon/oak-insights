@@ -91,23 +91,6 @@
             each weekday</span
           >
           <app-stacked-bar-chart [data] = "operatingHoursData"></app-stacked-bar-chart>
-          <div class="operating-hours-totals">
-            <div class="row">
-              <div
-                class="col-lg-4"
-                *ngFor="let operatingHoursTotal of operatingHoursTotals"
-              >
-                <span class="total-text"
-                  >{{ operatingHoursTotal.type }}&nbsp;</span
-                ><span
-                  class="total-value"
-                  [style.color]="operatingHoursTotal.color"
-                >
-                  {{ operatingHoursTotal.value }}</span
-                >
-              </div>
-            </div>
-          </div>
         </div>
 
         <div class="card card-custom">

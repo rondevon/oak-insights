@@ -9,20 +9,20 @@ import { Chart } from 'angular-highcharts';
 export class StackedBarChartComponent implements OnInit {
   @Input('data') data: any = {};
   chart: any = {};
-  chartValues: any[][] = [];
-    prepArray: any[] = [];
-    operArray: any[] = [];
-    nonoperArray: any[] = [];
+  chartValues: any[][] = [[],[],[],[]];
+  
+  operatingHoursTotals: any[] = [
+    { type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
+    { type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
+    { type:'Closed Hours', value: '1000 kWH', color:'gray'},
+  ];
+
   setOperatingHoursData() {
-
-    this.data.values.forEach((value: any, index1:any) => {
+    this.data && this.data.values && this.data.values.forEach((value: any []) => {
         value.forEach((item: any, index: any) => {
-            this.chartValues[index1][index].push(item);
-        })
+          this.chartValues[index].push(item);
+        });
     });
-
-    console.log('This console',this.chartValues);
-
 
     this.chart = new Chart({
       title: {
@@ -73,25 +73,23 @@ export class StackedBarChartComponent implements OnInit {
           name: 'Non-Operating',
           type: 'column',
           color: '#cccccc',
-          data: [1200, 3600, 4800, 6000, 2000, 2500, 4000],
+          data: this.chartValues[0],
         },
         {
           name: 'Operating',
           type: 'column',
           color: '#4164ADCC',
-          data: [1400, 2400, 3600, 8000, 1000, 3500, 4200],
+          data: this.chartValues[1],
         },
         {
           name: 'Preparatory',
           type: 'column',
           color: '#7DC3BE',
-          data: [300, 400, 400, 200, 500, 200, 500],
+          data: this.chartValues[2],
         },
       ],
     });
   }
-
-  constructor() {}
 
   ngOnInit(): void {}
 

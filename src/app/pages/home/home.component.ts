@@ -37,13 +37,6 @@ export class HomeComponent implements OnInit {
     'December'
   ];
 
-  operatingHoursTotals: any[] = [
-    { type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
-    { type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
-    { type:'Closed Hours', value: '1000 kWH', color:'gray'},
-  ];
-
-
   oakScore: number = 0;
   newsData = [];
   weatherData: any;
