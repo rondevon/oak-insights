@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   pipe = new DatePipe('en-IN');
   cards: any[] = [];
   month: string = this.pipe.transform(new Date(), 'MMMM') || '';
+  heatMapData: any = {};
 
   events: any[] = [
     { list: new Date(), name: 'Spring Bank Holiday' },
@@ -20,10 +21,25 @@ export class HomeComponent implements OnInit {
     { list: new Date(), name: 'Spring Bank Holiday 4' },
   ];
 
+  monthList: String[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
+
   operatingHoursTotals: any[] = [
-    {type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
-    {type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
-    {type:'Closed Hours', value: '1000 kWH', color:'gray'},
+    { type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
+    { type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
+    { type:'Closed Hours', value: '1000 kWH', color:'gray'},
   ];
 
 
@@ -50,8 +66,6 @@ export class HomeComponent implements OnInit {
   updateMonth() {
     // console.log(this.month);
     this.apiService.getHomepageApi(this.month).subscribe((data: any) => {
-      console.log(data);
-      
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
       this.cards = [
@@ -97,8 +111,14 @@ export class HomeComponent implements OnInit {
           unit: '%',
           color: 'var(--color7)',
         },
-      ];      
+      ];
+      this.getHeatMapDetails(this.month);
     })
-    
+  }
+
+  getHeatMapDetails(month: String){
+    this.apiService.getHeatMapData(month).subscribe(data => {
+      this.heatMapData = data.data;
+    });
   }
 }
