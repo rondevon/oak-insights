@@ -1,9 +1,4 @@
 .landing-container {
-  background-image: linear-gradient(
-    to bottom,
-    rgba(229, 242, 251, 1),
-    rgba(229, 242, 251, 0)
-  );
   padding-top: 3.5rem;
 }
 
@@ -11,6 +6,101 @@
   margin: 0 5.5rem;
 }
 
+.dashboard-row{
+  margin-top:2%;
+  margin-bottom: 2%;
+  margin-right: 3%;
+}
+
+.namedate{
+  display:inline-block;
+  vertical-align:middle;
+}
+
+.text-heading{
+  font-size: 2vw;
+  color: var(--color9)
+}
+
+.user-name{
+  font-size: 2.5vw;
+  color: var(--color8);
+
+}
+.datetoday{
+      font-size:1vw;
+      color: var(--color9);
+}
+
+.avatar-big{
+  vertical-align:middle;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 2%;
+}
+
+.go-to-dashboard {
+  float: right;
+}
+
+.go-to-dashboard-btn {
+  background-image: linear-gradient(
+    to right,
+    var(--color3) 0%,
+    var(--color5) 51%,
+    var(--color3) 100%
+  );
+  width: 100%;
+  padding: 1vw 2vw;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-width: 0;
+  border-radius: 100px;
+  border-color: #ffffff;
+  display: block;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.recommendation-btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.recommendation-btn {
+  background-image: linear-gradient(
+    to right,
+    var(--color2) 0%,
+    var(--color4) 51%,
+    var(--color2) 100%
+  );
+ // width: 100%;
+  padding: 0.5vw 0.5vw;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-width: 0;
+  border-radius: 100px;
+  border-color: #ffffff;
+  display: block;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.recommendation-btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
 .card-custom {
   border-radius: 1rem !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -67,7 +157,9 @@
   color: gray;
   margin-bottom: 1rem;
 }
-
+.recommendations{
+  margin-right: 3%;
+}
 .insights-container {
   padding-right: 0;
 }
@@ -89,53 +181,3 @@
   color: white;
 }
 
-.user-name{
-  font-size: 2vw;
-  color: var(--color8);
-
-}
-.datetoday{
-      font-size:1vw;
-      color: var(--color11);
-}
-
-.avatar-big{
-  vertical-align:middle;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-}
-
-.go-to-dashboard {
-  align-self: center;
-}
-
-.go-to-dashboard-btn {
-  background-image: linear-gradient(
-    to right,
-    var(--color3) 0%,
-    var(--color5) 51%,
-    var(--color3) 100%
-  );
-  width: 100%;
-  margin-top: 1.5vw;
-  padding: 0.5vw 2vw;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
-  border-width: 0;
-  border-radius: 100px;
-  border-color: #ffffff;
-  display: block;
-  font-weight: 800;
-  font-size: 0.75rem;
-  letter-spacing: 2;
-}
-
-.go-to-dashboard-btn:hover {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
-}

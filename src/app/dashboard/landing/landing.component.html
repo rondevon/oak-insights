@@ -10,22 +10,26 @@
             <div class="greeting col-md-9">
                 <div>
                     <img class="avatar-big" [src]="photo">
-                    <div style="display:inline-block;vertical-align:middle">
+                    <div class="namedate">
                     <span class="user-name">{{name}}<br></span>
                     <span class="datetoday">{{ today | dateSuffixFull }}</span>
                     </div>
                   </div>
-              <!-- <ngs-avater size='150px' isFixedColor="#FFFFFF" imageSize='150px' [photoUrl]="photo"></ngs-avater>
-                <span>{{name}}</span>
-              <span>
-                <label>{{ today | dateSuffixFull }}</label>
-              </span>-->
             </div> 
-            <div class="activity col-md-3">
+            
+          </div>
+
+          <div class="row dashboard-row">
+            <div class="col-md-7 my-auto">
+              <span class="text-heading">Your site at a glance</span>
+            </div>
+            <div class="col-md-5">
                 <div class="go-to-dashboard">
                   <button class="go-to-dashboard-btn" routerLink="/home">GO TO DASHBOARD</button>
                 </div>
-            </div>
+          </div>
+
+
           </div>
 
           <div class="row">
@@ -36,8 +40,20 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="recommendations">Recommendations</div>
+          <div class="row recommendations">
+            <div class="card card-custom">
+              <div class="row">
+               <div class="col-md-2">
+                <span class="recommendation-number">05</span>
+               </div>
+               <div class="col-md-7">
+                <span class="recommendation-text">New recommendations for the month of August</span>
+               </div>
+               <div class="col-md-3 text-center">
+                <button class="recommendation-btn">View All</button>
+               </div>
+              </div>
+            </div>
           </div>
 
           <div class="row">
