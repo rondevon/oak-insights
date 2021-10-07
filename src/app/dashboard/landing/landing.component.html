@@ -1,74 +1,74 @@
 <div>
-    <app-header></app-header>
+  <app-header></app-header>
 </div>
 <div class="dash">
-    <div class="landing-container">
-        <div class="landing-content">
-            <div class="row">
-                <div class="col-md-9">
-
-                    <div class="row">
-                        <div class="greeting col-md-9">
-                            Hello Rebecca
-                        </div>
-                        <div class="activity col-md-3">
-                            Last Activity
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="insights-container">
-                            <div class="insights-column" *ngFor="let card of cards">
-                              <app-insight-item-tile
-                                [data]="card"
-                              ></app-insight-item-tile> 
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="recommendations">
-                            Recommendations
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="monthly-usage">
-                            Monthly Usage
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-3">
-                        <div class="card card-custom">
-                            <div class="oakscore">
-                              <div class="oak-score-badge">
-                                <img class="img-res" src="/assets/icons/icon-oakscore-green.svg"/>
-                              </div>
-                              <div class="oak-score">
-                                <div class="oak-score-label">
-                                  OAK Score
-                                </div>
-                                <div class="oak-score-text">
-                                 {{ oakScore }}
-                                </div>
-                              </div>
-                            </div>
-                        </div>
-
-                        <div class="card card-custom">
-                            <div class="card-heading">Consumption Overview</div>
-                            <app-activity-gauge></app-activity-gauge>
-                        </div>
-
-                        <div class="card card-custom">
-                            <div class="card-heading">Top Consuming Appliances</div>
-                            <span class="widget-subtitle">A list of appliances in decreasing order of consumption</span>
-                            <app-appliance-consumption></app-appliance-consumption>
-                        </div>
-                </div>
+  <div class="landing-container">
+    <div class="landing-content">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="greeting col-md-9">
+              <ngs-avater size='150px' isFixedColor="#FFFFFF" imageSize='150px' [photoUrl]="photo"></ngs-avater>
+                <span>{{name}}</span>
+              <span>
+                <label>{{ today | dateSuffixFull }}</label>
+              </span></div>
+            <div class="activity col-md-3">Last Activity
+              <span><button mat-raised-button class="btn-login" routerLink="/home">GO TO DASHBOARD</button>
+              </span>
             </div>
+          </div>
+
+          <div class="row">
+            <div class="insights-container">
+              <div class="insights-column" *ngFor="let card of cards">
+                <app-insight-item-tile [data]="card"></app-insight-item-tile>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="recommendations">Recommendations</div>
+          </div>
+
+          <div class="row">
+            <div class="monthly-usage">Monthly Usage</div>
+          </div>
         </div>
+
+        <div class="col-md-3">
+          <div class="card card-custom">
+            <div class="oakscore">
+              <div class="oak-score-badge">
+                <img
+                  class="img-res"
+                  src="/assets/icons/icon-oakscore-green.svg"
+                />
+              </div>
+              <div class="oak-score">
+                <div class="oak-score-label">OAK Score</div>
+                <div class="oak-score-text">
+                  {{ oakScore }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card card-custom">
+            <div class="card-heading">Consumption Overview</div>
+            <app-activity-gauge [data]="consumptionData"></app-activity-gauge>
+          </div>
+
+          <div class="card card-custom">
+            <div class="card-heading">Top Consuming Appliances</div>
+            <span class="widget-subtitle"
+              >A list of appliances in decreasing order of consumption</span
+            >
+            <app-appliance-consumption></app-appliance-consumption>
+          </div>
+        </div>
+      </div>
     </div>
-    <app-footer></app-footer>
+  </div>
+  <app-footer></app-footer>
 </div>

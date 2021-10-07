@@ -1,7 +1,24 @@
 <div class="home-container">
   <div class="row nomargin top-container">
     <div class="row">
-      <h2>Insights at a Glance</h2>
+      <span>Insights at a Glance</span>
+    <mat-form-field appearance="fill" style="width: 22%;left: 76%;">
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="month" (selectionChange)="updateMonth()">
+          <mat-option name="January" value="January">January</mat-option>
+          <mat-option name="February" value="February">February</mat-option>
+          <mat-option name="March" value="March">March</mat-option>
+          <mat-option name="April" value="April">April</mat-option>
+          <mat-option name="May" value="May">May</mat-option>
+          <mat-option name="June" value="June">June</mat-option>
+          <mat-option name="July" value="July">July</mat-option>
+          <mat-option name="August" value="August">August</mat-option>
+          <mat-option name="September" value="September">September</mat-option>
+          <mat-option name="October" value="October">October</mat-option>
+          <mat-option name="November" value="November">November</mat-option>
+          <mat-option name="December" value="December">December</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="row">
       <div class="col-lg-9">
@@ -16,7 +33,7 @@
           <div class="col-lg-4 activity-gauge-container">
               <div class="card card-custom">
                 <div class="card-heading">Consumption Overview</div>
-                <app-activity-gauge></app-activity-gauge>
+                <app-activity-gauge [data]="consumptionData"></app-activity-gauge>
               </div>
           </div>
         </div>

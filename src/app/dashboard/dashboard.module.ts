@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
+import { NgsAvaterModule } from 'ngs-avater';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    SharedModule
+    SharedModule,
+    CustomPipesModule,
+    NgsAvaterModule
   ]
 })
 export class DashboardModule { }

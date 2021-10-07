@@ -10,6 +10,8 @@ import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
 import { ChartModule } from 'angular-highcharts';
 import { WeatherComponent } from './weather/weather.component';
 import { GoogleNewsComponent } from './google-news/google-news.component';
+import {MatSelectModule} from '@angular/material/select';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -23,7 +25,8 @@ import { GoogleNewsComponent } from './google-news/google-news.component';
     MatGridListModule,
     MatCardModule,
     ChartModule,
-    SharedModule
+    SharedModule,
+    MatSelectModule
   ]
 })
 export class PagesModule { }
