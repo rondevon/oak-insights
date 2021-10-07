@@ -24,7 +24,7 @@ import { YearlyUsagePredictionComponent } from './yearly-usage-prediction/yearly
 
 export function highchartsModules() { 
   // apply Highcharts Modules to this array
-  return [ more, exporting, highmaps,solidgauge,accessibility,exportdata];
+  return [ more, exporting, highmaps, solidgauge, accessibility, exportdata];
 }
 
 @NgModule({
