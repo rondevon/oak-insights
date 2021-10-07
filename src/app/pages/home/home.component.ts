@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
       this.oakScore = data.data.oak_score;
       this.cards = [
         {
-          image: '/assets/icons/Icon-Energy-Usage.svg',
+          image: '/assets/icons/icon-energy-usage.svg',
           title: 'Energy Usage',
           value: data.data.stats.energy,
           unit: 'kWh',
