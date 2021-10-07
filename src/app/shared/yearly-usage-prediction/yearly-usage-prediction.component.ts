@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./yearly-usage-prediction.component.scss'],
 })
 export class YearlyUsagePredictionComponent implements OnInit {
-  // @Input('data') data: any;
+   @Input('data') data: any;
   chart: Chart = new Chart({
     title: {
       text: '',

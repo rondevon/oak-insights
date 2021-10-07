@@ -73,5 +73,16 @@ export class ApiService {
     } else return of(null);
   }
 
+  public getMonthlyUsageData(month: String): Observable<any> {
+    
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/monthly', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
+
 
 }
