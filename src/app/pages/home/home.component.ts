@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   month: string = this.pipe.transform(new Date(), 'MMMM') || '';
   heatMapData: any = {};
   operatingHoursData: any ={};
+  hourlyCostData: any ={};
 
   events: any[] = [
     { list: new Date(), name: 'Spring Bank Holiday' },
@@ -108,6 +109,7 @@ export class HomeComponent implements OnInit {
       ];
       this.getHeatMapDetails(this.month);
       this.getOperatingHoursDetails(this.month);
+      this.getHourlyCostDetails(this.month);
     })
   }
 
@@ -120,6 +122,11 @@ export class HomeComponent implements OnInit {
   getOperatingHoursDetails(month: String){
     this.apiService.getOperatingHoursData(month).subscribe(data => {
       this.operatingHoursData = data.data;
+    });
+  }
+  getHourlyCostDetails(month: String){
+    this.apiService.getHourlyCostData(month).subscribe(data => {
+      this.hourlyCostData = data.data;
     });
   }
 }

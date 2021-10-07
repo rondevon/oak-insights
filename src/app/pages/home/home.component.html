@@ -2,7 +2,7 @@
   <div class="row nomargin top-container">
     <div class="row">
       <div class="col-lg-9">
-          <h2>Insights at a Glance</h2>
+        <h2>Insights at a Glance</h2>
       </div>
       <div class="col-lg-3">
         <mat-form-field appearance="fill" class="monthPicker">
@@ -90,26 +90,13 @@
             >Comparison of energy consumption during Trading and Nontrading for
             each weekday</span
           >
-          <app-stacked-bar-chart [data] = "operatingHoursData"></app-stacked-bar-chart>
+          <app-stacked-bar-chart
+            [data]="operatingHoursData"
+          ></app-stacked-bar-chart>
         </div>
 
         <div class="card card-custom">
-          <div class="row">
-            <div class="col-lg-8">
-              <div class="card-heading">Energy Cost throughout the day</div>
-              <span class="widget-subtitle"
-                >Mean energy consumption during the various time of the
-                day</span
-              >
-            </div>
-            <div class="col-lg-4">
-              <div class="open-closed">
-                <button class="open-days-button">Open Days</button>
-                <button class="closed-days-button">Closed Days</button>
-              </div>
-            </div>
-          </div>
-          <app-chart></app-chart>
+          <app-chart [data]="hourlyCostData" [showButtons]=true></app-chart>
         </div>
       </div>
 

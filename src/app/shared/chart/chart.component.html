@@ -1,1 +1,16 @@
+<div class="row">
+    <div class="col-lg-8">
+      <div class="card-heading">Energy Cost throughout the day</div>
+      <span class="widget-subtitle"
+        >Mean energy consumption during the various time of the
+        day</span
+      >
+    </div>
+    <div class="col-lg-4">
+      <div *ngIf="showButtons" class="open-closed">
+        <button class="open-days-button">Open Days</button>
+        <button class="closed-days-button">Closed Days</button>
+      </div>
+    </div>
+  </div>
 <div class="consumption-line" [chart]="chart"></div>
