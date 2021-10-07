@@ -18,6 +18,7 @@ export class ApiService {
       environment.WeatherApi + 'city=' + location + environment.WeatherKey
     );
   }
+
   public getHomepageApi(month: string): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month, {
@@ -27,13 +28,25 @@ export class ApiService {
       });
     } else return of(null);
   }
+
   public getMyprofileApi(): Observable<any> {
     if (localStorage.getItem('token')) {
-     return this.httpClient.get(serviceBaseUrl + 'auth/me', { 
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      }
-    }); 
-  }else return of(null);
-}
+      return this.httpClient.get(serviceBaseUrl + 'auth/me', { 
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      }); 
+    } else return of(null);
+  }
+
+  public getHeatMapData(month: String): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/month/hour?month=' + month, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
+
 }
