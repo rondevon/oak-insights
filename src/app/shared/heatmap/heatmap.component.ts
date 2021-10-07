@@ -41,9 +41,10 @@ export class HeatMapComponent implements OnInit {
       title: {
         text: ''
       },
+      categories: ['Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri','Sat'],
        //reversed:true
        labels: {
-        enabled: false
+        enabled: true
         }
      },
     colorAxis: {
