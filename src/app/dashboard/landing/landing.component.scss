@@ -20,7 +20,7 @@
 
 .text-heading{
   font-size: 2vw;
-  color: var(--color9)
+  color: var(--color9);
 }
 
 .user-name{
@@ -64,7 +64,7 @@
   border-color: #ffffff;
   display: block;
   font-weight: 800;
-  font-size: 0.75rem;
+  font-size: 1rem;
   letter-spacing: 1px;
 }
 
@@ -81,8 +81,8 @@
     var(--color4) 51%,
     var(--color2) 100%
   );
- // width: 100%;
-  padding: 0.5vw 0.5vw;
+  width: 100%;
+  padding: 0.75vw 2vw;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -93,8 +93,8 @@
   border-color: #ffffff;
   display: block;
   font-weight: 800;
-  font-size: 0.75rem;
-  letter-spacing: 1px;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
 }
 
 .recommendation-btn:hover {
@@ -175,13 +175,15 @@
   margin-right:0;
 }
 
-.btn-login {
-  max-width: 300px;
-  border-radius: 25px;
-  height: 40px;
-  margin: 16px 0 32px 0;
-  background-image: linear-gradient(to right, #364096 0%, #4164AD  51%, #364096  100%);
-  text-transform: uppercase;
-  color: white;
+
+.recommendation-number{
+  font-size: 5vw;
+  color: var(--color2);
+  text-align: right;
+}
+
+.recommendation-text{
+  font-size: 1.5vw;
+  color: var(--color9);
 }
 
