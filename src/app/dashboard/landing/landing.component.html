@@ -5,18 +5,17 @@
   <div class="landing-container">
     <div class="landing-content">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 left-container">
           <div class="row">
             <div class="greeting col-md-9">
-                <div>
-                    <img class="avatar-big" [src]="photo">
-                    <div class="namedate">
-                    <span class="user-name">{{name}}<br></span>
-                    <span class="datetoday">{{ today | dateSuffixFull }}</span>
-                    </div>
-                  </div>
-            </div> 
-            
+              <div>
+                <img class="avatar-big" [src]="photo" />
+                <div class="namedate">
+                  <span class="user-name">{{ name }}<br /></span>
+                  <span class="datetoday">{{ today | dateSuffixFull }}</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="row dashboard-row">
@@ -24,12 +23,12 @@
               <span class="text-heading">Your site at a glance</span>
             </div>
             <div class="col-md-5">
-                <div class="go-to-dashboard">
-                  <button class="go-to-dashboard-btn" routerLink="/home">GO TO DASHBOARD</button>
-                </div>
-          </div>
-
-
+              <div class="go-to-dashboard">
+                <button class="go-to-dashboard-btn" routerLink="/home">
+                  GO TO DASHBOARD
+                </button>
+              </div>
+            </div>
           </div>
 
           <div class="row">
@@ -43,21 +42,31 @@
           <div class="row recommendations">
             <div class="card card-custom">
               <div class="row">
-               <div class="col-md-2">
-                <span class="recommendation-number">05</span>
-               </div>
-               <div class="col-md-7">
-                <span class="recommendation-text">New recommendations for the month of August</span>
-               </div>
-               <div class="col-md-3 text-center">
-                <button class="recommendation-btn">View All</button>
-               </div>
+                <div class="col-md-2">
+                  <span class="recommendation-number">05</span>
+                </div>
+                <div class="col-md-7">
+                  <span class="recommendation-text"
+                    >New recommendations for the month of August</span
+                  >
+                </div>
+                <div class="col-md-3 text-center">
+                  <button class="recommendation-btn">View All</button>
+                </div>
               </div>
             </div>
           </div>
 
           <div class="row">
-            <div class="monthly-usage"><app-yearly-usage-prediction></app-yearly-usage-prediction></div>
+            <div class="card card-custom">
+              <div class="yearly-usage mb-4">
+                <div class="card-heading">Monthly Usage</div>
+                <span class="widget-subtitle"
+                  >Comparison with month-on-month comparison</span
+                >
+              </div>
+              <app-yearly-usage-prediction></app-yearly-usage-prediction>
+            </div>
           </div>
         </div>
 

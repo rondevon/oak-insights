@@ -12,6 +12,10 @@ export class YearlyUsagePredictionComponent implements OnInit {
     title: {
       text: '',
     },
+    exporting: { enabled: false },
+    legend: {
+      enabled: false,
+    },
     xAxis: {
       type: 'datetime',
       accessibility: {
@@ -27,12 +31,12 @@ export class YearlyUsagePredictionComponent implements OnInit {
 
     tooltip: {
       shared: true,
-      valueSuffix: '',
+      valueSuffix: 'kWH',
     },
 
     series: [
       {
-        name: 'Temperature',
+        name: 'Actual',
         type: 'line',
         data: [
           [1246406400000, 21.5],
@@ -68,9 +72,10 @@ export class YearlyUsagePredictionComponent implements OnInit {
           [1248998400000, 13.6],
         ],
         zIndex: 1,
+        color: '#4164AD',
       },
       {
-        name: 'Range',
+        name: 'Predicted Range',
         data: [
           [1246406400000, 14.3, 27.7],
           [1246492800000, 14.5, 27.8],
@@ -107,7 +112,7 @@ export class YearlyUsagePredictionComponent implements OnInit {
         type: 'arearange',
         lineWidth: 0,
         linkedTo: ':previous',
-        color: '#CCCCCC',
+        color: '#4164AD',
         fillOpacity: 0.3,
         zIndex: 0,
         marker: {

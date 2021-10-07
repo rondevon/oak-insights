@@ -5,11 +5,12 @@
 .landing-content {
   margin: 0 5.5rem;
 }
-
+.left-container{
+  padding-right: 3vw;
+}
 .dashboard-row{
   margin-top:2%;
   margin-bottom: 2%;
-  margin-right: 3%;
 }
 
 .namedate{
@@ -155,20 +156,23 @@
 .widget-subtitle {
   font-size: 1vw;
   color: gray;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .recommendations{
-  margin-right: 3%;
 }
 .insights-container {
-  padding-right: 0;
+  
 }
 
 .insights-column {
   float: left;
-  width: 30%;
+  width: 31%;
   margin-right: 3%;
   margin-bottom: 3%;
+}
+
+.insights-column:last-child{
+  margin-right:0;
 }
 
 .btn-login {

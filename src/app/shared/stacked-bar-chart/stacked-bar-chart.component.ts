@@ -45,17 +45,7 @@ export class StackedBarChartComponent implements OnInit {
           },
         },
       },
-      legend: {
-        align: 'right',
-        x: -30,
-        verticalAlign: 'top',
-        y: 25,
-        floating: true,
-        backgroundColor: 'white',
-        borderColor: '#CCC',
-        borderWidth: 1,
-        shadow: false,
-      },
+      
       tooltip: {
         headerFormat: '<b>{point.x}</b><br/>',
         pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
@@ -70,12 +60,6 @@ export class StackedBarChartComponent implements OnInit {
       },
       series: [
         {
-          name: 'Non-Operating',
-          type: 'column',
-          color: '#cccccc',
-          data: this.chartValues[0],
-        },
-        {
           name: 'Operating',
           type: 'column',
           color: '#4164ADCC',
@@ -86,6 +70,12 @@ export class StackedBarChartComponent implements OnInit {
           type: 'column',
           color: '#7DC3BE',
           data: this.chartValues[2],
+        },
+        {
+          name: 'Non-Operating',
+          type: 'column',
+          color: '#cccccc',
+          data: this.chartValues[0],
         },
       ],
     });
