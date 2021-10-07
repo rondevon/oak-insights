@@ -6,6 +6,7 @@
         <div class="landing-content">
             <div class="row">
                 <div class="col-md-9">
+
                     <div class="row">
                         <div class="greeting col-md-9">
                             Hello Rebecca
@@ -16,37 +17,55 @@
                     </div>
                     
                     <div class="row">
-                        <div class="insights">
-                            Insights
+                        <div class="insights-container">
+                            <div class="insights-column" *ngFor="let card of cards">
+                              <app-insight-item-tile
+                                [data]="card"
+                              ></app-insight-item-tile> 
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="recommendations">
-                            Recommnedations
+                            Recommendations
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="monthly-usage">
                             Monthly Usage
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-md-3">
-                    <div class="row">
-                        <div class="oak-score">
-                            OAK Score
+                        <div class="card card-custom">
+                            <div class="oakscore">
+                              <div class="oak-score-badge">
+                                <img class="img-res" src="/assets/icons/icon-oakscore-green.svg"/>
+                              </div>
+                              <div class="oak-score">
+                                <div class="oak-score-label">
+                                  OAK Score
+                                </div>
+                                <div class="oak-score-text">
+                                 {{ oakScore }}
+                                </div>
+                              </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="consumption-overview">
-                            Consumption Overview
+
+                        <div class="card card-custom">
+                            <div class="card-heading">Consumption Overview</div>
+                            <app-activity-gauge></app-activity-gauge>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="top-consuming-appliances">
-                            Top Consuming Appliances
+
+                        <div class="card card-custom">
+                            <div class="card-heading">Top Consuming Appliances</div>
+                            <span class="widget-subtitle">A list of appliances in decreasing order of consumption</span>
+                            <app-appliance-consumption></app-appliance-consumption>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
