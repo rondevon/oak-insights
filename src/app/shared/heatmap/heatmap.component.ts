@@ -11,11 +11,10 @@ import { Chart } from 'angular-highcharts';
 export class HeatMapComponent implements OnInit {
 
   heatmapranges: any[] = [
-    {range:'100-200',color:'var(--heatmap-color1)'},
-    {range:'200-400',color:'var(--heatmap-color2)'},
-    {range:'400-600',color:'var(--heatmap-color3)'},
-    {range:'600-800',color:'var(--heatmap-color4)'},
-    {range:'800-1000',color:'var(--heatmap-color5)'},
+    {range:'25%',color:'var(--heatmap-color2)'},
+    {range:'50%',color:'var(--heatmap-color3)'},
+    {range:'75%',color:'var(--heatmap-color4)'},
+    {range:'100%',color:'var(--heatmap-color5)'},
   ];
 
   chart = new Chart({
