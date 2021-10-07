@@ -49,4 +49,17 @@ export class ApiService {
     } else return of(null);
   }
 
+
+  public getOperatingHoursData(month: String): Observable<any> {
+    
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/operating/weekday?month=' + month, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
+
+
 }

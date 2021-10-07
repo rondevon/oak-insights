@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   cards: any[] = [];
   month: string = this.pipe.transform(new Date(), 'MMMM') || '';
   heatMapData: any = {};
+  operatingHoursData: any ={};
 
   events: any[] = [
     { list: new Date(), name: 'Spring Bank Holiday' },
@@ -113,12 +114,19 @@ export class HomeComponent implements OnInit {
         },
       ];
       this.getHeatMapDetails(this.month);
+      this.getOperatingHoursDetails(this.month);
     })
   }
 
   getHeatMapDetails(month: String){
     this.apiService.getHeatMapData(month).subscribe(data => {
       this.heatMapData = data.data;
+    });
+  }
+
+  getOperatingHoursDetails(month: String){
+    this.apiService.getOperatingHoursData(month).subscribe(data => {
+      this.operatingHoursData = data.data;
     });
   }
 }

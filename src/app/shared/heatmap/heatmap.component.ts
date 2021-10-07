@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 
 @Component({
@@ -31,6 +31,7 @@ export class HeatMapComponent implements OnInit {
     this.chart = new Chart({
       chart: {
         type: 'heatmap',
+        height: 800,
         marginTop: 40,
         marginBottom: 80,
         plotBorderWidth: 0,
