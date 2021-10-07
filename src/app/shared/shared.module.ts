@@ -20,6 +20,7 @@ import highmaps from 'highcharts/modules/map.src';
 import solidgauge from 'highcharts/modules/solid-gauge.src';
 import accessibility from 'highcharts/modules/accessibility.src';
 import exportdata from 'highcharts/modules/export-data.src';
+import { YearlyUsagePredictionComponent } from './yearly-usage-prediction/yearly-usage-prediction.component';
 
 export function highchartsModules() { 
   // apply Highcharts Modules to this array
@@ -36,7 +37,8 @@ export function highchartsModules() {
     HeatMapComponent,
     ActivityGaugeComponent,
     ApplianceConsumptionComponent,
-    InsightItemTileComponent
+    InsightItemTileComponent,
+    YearlyUsagePredictionComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ export function highchartsModules() {
     HeatMapComponent,
     ActivityGaugeComponent,
     ApplianceConsumptionComponent,
-    InsightItemTileComponent
+    InsightItemTileComponent,
+    YearlyUsagePredictionComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
