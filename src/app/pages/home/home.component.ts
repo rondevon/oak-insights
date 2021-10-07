@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 import { ApiService } from 'src/app/services/api.service';
@@ -8,9 +9,9 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  
+  pipe = new DatePipe('en-IN');
   cards: any[] = [];
-  month: string = 'January'
+  month: string = this.pipe.transform(new Date(), 'MMMM') || '';
 
   heatmapranges: any[] = [
     {range:'100-200',color:'var(--heatmap-color1)'},
