@@ -5,14 +5,19 @@
         <h2>Insights at a Glance</h2>
       </div>
       <div class="col-lg-3">
-        <mat-form-field appearance="fill" class="monthPicker">
+        <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
+          <option *ngFor="let month of monthList" [value]="month">{{
+            month
+          }}</option>
+        </select>
+        <!-- <mat-form-field appearance="fill" class="monthPicker">
           <mat-label>Select a month</mat-label>
           <mat-select [(value)]="month" (selectionChange)="updateMonth()">
             <mat-option *ngFor="let month of monthList" [value]="month">{{
               month
             }}</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field> -->
       </div>
     </div>
     <div class="row">

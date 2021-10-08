@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class HomeComponent implements OnInit {
   pipe = new DatePipe('en-IN');
   cards: any[] = [];
-  month: string = this.pipe.transform(new Date(), 'MMMM') || '';
+  selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
   heatMapData: any = {};
   operatingHoursData: any ={};
   hourlyCostData: any ={};
@@ -59,8 +59,8 @@ export class HomeComponent implements OnInit {
   }
   
   updateMonth() {
-    // console.log(this.month);
-    this.apiService.getHomepageApi(this.month).subscribe((data: any) => {
+    // console.log(this.selectedMonth);
+    this.apiService.getHomepageApi(this.selectedMonth).subscribe((data: any) => {
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
       this.cards = [
@@ -107,25 +107,25 @@ export class HomeComponent implements OnInit {
           color: 'var(--color7)',
         },
       ];
-      this.getHeatMapDetails(this.month);
-      this.getOperatingHoursDetails(this.month);
-      this.getHourlyCostDetails(this.month);
+      this.getHeatMapDetails(this.selectedMonth);
+      this.getOperatingHoursDetails(this.selectedMonth);
+      this.getHourlyCostDetails(this.selectedMonth);
     })
   }
 
-  getHeatMapDetails(month: String){
-    this.apiService.getHeatMapData(month).subscribe(data => {
+  getHeatMapDetails(selectedMonth: String){
+    this.apiService.getHeatMapData(selectedMonth).subscribe(data => {
       this.heatMapData = data.data;
     });
   }
 
-  getOperatingHoursDetails(month: String){
-    this.apiService.getOperatingHoursData(month).subscribe(data => {
+  getOperatingHoursDetails(selectedMonth: String){
+    this.apiService.getOperatingHoursData(selectedMonth).subscribe(data => {
       this.operatingHoursData = data.data;
     });
   }
-  getHourlyCostDetails(month: String){
-    this.apiService.getHourlyCostData(month).subscribe(data => {
+  getHourlyCostDetails(selectedMonth: String){
+    this.apiService.getHourlyCostData(selectedMonth).subscribe(data => {
       this.hourlyCostData = data.data;
     });
   }
