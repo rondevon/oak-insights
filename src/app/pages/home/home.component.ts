@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
       this.newsData = data.articles.slice(0, 3);
     })
 
-    this.apiService.getWeather('kolkata,IN').subscribe((data: any) => {
+    this.apiService.getWeather('London,GB').subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.weatherData = data.data[0];      
       }
