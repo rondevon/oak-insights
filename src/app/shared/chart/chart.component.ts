@@ -35,7 +35,7 @@ export class ChartComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: 'Consumption (kwh)',
+          text: 'Cost (£)',
         },
       },
       plotOptions: {
@@ -62,7 +62,7 @@ export class ChartComponent implements OnInit {
       },
       series: [
         {
-          name: 'Consumption (kwh)',
+          name: 'Cost (£)',
           type: 'area',
           pointInterval: 10,
           data: this.data.values_open,

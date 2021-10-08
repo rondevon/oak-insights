@@ -63,19 +63,25 @@ export class StackedBarChartComponent implements OnInit {
           name: 'Operating',
           type: 'column',
           color: '#4164ADCC',
-          data: this.chartValues[1],
+          data: this.data.values_open,
         },
         {
           name: 'Preparatory',
           type: 'column',
           color: '#7DC3BE',
-          data: this.chartValues[2],
+          data: this.data.values_preparatory,
         },
         {
           name: 'Non-Operating',
           type: 'column',
           color: '#cccccc',
-          data: this.chartValues[0],
+          data: this.data.values_non_operating,
+        },
+        {
+          name: 'Closed',
+          type: 'column',
+          color: '#aaaaaa',
+          data: this.data.values_closed,
         },
       ],
     });
