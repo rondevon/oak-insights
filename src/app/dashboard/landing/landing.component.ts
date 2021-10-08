@@ -16,6 +16,7 @@ export class LandingComponent implements OnInit {
   today= new Date();
   name: any;
   photo: any;
+  monthUsageData: any;
 
   constructor(private apiService: ApiService) {}
 
@@ -49,10 +50,20 @@ export class LandingComponent implements OnInit {
         },
       ]
     });
+
     this.apiService.getMyprofileApi().subscribe((data: any)=> {
       console.log(data.data);
       this.name= data.data.name;
       this.photo= data.data.photo;
     });
+    
+    this.getMonthUsageData();
   }
+
+  getMonthUsageData() {
+    this.apiService.getMonthlyUsageData().subscribe(data => {
+      this.monthUsageData = data.data;
+    });
+  }
+  
 }

@@ -11,15 +11,10 @@ import { ApiService } from 'src/app/services/api.service';
 export class HomeComponent implements OnInit {
   pipe = new DatePipe('en-IN');
   cards: any[] = [];
-  month: string = this.pipe.transform(new Date(), 'MMMM') || '';
-
-  heatmapranges: any[] = [
-    {range:'100-200',color:'var(--heatmap-color1)'},
-    {range:'200-400',color:'var(--heatmap-color2)'},
-    {range:'400-600',color:'var(--heatmap-color3)'},
-    {range:'600-800',color:'var(--heatmap-color4)'},
-    {range:'800-1000',color:'var(--heatmap-color5)'},
-  ];
+  selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
+  heatMapData: any = {};
+  operatingHoursData: any ={};
+  hourlyCostData: any ={};
 
   events: any[] = [
     { list: new Date(), name: 'Spring Bank Holiday' },
@@ -28,12 +23,20 @@ export class HomeComponent implements OnInit {
     { list: new Date(), name: 'Spring Bank Holiday 4' },
   ];
 
-  operatingHoursTotals: any[] = [
-    {type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
-    {type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
-    {type:'Closed Hours', value: '1000 kWH', color:'gray'},
+  monthList: String[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
-
 
   oakScore: number = 0;
   newsData = [];
@@ -56,10 +59,8 @@ export class HomeComponent implements OnInit {
   }
   
   updateMonth() {
-    // console.log(this.month);
-    this.apiService.getHomepageApi(this.month).subscribe((data: any) => {
-      console.log(data);
-      
+    // console.log(this.selectedMonth);
+    this.apiService.getHomepageApi(this.selectedMonth).subscribe((data: any) => {
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
       this.cards = [
@@ -105,8 +106,27 @@ export class HomeComponent implements OnInit {
           unit: '%',
           color: 'var(--color7)',
         },
-      ];      
+      ];
+      this.getHeatMapDetails(this.selectedMonth);
+      this.getOperatingHoursDetails(this.selectedMonth);
+      this.getHourlyCostDetails(this.selectedMonth);
     })
-    
+  }
+
+  getHeatMapDetails(selectedMonth: String){
+    this.apiService.getHeatMapData(selectedMonth).subscribe(data => {
+      this.heatMapData = data.data;
+    });
+  }
+
+  getOperatingHoursDetails(selectedMonth: String){
+    this.apiService.getOperatingHoursData(selectedMonth).subscribe(data => {
+      this.operatingHoursData = data.data;
+    });
+  }
+  getHourlyCostDetails(selectedMonth: String){
+    this.apiService.getHourlyCostData(selectedMonth).subscribe(data => {
+      this.hourlyCostData = data.data;
+    });
   }
 }
