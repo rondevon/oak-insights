@@ -14,7 +14,8 @@ export class StackedBarChartComponent implements OnInit {
   operatingHoursTotals: any[] = [
     { type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
     { type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
-    { type:'Closed Hours', value: '1000 kWH', color:'gray'},
+    { type:'Non-Operating Hours', value: '1000 kWH', color:'var(--color11'},
+    { type:'Closed Hours', value: '6000 kWH', color:'var(--color6'},
   ];
 
   setOperatingHoursData() {
@@ -80,7 +81,7 @@ export class StackedBarChartComponent implements OnInit {
         {
           name: 'Closed',
           type: 'column',
-          color: '#aaaaaa',
+          color: '#F8A992',
           data: this.data.values_closed,
         },
       ],

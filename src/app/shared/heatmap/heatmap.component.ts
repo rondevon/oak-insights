@@ -67,9 +67,9 @@ export class HeatMapComponent implements OnInit {
       },
       tooltip: {
         formatter: function () {
-          return 'The value for x is <b>' + this.point.x +
-                  '</b> and y is <b>' + this.point.y + '</b>'+
-                  '</b> and value is <b>' + this.point.value + '</b>';
+          return 'The consumption on <b>' + this.point.y +
+                  '</b> at <b>' + this.point.x + ':00</b> hours'+
+                  '</b> is <b>' + this.point.value + 'kWh</b>';
        }
       },
       legend: {
