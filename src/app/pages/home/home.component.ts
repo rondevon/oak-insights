@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  pipe = new DatePipe('en-IN');
+  pipe = new DatePipe('en-GB');
   cards: any[] = [];
   selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
   heatMapData: any = {};
@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
+      this.loading = false;
     })
 
     this.apiService.getWeather('London,GB').subscribe((data: any) => {
@@ -52,7 +53,6 @@ export class HomeComponent implements OnInit {
         this.weatherData = data.data[0];      
       }
       this.updateMonth();
-      this.loading = false;
     })
 
     this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
