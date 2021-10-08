@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  [x: string]: any;
   pipe = new DatePipe('en-IN');
   cards: any[] = [];
   selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
@@ -16,12 +17,12 @@ export class HomeComponent implements OnInit {
   operatingHoursData: any ={};
   hourlyCostData: any ={};
 
-  events: any[] = [
-    { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday 2' },
-    { list: new Date(), name: 'Spring Bank Holiday 3' },
-    { list: new Date(), name: 'Spring Bank Holiday 4' },
-  ];
+  // events: any[] = [
+  //   { list: new Date(), name: 'Spring Bank Holiday' },
+  //   { list: new Date(), name: 'Spring Bank Holiday 2' },
+  //   { list: new Date(), name: 'Spring Bank Holiday 3' },
+  //   { list: new Date(), name: 'Spring Bank Holiday 4' },
+  // ];
 
   monthList: String[] = [
     'January',
@@ -42,6 +43,8 @@ export class HomeComponent implements OnInit {
   newsData = [];
   weatherData: any;
   consumptionData: any;
+  userData: any;
+  name: any;
 
   constructor(private apiService: ApiService) {}
 
@@ -53,6 +56,16 @@ export class HomeComponent implements OnInit {
     this.apiService.getWeather('kolkata,IN').subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.weatherData = data.data[0];      
+      }
+      this.updateMonth();
+    })
+
+    this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
+      if (data.data && data.data.length > 0) {
+        console.log(data);
+        this.data = data.data;
+        this.userData = data.data.type;
+        this.name = data.data.name;
       }
       this.updateMonth();
     })

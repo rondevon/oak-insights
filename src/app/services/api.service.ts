@@ -74,7 +74,6 @@ export class ApiService {
   }
 
   public getMonthlyUsageData(): Observable<any> {
-  
     if (localStorage.getItem('token')) {
       return this.httpClient.get(serviceBaseUrl + 'site/consumption/monthly', {
         headers: {
@@ -84,5 +83,13 @@ export class ApiService {
     } else return of(null);
   }
 
-
+  public getEvents(monthList: String): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'site/events?month=' + monthList,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
 }
