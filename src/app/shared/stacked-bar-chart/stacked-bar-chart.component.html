@@ -2,11 +2,11 @@
 <div class="operating-hours-totals">
     <div class="row">
       <div
-        class="col-lg-4"
+        class="col-lg-3"
         *ngFor="let operatingHoursTotal of operatingHoursTotals"
       >
         <span class="total-text"
-          >{{ operatingHoursTotal.type }}&nbsp;</span
+          >{{ operatingHoursTotal.type }}<br></span
         ><span
           class="total-value"
           [style.color]="operatingHoursTotal.color"
