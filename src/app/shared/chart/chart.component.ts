@@ -65,19 +65,26 @@ export class ChartComponent implements OnInit {
           name: 'Cost (£)',
           type: 'area',
           pointInterval: 10,
-          data: this.data.values_open,
+          data: this.data.values_closed,
         },
       ],
     });
   }
 
   switchChart(switchType: string){
+    this.chart.removeSeries(0);
+    let series = {
+        name: 'Cost (£)',
+        type: 'area',
+        pointInterval: 10,
+        data: {}
+    };
     if(switchType === 'Open'){
-      this.chart.options.series[0].data = this.data.values_open;
+      series.data = this.data.values_open;
     } else {
-      this.chart.options.series[0].data = this.data.values_closed;
+      series.data = this.data.values_closed;
     }
-    this.chart.redraw();
+    this.chart.addSeries(series);
   }
 
   constructor() {}
