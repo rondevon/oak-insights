@@ -28,6 +28,13 @@ export class HeatMapComponent implements OnInit {
   }
 
   setHeatMapData() {
+
+    function getPointCategoryName(point: any, dimension: any) {
+      var series = point.series,
+          isY = dimension === 'y',
+          axis = series[isY ? 'yAxis' : 'xAxis'];
+      return axis.categories[point[isY ? 'y' : 'x']];
+  }
     this.chart = new Chart({
       chart: {
         type: 'heatmap',
@@ -67,9 +74,8 @@ export class HeatMapComponent implements OnInit {
       },
       tooltip: {
         formatter: function () {
-          return 'The consumption on <b>' + this.point.y +
-                  '</b> at <b>' + this.point.x + ':00</b> hours'+
-                  '</b> is <b>' + this.point.value + 'kWh</b>';
+          return '<b>' + getPointCategoryName(this.point, 'y') + ', ' + getPointCategoryName(this.point, 'x')+ ':00</b> <br> Consumption - <b>' +
+          this.point.value + 'kWh</b>';
        }
       },
       legend: {

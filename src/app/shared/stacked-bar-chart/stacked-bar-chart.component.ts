@@ -10,20 +10,20 @@ export class StackedBarChartComponent implements OnInit {
   @Input('data') data: any = {};
   chart: any = {};
   chartValues: any[][] = [[],[],[],[]];
+  operatingHoursTotals: any[] = [];
   
-  operatingHoursTotals: any[] = [
-    { type:'Open Hours', value: '4000 kWH', color: 'var(--color8'},
-    { type:'Prep Hours', value: '800 kWH', color: 'var(--color5'},
-    { type:'Non-Operating Hours', value: '1000 kWH', color:'var(--color11'},
-    { type:'Closed Hours', value: '6000 kWH', color:'var(--color6'},
-  ];
-
-  setOperatingHoursData() {
+    setOperatingHoursData() {
     this.data && this.data.values && this.data.values.forEach((value: any []) => {
         value.forEach((item: any, index: any) => {
           this.chartValues[index].push(item);
         });
     });
+    this.operatingHoursTotals = [
+      { type:'Open Hours', value: this.data.open_total +'KwH', color: 'var(--color8'},
+      { type:'Prep Hours', value: this.data.preparatory_total +'KwH', color: 'var(--color5'},
+      { type:'Non-Operating Hours', value: this.data.non_operating_total +'KwH', color:'var(--color11'},
+      { type:'Closed Hours', value: this.data.closed_total +'KwH', color:'var(--color6'},
+    ];
 
     this.chart = new Chart({
       title: {
@@ -49,7 +49,7 @@ export class StackedBarChartComponent implements OnInit {
       
       tooltip: {
         headerFormat: '<b>{point.x}</b><br/>',
-        pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+        pointFormat: '{series.name}: {point.y} kWh<br/>Total: {point.stackTotal} kWh',
       },
       plotOptions: {
         column: {
