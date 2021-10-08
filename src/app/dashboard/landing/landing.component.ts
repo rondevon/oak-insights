@@ -17,13 +17,12 @@ export class LandingComponent implements OnInit {
   name: any;
   photo: any;
   monthUsageData: any;
+  loading: boolean = true;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.apiService.getHomepageApi(this.month).subscribe((data: any) => {
-      // console.log(data);
-
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
       this.cards= [
@@ -49,6 +48,7 @@ export class LandingComponent implements OnInit {
           color: 'var(--color8)',
         },
       ]
+      this.loading= false;
     });
 
     this.apiService.getMyprofileApi().subscribe((data: any)=> {
