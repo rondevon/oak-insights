@@ -9,13 +9,13 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  [x: string]: any;
   pipe = new DatePipe('en-IN');
   cards: any[] = [];
   selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
   heatMapData: any = {};
   operatingHoursData: any ={};
   hourlyCostData: any ={};
+  loading: boolean = true;
 
   // events: any[] = [
   //   { list: new Date(), name: 'Spring Bank Holiday' },
@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   consumptionData: any;
   userData: any;
   name: any;
+  data: any;
 
   constructor(private apiService: ApiService) {}
 
@@ -58,14 +59,12 @@ export class HomeComponent implements OnInit {
         this.weatherData = data.data[0];      
       }
       this.updateMonth();
+      this.loading = false;
     })
 
     this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
-        console.log(data);
         this.data = data.data;
-        this.userData = data.data.type;
-        this.name = data.data.name;
       }
       this.updateMonth();
     })

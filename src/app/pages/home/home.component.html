@@ -1,4 +1,6 @@
-<div class="home-container">
+<loader *ngIf="loading"></loader>
+
+<div class="home-container" *ngIf="!loading">
   <div class="row nomargin top-container">
     <div class="row">
       <div class="col-lg-9 my-auto">
