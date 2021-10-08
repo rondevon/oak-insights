@@ -53,7 +53,7 @@ export class PredictiveRangeChartComponent implements OnInit {
         },
         {
           name: 'Predicted Range',
-          data: this.data.range,
+          data: this.data.predictive_range,
           type: 'arearange',
           lineWidth: 0,
           linkedTo: ':previous',
