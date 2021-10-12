@@ -1,1 +1,24 @@
-<p>min-max works!</p>
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card-heading">Daily Min Max</div>
+        <span class="widget-subtitle">Provides the range of consumption</span>
+    </div>
+    <div class="col-md-8 text-right">
+        <div class="open-closed">
+            <button type="button" class="open-days-button">
+                Last Month
+            </button>
+            <button type="button" class="closed-days-button">
+                3 Months
+            </button>
+            <button type="button" class="closed-days-button">
+                6 Months
+            </button>
+            <button type="button" class="closed-days-button">
+                12 Months
+            </button>
+        </div>
+    </div>
+</div>
+
+<div [chart]="chart"></div>

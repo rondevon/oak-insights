@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   heatMapData: any = {};
   operatingHoursData: any ={};
   hourlyCostData: any ={};
+
   loading: boolean = true;
 
   monthList: String[] = [
@@ -43,9 +44,9 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.loading = false;
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
-      this.loading = false;
     })
 
     this.apiService.getWeather('London,GB').subscribe((data: any) => {
@@ -134,4 +135,5 @@ export class HomeComponent implements OnInit {
       this.hourlyCostData = data.data;
     });
   }
+  
 }

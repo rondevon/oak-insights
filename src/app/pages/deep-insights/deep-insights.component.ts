@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ApiService } from 'src/app/services/api.service';
+
 @Component({
   selector: 'app-deep-insights',
   templateUrl: './deep-insights.component.html',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeepInsightsComponent implements OnInit {
 
-  constructor() { }
 
+  constructor(private apiService: ApiService) { }
+  stockChartData: any = {};
+  loadCurveData: any = {};
+  minMaxData: any ={};
+
+  getStockChartDetails(){
+    this.apiService.getStockChartData().subscribe(data => {
+      this.stockChartData = data;
+    });
+  }
+  
   ngOnInit(): void {
+    this.getStockChartDetails();
+    this.loadCurveData = 0;
+    this.minMaxData = 0;
   }
 
 }

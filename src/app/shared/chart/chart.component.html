@@ -1,19 +1,29 @@
 <div class="row mb-4">
-    <div class="col-md-8">
-      <div class="card-heading">Energy Cost throughout the day</div>
-      <span class="widget-subtitle"
-        >Mean energy consumption during the various time of the
-        day</span
+  <div class="col-md-8">
+    <div class="card-heading">Energy Cost throughout the day</div>
+    <span class="widget-subtitle"
+      >Mean energy consumption during the various time of the day</span
+    >
+  </div>
+  <div class="col-md-4">
+    <div *ngIf="showButtons" class="open-closed">
+      <button
+        type="button"
+        class="open-days-button"
+        (click)="switchChart('Open')"
       >
-    </div>
-    <div class="col-md-4">
-      <div *ngIf="showButtons" class="open-closed">
-        <button type="button" class="open-days-button" (click)="switchChart('Open')">Open Days</button>
-        <button type="button" class="closed-days-button" (click)="switchChart('Closed')">Closed Days</button>
-      </div>
+        Open Days
+      </button>
+      <button
+        type="button"
+        class="closed-days-button"
+        (click)="switchChart('Closed')"
+      >
+        Closed Days
+      </button>
     </div>
   </div>
+</div>
 <div class="row">
   <div class="consumption-line" [chart]="chart"></div>
 </div>
-  

@@ -19,6 +19,13 @@ export class ApiService {
     );
   }
 
+
+  public getStockChartData(): Observable<any> {
+    return this.httpClient.get(
+      "https://demo-live-data.highcharts.com/aapl-c.json"
+    );
+  }
+
   public getHomepageApi(month: string): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month, {

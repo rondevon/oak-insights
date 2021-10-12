@@ -29,6 +29,9 @@ export class StackedBarChartComponent implements OnInit {
       title: {
         text: '',
       },
+      chart:{
+        marginTop: 40,
+      },
       exporting: { enabled: false },
       xAxis: {
         categories: this.data.x_axis,

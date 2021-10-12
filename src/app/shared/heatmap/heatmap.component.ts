@@ -40,8 +40,8 @@ export class HeatMapComponent implements OnInit {
       chart: {
         type: 'heatmap',
         height: 800,
-        marginTop: 40,
-        marginBottom: 80,
+        marginTop: 20,
+        marginBottom: 60,
         plotBorderWidth: 0,
         style: {
           fontFamily: 'Avenir-Roman',

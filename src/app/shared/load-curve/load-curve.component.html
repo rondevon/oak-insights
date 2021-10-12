@@ -1,1 +1,24 @@
-<p>load-curve works!</p>
+<div class="row mb-4">
+    <div class="col-md-5">
+        <div class="card-heading">Load Curve</div>
+        <span class="widget-subtitle">Gives the minimum load present throughout the specified period</span>
+    </div>
+    <div class="col-md-7 text-right">
+        <div class="open-closed">
+            <button type="button" class="open-days-button">
+                Last Month
+            </button>
+            <button type="button" class="closed-days-button">
+                3 Months
+            </button>
+            <button type="button" class="closed-days-button">
+                6 Months
+            </button>
+            <button type="button" class="closed-days-button">
+                12 Months
+            </button>
+        </div>
+    </div>
+</div>
+
+<div [chart]="chart"></div>

@@ -1,7 +1,35 @@
-<p>deep-insights works!</p>
 <div class="app-container">
-    <app-stock-graph></app-stock-graph>
-    <app-load-curve></app-load-curve>
-    <app-min-max></app-min-max>
-</div>
+  <div class="row">
+    <div class="col-md-9 my-auto">
+      <h2>Deep Insights</h2>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-custom">
+        <div class="card-heading">Energy Consumption (Zoomable Graph)</div>
+        <span class="widget-subtitle"
+          >Provides Energy Signature of your site</span
+        >
+        <app-stock-graph [data]="stockChartData"></app-stock-graph>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-custom">
+        <app-load-curve [data]="loadCurveData"></app-load-curve>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card card-custom">
+        <app-min-max [data]="minMaxData"></app-min-max>
+      </div>
+    </div>
+  </div>
+</div>

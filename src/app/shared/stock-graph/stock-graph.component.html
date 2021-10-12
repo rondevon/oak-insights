@@ -1,1 +1,20 @@
-<p>stock-graph works!</p>
+<div [chart]="chart"></div>
+<div class="operating-hours-totals">
+    <div class="row">
+      <div
+        class="col-md-4"
+        *ngFor="let consumptionTotal of consumptionTotals"
+      >
+        <div class="row">
+          <div class="col-md-6 text-right">
+            <span class="total-text">{{ consumptionTotal.type }}<br /></span>
+          </div>
+          <div class="col-md-6 text-left">
+            <span class="total-value" [style.color]="consumptionTotal.color">
+              {{ consumptionTotal.value }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
