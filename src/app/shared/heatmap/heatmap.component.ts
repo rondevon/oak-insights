@@ -11,15 +11,8 @@ import { Chart } from 'angular-highcharts';
 export class HeatMapComponent implements OnInit {
   @Input('data') data: any;
   chart: any = {};
-
-  heatmapranges: any[] = [
-    { range:'25%', color:'var(--heatmap-color2)'},
-    { range:'50%', color:'var(--heatmap-color3)'},
-    { range:'75%', color:'var(--heatmap-color4)'},
-    { range:'100%', color:'var(--heatmap-color5)'},
-  ];
-
-  ngOnInit() {
+  heatmapranges: any[] = [];
+   ngOnInit() {
     
   }
 
@@ -35,6 +28,14 @@ export class HeatMapComponent implements OnInit {
           axis = series[isY ? 'yAxis' : 'xAxis'];
       return axis.categories[point[isY ? 'y' : 'x']];
   }
+
+  this.heatmapranges = [
+    { range:'< 25%', color:'var(--heatmap-color2)'},
+    { range: '25%-50%', color:'var(--heatmap-color3)'},
+    { range:'50%-75%', color:'var(--heatmap-color4)'},
+    { range:'> 75%', color:'var(--heatmap-color5)'},
+  ];
+
     this.chart = new Chart({
       chart: {
         type: 'heatmap',

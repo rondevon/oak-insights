@@ -94,7 +94,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
               format:
                 '<div style="width:100%;text-align:center;"><span style="font-size:1.2vw; color: {point.color}; font-weight: bold">' +
                 Math.abs(this.differ) +
-                ' kwh</span><br><spanstyle="font-size:1vw; color: black; font-weight: bold">'+ this.abvbel + ' Target</span></div>',
+                ' kWh</span><br><spanstyle="font-size:1vw; color: black; font-weight: bold">'+ this.abvbel + ' Target</span></div>',
             },
 
             linecap: 'round',

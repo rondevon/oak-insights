@@ -65,7 +65,7 @@ export class ChartComponent implements OnInit {
           name: 'Cost (£)',
           type: 'area',
           pointInterval: 10,
-          data: this.data.values_closed,
+          data: this.data.values_open,
         },
       ],
     });
