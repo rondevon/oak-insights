@@ -1,3 +1,18 @@
+<div class="row mb-4">
+  <div class="col-md-10">
+      <div class="card-heading">Energy Consumption (Zoomable Graph)</div>
+      <span class="widget-subtitle">Provides Energy Signature of your site</span>
+  </div>
+  <div class="col-md-2 text-right my-auto">
+      <div class="open-closed">
+        <select class="form-select monthPicker" >
+          <option *ngFor="let month of monthList" [value]="month">{{
+            month
+          }}</option>
+        </select>
+      </div>
+  </div>
+</div>
 <div [chart]="chart"></div>
 <div class="operating-hours-totals">
     <div class="row">

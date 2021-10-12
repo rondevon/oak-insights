@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { StockChart } from 'angular-highcharts';
 @Component({
@@ -6,14 +7,28 @@ import { StockChart } from 'angular-highcharts';
   styleUrls: ['./stock-graph.component.scss']
 })
 export class StockGraphComponent implements OnInit {
-
-  constructor() { }
+  pipe = new DatePipe('en-GB');
   @Input('data') data: any= {};
   chart: any = {};
   consumptionTotals: any[] = [];
+  selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
+  monthList: String[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ];
 
 
-
+  constructor() { }
   ngOnInit(): void {
     
     
