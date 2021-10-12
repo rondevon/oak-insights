@@ -10,7 +10,7 @@ import { BasicInsightsComponent } from './basic-insights/basic-insights.componen
 import { ApplianceComparisonComponent } from './appliance-comparison/appliance-comparison.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full'  },
   { path: 'home', component: HomeComponent },
   { path: 'basic-insights', component: BasicInsightsComponent },
   { path: 'deep-insights', component: DeepInsightsComponent },
