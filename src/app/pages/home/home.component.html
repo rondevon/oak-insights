@@ -3,10 +3,10 @@
 <div class="home-container" *ngIf="!loading">
   <div class="row nomargin top-container">
     <div class="row">
-      <div class="col-lg-9 my-auto">
+      <div class="col-md-9 my-auto">
         <h2>Insights at a Glance</h2>
       </div>
-      <div class="col-lg-3 my-auto">
+      <div class="col-md-3 my-auto">
         <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
           <option *ngFor="let month of monthList" [value]="month">{{
             month
@@ -16,14 +16,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-9">
+      <div class="col-md-9">
         <div class="row">
-          <div class="col-lg-8 insights-container">
+          <div class="col-md-8 insights-container">
             <div class="insights-column" *ngFor="let card of cards">
               <app-insight-item-tile [data]="card"></app-insight-item-tile>
             </div>
           </div>
-          <div class="col-lg-4 activity-gauge-container">
+          <div class="col-md-4 activity-gauge-container">
             <div class="card card-custom">
               <div class="card-heading">Consumption Overview</div>
               <app-activity-gauge [data]="consumptionData"></app-activity-gauge>
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-md-12">
             <div class="card card-custom">
               <div class="card-heading">Calendar Heat Map</div>
               <span class="widget-subtitle"
@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-md-3">
         <div class="card card-custom">
           <div class="oakscore">
             <div class="oak-score-badge">
@@ -85,7 +85,7 @@
 
   <div class="row bottom-container">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-md-8">
         <div class="card card-custom">
           <div class="card-heading">Operating Hours Analysis</div>
           <span class="widget-subtitle"
@@ -102,7 +102,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4">
+      <div class="col-md-4">
         <div class="card card-custom">
           <div class="card-heading">Top Consuming Appliances</div>
           <span class="widget-subtitle"
