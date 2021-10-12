@@ -8,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   menu = [
-    { path: '/home', name: 'Home' },
-    { path: '/basic-insights', name: 'Basic Insights' },
-    { path: '/deep-insights', name: 'Deep Insights' },
-    { path: '/multi-site-comparison', name: 'Multi-site Comparison' },
-    { path: '/phase-distribution', name: 'Phase Distribution' },
-    { path: '/appliance-comparisons', name: 'Appliance Comparisons' },
-    { path: '/savings-calculator', name: 'Savings Calculator' },
-    { path: '/recommendations', name: 'Recommendations' },
+    { path: './pages/home', name: 'Home' },
+    { path: './pages/basic-insights', name: 'Basic Insights' },
+    { path: './pages/deep-insights', name: 'Deep Insights' },
+    { path: './pages/multi-site-comparison', name: 'Multi-site Comparison' },
+    { path: './pages/phase-distribution', name: 'Phase Distribution' },
+    { path: './pages/appliance-comparison', name: 'Appliance Comparisons' },
+    { path: './pages/savings-calculator', name: 'Savings Calculator' },
+    { path: './pages/recommendations', name: 'Recommendations' },
     
   ]
   // menu = ['Home', 'Basic Insights', 'Deep Insights', 'Multi-site Comparison', 'Phase Distribution', 'Appliance Comparisons', 'Savings Calculator', 'Recommendations']
