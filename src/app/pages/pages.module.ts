@@ -12,6 +12,7 @@ import { ChartModule } from 'angular-highcharts';
 import { WeatherComponent } from './weather/weather.component';
 import { GoogleNewsComponent } from './google-news/google-news.component';
 import {MatSelectModule} from '@angular/material/select';
+import { LoaderModule } from '../loader/loader.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {MatSelectModule} from '@angular/material/select';
     ChartModule,
     SharedModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    LoaderModule
   ]
 })
 export class PagesModule { }

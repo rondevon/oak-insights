@@ -11,15 +11,8 @@ import { Chart } from 'angular-highcharts';
 export class HeatMapComponent implements OnInit {
   @Input('data') data: any;
   chart: any = {};
-
-  heatmapranges: any[] = [
-    { range:'25%', color:'var(--heatmap-color2)'},
-    { range:'50%', color:'var(--heatmap-color3)'},
-    { range:'75%', color:'var(--heatmap-color4)'},
-    { range:'100%', color:'var(--heatmap-color5)'},
-  ];
-
-  ngOnInit() {
+  heatmapranges: any[] = [];
+   ngOnInit() {
     
   }
 
@@ -28,6 +21,21 @@ export class HeatMapComponent implements OnInit {
   }
 
   setHeatMapData() {
+
+    function getPointCategoryName(point: any, dimension: any) {
+      var series = point.series,
+          isY = dimension === 'y',
+          axis = series[isY ? 'yAxis' : 'xAxis'];
+      return axis.categories[point[isY ? 'y' : 'x']];
+  }
+
+  this.heatmapranges = [
+    { range:'< 25%', color:'var(--heatmap-color2)'},
+    { range: '25%-50%', color:'var(--heatmap-color3)'},
+    { range:'50%-75%', color:'var(--heatmap-color4)'},
+    { range:'> 75%', color:'var(--heatmap-color5)'},
+  ];
+
     this.chart = new Chart({
       chart: {
         type: 'heatmap',
@@ -67,9 +75,8 @@ export class HeatMapComponent implements OnInit {
       },
       tooltip: {
         formatter: function () {
-          return 'The value for x is <b>' + this.point.x +
-                  '</b> and y is <b>' + this.point.y + '</b>'+
-                  '</b> and value is <b>' + this.point.value + '</b>';
+          return '<b>' + getPointCategoryName(this.point, 'y') + ', ' + getPointCategoryName(this.point, 'x')+ ':00</b> <br> Consumption - <b>' +
+          this.point.value + 'kWh</b>';
        }
       },
       legend: {

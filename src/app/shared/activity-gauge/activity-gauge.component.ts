@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Chart } from 'angular-highcharts';
 
 @Component({
@@ -14,10 +15,14 @@ import { Chart } from 'angular-highcharts';
 })
 export class ActivityGaugeComponent implements OnInit, OnChanges {
   @Input('data') data: any;
-
+  pipe = new DatePipe('en-GB');
+  date = this.pipe.transform(new Date(), 'dd') as string;
+  differ: any = {};
+  abvbel: any = {};
   chart: Chart = new Chart();
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.data)
+      this.differ=Math.round((Number(this.data.target)/30*Number(this.date)) - Number(this.data.present))
+      if(this.differ>0 ?this.abvbel = 'Below' : this.abvbel = 'Above')
       this.chart = new Chart({
         chart: {
           height: '100%',
@@ -56,14 +61,14 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
               // Track for Move
               outerRadius: '100%',
               innerRadius: '88%',
-              backgroundColor: '#ffffff',
+              backgroundColor: '#eeeeee',
               borderWidth: 0,
             },
             {
               // Track for Exercise
               outerRadius: '75%',
               innerRadius: '63%',
-              backgroundColor: '#ffffff',
+              backgroundColor: '#eeeeee',
               borderWidth: 0,
             },
           ],
@@ -88,8 +93,8 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
               y: -24,
               format:
                 '<div style="width:100%;text-align:center;"><span style="font-size:1.2vw; color: {point.color}; font-weight: bold">' +
-                this.data?.target +
-                ' kwh</span><br><spanstyle="font-size:1vw; color: black; font-weight: bold">Above Target</span></div>',
+                Math.abs(this.differ) +
+                ' kWh</span><br><spanstyle="font-size:1vw; color: black; font-weight: bold">'+ this.abvbel + ' Target</span></div>',
             },
 
             linecap: 'round',
@@ -100,7 +105,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
 
         series: [
           {
-            name: 'Target',
+            name: 'Actual',
             type: 'solidgauge',
             data: [
               {
@@ -113,12 +118,12 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
                 },
                 radius: '100%',
                 innerRadius: '88%',
-                y: 80,
+                y: ((Number(this.data.target)-Number(this.data.present))>0 ? (Number(this.data.target)-Number(this.data.present))/Number(this.data.target)*100 : 100),
               },
             ],
           },
           {
-            name: 'Actual',
+            name: 'Target',
             type: 'solidgauge',
             data: [
               {
@@ -132,7 +137,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
                 },
                 radius: '75%',
                 innerRadius: '63%',
-                y: 60,
+                y: ((100/30)*Number(this.date)),
               },
             ],
           },

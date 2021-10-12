@@ -1,7 +1,8 @@
 <div>
   <app-header></app-header>
 </div>
-<div class="dash">
+<loader *ngIf="loading"></loader>
+<div class="dash" *ngIf="!loading">
   <div class="landing-container">
     <div class="landing-content">
       <div class="row">

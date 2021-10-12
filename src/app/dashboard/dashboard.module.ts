@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
 import { NgsAvaterModule } from 'ngs-avater';
+import { LoaderModule } from '../loader/loader.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NgsAvaterModule } from 'ngs-avater';
     DashboardRoutingModule,
     SharedModule,
     CustomPipesModule,
-    NgsAvaterModule
+    NgsAvaterModule,
+    LoaderModule
   ]
 })
 export class DashboardModule { }

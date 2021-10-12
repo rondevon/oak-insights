@@ -1,4 +1,6 @@
-<div class="home-container">
+<loader *ngIf="loading"></loader>
+
+<div class="home-container" *ngIf="!loading">
   <div class="row nomargin top-container">
     <div class="row">
       <div class="col-lg-9 my-auto">
@@ -67,9 +69,11 @@
         <div class="card card-custom">
           <div class="card-heading">List of Events</div>
           <span class="widget-subtitle">A list of non-trading days</span>
-          <div class="events-list" *ngFor="let event of events">
-            <b>{{ event.list | dateSuffix }}</b>
-            <span>{{ event.name }}</span>
+          <div class="events-list" *ngFor="let d of data" [style.color]="d.type==='User' ? 'var(--color2)' : 'black'">
+            {{ d.date | dateSuffix }}
+            <span>
+              {{ d.name }}
+            </span>
           </div>
           <div class="add-new-event">
             <button class="add-new-btn">Add an Event</button>

@@ -9,19 +9,13 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  pipe = new DatePipe('en-IN');
+  pipe = new DatePipe('en-GB');
   cards: any[] = [];
   selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
   heatMapData: any = {};
   operatingHoursData: any ={};
   hourlyCostData: any ={};
-
-  events: any[] = [
-    { list: new Date(), name: 'Spring Bank Holiday' },
-    { list: new Date(), name: 'Spring Bank Holiday 2' },
-    { list: new Date(), name: 'Spring Bank Holiday 3' },
-    { list: new Date(), name: 'Spring Bank Holiday 4' },
-  ];
+  loading: boolean = true;
 
   monthList: String[] = [
     'January',
@@ -42,17 +36,28 @@ export class HomeComponent implements OnInit {
   newsData = [];
   weatherData: any;
   consumptionData: any;
+  userData: any;
+  name: any;
+  data: any;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
+      this.loading = false;
     })
 
-    this.apiService.getWeather('kolkata,IN').subscribe((data: any) => {
+    this.apiService.getWeather('London,GB').subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.weatherData = data.data[0];      
+      }
+      this.updateMonth();
+    })
+
+    this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
+      if (data.data && data.data.length > 0) {
+        this.data = data.data;
       }
       this.updateMonth();
     })
