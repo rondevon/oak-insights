@@ -13,6 +13,9 @@ import { ActivityGaugeComponent } from './activity-gauge/activity-gauge.componen
 import { ApplianceConsumptionComponent } from './appliance-consumption/appliance-consumption.component';
 import { InsightItemTileComponent } from './insight-item-tile/insight-item-tile.component';
 import { PredictiveRangeChartComponent } from './predictive-range-chart/predictive-range-chart.component';
+import { StockGraphComponent } from './stock-graph/stock-graph.component';
+import { LoadCurveComponent } from './load-curve/load-curve.component';
+import { MinMaxComponent } from './min-max/min-max.component';
 
 import { HIGHCHARTS_MODULES, ChartModule } from 'angular-highcharts';
 import more from 'highcharts/highcharts-more.src';
@@ -21,6 +24,8 @@ import highmaps from 'highcharts/modules/map.src';
 import solidgauge from 'highcharts/modules/solid-gauge.src';
 import accessibility from 'highcharts/modules/accessibility.src';
 import exportdata from 'highcharts/modules/export-data.src';
+
+
 
 export function highchartsModules() { 
   // apply Highcharts Modules to this array
@@ -38,7 +43,10 @@ export function highchartsModules() {
     ActivityGaugeComponent,
     ApplianceConsumptionComponent,
     InsightItemTileComponent,
-    PredictiveRangeChartComponent
+    PredictiveRangeChartComponent,
+    StockGraphComponent,
+    LoadCurveComponent,
+    MinMaxComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +64,10 @@ export function highchartsModules() {
     ActivityGaugeComponent,
     ApplianceConsumptionComponent,
     InsightItemTileComponent,
-    PredictiveRangeChartComponent
+    PredictiveRangeChartComponent,
+    StockGraphComponent,
+    LoadCurveComponent,
+    MinMaxComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
