@@ -1,3 +1,4 @@
+import { StockChart } from 'angular-highcharts';
 import { Component, OnInit } from '@angular/core';
 
 import { ApiService } from 'src/app/services/api.service';
@@ -11,18 +12,13 @@ export class DeepInsightsComponent implements OnInit {
 
 
   constructor(private apiService: ApiService) { }
-  stockChartData: any = {};
+  
   loadCurveData: any = {};
   minMaxData: any ={};
-
-  getStockChartDetails(){
-    this.apiService.getStockChartData().subscribe(data => {
-      this.stockChartData = data;
-    });
-  }
+  stockChartData: any={}
   
   ngOnInit(): void {
-    this.getStockChartDetails();
+     
     this.loadCurveData = 0;
     this.minMaxData = 0;
   }

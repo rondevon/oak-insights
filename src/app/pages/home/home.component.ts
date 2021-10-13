@@ -53,15 +53,15 @@ export class HomeComponent implements OnInit {
       if (data.data && data.data.length > 0) {
         this.weatherData = data.data[0];      
       }
-      this.updateMonth();
     })
 
     this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
-      this.updateMonth();
     })
+
+    this.updateMonth();
   }
   
   updateMonth() {

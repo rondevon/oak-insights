@@ -7,10 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class InsightItemTileComponent implements OnInit {
   @Input('data') data: any;
+  
 
   constructor() { }
 
   ngOnInit(): void {
+    this.data.value = (this.data.value).toLocaleString();
   }
 
 }

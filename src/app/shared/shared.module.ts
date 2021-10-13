@@ -25,7 +25,7 @@ import solidgauge from 'highcharts/modules/solid-gauge.src';
 import accessibility from 'highcharts/modules/accessibility.src';
 import exportdata from 'highcharts/modules/export-data.src';
 import stock from 'highcharts/modules/stock.src';
-
+import { FormsModule } from '@angular/forms';
 
 
 export function highchartsModules() { 
@@ -53,7 +53,8 @@ export function highchartsModules() {
     CommonModule,
     RouterModule, 
     NgsAvaterModule,
-    ChartModule
+    ChartModule,
+    FormsModule
   ],
   exports: [
     HeaderComponent,
@@ -68,7 +69,7 @@ export function highchartsModules() {
     PredictiveRangeChartComponent,
     StockGraphComponent,
     LoadCurveComponent,
-    MinMaxComponent
+    MinMaxComponent,
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }

@@ -20,11 +20,6 @@ export class ApiService {
   }
 
 
-  public getStockChartData(): Observable<any> {
-    return this.httpClient.get(
-      "https://demo-live-data.highcharts.com/aapl-c.json"
-    );
-  }
 
   public getHomepageApi(month: string): Observable<any> {
     if (localStorage.getItem('token')) {
@@ -82,13 +77,32 @@ export class ApiService {
 
   public getMonthlyUsageData(): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/consumption/monthly', {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/yearly/month', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
       });
     } else return of(null);
   }
+
+  public getStockChartData(month: String): Observable<any> {
+    
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'insights/consumption/minute?month=' + month + '&field=energy', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
+
+
+  // public getStockChartData(month: String): Observable<any> {
+    
+  //   if (localStorage.getItem('token')) {
+  //     return this.httpClient.get('https://demo-live-data.highcharts.com/aapl-c.json');
+  //   } else return of(null);
+  // }
 
   public getEvents(monthList: String): Observable<any> {
     if (localStorage.getItem('token')) {

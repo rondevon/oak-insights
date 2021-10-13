@@ -5,7 +5,7 @@
   </div>
   <div class="col-md-2 text-right my-auto">
       <div class="open-closed">
-        <select class="form-select monthPicker" >
+        <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
           <option *ngFor="let month of monthList" [value]="month">{{
             month
           }}</option>
