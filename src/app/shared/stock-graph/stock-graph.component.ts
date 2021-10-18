@@ -104,6 +104,9 @@ export class StockGraphComponent implements OnInit {
       legend: {
         enabled:true
       },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}</b> '+this.unit,
+      },
       rangeSelector: {
               allButtonsEnabled: true,
               buttons: [{
@@ -137,21 +140,21 @@ export class StockGraphComponent implements OnInit {
               selected: 0
           },
       series: [{
-        name: this.stockChartData.seq[1]+ ' R (' + this.unit + ')',
+        name: 'Phase R',
         data: this.stockChartData.values_r,
         type: 'line',
         threshold: null,
         color:'#4164AD',
       },
       {
-        name: this.stockChartData.seq[1]+ ' S (' + this.unit + ')',
+        name: 'Phase S',
         data: this.stockChartData.values_s,
         type: 'line',
         threshold: null,
         color:'#F3837A',
       },
       {
-        name: this.stockChartData.seq[1]+ ' T (' + this.unit + ')',
+        name: 'Phase T',
         data: this.stockChartData.values_t,
         type: 'line',
         threshold: null,
@@ -171,6 +174,9 @@ export class StockGraphComponent implements OnInit {
       title: {
           text: ''
       },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.y}</b> '+this.unit,
+      },  
       rangeSelector: {
               allButtonsEnabled: true,
               buttons: [{
@@ -204,7 +210,7 @@ export class StockGraphComponent implements OnInit {
               selected: 0
           },
       series: [{
-        name: this.stockChartData.seq[1]+ ' (' + this.unit + ')',
+        name: this.stockChartData.seq[1],
         data: this.stockChartData.values,
         type: 'area',
         threshold: null,
