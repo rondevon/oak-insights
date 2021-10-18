@@ -12,11 +12,16 @@ export class RecommendationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.monthsList = [
-      { title: 'January 2021', descriptions: [``] },
-      { title: 'February 2021', descriptions: [``] },
-      { title: 'April 2021', descriptions: [``] },
-      { title: 'March 2021', descriptions: [``] },
-      { title: 'May 2021', descriptions: [``] },
+      { title: 'January 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'February 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'April 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'March 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'May 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
       {
         title: 'June 2021',
         descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
@@ -26,11 +31,16 @@ export class RecommendationsComponent implements OnInit {
       you to install voltage optimizer to optimize the voltage and reduce cost in the process.`, `
       HVAC are observed to be in operation even during non-operating hours. Please consider to switch
       of the HVACs when not required.`] },
-      { title: 'August 2021', descriptions: [``] },
-      { title: 'September 2021', descriptions: [``] },
-      { title: 'October 2021', descriptions: [``] },
-      { title: 'November 2021', descriptions: [``] },
-      { title: 'December 2021', descriptions: [``] },
+      { title: 'August 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'September 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'October 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'November 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
+      { title: 'December 2021', descriptions: [`Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
+      service the HVAC systems.`] },
     ];
   }
 }
