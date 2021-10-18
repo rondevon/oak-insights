@@ -11,7 +11,10 @@ export class LoadCurveComponent implements OnInit {
   constructor() { }
   @Input('data') data: any= {};
   chart: any = {};
-
+  bntStyle1: String = 'open-days-button';
+  bntStyle2: String = 'closed-days-button';
+  bntStyle3: String = 'closed-days-button';
+  bntStyle4: String = 'closed-days-button';
   ngOnInit(): void {
   }
 
@@ -65,5 +68,32 @@ export class LoadCurveComponent implements OnInit {
       }
     }]
     });
+  }
+
+  switchChart(switchType: string){
+    if(switchType === '1'){
+      this.bntStyle1 = 'open-days-button'
+      this.bntStyle2 = 'closed-days-button' 
+      this.bntStyle3 = 'closed-days-button' 
+      this.bntStyle4 = 'closed-days-button'    
+    } 
+    if(switchType === '3'){
+      this.bntStyle1 = 'closed-days-button' 
+      this.bntStyle2 = 'open-days-button'
+      this.bntStyle3 = 'closed-days-button' 
+      this.bntStyle4 = 'closed-days-button'    
+    }
+    if(switchType === '6'){
+      this.bntStyle1 = 'closed-days-button' 
+      this.bntStyle2 = 'closed-days-button'
+      this.bntStyle3 = 'open-days-button' 
+      this.bntStyle4 = 'closed-days-button'
+    }
+    if(switchType === '12'){
+      this.bntStyle1 = 'closed-days-button' 
+      this.bntStyle2 = 'closed-days-button'
+      this.bntStyle3 = 'closed-days-button' 
+      this.bntStyle4 = 'open-days-button'
+    }
   }
 }

@@ -85,10 +85,10 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getStockChartData(month: String): Observable<any> {
+  public getStockChartData(month: String, type: String): Observable<any> {
     
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'insights/consumption/minute?month=' + month + '&field=energy', {
+      return this.httpClient.get(serviceBaseUrl + 'insights/consumption/minute?month=' + month + '&field=' + type, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

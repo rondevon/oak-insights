@@ -1,7 +1,16 @@
 <div class="row mb-4">
-  <div class="col-md-10">
+  <div class="col-md-8">
       <div class="card-heading">Energy Consumption (Zoomable Graph)</div>
       <span class="widget-subtitle">Provides Energy Signature of your site</span>
+  </div>
+  <div class="col-md-2 text-right my-auto">
+    <div class="open-closed">
+      <select class="form-select monthPicker" [(ngModel)]="selectedType" (change)="updateType()">
+        <option *ngFor="let type of typeList" [value]="type">{{
+          type
+        }}</option>
+      </select>
+    </div>
   </div>
   <div class="col-md-2 text-right my-auto">
       <div class="open-closed">
@@ -21,13 +30,15 @@
         *ngFor="let consumptionTotal of consumptionTotals"
       >
         <div class="row">
-          <div class="col-md-6 text-right">
-            <span class="total-text">{{ consumptionTotal.type }}<br /></span>
+          <div class="col-md-6 text-right my-auto">
+            <div class="total-text">{{ consumptionTotal.type }}<br/></div>
           </div>
-          <div class="col-md-6 text-left">
-            <span class="total-value" [style.color]="consumptionTotal.color">
-              {{ consumptionTotal.value }}</span
+          <div class="col-md-6 text-left my-auto">
+            <div class="total-value" [style.color]="consumptionTotal.color">
+              {{ consumptionTotal.value }}</div
             >
+            <div class="total-time" [style.color]="consumptionTotal.color">
+              {{ consumptionTotal.date }}</div>
           </div>
         </div>
       </div>

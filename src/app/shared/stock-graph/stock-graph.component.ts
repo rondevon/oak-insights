@@ -15,6 +15,15 @@ export class StockGraphComponent implements OnInit {
   consumptionTotals: any[] = [];
   stockChartData: any = {};
   selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
+  selectedType : string = 'energy';
+  unit: string = 'KwH'
+  typeList: String[] = [
+    'energy',
+    'power',
+    'current',
+    'voltage',
+    'power_factor'
+  ];
   monthList: String[] = [
     'January',
     'February',
@@ -33,15 +42,18 @@ export class StockGraphComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
 
-  getStockChartDetails(selectedMonth: String){
-    this.apiService.getStockChartData(selectedMonth).subscribe((data : any) => {
+  getStockChartDetails(selectedMonth: String, selectedType: String){
+    this.apiService.getStockChartData(selectedMonth,selectedType).subscribe((data : any) => {
       this.stockChartData = data.data;
       this.setStockGraphData();
     });
   }
+  updateType(){
+    this.getStockChartDetails(this.selectedMonth,this.selectedType);
+  }
 
   updateMonth() {
-    this.getStockChartDetails(this.selectedMonth);
+    this.getStockChartDetails(this.selectedMonth,this.selectedType);
     
   }
   ngOnInit(): void {
@@ -49,14 +61,26 @@ export class StockGraphComponent implements OnInit {
   }
 
   setStockGraphData() {
-
+    if(this.stockChartData.seq[1] == 'power'){
+      this.unit = 'KW'
+    }
+    if(this.stockChartData.seq[1] == 'energy'){
+      this.unit = 'KwH'
+    }
+    if(this.stockChartData.seq[1] == 'current'){
+      this.unit = 'A'
+    }
+    if(this.stockChartData.seq[1] == 'voltage'){
+      this.unit = 'V'
+    }
+    if(this.stockChartData.seq[1] == 'power_factor'){
+      this.unit = ''
+    }
     this.consumptionTotals = [
-      { type:'Peak Consumption', value: 272 +'KwH', color: 'var(--color6'},
-      { type:'Average Consumption', value: 230 +'KwH', color: 'var(--color8'},
-      { type:'Lowest Consumption', value: 120 +'KwH', color:'var(--color5'},
+      { type:'Peak Consumption', value: this.stockChartData.peak +' '+ this.unit, date: this.pipe.transform(new Date(this.stockChartData.peak_time), 'medium'), color: 'var(--color6'},
+      { type:'Average Consumption', value: this.stockChartData.avg +' '+ this.unit, color: 'var(--color8'},
+      { type:'Lowest Consumption', value: this.stockChartData.lowest +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time), 'medium'), color:'var(--color5'},
     ];
-    console.log('data', this.stockChartData.values)
-    console.log('time',new Date(1630781400));
     this.chart = new StockChart({
       chart:{
         marginTop: 40,
@@ -101,7 +125,7 @@ export class StockGraphComponent implements OnInit {
             selected: 0
         },
     series: [{
-        name: 'Consumption (kWh)',
+        name: this.stockChartData.seq[1]+ ' ' + this.unit,
         data: this.stockChartData.values,
         type: 'area',
         threshold: null,

@@ -8,15 +8,13 @@
   <div class="col-md-4">
     <div *ngIf="showButtons" class="open-closed">
       <button
-        type="button"
-        class="open-days-button"
+        type="button" [ngClass]="[bntStyle1,'padding-open']"
         (click)="switchChart('Open')"
       >
         Open Days
       </button>
       <button
-        type="button"
-        class="closed-days-button"
+        type="button" [ngClass]="[bntStyle2 ,'padding-closed'] "
         (click)="switchChart('Closed')"
       >
         Closed Days

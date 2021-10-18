@@ -21,7 +21,7 @@
       var(--color5) 51%,
       var(--color3) 100%
     );
-    padding: 0.5vw 1.65vw;
+    
     text-align: center;
     transition: 0.5s;
     background-size: 200% auto;
@@ -33,7 +33,6 @@
     font-weight: 800;
     font-size: 0.75rem;
     letter-spacing: 1px;
-    margin-bottom: 0.6rem;
   }
   
   .open-days-button:hover {
@@ -49,7 +48,7 @@
       var(--color12) 51%,
       var(--color11) 100%
     );
-    padding: 0.5vw 1.5vw;
+    
     text-align: center;
     transition: 0.5s;
     background-size: 200% auto;
@@ -68,4 +67,11 @@
     color: #000;
     text-decoration: none;
   }
-  
+
+  .padding-closed{
+    padding: 0.5vw 1.5vw
+  }
+  .padding-open{
+    padding: 0.5vw 1.65vw;
+    margin-bottom: 0.6rem;
+  }

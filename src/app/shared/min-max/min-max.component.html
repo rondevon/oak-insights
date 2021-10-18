@@ -5,16 +5,16 @@
     </div>
     <div class="col-md-8 text-right">
         <div class="open-closed">
-            <button type="button" class="open-days-button">
+            <button type="button" [ngClass]="[bntStyle1]" (click)="switchChart('1')">
                 Last Month
             </button>
-            <button type="button" class="closed-days-button">
+            <button type="button" [ngClass]="[bntStyle2]" (click)="switchChart('3')">
                 3 Months
             </button>
-            <button type="button" class="closed-days-button">
+            <button type="button" [ngClass]="[bntStyle3]" (click)="switchChart('6')">
                 6 Months
             </button>
-            <button type="button" class="closed-days-button">
+            <button type="button" [ngClass]="[bntStyle4]" (click)="switchChart('12')">
                 12 Months
             </button>
         </div>

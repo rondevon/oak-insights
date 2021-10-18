@@ -13,7 +13,8 @@ export class ChartComponent implements OnInit {
   @Input('showButtons') showButtons: boolean = false;
   chart: any = {};
   openValues: any[][] = [[],[]];
-  
+  bntStyle1: String = 'open-days-button';
+  bntStyle2: String = 'closed-days-button';
   ngOnChanges() {
     this.setHourlyCostData();
   }
@@ -72,6 +73,7 @@ export class ChartComponent implements OnInit {
   }
 
   switchChart(switchType: string){
+
     this.chart.removeSeries(0);
     let series = {
         name: 'Cost (£)',
@@ -81,8 +83,12 @@ export class ChartComponent implements OnInit {
     };
     if(switchType === 'Open'){
       series.data = this.data.values_open;
+      this.bntStyle2 = 'closed-days-button' 
+      this.bntStyle1 = 'open-days-button'   
     } else {
       series.data = this.data.values_closed;
+      this.bntStyle2 = 'open-days-button' 
+      this.bntStyle1 = 'closed-days-button'
     }
     this.chart.addSeries(series);
   }
@@ -90,6 +96,7 @@ export class ChartComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  
 }
 
 
