@@ -26,6 +26,7 @@ import accessibility from 'highcharts/modules/accessibility.src';
 import exportdata from 'highcharts/modules/export-data.src';
 import stock from 'highcharts/modules/stock.src';
 import { FormsModule } from '@angular/forms';
+import { MonthsDataComponent } from './months-data/months-data.component';
 
 
 export function highchartsModules() { 
@@ -47,7 +48,8 @@ export function highchartsModules() {
     PredictiveRangeChartComponent,
     StockGraphComponent,
     LoadCurveComponent,
-    MinMaxComponent
+    MinMaxComponent,
+    MonthsDataComponent
   ],
   imports: [
     CommonModule,
@@ -70,6 +72,7 @@ export function highchartsModules() {
     StockGraphComponent,
     LoadCurveComponent,
     MinMaxComponent,
+    MonthsDataComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }

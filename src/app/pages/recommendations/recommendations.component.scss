@@ -1,0 +1,18 @@
+.app-container {
+    h2 {
+      font-family: var(--fontRegular);
+      margin: 16px 0;
+    }
+  }
+  .card-custom {
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-heading {
+    font: var(--fontBold);
+    font-size: 1.5vw;
+    font-weight: 800;
+  }

@@ -1,1 +1,14 @@
-<p>recommendations works!</p>
+<div class="app-container">
+    <div class="row">
+      <div class="col-md-9 my-auto">
+        <h2>Recommendations</h2>
+      </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card card-custom" *ngFor="let monthList of monthsList">
+          <app-months-data [data]="monthList"></app-months-data>
+      </div>
+    </div>
+  </div>
