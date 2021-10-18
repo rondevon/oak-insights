@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class PhaseDistributionComponent implements OnInit {
 
   constructor() { }
+  
+  phase: any ={};
+  
 
   ngOnInit(): void {
+    this.phase = 'phase'
   }
 
 }

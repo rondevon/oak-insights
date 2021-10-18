@@ -13,12 +13,12 @@ export class DeepInsightsComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
   
+  consumption: any = {};
   loadCurveData: any = {};
   minMaxData: any ={};
-  stockChartData: any={}
   
   ngOnInit(): void {
-     
+    this.consumption = 'consumption';
     this.loadCurveData = 0;
     this.minMaxData = 0;
   }

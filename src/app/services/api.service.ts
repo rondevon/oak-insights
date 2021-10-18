@@ -85,10 +85,21 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getStockChartData(month: String, type: String): Observable<any> {
+  public getStockChartData(month: String, type: String, graph: String): Observable<any> {
     
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'insights/consumption/minute?month=' + month + '&field=' + type, {
+      return this.httpClient.get(serviceBaseUrl + 'insights/' + graph + '/minute?month=' + month + '&field=' + type, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
+
+  public getPhaseStockChartData(month: String, type: String): Observable<any> {
+    
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'insights/phase/minute?month=' + month + '&field=' + type, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

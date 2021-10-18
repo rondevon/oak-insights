@@ -1,7 +1,10 @@
 <div class="row mb-4">
   <div class="col-md-8">
-      <div class="card-heading">Energy Consumption (Zoomable Graph)</div>
-      <span class="widget-subtitle">Provides Energy Signature of your site</span>
+      <div class="card-heading" *ngIf ="selectedGraph == 'phase'">Phase Distribution (Zoomable Graph)</div>
+      <div class="card-heading" *ngIf ="selectedGraph == 'consumption'">Energy Consumption (Zoomable Graph)</div>
+      
+      <span class="widget-subtitle" *ngIf ="selectedGraph == 'phase'">Provides consumption pattern for each of the three phases</span>
+      <span class="widget-subtitle" *ngIf ="selectedGraph == 'consumption'">Provides Energy Signature of your site</span>
   </div>
   <div class="col-md-2 text-right my-auto">
     <div class="open-closed">
@@ -23,7 +26,7 @@
   </div>
 </div>
 <div [chart]="chart"></div>
-<div class="operating-hours-totals">
+<div class="operating-hours-totals" *ngIf ="selectedGraph == 'consumption'">
     <div class="row">
       <div
         class="col-md-4"
