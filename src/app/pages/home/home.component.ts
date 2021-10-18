@@ -1,7 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Chart } from 'angular-highcharts';
 import { ApiService } from 'src/app/services/api.service';
+import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -41,7 +43,7 @@ export class HomeComponent implements OnInit {
   name: any;
   data: any;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loading = false;
@@ -136,4 +138,14 @@ export class HomeComponent implements OnInit {
     });
   }
   
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddEventDialogComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+      // this.animal = result;
+    });
+  }
 }
