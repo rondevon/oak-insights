@@ -20,7 +20,7 @@ import { PhaseDistributionComponent } from './phase-distribution/phase-distribut
 import { ApplianceComparisonComponent } from './appliance-comparison/appliance-comparison.component';
 import { SavingsCalculatorComponent } from './savings-calculator/savings-calculator.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
-import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
+import { AddEventDialogComponent } from './home/add-event-dialog/add-event-dialog.component';
 
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatDatepickerModule} from '@angular/material/datepicker'; 

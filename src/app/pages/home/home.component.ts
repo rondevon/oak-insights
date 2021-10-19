@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Chart } from 'angular-highcharts';
 import { ApiService } from 'src/app/services/api.service';
-import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
+import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 
 @Component({
   selector: 'app-home',
