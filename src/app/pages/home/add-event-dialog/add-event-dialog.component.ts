@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { NgbActiveModal, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+// import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-event-dialog',
@@ -13,14 +14,16 @@ export class AddEventDialogComponent implements OnInit {
     name: new FormControl('', [Validators.required])
   });
 
+  model!: NgbDateStruct;
+
   ngOnInit(): void {}
 
-  constructor(public dialogRef: MatDialogRef<AddEventDialogComponent>) {}
+  constructor(public activeModal: NgbActiveModal) {}
 
   onSubmitClick(): void {
     console.log(this.form.value);
-    if (this.form.valid)
-    this.dialogRef.close(this.form.value);
-    else this.form.markAllAsTouched()
+    // if (this.form.valid)
+    // this.dialogRef.close(this.form.value);
+    // else this.form.markAllAsTouched()
   }
 }

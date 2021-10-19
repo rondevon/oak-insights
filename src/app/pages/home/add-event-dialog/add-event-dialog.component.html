@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>ADD NEW EVENT</h1>
+<!-- <h1 mat-dialog-title>ADD NEW EVENT</h1>
 <div mat-dialog-content>
   <form [formGroup]="form" class="row">
     <mat-form-field appearance="outline">
@@ -8,17 +8,58 @@
         [matDatepicker]="picker"
         formControlName="date"
         required
-        />
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Choose a event name</mat-label>
-      <input matInput type="text" placeholder="Enter your event name" formControlName="name" required/>
+      <input
+        matInput
+        type="text"
+        placeholder="Enter your event name"
+        formControlName="name"
+        required
+      />
     </mat-form-field>
   </form>
-</div>
-<div mat-dialog-actions class="row">
+</div> -->
+<!-- <div mat-dialog-actions class="row">
   <button (click)="dialogRef.close()" class="add-new-btn">CANCEL</button>
-  <button mat-button (click)="onSubmitClick()" cdkFocusInitial class="add-new-btn">SUBMIT</button>
+  <button
+    mat-button
+    (click)="onSubmitClick()"
+    cdkFocusInitial
+    class="add-new-btn"
+  >
+    SUBMIT
+  </button>
+</div> -->
+
+<div class="modal-header">
+  <h4 class="modal-title">Add Event</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="form-inline" [formGroup]="form">
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dp" formControlName="date" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+      <input type="text" formControlName="name" placeholder="Enter a event name" required />
+    </div>
+  </form>
+</div>
+<div>
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">SUBMIT</button>
 </div>
