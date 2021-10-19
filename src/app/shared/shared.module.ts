@@ -16,6 +16,8 @@ import { PredictiveRangeChartComponent } from './predictive-range-chart/predicti
 import { StockGraphComponent } from './stock-graph/stock-graph.component';
 import { LoadCurveComponent } from './load-curve/load-curve.component';
 import { MinMaxComponent } from './min-max/min-max.component';
+import { MonthsDataComponent } from './months-data/months-data.component';
+import { DonutChartComponent } from './donut-chart/donut-chart.component';
 
 import { HIGHCHARTS_MODULES, ChartModule } from 'angular-highcharts';
 import more from 'highcharts/highcharts-more.src';
@@ -26,7 +28,7 @@ import accessibility from 'highcharts/modules/accessibility.src';
 import exportdata from 'highcharts/modules/export-data.src';
 import stock from 'highcharts/modules/stock.src';
 import { FormsModule } from '@angular/forms';
-import { MonthsDataComponent } from './months-data/months-data.component';
+
 
 
 export function highchartsModules() { 
@@ -49,7 +51,8 @@ export function highchartsModules() {
     StockGraphComponent,
     LoadCurveComponent,
     MinMaxComponent,
-    MonthsDataComponent
+    MonthsDataComponent,
+    DonutChartComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +75,8 @@ export function highchartsModules() {
     StockGraphComponent,
     LoadCurveComponent,
     MinMaxComponent,
-    MonthsDataComponent
+    MonthsDataComponent,
+    DonutChartComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }

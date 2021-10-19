@@ -43,8 +43,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: 'Avenir-Roman'!important }
 
 @font-face {
-  font-family: Avenir-Black;
-  src: url(assets/Font/Avenir/Avenir-Black.woff2) format("woff2");
+  font-family: Gilroy-Bold;
+  src: url(assets/Font/Avenir/gilroy-extrabold-webfont.woff2) format("woff2");
 }
 
 @font-face {
@@ -53,15 +53,15 @@ body { margin: 0; font-family: 'Avenir-Roman'!important }
 }
 
 @font-face {
-  font-family: Avenir-Light;
-  src: url(assets/Font/Avenir/Avenir-Light.woff2) format("woff2");
+  font-family: Gilroy-Light;
+  src: url(assets/Font/Avenir/gilroy-light-webfont.woff2) format("woff2");
 }
 
 :root {--color1: #465da4;
 --color2: #F3837A;
 --color3: #364096;
 --color4: #F3A7AB;
---color5: #7DC3BE;
+--color5: #70c49c;
 --color6: #F8A992;
 --color7: #FCC294;
 --color8: #4164AD;
@@ -76,8 +76,8 @@ body { margin: 0; font-family: 'Avenir-Roman'!important }
 --heatmap-color5: #ee6259;
 
 --fontRegular: 'Avenir-Roman';
---fontBold: 'Avenir-Black';
---fontLight: 'Avenir-Light';
+--fontBold: 'Gilroy-Bold';
+--fontLight: 'Gilroy-Light';
 
 }
 

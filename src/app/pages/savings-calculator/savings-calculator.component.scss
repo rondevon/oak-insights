@@ -1,0 +1,43 @@
+.app-container {
+    h2 {
+      font-family: var(--fontRegular);
+      margin: 16px 0;
+    }
+  }
+  .card-custom {
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-heading {
+    font: var(--fontBold);
+    font-size: 1.5vw;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+
+  .donut-legends {
+    display: flex;
+    margin-bottom: 2rem;
+  }
+  .rectangle {
+    width: 50%;
+    height: 1.5rem;
+    float: right;
+  }
+  .rectangle-position {
+    flex:1;
+  }
+  .legend-text {
+    margin-left: 1rem;
+    text-align: left;
+    font-weight: 800;
+    flex:1;
+  }
+  .donut-text{
+    font: var(--fontLight);
+    font-size: 1.5vw;
+    margin-bottom: 1.5rem;
+  }
