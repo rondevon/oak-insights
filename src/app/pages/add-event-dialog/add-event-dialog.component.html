@@ -1,11 +1,24 @@
 <h1 mat-dialog-title>ADD NEW EVENT</h1>
 <div mat-dialog-content>
-    <form>
-        <input type="text" placeholder="Enter your event name">
-    </form>
+  <form [formGroup]="form" class="row">
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        formControlName="date"
+        required
+        />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Choose a event name</mat-label>
+      <input matInput type="text" placeholder="Enter your event name" formControlName="name" required/>
+    </mat-form-field>
+  </form>
 </div>
-<div mat-dialog-actions>
-<button (click)="onNoClick()">CANCEL</button>
-  <button mat-button [mat-dialog-close]="'HVYFYF'" cdkFocusInitial>Ok</button>
+<div mat-dialog-actions class="row">
+  <button (click)="dialogRef.close()" class="add-new-btn">CANCEL</button>
+  <button mat-button (click)="onSubmitClick()" cdkFocusInitial class="add-new-btn">SUBMIT</button>
 </div>
-

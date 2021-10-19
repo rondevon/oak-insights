@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
@@ -23,6 +23,10 @@ import { RecommendationsComponent } from './recommendations/recommendations.comp
 import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 
 import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -51,6 +55,12 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     LoaderModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule { }

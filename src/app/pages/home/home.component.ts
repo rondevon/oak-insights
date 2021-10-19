@@ -139,13 +139,12 @@ export class HomeComponent implements OnInit {
   }
   
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddEventDialogComponent, {
-      width: '250px',
-    });
+    const dialogRef = this.dialog.open(AddEventDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      // this.animal = result;
+      if (result)
+      this.data.push(result);
     });
   }
 }
