@@ -1,0 +1,26 @@
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card-heading">Appliances</div>
+        <span class="widget-subtitle">A distribution of top consuming appliances across the three phases</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4" *ngFor="let phase of phaseTotals" [style.color]="phase.color">
+        <div class="phase-name">
+            {{phase.type}}
+        </div>
+        <div class="phase-total">
+            {{phase.value}}
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-4" *ngFor="let appliance of applianceList">
+        <div class="appliance-name" *ngFor="let item of appliance.phase">
+            {{item}}
+        </div>
+    </div>
+</div>
+
+<!-- <div [chart]="chart"></div> -->

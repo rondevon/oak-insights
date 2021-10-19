@@ -17,6 +17,7 @@ import { BasicInsightsComponent } from './basic-insights/basic-insights.componen
 import { DeepInsightsComponent } from './deep-insights/deep-insights.component';
 import { MultiSiteComparisonComponent } from './multi-site-comparison/multi-site-comparison.component';
 import { PhaseDistributionComponent } from './phase-distribution/phase-distribution.component';
+import { PhaseApplianceComponent } from './phase-distribution/phase-appliance/phase-appliance.component'; 
 import { ApplianceComparisonComponent } from './appliance-comparison/appliance-comparison.component';
 import { SavingsCalculatorComponent } from './savings-calculator/savings-calculator.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
@@ -27,6 +28,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 
 
 @NgModule({
@@ -42,6 +45,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SavingsCalculatorComponent,
     RecommendationsComponent,
     AddEventDialogComponent,
+    PhaseApplianceComponent,
   ],
   imports: [
     CommonModule,
