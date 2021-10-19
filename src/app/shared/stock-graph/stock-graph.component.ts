@@ -102,7 +102,17 @@ export class StockGraphComponent implements OnInit {
           text: ''
       },
       legend: {
-        enabled:true
+        enabled:true,
+        align: 'center',
+        symbolPadding: 10,
+        symbolWidth: 70,
+        itemDistance: 50,
+        itemStyle:{
+          fontSize:'14px',
+          fontWeight:'bold',
+          textOverflow:'ellipsis',
+          padding:'30px'
+          }
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.y}</b> '+this.unit,
