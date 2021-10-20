@@ -21,9 +21,10 @@ export class ApiService {
 
 
 
-  public getHomepageApi(month: string): Observable<any> {
+  public getHomepageApi(month: string, year: number): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month + '&year=' + year +
+       '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

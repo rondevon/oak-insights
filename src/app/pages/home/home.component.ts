@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
   
   updateMonth() {
     // console.log(this.selectedMonth);
-    this.apiService.getHomepageApi(this.selectedMonth).subscribe((data: any) => {
+    this.apiService.getHomepageApi(this.selectedMonth, 2021).subscribe((data: any) => {
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
       this.cards = [
