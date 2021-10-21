@@ -8,8 +8,8 @@
       </div>
       <div class="col-md-3 my-auto">
         <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
-          <option *ngFor="let month of monthList" [value]="month">{{
-            month
+          <option *ngFor="let month of monthList" [ngValue]="month">{{
+            month.text
           }}</option>
         </select>
 

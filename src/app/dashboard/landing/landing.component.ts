@@ -10,8 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class LandingComponent implements OnInit {
   cards: any[] = [];
   pipe = new DatePipe('en-GB');
-  month = this.pipe.transform(new Date(), 'MMMM') as string;
-  year = (this.pipe.transform(new Date(), 'YYYY') || 0) as number;
+  month = this.pipe.transform(new Date(), 'MMMM') as String;
+  year = this.pipe.transform(new Date(), 'YYYY') as String;
   consumptionData: any;
   oakScore: number = 0;
   today= new Date();

@@ -21,7 +21,7 @@ export class ApiService {
 
 
 
-  public getHomepageApi(month: string, year: number): Observable<any> {
+  public getHomepageApi(month: String, year: String): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month + '&year=' + year +
        '&site_id=' + localStorage.getItem('site_slug'), {
@@ -42,9 +42,10 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getHeatMapData(month: String): Observable<any> {
+  public getHeatMapData(month: String, year: String): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/consumption/month/hour?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/month/hour?month=' + month + '&year=' + year +
+      '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -53,10 +54,11 @@ export class ApiService {
   }
 
 
-  public getOperatingHoursData(month: String): Observable<any> {
+  public getOperatingHoursData(month: String, year: String): Observable<any> {
 
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/consumption/operating/weekday?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/operating/weekday?month=' + month + '&year=' + year +
+      '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -65,10 +67,11 @@ export class ApiService {
   }
 
 
-  public getHourlyCostData(month: String): Observable<any> {
+  public getHourlyCostData(month: String, year: String): Observable<any> {
     
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/cost/hour?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/cost/hour?month=' + month + '&year=' + year +
+      '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

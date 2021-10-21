@@ -13,26 +13,24 @@ import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.co
 export class HomeComponent implements OnInit {
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
-  selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
+  selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
   heatMapData: any = {};
   operatingHoursData: any ={};
   hourlyCostData: any ={};
 
   loading: boolean = true;
 
-  monthList: String[] = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
+  monthList: any[] = [
+  {text:'January 2021',month:'January',year:'2021'},
+  {text:'February 2021',month:'February',year:'2021'},
+  {text:'March 2021',month:'March',year:'2021'},
+  {text:'April 2021',month:'April',year:'2021'},
+  {text:'May 2021',month:'May',year:'2021'},
+  {text:'June 2021',month:'June',year:'2021'},
+  {text:'July 2021',month:'July',year:'2021'},
+  {text:'August 2021',month:'August',year:'2021'},
+  {text:'September 2021',month:'September',year:'2021'},
+  {text:'October 2021',month:'October',year:'2021'},
   ];
 
   oakScore: number = 0;
@@ -57,7 +55,7 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
+    this.apiService.getEvents(this.selectedMonth[0]).subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
@@ -67,8 +65,8 @@ export class HomeComponent implements OnInit {
   }
   
   updateMonth() {
-    // console.log(this.selectedMonth);
-    this.apiService.getHomepageApi(this.selectedMonth, 2021).subscribe((data: any) => {
+     console.log(this.selectedMonth.month);
+    this.apiService.getHomepageApi(this.selectedMonth.month, this.selectedMonth.year).subscribe((data: any) => {
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
       this.cards = [
@@ -115,25 +113,25 @@ export class HomeComponent implements OnInit {
           color: 'var(--color7)',
         },
       ];
-      this.getHeatMapDetails(this.selectedMonth);
-      this.getOperatingHoursDetails(this.selectedMonth);
-      this.getHourlyCostDetails(this.selectedMonth);
+      this.getHeatMapDetails(this.selectedMonth.month, this.selectedMonth.year);
+      this.getOperatingHoursDetails(this.selectedMonth.month, this.selectedMonth.year);
+      this.getHourlyCostDetails(this.selectedMonth.month, this.selectedMonth.year);
     })
   }
 
-  getHeatMapDetails(selectedMonth: String){
-    this.apiService.getHeatMapData(selectedMonth).subscribe(data => {
+  getHeatMapDetails(selectedMonth: String, selectedYear: String){
+    this.apiService.getHeatMapData(selectedMonth,selectedYear).subscribe(data => {
       this.heatMapData = data.data;
     });
   }
 
-  getOperatingHoursDetails(selectedMonth: String){
-    this.apiService.getOperatingHoursData(selectedMonth).subscribe(data => {
+  getOperatingHoursDetails(selectedMonth: String, selectedYear: String){
+    this.apiService.getOperatingHoursData(selectedMonth,selectedYear).subscribe(data => {
       this.operatingHoursData = data.data;
     });
   }
-  getHourlyCostDetails(selectedMonth: String){
-    this.apiService.getHourlyCostData(selectedMonth).subscribe(data => {
+  getHourlyCostDetails(selectedMonth: String, selectedYear: String){
+    this.apiService.getHourlyCostData(selectedMonth,selectedYear).subscribe(data => {
       this.hourlyCostData = data.data;
     });
   }
