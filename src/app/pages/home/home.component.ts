@@ -11,6 +11,9 @@ import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.co
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
+ 
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
   selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
@@ -41,7 +44,12 @@ export class HomeComponent implements OnInit {
   name: any;
   data: any;
 
-  constructor(private apiService: ApiService, public dialog: MatDialog) {}
+  constructor(private apiService: ApiService, public dialog: MatDialog) {
+    this.minDate = new Date();
+    this.maxDate = new Date();
+    this.minDate.setMonth(this.minDate.getMonth() - 5);
+    this.maxDate.setMonth(this.maxDate.getMonth() + 6);
+  }
 
   ngOnInit(): void {
     this.loading = false;

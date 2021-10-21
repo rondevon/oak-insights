@@ -7,12 +7,18 @@
         <h2>Insights at a Glance</h2>
       </div>
       <div class="col-md-3 my-auto">
-        <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
+        <!-- <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
           <option *ngFor="let month of monthList" [ngValue]="month">{{
             month.text
           }}</option>
-        </select>
-
+        </select> -->
+          <input class="form-control"
+                 placeholder="Datepicker"
+                 ngModel
+                 bsDatepicker
+                 [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"
+                 [minDate]="minDate"
+                 [maxDate]="maxDate">
       </div>
     </div>
     <div class="row">
