@@ -29,6 +29,7 @@ import exportdata from 'highcharts/modules/export-data.src';
 import stock from 'highcharts/modules/stock.src';
 import { FormsModule } from '@angular/forms';
 
+import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 export function highchartsModules() { 
@@ -59,7 +60,10 @@ export function highchartsModules() {
     RouterModule, 
     NgsAvaterModule,
     ChartModule,
-    FormsModule
+    FormsModule,
+    BsDatepickerModule,
+    DatepickerModule
+
   ],
   exports: [
     HeaderComponent,

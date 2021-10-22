@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -7,7 +8,13 @@ import { environment, serviceBaseUrl } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ApiService {
+  pipe = new DatePipe('en-IN');
+
   constructor(private httpClient: HttpClient) {}
+
+  getMonthFromDate(date: Date) : string {
+    return this.pipe.transform(date, 'MMMM') || '';
+  }
 
   public getNews(): Observable<any> {
     return this.httpClient.get(environment.NewsApi);
@@ -21,9 +28,10 @@ export class ApiService {
 
 
 
-  public getHomepageApi(month: string): Observable<any> {
+  public getHomepageApi(month: String, year: String): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/home?month=' + month + '&year=' + year +
+       '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -41,9 +49,10 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getHeatMapData(month: String): Observable<any> {
+  public getHeatMapData(month: String, year: String): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/consumption/month/hour?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/month/hour?month=' + month + '&year=' + year +
+      '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -52,10 +61,11 @@ export class ApiService {
   }
 
 
-  public getOperatingHoursData(month: String): Observable<any> {
+  public getOperatingHoursData(month: String, year: String): Observable<any> {
 
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/consumption/operating/weekday?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/consumption/operating/weekday?month=' + month + '&year=' + year +
+      '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -64,10 +74,11 @@ export class ApiService {
   }
 
 
-  public getHourlyCostData(month: String): Observable<any> {
+  public getHourlyCostData(month: String, year: String): Observable<any> {
     
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/cost/hour?month=' + month, {
+      return this.httpClient.get(serviceBaseUrl + 'site/cost/hour?month=' + month + '&year=' + year +
+      '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -85,10 +96,11 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getStockChartData(month: String, type: String, graph: String): Observable<any> {
+  public getStockChartData(month: Date, type: String, graph: String): Observable<any> {
     
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'insights/' + graph + '/minute?month=' + month + '&field=' + type, {
+      return this.httpClient.get(serviceBaseUrl + 'insights/' + graph + '/minute?month=' + this.getMonthFromDate(month) + '&year=' +
+      + month.getFullYear() + '&field=' + type + '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -96,10 +108,10 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getPhaseStockChartData(month: String, type: String): Observable<any> {
-    
+  public getPhaseStockChartData(month: Date, type: String): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'insights/phase/minute?month=' + month + '&field=' + type, {
+      return this.httpClient.get(serviceBaseUrl + 'insights/phase/minute?month=' + this.getMonthFromDate(month) + '&field=' + type +'&year=' +
+      + month.getFullYear() + '&site_id=' + localStorage.getItem('site_slug'),{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -115,9 +127,10 @@ export class ApiService {
   //   } else return of(null);
   // }
 
-  public getEvents(monthList: String): Observable<any> {
+  public getEvents(monthList: any): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/events?month=' + monthList,{
+      return this.httpClient.get(serviceBaseUrl + 'site/events?month=' + monthList.month + '&year=' +
+       + monthList.year + '&site_id=' + localStorage.getItem('site_slug'),{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

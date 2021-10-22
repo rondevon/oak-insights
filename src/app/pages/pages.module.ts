@@ -28,8 +28,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-
+import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -64,7 +63,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatNativeDateModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
+    DatepickerModule.forRoot()
   ]
 })
 export class PagesModule { }

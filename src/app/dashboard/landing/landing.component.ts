@@ -10,7 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class LandingComponent implements OnInit {
   cards: any[] = [];
   pipe = new DatePipe('en-GB');
-  month = this.pipe.transform(new Date(), 'MMMM') as string;
+  month = this.pipe.transform(new Date(), 'MMMM') as String;
+  year = this.pipe.transform(new Date(), 'YYYY') as String;
   consumptionData: any;
   oakScore: number = 0;
   today= new Date();
@@ -22,7 +23,7 @@ export class LandingComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.getHomepageApi(this.month).subscribe((data: any) => {
+    this.apiService.getHomepageApi(this.month, this.year).subscribe((data: any) => {
       this.consumptionData = data.data.consumption_overview;
       this.oakScore = data.data.oak_score;
       this.cards= [
