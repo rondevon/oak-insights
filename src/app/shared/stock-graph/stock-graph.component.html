@@ -17,11 +17,14 @@
   </div>
   <div class="col-md-2 text-right my-auto">
       <div class="open-closed">
-        <select class="form-select monthPicker" [(ngModel)]="selectedMonth" (change)="updateMonth()">
-          <option *ngFor="let month of monthList" [value]="month">{{
-            month
-          }}</option>
-        </select>
+        <div class="col-md-10 my-auto">
+          <input class="form-control"
+                 [(ngModel)]="selectedMonth" (bsValueChange)="updateMonth()"
+                 bsDatepicker
+                 [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"
+                 [minDate]="minDate"
+                 [maxDate]="maxDate" placeholder="Datepicker">
+      </div>
       </div>
   </div>
 </div>

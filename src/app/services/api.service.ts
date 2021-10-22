@@ -119,9 +119,10 @@ export class ApiService {
   //   } else return of(null);
   // }
 
-  public getEvents(monthList: String): Observable<any> {
+  public getEvents(monthList: any): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'site/events?month=' + monthList,{
+      return this.httpClient.get(serviceBaseUrl + 'site/events?month=' + monthList.month + '&year=' +
+       + monthList.year + '&site_id=' + localStorage.getItem('site_slug'),{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

@@ -11,12 +11,14 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class StockGraphComponent implements OnInit {
   @Input('data') data: any;
+  minDate: Date;
+  maxDate: Date;
   pipe = new DatePipe('en-GB');
   //data: any= {};
   chart: any = {};
   consumptionTotals: any[] = [];
   stockChartData: any = {};
-  selectedMonth: string = this.pipe.transform(new Date(), 'MMMM') || '';
+  selectedMonth: any = new Date();
   selectedType : string = 'energy';
   selectedGraph: string = '';
   unit: string = 'KwH'
@@ -27,23 +29,28 @@ export class StockGraphComponent implements OnInit {
     'voltage',
     'power_factor'
   ];
-  monthList: String[] = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
+  // monthList: String[] = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December'
+  // ];
 
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+    this.minDate = new Date();
+    this.maxDate = new Date();
+    this.minDate.setMonth(this.minDate.getMonth() - 6);
+    this.maxDate.setMonth(this.maxDate.getMonth() + 10);
+   }
 
   getStockChartDetails(selectedMonth: String, selectedType: String, selectedGraph: String){
     this.apiService.getStockChartData(selectedMonth,selectedType,selectedGraph).subscribe((data : any) => {
