@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonth() {
-    this.selectedMonth = {month: this.apiService.getMonthFromDate(this.selectedDate),year: this.selectedDate.getFullYear()};
+    this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.pipe.transform(this.selectedDate, 'YYYY')};
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year)
       .subscribe((data: any) => {
