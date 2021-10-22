@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
@@ -7,7 +8,13 @@ import { environment, serviceBaseUrl } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ApiService {
+  pipe = new DatePipe('en-IN');
+
   constructor(private httpClient: HttpClient) {}
+
+  getMonthFromDate(date: Date) : string {
+    return this.pipe.transform(date, 'MMMM') || '';
+  }
 
   public getNews(): Observable<any> {
     return this.httpClient.get(environment.NewsApi);
@@ -89,10 +96,11 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getStockChartData(month: String, type: String, graph: String): Observable<any> {
+  public getStockChartData(month: Date, type: String, graph: String): Observable<any> {
     
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'insights/' + graph + '/minute?month=' + month + '&field=' + type, {
+      return this.httpClient.get(serviceBaseUrl + 'insights/' + graph + '/minute?month=' + this.getMonthFromDate(month) + '&year=' +
+      + month.getFullYear() + '&field=' + type + '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -100,10 +108,10 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getPhaseStockChartData(month: String, type: String): Observable<any> {
-    
+  public getPhaseStockChartData(month: Date, type: String): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'insights/phase/minute?month=' + month + '&field=' + type, {
+      return this.httpClient.get(serviceBaseUrl + 'insights/phase/minute?month=' + this.getMonthFromDate(month) + '&field=' + type +'&year=' +
+      + month.getFullYear() + '&site_id=' + localStorage.getItem('site_slug'),{
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }

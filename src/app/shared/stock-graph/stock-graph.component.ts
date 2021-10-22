@@ -49,10 +49,10 @@ export class StockGraphComponent implements OnInit {
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setMonth(this.minDate.getMonth() - 6);
-    this.maxDate.setMonth(this.maxDate.getMonth() + 10);
+    this.maxDate.setMonth(this.maxDate.getMonth());
    }
 
-  getStockChartDetails(selectedMonth: String, selectedType: String, selectedGraph: String){
+  getStockChartDetails(selectedMonth: any, selectedType: String, selectedGraph: String){
     this.apiService.getStockChartData(selectedMonth,selectedType,selectedGraph).subscribe((data : any) => {
       this.stockChartData = data.data;
       this.setStockGraphData();

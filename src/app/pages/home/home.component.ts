@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setMonth(this.minDate.getMonth() - 5);
-    this.maxDate.setMonth(this.maxDate.getMonth() + 6);
+    this.maxDate.setMonth(this.maxDate.getMonth());
   }
 
   ngOnInit(): void {
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonth() {
-    this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.pipe.transform(this.selectedDate, 'YYYY')};
+    this.selectedMonth = {month: this.apiService.getMonthFromDate(this.selectedDate),year: this.selectedDate.getFullYear()};
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year)
       .subscribe((data: any) => {
