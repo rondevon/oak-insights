@@ -38,4 +38,44 @@
       </div>
     </div>
   </div>
+
+
+
+  <div class="card card-custom">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-heading">Projected Consumption</div>
+      </div>
+      <div class="row">
+        <div
+          class="col-md-3 donut-legends"
+          *ngFor="let donutLegend of donutLegends"
+        >
+          <div class="rectangle-position">
+            <div
+              class="rectangle"
+              [style.backgroundColor]="donutLegend.color"
+            ></div>
+          </div>
+          <div class="legend-text">{{ donutLegend.text }}</div>
+        </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <app-donut-chart [data]="cost"></app-donut-chart>
+        <div class="donut-text">Cost (£)</div>
+      </div>
+      <div class="col-md-4 text-center">
+        <app-donut-chart [data]="consumption"></app-donut-chart>
+        <div class="donut-text">Consumption (KwH)</div>
+      </div>
+      <div class="col-md-4 text-center">
+        <app-donut-chart [data]="emission"></app-donut-chart>
+        <div class="donut-text">Emission (kg-CO2)</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 </div>

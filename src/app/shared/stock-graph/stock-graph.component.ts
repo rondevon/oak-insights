@@ -34,7 +34,7 @@ export class StockGraphComponent implements OnInit {
   constructor(private apiService: ApiService) {
     this.minDate = new Date();
     this.maxDate = new Date();
-    this.minDate.setMonth(this.minDate.getMonth() - 6);
+    this.minDate.setMonth(this.minDate.getMonth() - 4);
     this.maxDate.setMonth(this.maxDate.getMonth());
    }
 
