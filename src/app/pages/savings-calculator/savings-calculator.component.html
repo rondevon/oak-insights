@@ -25,15 +25,15 @@
         </div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart [data]="cost"></app-donut-chart>
+        <app-donut-chart [data]="[cost,savingsActualData]"></app-donut-chart>
         <div class="donut-text">Cost (£)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart [data]="consumption"></app-donut-chart>
+        <app-donut-chart [data]="[consumption,savingsActualData]"></app-donut-chart>
         <div class="donut-text">Consumption (KwH)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart [data]="emission"></app-donut-chart>
+        <app-donut-chart [data]="[emission,savingsActualData]"></app-donut-chart>
         <div class="donut-text">Emission (kg-CO2)</div>
       </div>
     </div>
