@@ -18,7 +18,8 @@ export class StockGraphComponent implements OnInit {
   chart: any = {};
   consumptionTotals: any[] = [];
   stockChartData: any = {};
-  selectedMonth: any = new Date();
+  selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
+  selectedDate: Date = new Date();
   selectedType : string = 'energy';
   selectedGraph: string = '';
   unit: string = 'KwH'
@@ -29,21 +30,6 @@ export class StockGraphComponent implements OnInit {
     'voltage',
     'power_factor'
   ];
-  // monthList: String[] = [
-  //   'January',
-  //   'February',
-  //   'March',
-  //   'April',
-  //   'May',
-  //   'June',
-  //   'July',
-  //   'August',
-  //   'September',
-  //   'October',
-  //   'November',
-  //   'December'
-  // ];
-
 
   constructor(private apiService: ApiService) {
     this.minDate = new Date();
@@ -52,18 +38,19 @@ export class StockGraphComponent implements OnInit {
     this.maxDate.setMonth(this.maxDate.getMonth());
    }
 
-  getStockChartDetails(selectedMonth: any, selectedType: String, selectedGraph: String){
-    this.apiService.getStockChartData(selectedMonth,selectedType,selectedGraph).subscribe((data : any) => {
+  getStockChartDetails(selectedMonth: any, selectedYear: any, selectedType: String, selectedGraph: String){
+    this.apiService.getStockChartData(selectedMonth,selectedYear,selectedType,selectedGraph).subscribe((data : any) => {
       this.stockChartData = data.data;
       this.setStockGraphData();
     });
   }
   updateType(){
-    this.getStockChartDetails(this.selectedMonth,this.selectedType,this.selectedGraph);
+    this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph);
   }
 
   updateMonth() {
-    this.getStockChartDetails(this.selectedMonth,this.selectedType,this.selectedGraph);
+    this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.pipe.transform(this.selectedDate, 'YYYY')};
+    this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph);
     
   }
   ngOnInit(): void {

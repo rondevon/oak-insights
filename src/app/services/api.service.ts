@@ -96,11 +96,11 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getStockChartData(month: Date, type: String, graph: String): Observable<any> {
+  public getStockChartData(month: Date, year: Date, type: String, graph: String): Observable<any> {
     
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(serviceBaseUrl + 'insights/' + graph + '/minute?month=' + this.getMonthFromDate(month) + '&year=' +
-      + month.getFullYear() + '&field=' + type + '&site_id=' + localStorage.getItem('site_slug'), {
+      return this.httpClient.get(serviceBaseUrl + 'insights/' + graph + '/minute?month=' + month + '&year=' +
+      + year + '&field=' + type + '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -112,6 +112,19 @@ export class ApiService {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(serviceBaseUrl + 'insights/phase/minute?month=' + this.getMonthFromDate(month) + '&field=' + type +'&year=' +
       + month.getFullYear() + '&site_id=' + localStorage.getItem('site_slug'),{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        }
+      });
+    } else return of(null);
+  }
+
+
+  public getMinMaxData(month: Date, year: Date, duration: String): Observable<any> {
+    
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'insights/minmax/hourly?month=' + month + '&year=' +
+      + year + '&duration=' + duration + '&site_id=' + localStorage.getItem('site_slug'), {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         }
@@ -138,3 +151,5 @@ export class ApiService {
     } else return of(null);
   }
 }
+
+
