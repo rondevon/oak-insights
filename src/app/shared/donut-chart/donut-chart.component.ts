@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
-
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-donut-chart',
   templateUrl: './donut-chart.component.html',
@@ -8,10 +8,11 @@ import { Chart } from 'angular-highcharts';
 })
 export class DonutChartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
   @Input('data') data: any;
   chart: any = {};
   chartType: any = {};
+  savingsActualData: any = {};
   ngOnInit(): void {
     this.chartType = this.data;
     console.log (this.chartType);
@@ -28,6 +29,14 @@ export class DonutChartComponent implements OnInit {
       this.setDonutChartData('Total<br>955',this.chartType);
     }
     
+  }
+
+
+  getSavingsActualData(selectedMonth: any, selectedYear: any){
+    this.apiService.getSavingsData(selectedMonth,selectedYear).subscribe((data : any) => {
+      this.savingsActualData = data.values;
+      console.log(this.savingsActualData);
+    });
   }
 
   setDonutChartData(total: string, seriesData: any){

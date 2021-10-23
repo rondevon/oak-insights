@@ -203,6 +203,29 @@ export class ApiService {
     } else return of(null);
   }
 
+
+  public getSavingsData(
+    month: Date,
+    year: Date,
+  ): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'insights/savings/consumption?month=' +
+          month +
+          '&year=' +
+          +year +
+          '&site_id=' +
+          localStorage.getItem('site_slug'),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
   public getEvents(monthList: any): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
