@@ -3,8 +3,8 @@
 </div>
 <loader *ngIf="loading"></loader>
 <div class="dash" *ngIf="!loading">
-  <div class="-container">
-    <div class="-content">
+  <div class="landing-container">
+    <div class="landing-content">
       <div class="row">
         <div class="col-md-9 left-container">
           <div class="row">
@@ -65,7 +65,7 @@
               <div class="yearly-usage mb-4">
                 <div class="card-heading">Monthly Usage</div>
                 <span class="widget-subtitle"
-                  >Comparison with month-on-month comparison</span
+                  >Comparison of month-on-month consumption</span
                 >
               </div>
               <app-predictive-range-chart [data]="monthUsageData"></app-predictive-range-chart>

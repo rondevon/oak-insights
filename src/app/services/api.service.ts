@@ -112,10 +112,14 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getMonthlyUsageData(): Observable<any> {
+  public getMonthlyUsageData(year: String): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
-        serviceBaseUrl + 'site/consumption/yearly/month',
+        serviceBaseUrl +
+          'site/consumption/yearly/month?year=' +
+          year +
+          '&site_id=' +
+          localStorage.getItem('site_slug'),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -127,6 +131,7 @@ export class ApiService {
 
   public getStockChartData(
     month: Date,
+    year: Date,
     type: String,
     graph: String
   ): Observable<any> {
@@ -136,9 +141,9 @@ export class ApiService {
           'insights/' +
           graph +
           '/minute?month=' +
-          this.getMonthFromDate(month) +
+          month +
           '&year=' +
-          +month.getFullYear() +
+          +year +
           '&field=' +
           type +
           '&site_id=' +
@@ -173,6 +178,31 @@ export class ApiService {
     } else return of(null);
   }
 
+  public getMinMaxData(
+    month: Date,
+    year: Date,
+    duration: String
+  ): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'insights/minmax/hourly?month=' +
+          month +
+          '&year=' +
+          +year +
+          '&duration=' +
+          duration +
+          '&site_id=' +
+          localStorage.getItem('site_slug'),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
   public getEvents(monthList: any): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
@@ -192,7 +222,10 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getHistoricalMonthlyConsumption(month: String, year: String): Observable<any> {
+  public getHistoricalMonthlyConsumption(
+    month: String,
+    year: String
+  ): Observable<any> {
     if (localStorage.getItem('token') && localStorage.getItem('site_slug')) {
       return this.httpClient.get(
         serviceBaseUrl +

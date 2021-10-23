@@ -1,5 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-min-max',
   templateUrl: './min-max.component.html',
@@ -7,9 +10,14 @@ import { Chart } from 'angular-highcharts';
 })
 export class MinMaxComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
   @Input('data') data: any= {};
+  pipe = new DatePipe('en-GB');
   chart: any = {};
+  minMaxData: any = {};
+  selectedMonth: any = this.pipe.transform(new Date(), 'MMMM');
+  selectedYear: any = this.pipe.transform(new Date(), 'YYYY');
+  duration: any = 30;
   bntStyle1: String = 'open-days-button';
   bntStyle2: String = 'closed-days-button';
   bntStyle3: String = 'closed-days-button';
@@ -19,7 +27,15 @@ export class MinMaxComponent implements OnInit {
   }
 
   ngOnChanges() {
-    this.setMinMaxData();
+    this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);
+  }
+
+  getMinMaxData(selectedMonth: any, selectedYear: any, duration: String){
+    this.apiService.getMinMaxData(selectedMonth,selectedYear,duration).subscribe((data : any) => {
+      this.minMaxData = data.values;
+      console.log(this.minMaxData);
+      this.setMinMaxData();
+    });
   }
   
   setMinMaxData() {
@@ -71,40 +87,7 @@ export class MinMaxComponent implements OnInit {
 
     series: [{
         name: 'Energy Min Max',
-        data: [
-            [49, 103],
-            [56, 125],
-            [12, 118],
-            [17, 122],
-            [60, 231],
-            [37, 254],
-            [60, 262],
-            [67, 214],
-            [35, 195],
-            [13, 160],
-            [87, 194],
-            [90, 186],
-            [49, 103],
-            [56, 125],
-            [12, 118],
-            [17, 122],
-            [60, 231],
-            [37, 254],
-            [60, 262],
-            [67, 214],
-            [35, 195],
-            [13, 160],
-            [87, 194],
-            [90, 186],
-            [87, 194],
-            [90, 186],
-            [49, 103],
-            [56, 125],
-            [12, 118],
-            [17, 122],
-            [60, 231],
-            
-        ],
+        data: this.minMaxData,
         color:'#364096dd',
         type: 'columnrange',
     }]
@@ -116,25 +99,33 @@ export class MinMaxComponent implements OnInit {
       this.bntStyle1 = 'open-days-button'
       this.bntStyle2 = 'closed-days-button' 
       this.bntStyle3 = 'closed-days-button' 
-      this.bntStyle4 = 'closed-days-button'    
+      this.bntStyle4 = 'closed-days-button'
+      this.duration = '30'
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);    
     } 
     if(switchType === '3'){
       this.bntStyle1 = 'closed-days-button' 
       this.bntStyle2 = 'open-days-button'
       this.bntStyle3 = 'closed-days-button' 
-      this.bntStyle4 = 'closed-days-button'    
+      this.bntStyle4 = 'closed-days-button'  
+      this.duration = '90'
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);  
     }
     if(switchType === '6'){
       this.bntStyle1 = 'closed-days-button' 
       this.bntStyle2 = 'closed-days-button'
       this.bntStyle3 = 'open-days-button' 
       this.bntStyle4 = 'closed-days-button'
+      this.duration = '180'
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);
     }
     if(switchType === '12'){
       this.bntStyle1 = 'closed-days-button' 
       this.bntStyle2 = 'closed-days-button'
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'open-days-button'
+      this.duration = '360'
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);
     }
   }
 

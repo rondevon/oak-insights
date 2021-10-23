@@ -62,7 +62,7 @@ export class LandingComponent implements OnInit {
   }
 
   getMonthUsageData() {
-    this.apiService.getMonthlyUsageData().subscribe(data => {
+    this.apiService.getMonthlyUsageData(this.year).subscribe(data => {
       this.monthUsageData = data.data;
     });
   }
