@@ -3,17 +3,23 @@
     carouselSlide
     *ngFor="let item of historicalConsumptionData; let i = index"
   >
-    <div (click)="openMonthlyStats(item)">
-      <div>{{ item.month }} {{ item.year }}</div>
-      <div>Energy: {{ item.energy }}</div>
-      <div>CO2 Emission: {{ item.co2_emission }}</div>
-      <div>Target Trend: {{ item.target_trend }}</div>
-      <div>Consumption Overview</div>
-      <div>Target: {{ item.consumption_overview.target }}</div>
-      <div>Present: {{ item.consumption_overview.present }}</div>
-      <app-activity-gauge
-        [data]="item.consumption_overview"
-      ></app-activity-gauge>
+    <div class="card card-custom" (click)="openMonthlyStats(item)">
+      <div class="row">
+        <div class="month">{{ item.month }} {{ item.year }}</div>
+        <div class="col-md-6">
+            <app-activity-gauge
+            [data]="item.consumption_overview"
+          ></app-activity-gauge>
+        </div>
+        <div class="col-md-6">
+          <div>Energy: {{ item.energy }}</div>
+          <div>CO2 Emission: {{ item.co2_emission }}</div>
+          <div>Target Trend: {{ item.target_trend }}</div>
+          <div>Consumption Overview</div>
+          <div>Target: {{ item.consumption_overview.target }}</div>
+          <div>Present: {{ item.consumption_overview.present }}</div>
+        </div>
+      </div>
     </div>
   </ng-template>
 </owl-carousel-o>
@@ -21,20 +27,44 @@
 <div *ngIf="showMonthlyStats">
   <button (click)="closeMonthlyStats()">Close</button>
   <div class="row">
-    <div class="insights-container">
+    <div class="col-md-3">
+      <div class="card card-custom">
+        <div class="oakscore">
+          <div class="oak-score-badge">
+            <img
+              class="img-res"
+              src="/assets/icons/icon-oakscore-green.svg"
+            />
+          </div>
+          <div class="oak-score">
+            <div class="oak-score-label">OAK Score</div>
+            <div class="oak-score-text">
+              {{ oakScore }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9 my-auto">
       <div class="insights-column" *ngFor="let card of cards">
         <app-insight-item-tile [data]="card"></app-insight-item-tile>
       </div>
     </div>
 
-    <div class="oak-score">
-      <div class="oak-score-label">OAK Score</div>
-      <div class="oak-score-text">
-        {{ oakScore }}
-      </div>
-    </div>
   </div>
-  <app-line-column [data]="dayAnalysisData"></app-line-column>
+
+  <div class="row">
+      <div class="card card-custom">
+        <div class="card-heading">Day by day Analysis</div>
+        <span class="widget-subtitle"
+        >Comparison of daily consumption</span
+      >
+        <app-line-column [data]="dayAnalysisData"></app-line-column>
+      </div>
+  </div>
+  
+  
 </div>
 
 <div class="row">
