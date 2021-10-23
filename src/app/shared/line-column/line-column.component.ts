@@ -60,9 +60,13 @@ export class LineColumnComponent implements OnInit {
       series: [
         {
           name: 'Cost (£)',
-          type: 'area',
-          pointInterval: 10,
-          data: [],
+          type: 'column',
+          data: this.data.values,
+        },
+        {
+          name: 'Cost (£)',
+          type: 'line',
+          data: this.data.predictive_values,
         },
       ],
     });
