@@ -17,6 +17,7 @@ export class SavingsCalculatorComponent implements OnInit {
   selectedMonth: any = this.pipe.transform(new Date(), 'MMMM');
   selectedYear: any = this.pipe.transform(new Date(), 'YYYY');
   savingsActualData: any = {};
+  savingsProjectedData: any = {};
 
 
   ngOnInit(): void {
@@ -34,11 +35,16 @@ export class SavingsCalculatorComponent implements OnInit {
     this.getSavingsActualData(this.selectedMonth, this.selectedYear);
   }
   
-
+  onUpdatePrep(event: any){
+    this.savingsProjectedData.values_cost[0].y = (100-parseInt(event.target.value)) * this.savingsActualData.values_cost[0].y
+    this.savingsProjectedData.values_consumption[0].y = (100-parseInt(event.target.value)) * this.savingsActualData.values_consumption[0].y
+    this.savingsProjectedData.values_c02[0].y = (100-parseInt(event.target.value)) * this.savingsActualData.values_c02[0].y
+  }
 
   getSavingsActualData(selectedMonth: any, selectedYear: any){
     this.apiService.getSavingsData(selectedMonth,selectedYear).subscribe((data : any) => {
       this.savingsActualData = data.data;
+      this.savingsProjectedData = this.savingsActualData;
       console.log(this.savingsActualData);
     });
   }

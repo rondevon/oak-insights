@@ -40,6 +40,53 @@
   </div>
 
 
+  <div class="card card-custom">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-heading">Savings</div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="percent" [style.color]="donutLegends[0].color">Preparatory Hours</p>
+          <div class="input-group mb-3">
+            <input  type="tel" maxlength="2" (keyup)="onUpdatePrep($event)">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <p class="percent" [style.color]="donutLegends[1].color">Operational Hours</p>
+          <div class="input-group mb-3">
+            <input  type="tel" maxlength="2" (keyup)="onUpdatePrep($event)">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <p class="percent" [style.color]="donutLegends[2].color">Non Operational Hours</p>
+          <div class="input-group mb-3">
+            <input  type="tel" maxlength="2" (keyup)="onUpdatePrep($event)">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <p class="percent" [style.color]="donutLegends[3].color">Closed Hours</p>
+          <div class="input-group mb-3">
+            <input  type="tel" maxlength="2" (keyup)="onUpdatePrep($event)">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
   <div class="card card-custom">
     <div class="row">
@@ -61,15 +108,15 @@
         </div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart [data]="cost"></app-donut-chart>
+        <app-donut-chart [data]="[cost,savingsProjectedData]"></app-donut-chart>
         <div class="donut-text">Cost (£)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart [data]="consumption"></app-donut-chart>
+        <app-donut-chart [data]="[consumption,savingsProjectedData]"></app-donut-chart>
         <div class="donut-text">Consumption (KwH)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart [data]="emission"></app-donut-chart>
+        <app-donut-chart [data]="[emission,savingsProjectedData]"></app-donut-chart>
         <div class="donut-text">Emission (kg-CO2)</div>
       </div>
     </div>
