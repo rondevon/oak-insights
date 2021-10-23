@@ -1,1 +1,19 @@
-<p>basic-insights works!</p>
+
+<owl-carousel-o [options]="customOptions">
+  <ng-template carouselSlide *ngFor="let item of historicalConsumptionData; let i = index">
+    <div (click)="openMonthlyStats(item)">
+      <div>{{ item.month }} {{ item.year }}</div>
+      <div>Energy: {{ item.energy }}</div>
+      <div>CO2 Emission: {{ item.co2_emission }}</div>
+      <div>Target Trend: {{ item.target_trend }}</div>
+      <div>Consumption Overview</div>
+      <div>Target: {{ item.consumption_overview.target }}</div>
+      <div>Present: {{ item.consumption_overview.present }}</div>
+    </div>
+  </ng-template>
+</owl-carousel-o>
+<div *ngIf="showMonthlyStats">
+  <button (click)="closeMonthlyStats()">Close</button>
+  <div>{{ selectedMonthStats.oak_score }}</div>
+  <div>{{ selectedMonthStats.stats.energy }}</div>
+</div>

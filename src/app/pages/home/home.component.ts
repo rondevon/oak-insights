@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Chart } from 'angular-highcharts';
 import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
 
@@ -15,7 +14,10 @@ export class HomeComponent implements OnInit {
   maxDate: Date;
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
-  selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
+  selectedMonth: any = {
+    month: this.pipe.transform(new Date(), 'MMMM'),
+    year: this.pipe.transform(new Date(), 'YYYY')
+  };
   heatMapData: any = {};
   operatingHoursData: any = {};
   hourlyCostData: any = {};
@@ -54,13 +56,16 @@ export class HomeComponent implements OnInit {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
-    })
+    });
 
     this.updateMonth();
   }
 
   updateMonth() {
-    this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.pipe.transform(this.selectedDate, 'YYYY')};
+    this.selectedMonth = {
+      month: this.pipe.transform(this.selectedDate, 'MMMM'),
+      year: this.pipe.transform(this.selectedDate, 'YYYY')
+    };
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year)
       .subscribe((data: any) => {

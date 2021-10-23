@@ -27,9 +27,10 @@
     "jquery": "^3.6.0",
     "ngs-avater": "^0.5.6",
     "ngx-bootstrap": "7.1.0",
+    "ngx-owl-carousel-o": "^6.0.0",
     "node-modules": "^1.0.1",
     "rxjs": "~6.6.0",
-    "tslib": "^2.3.0",
+    "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
