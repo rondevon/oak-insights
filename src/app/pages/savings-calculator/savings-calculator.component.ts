@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -9,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class SavingsCalculatorComponent implements OnInit {
 
   constructor(private apiService: ApiService) { }
+  
   donutLegends: any[] =[];
   cost: any ={};
   consumption: any= {};
@@ -16,9 +17,8 @@ export class SavingsCalculatorComponent implements OnInit {
   pipe = new DatePipe('en-GB');
   selectedMonth: any = this.pipe.transform(new Date(), 'MMMM');
   selectedYear: any = this.pipe.transform(new Date(), 'YYYY');
-  savingsActualData: any = {};
+  savingsResponseData: any = {};
   savingsProjectedData: any = {};
-
 
   ngOnInit(): void {
     this.cost = 'cost';
@@ -32,20 +32,21 @@ export class SavingsCalculatorComponent implements OnInit {
       { text:'Closed Hours', color:'var(--color5)'},
     ];
 
-    this.getSavingsActualData(this.selectedMonth, this.selectedYear);
+    this.getSavingsResponseData(this.selectedMonth, this.selectedYear);
   }
   
   onUpdatePrep(event: any){
-    this.savingsProjectedData.values_cost[0].y = (100-parseInt(event.target.value)) * this.savingsActualData.values_cost[0].y
-    this.savingsProjectedData.values_consumption[0].y = (100-parseInt(event.target.value)) * this.savingsActualData.values_consumption[0].y
-    this.savingsProjectedData.values_c02[0].y = (100-parseInt(event.target.value)) * this.savingsActualData.values_c02[0].y
+    if (event && event.target && event.target.value) {
+      this.savingsProjectedData.values_cost[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_cost[0].y;
+      this.savingsProjectedData.values_consumption[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_consumption[0].y;
+      this.savingsProjectedData.values_c02[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_c02[0].y;
+    }
   }
 
-  getSavingsActualData(selectedMonth: any, selectedYear: any){
+  getSavingsResponseData(selectedMonth: any, selectedYear: any){
     this.apiService.getSavingsData(selectedMonth,selectedYear).subscribe((data : any) => {
-      this.savingsActualData = data.data;
-      this.savingsProjectedData = this.savingsActualData;
-      console.log(this.savingsActualData);
+      this.savingsResponseData = data.data;
+      this.savingsProjectedData = this.savingsResponseData;
     });
   }
 
