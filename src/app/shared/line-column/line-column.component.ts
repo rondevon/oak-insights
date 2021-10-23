@@ -32,7 +32,7 @@ export class LineColumnComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: 'Cost (£)',
+          text: 'Energy (kwH)',
         },
       },
       plotOptions: {
@@ -60,13 +60,43 @@ export class LineColumnComponent implements OnInit {
       series: [
         {
           name: 'Cost (£)',
-          type: 'column',
-          data: this.data.values,
+          type: 'area',
+          data: this.data.predictive_values,
         },
         {
-          name: 'Cost (£)',
+          name: 'Actual Consumption (kwH)',
+          type: 'column',
+          data: this.data.values,
+          pointWidth:20,
+          color: {
+            linearGradient: {
+              x1: 0,
+              x2: 0,
+              y1: 0,
+              y2: 1
+            },
+            stops: [
+              [0, '#70c49c'],
+              [1, '#4164AD']
+            ]
+          }
+        },
+        {
+          name: 'Predicted Consumtion (kwH)',
           type: 'line',
           data: this.data.predictive_values,
+          color: {
+            linearGradient: {
+              x1: 0,
+              x2: 0,
+              y1: 0,
+              y2: 1
+            },
+            stops: [
+              [0, '#70c49c'],
+              [1, '#4164AD']
+            ]
+          }
         },
       ],
     });
