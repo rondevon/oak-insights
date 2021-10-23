@@ -17,9 +17,10 @@ export class BasicInsightsComponent implements OnInit {
   };
   showMonthlyStats: boolean = true;
   selectedTile: any = {};
-  selectedMonthStats: any = {};
   dayAnalysisData: any = {};
   monthUsageData: any = {};
+  cards: any[] = [];
+  oakScore: number = 0;
 
   customOptions: OwlOptions = {
     loop: false,
@@ -65,11 +66,54 @@ export class BasicInsightsComponent implements OnInit {
 
   getMonthlyStats(month: any, year: any) {
     this.apiService.getHomepageApi(month, year).subscribe((data: any) => {
-      this.selectedMonthStats = data.data;
+      this.oakScore = data.data.oak_score;
+      this.cards = [{
+        image: '/assets/icons/icon-energy-usage.svg',
+        title: 'Energy Usage',
+        value: data.data.stats.energy,
+        unit: 'kWh',
+        color: 'var(--color5)',
+      },
+      {
+        image: '/assets/icons/icon-co2-emission.svg',
+        title: 'CO2 Emission(kg)',
+        value: data.data.stats.co2_emission,
+        unit: 'kg',
+        color: 'var(--color6)',
+      },
+      {
+        image: '/assets/icons/icon-closed-hours.svg',
+        title: 'Closed-hours',
+        value: data.data.stats.closed_hour_energy,
+        unit: 'kWh',
+        color: 'var(--color8)',
+      },
+      {
+        image: '/assets/icons/icon-energy-intensity.svg',
+        title: 'Energy Intensity ',
+        value: data.data.stats.energy_intensity,
+        unit: 'kWh/m2',
+        color: 'var(--color5)',
+      },
+      {
+        image: '/assets/icons/icon-offset-planting.svg',
+        title: 'Offset by Planting',
+        value: data.data.stats.offset_planting,
+        unit: 'Oak Trees',
+        color: 'var(--color5)',
+      },
+      {
+        image: '/assets/icons/icon-trend.svg',
+        title: 'Trend vs Last Month',
+        value: data.data.stats.trend_over_last,
+        unit: '%',
+        color: 'var(--color7)',
+      }];
     });
   }
 
   getDayAnalysisData(month: any, year: any) {
+    this.dayAnalysisData = {};
     this.apiService.getDayAnalysisData(month, year).subscribe((data: any) => {
       this.dayAnalysisData = data.data;
     });
