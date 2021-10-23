@@ -16,4 +16,17 @@
   <button (click)="closeMonthlyStats()">Close</button>
   <div>{{ selectedMonthStats.oak_score }}</div>
   <div>{{ selectedMonthStats.stats.energy }}</div>
+  <app-line-column [data]="dayAnalysisData"></app-line-column> 
+</div>
+
+<div class="row">
+  <div class="card card-custom">
+    <div class="yearly-usage mb-4">
+      <div class="card-heading">Monthly Usage</div>
+      <span class="widget-subtitle"
+        >Comparison of month-on-month consumption</span
+      >
+    </div>
+    <app-predictive-range-chart [data]="monthUsageData"></app-predictive-range-chart>
+  </div>
 </div>

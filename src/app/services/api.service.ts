@@ -243,4 +243,26 @@ export class ApiService {
       );
     } else return of(null);
   }
+
+  public getDayAnalysisData(
+    month: String,
+    year: String
+  ): Observable<any> {
+    if (localStorage.getItem('token') && localStorage.getItem('site_slug')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'insights/consumption/daily?month=' +
+          month +
+          '&year=' +
+          year +
+          '&site_id=' +
+          localStorage.getItem('site_slug'),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
 }

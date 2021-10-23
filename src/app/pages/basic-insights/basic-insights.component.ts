@@ -18,6 +18,8 @@ export class BasicInsightsComponent implements OnInit {
   showMonthlyStats: boolean = true;
   selectedTile: any = {};
   selectedMonthStats: any = {};
+  dayAnalysisData: any = {};
+  monthUsageData: any = {};
 
   customOptions: OwlOptions = {
     loop: false,
@@ -57,6 +59,8 @@ export class BasicInsightsComponent implements OnInit {
         this.historicalConsumptionData.reverse();
       });
     this.getMonthlyStats(this.currentDate.month, this.currentDate.year);
+    this.getDayAnalysisData(this.currentDate.month, this.currentDate.year);
+    this.getMonthUsageData();
   }
 
   getMonthlyStats(month: any, year: any) {
@@ -65,13 +69,26 @@ export class BasicInsightsComponent implements OnInit {
     });
   }
 
+  getDayAnalysisData(month: any, year: any) {
+    this.apiService.getDayAnalysisData(month, year).subscribe((data: any) => {
+      this.dayAnalysisData = data.data;
+    });
+  }
+
   openMonthlyStats(item: any) {
     this.showMonthlyStats = true;
     this.selectedTile = item;
     this.getMonthlyStats(item.month, item.year);
+    this.getDayAnalysisData(item.month, item.year);
   }
 
   closeMonthlyStats() {
     this.showMonthlyStats = false;
+  }
+
+  getMonthUsageData() {
+    this.apiService.getMonthlyUsageData(this.currentDate.year).subscribe(data => {
+      this.monthUsageData = data.data;
+    });
   }
 }
