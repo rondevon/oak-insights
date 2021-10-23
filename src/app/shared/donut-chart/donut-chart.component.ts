@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
-import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-donut-chart',
   templateUrl: './donut-chart.component.html',
@@ -8,35 +7,33 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DonutChartComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  constructor() { }
   @Input('data') data: any;
   chart: any = {};
   chartType: any = {};
-  savingsActualData: any = {};
+  
   ngOnInit(): void {
-    this.chartType = this.data;
-    console.log (this.chartType);
-    if(this.data == 'cost')
-    {
-      this.setDonutChartData('Total<br>2469',this.chartType);
-    }
-    if(this.data == 'consumption')
-    {
-      this.setDonutChartData('Total<br>6052',this.chartType);
-    }
-    if(this.data == 'emission')
-    {
-      this.setDonutChartData('Total<br>955',this.chartType);
-    }
-    
+    this.chartType = this.data;    
   }
 
+  ngOnChanges(){
+    console.log(this.data[1]);
+    if (Object.keys(this.data[1]).length > 0) {
+      if(this.data[0] == 'cost')
+    {
+      this.setDonutChartData('Total<br>2469',this.data[1].values_cost);
+    }
+    if(this.data[0] == 'consumption')
+    {
+      this.setDonutChartData('Total<br>6052',this.data[1].values_consumption);
+    }
+    if(this.data[0] == 'emission')
+    {
+      this.setDonutChartData('Total<br>955',this.data[1].values_c02);
+    }
 
-  getSavingsActualData(selectedMonth: any, selectedYear: any){
-    this.apiService.getSavingsData(selectedMonth,selectedYear).subscribe((data : any) => {
-      this.savingsActualData = data.values;
-      console.log(this.savingsActualData);
-    });
+    }
+    
   }
 
   setDonutChartData(total: string, seriesData: any){
@@ -76,19 +73,7 @@ export class DonutChartComponent implements OnInit {
       },
       series: [{
         type: 'pie',
-        data: [{
-          name: 'Preparatory',
-          y: 7,
-        }, {
-          name: 'Operational',
-          y: 5,
-        }, {
-          name: 'Non Operational',
-          y: 18,
-        }, {
-          name: 'Closed',
-          y: 28,
-        }]
+        data: seriesData
       }]
     });
   }
