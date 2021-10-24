@@ -8,6 +8,7 @@ import { Chart } from 'angular-highcharts';
 export class DonutChartComponent implements OnInit {
   constructor() {}
   @Input('data') data: any;
+  @Input('total') total: any;
   chart: any = {};
 
   ngOnInit(): void {
@@ -15,19 +16,8 @@ export class DonutChartComponent implements OnInit {
   }
 
   ngOnChanges() {
-    if (Object.keys(this.data[1]).length > 0) {
-      if (this.data[0] == 'cost') {
-        this.setDonutChartData('Total<br>2469', this.data[1].values_cost);
-      }
-      if (this.data[0] == 'consumption') {
-        this.setDonutChartData(
-          'Total<br>6052',
-          this.data[1].values_consumption
-        );
-      }
-      if (this.data[0] == 'emission') {
-        this.setDonutChartData('Total<br>955', this.data[1].values_c02);
-      }
+    if(this.data && this.data.length > 0){
+      this.setDonutChartData(this.total, this.data);
     }
   }
 
