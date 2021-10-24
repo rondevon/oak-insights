@@ -129,6 +129,7 @@ export class BasicInsightsComponent implements OnInit {
 
   closeMonthlyStats() {
     this.showMonthlyStats = false;
+    this.selectedTileIndex = -1;
   }
 
 setTrendIcon(value: number){
