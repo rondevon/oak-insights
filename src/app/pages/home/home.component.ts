@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = false;
+    this.loading = true;
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year)
       .subscribe((data: any) => {
+        this.loading = false;
         this.consumptionData = data.data.consumption_overview;
         this.oakScore = data.data.oak_score;
         this.cards = [
