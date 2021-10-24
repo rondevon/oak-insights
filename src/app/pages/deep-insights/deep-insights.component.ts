@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class DeepInsightsComponent implements OnInit {
 
 
-  constructor(private apiService: ApiService) { }
+  constructor() { }
   
   consumption: any = {};
   loadCurveData: any = {};

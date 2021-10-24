@@ -97,3 +97,33 @@ body { margin: 0; font-family: 'Avenir-Roman'!important }
   margin-right: 1rem;
 
 }
+
+.bs-datepicker-body table td.week span 
+{
+  color: var(--color3) !important; 
+}
+
+.bs-datepicker-body table td span.selected,
+.bs-datepicker-head,
+.bs-datepicker-head, .bs-datepicker button:active,
+.bs-datepicker-body table td.selected span,
+.bs-datepicker-body table td span[class*="select-"]:after,
+.bs-datepicker-body table td[class*="select-"] span:after,
+.bs-datepicker-body table td.active-week span:hover 
+{
+  background-color: var(--color3)!important; 
+}
+
+@media only screen and (min-width: 992px) {
+  bs-datepicker-container{
+    left: 10px !important;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  bs-datepicker-container{
+    left: 0 !important;
+  }
+}
+//bs-datepicker-container{ transform: scale(1,1) !important; top: 118px !important; left: 200 !important; right: 0 !important; width: fit-content !important; margin-left: auto !important; margin-right: auto !important; } 
+
+

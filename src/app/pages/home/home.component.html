@@ -7,14 +7,23 @@
         <h2>Insights at a Glance</h2>
       </div>
       <div class="col-md-3 my-auto">
-          <input class="form-control"
-                 placeholder="Datepicker"
-                 [(ngModel)]="selectedDate" (bsValueChange)="updateMonth()"
-                 bsDatepicker
+        <div class="input-group">
+          <span class="form-control"
+                 [(ngModel)]="selectedDate" [(bsValue)]="selectedDate" (bsValueChange)="updateMonth()"
+                 #dp="bsDatepicker" bsDatepicker
                  [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"
                  [minDate]="minDate"
-                 [maxDate]="maxDate">
+                 [maxDate]="maxDate">{{selectedMonth.month}} {{selectedMonth.year}}</span>
+                 <div class="input-group-append">
+                 <button class="btn btn-toggle"
+                    (click)="dp.toggle()"
+                    [attr.aria-expanded]="dp.isOpen"
+                    type="button">Change
+                </button>
+                </div>
+              </div>
       </div>
+      
     </div>
     <div class="row">
       <div class="col-md-9">
@@ -90,8 +99,8 @@
         <div class="card card-custom">
           <div class="card-heading">Operating Hours Analysis</div>
           <span class="widget-subtitle"
-            >Comparison of energy consumption during Trading and Nontrading for
-            each weekday</span
+            >Comparison of energy consumption during Trading and Non trading hours for
+            each day</span
           >
           <app-stacked-bar-chart
             [data]="operatingHoursData"

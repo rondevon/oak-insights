@@ -30,6 +30,7 @@ import stock from 'highcharts/modules/stock.src';
 import { FormsModule } from '@angular/forms';
 
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { LineColumnComponent } from './line-column/line-column.component';
 
 
 export function highchartsModules() { 
@@ -53,7 +54,8 @@ export function highchartsModules() {
     LoadCurveComponent,
     MinMaxComponent,
     MonthsDataComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    LineColumnComponent
   ],
   imports: [
     CommonModule,
@@ -80,7 +82,8 @@ export function highchartsModules() {
     LoadCurveComponent,
     MinMaxComponent,
     MonthsDataComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    LineColumnComponent
   ],
   providers: [
     { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }

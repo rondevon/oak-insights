@@ -15,6 +15,7 @@ import { Chart } from 'angular-highcharts';
 })
 export class ActivityGaugeComponent implements OnInit, OnChanges {
   @Input('data') data: any;
+  @Input('totalSize') totalSize: any = {total: '1.2vw', text:'1vw', y:'-24'};
   pipe = new DatePipe('en-GB');
   date = this.pipe.transform(new Date(), 'dd') as string;
   differ: any = {};
@@ -26,6 +27,8 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
       this.chart = new Chart({
         chart: {
           height: '100%',
+          margin: 0,
+          spacing: [0, 0, 0, 0]
         },
         title: {
           text: '',
@@ -90,11 +93,11 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
               },
               borderWidth: 0,
               backgroundColor: 'none',
-              y: -24,
+              y: parseInt(this.totalSize.y),
               format:
-                '<div style="width:100%;text-align:center;"><span style="font-size:1.2vw; color: {point.color}; font-weight: bold">' +
+                '<div style="width:100%;text-align:center;"><span style="font-size:' + this.totalSize.total + '; color: {point.color}; font-weight: bold">' +
                 Math.abs(this.differ) +
-                ' kWh</span><br><spanstyle="font-size:1vw; color: black; font-weight: bold">'+ this.abvbel + ' Target</span></div>',
+                ' kWh</span><br><span style="font-size:' + this.totalSize.text + '; color: black; font-weight: bold">'+ this.abvbel + ' Target</span></div>',
             },
 
             linecap: 'round',

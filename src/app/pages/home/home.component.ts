@@ -1,7 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Chart } from 'angular-highcharts';
 import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
 
@@ -15,7 +14,10 @@ export class HomeComponent implements OnInit {
   maxDate: Date;
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
-  selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
+  selectedMonth: any = {
+    month: this.pipe.transform(new Date(), 'MMMM'),
+    year: this.pipe.transform(new Date(), 'YYYY')
+  };
   heatMapData: any = {};
   operatingHoursData: any = {};
   hourlyCostData: any = {};
@@ -34,12 +36,12 @@ export class HomeComponent implements OnInit {
   constructor(private apiService: ApiService, public dialog: MatDialog) {
     this.minDate = new Date();
     this.maxDate = new Date();
-    this.minDate.setMonth(this.minDate.getMonth() - 5);
+    this.minDate.setMonth(this.minDate.getMonth() - 4);
     this.maxDate.setMonth(this.maxDate.getMonth());
   }
 
   ngOnInit(): void {
-    this.loading = false;
+    this.loading = true;
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
@@ -54,16 +56,20 @@ export class HomeComponent implements OnInit {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
-    })
+    });
 
     this.updateMonth();
   }
 
   updateMonth() {
-    this.selectedMonth = {month: this.apiService.getMonthFromDate(this.selectedDate),year: this.selectedDate.getFullYear()};
+    this.selectedMonth = {
+      month: this.pipe.transform(this.selectedDate, 'MMMM'),
+      year: this.pipe.transform(this.selectedDate, 'YYYY')
+    };
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year)
       .subscribe((data: any) => {
+        this.loading = false;
         this.consumptionData = data.data.consumption_overview;
         this.oakScore = data.data.oak_score;
         this.cards = [

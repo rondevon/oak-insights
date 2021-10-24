@@ -166,7 +166,7 @@
 .card-custom {
   border-radius: 1rem !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 2.5rem;
+  padding: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
@@ -228,6 +228,8 @@
   margin-bottom: 3%;
 }
 
-.monthPicker {
-  width: 100%;
+.btn-toggle {
+  color: #fff;
+  background-color:var(--color3);
+  border-color: var(--color3);
 }
