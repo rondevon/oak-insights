@@ -23,11 +23,13 @@ export class BasicInsightsComponent implements OnInit {
   oakScore: number = 0;
 
   customOptions: OwlOptions = {
+    items:3,
+    margin:30,
     loop: false,
-    mouseDrag: false,
-    touchDrag: false,
-    pullDrag: false,
-    dots: false,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
@@ -38,13 +40,13 @@ export class BasicInsightsComponent implements OnInit {
         items: 2,
       },
       740: {
-        items: 3,
+        items: 2,
       },
       940: {
-        items: 4,
+        items: 3,
       },
     },
-    nav: true,
+    nav: false,
   };
 
   constructor(private apiService: ApiService) {}
@@ -129,6 +131,37 @@ export class BasicInsightsComponent implements OnInit {
   closeMonthlyStats() {
     this.showMonthlyStats = false;
   }
+
+setTrendIcon(value: number){
+  if (value > 0)
+  {
+    return '/assets/icons/icon-up.svg';
+  }
+  else{
+    return '/assets/icons/icon-down.svg';
+  }
+}
+
+calculateTarget(target: number, actual: number)
+{
+    let value: number = Math.round((actual-target)/target*100);
+    let color: String = '';
+    let text: String = '';
+    if(value>0)
+    {
+      color='#ee6259';
+      text='Above Target'
+    } else {
+      color='#82c67c';
+      text='Below Target'
+    }
+    return {
+      value: Math.abs(value),
+      color: color,
+      text: text,
+    };
+    
+}
 
   getMonthUsageData() {
     this.apiService.getMonthlyUsageData(this.currentDate.year).subscribe(data => {

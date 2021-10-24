@@ -1,3 +1,5 @@
+<div class="app-container">
+
 <owl-carousel-o [options]="customOptions">
   <ng-template
     carouselSlide
@@ -11,13 +13,13 @@
             [data]="item.consumption_overview"
           ></app-activity-gauge>
         </div>
-        <div class="col-md-6">
-          <div>Energy: {{ item.energy }}</div>
-          <div>CO2 Emission: {{ item.co2_emission }}</div>
-          <div>Target Trend: {{ item.target_trend }}</div>
-          <div>Consumption Overview</div>
-          <div>Target: {{ item.consumption_overview.target }}</div>
-          <div>Present: {{ item.consumption_overview.present }}</div>
+        <div class="col-md-6 my-auto">
+          <div class="mb-3"><img class="trend-icon" [src]="setTrendIcon(item.target_trend)"> <span class="month">{{ item.energy }}</span> kWH</div>
+          <div class="mb-3"><img class="trend-icon" [src]="setTrendIcon(item.target_trend)"> <span class="month">{{ item.co2_emission }}</span> kg CO2</div>
+          <span class="target month" [style.color]="calculateTarget(item.consumption_overview.target, item.consumption_overview.present).color">
+            {{ calculateTarget(item.consumption_overview.target, item.consumption_overview.present).value }}%
+          </span>
+          <span>{{ calculateTarget(item.consumption_overview.target, item.consumption_overview.present).text }} </span>
         </div>
       </div>
     </div>
@@ -79,4 +81,5 @@
       [data]="monthUsageData"
     ></app-predictive-range-chart>
   </div>
+</div>
 </div>
