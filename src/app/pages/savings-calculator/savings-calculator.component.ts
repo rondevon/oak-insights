@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -8,7 +8,8 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class SavingsCalculatorComponent implements OnInit {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+    private cdRef: ChangeDetectorRef) { }
   
   donutLegends: any[] =[];
   cost: any ={};
@@ -21,9 +22,6 @@ export class SavingsCalculatorComponent implements OnInit {
   savingsProjectedData: any = {};
 
   ngOnInit(): void {
-    this.cost = 'cost';
-    this.consumption = 'consumption';
-    this.emission = 'emission';
 
     this.donutLegends = [
       { text:'Preparatory Hours', color:'var(--color3)'},
@@ -40,6 +38,7 @@ export class SavingsCalculatorComponent implements OnInit {
       this.savingsProjectedData.values_cost[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_cost[0].y;
       this.savingsProjectedData.values_consumption[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_consumption[0].y;
       this.savingsProjectedData.values_c02[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_c02[0].y;
+      // this.cdRef.detectChanges();
     }
   }
 
