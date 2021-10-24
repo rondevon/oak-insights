@@ -55,6 +55,9 @@ export class StockGraphComponent implements OnInit {
   }
   ngOnInit(): void {
     this.selectedGraph = this.data;
+  }
+
+  ngOnChages(){
     this.updateMonth();
   }
 

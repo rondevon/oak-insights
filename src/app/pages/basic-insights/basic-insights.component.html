@@ -1,85 +1,115 @@
 <div class="app-container">
-
-<owl-carousel-o [options]="customOptions">
-  <ng-template
-    carouselSlide
-    *ngFor="let item of historicalConsumptionData; let i = index"
-  >
-    <div class="card card-custom" (click)="openMonthlyStats(item)">
-      <div class="row">
-        <div class="month">{{ item.month }} {{ item.year }}</div>
-        <div class="col-md-6">
+  <div class="row">
+  <owl-carousel-o [options]="customOptions">
+    <ng-template
+      carouselSlide
+      *ngFor="let item of historicalConsumptionData; let i = index"
+    >
+      <div
+        class="card card-custom"
+        (click)="openMonthlyStats(item, i)"
+        [ngClass]="{ 'border-red': selectedTileIndex === i }"
+      >
+        <div class="row">
+          <div class="month">{{ item.month }} {{ item.year }}</div>
+          <div class="col-md-6">
             <app-activity-gauge
-            [data]="item.consumption_overview" [totalSize]="totalSize"
-          ></app-activity-gauge>
-        </div>
-        <div class="col-md-6 my-auto">
-          <div class="mb-3"><img class="trend-icon" [src]="setTrendIcon(item.target_trend)"> <span class="month">{{ item.energy }}</span> kWH</div>
-          <div class="mb-3"><img class="trend-icon" [src]="setTrendIcon(item.target_trend)"> <span class="month">{{ item.co2_emission }}</span> kg CO2</div>
-          <span class="target month" [style.color]="calculateTarget(item.consumption_overview.target, item.consumption_overview.present).color">
-            {{ calculateTarget(item.consumption_overview.target, item.consumption_overview.present).value }}%
-          </span>
-          <span>{{ calculateTarget(item.consumption_overview.target, item.consumption_overview.present).text }} </span>
+              [data]="item.consumption_overview"
+              [totalSize]="totalSize"
+            ></app-activity-gauge>
+          </div>
+          <div class="col-md-6 my-auto">
+            <div class="mb-3">
+              <img class="trend-icon" [src]="setTrendIcon(item.target_trend)" />
+              <span class="month">{{ item.energy }}</span> kWH
+            </div>
+            <div class="mb-3">
+              <img class="trend-icon" [src]="setTrendIcon(item.target_trend)" />
+              <span class="month">{{ item.co2_emission }}</span> kg CO2
+            </div>
+            <span
+              class="month"
+              [style.color]="
+                calculateTarget(
+                  item.consumption_overview.target,
+                  item.consumption_overview.present
+                ).color
+              "
+            >
+              {{
+                calculateTarget(
+                  item.consumption_overview.target,
+                  item.consumption_overview.present
+                ).value
+              }}%
+            </span>
+            <span
+              >{{
+                calculateTarget(
+                  item.consumption_overview.target,
+                  item.consumption_overview.present
+                ).text
+              }}
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </ng-template>
-</owl-carousel-o>
+    </ng-template>
+  </owl-carousel-o>
 
-<div *ngIf="showMonthlyStats">
-  <button (click)="closeMonthlyStats()">Close</button>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="card card-custom">
-        <div class="oakscore">
-          <div class="oak-score-badge">
-            <img
-              class="img-res"
-              src="/assets/icons/icon-oakscore-green.svg"
-            />
-          </div>
-          <div class="oak-score">
-            <div class="oak-score-label">OAK Score</div>
-            <div class="oak-score-text">
-              {{ oakScore }}
+  <div *ngIf="showMonthlyStats">
+    <div class="card card-custom mt-4">
+      <div class="close">
+      <button class="close-btn" (click)="closeMonthlyStats()">
+        <img src="/assets/icons/close-window.png" />
+      </button>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card card-custom">
+            <div class="oakscore">
+              <div class="oak-score-badge">
+                <img
+                  class="img-res"
+                  src="/assets/icons/icon-oakscore-green.svg"
+                />
+              </div>
+              <div class="oak-score">
+                <div class="oak-score-label">OAK Score</div>
+                <div class="oak-score-text">
+                  {{ oakScore }}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div class="col-md-9 my-auto">
+          <div class="insights-column" *ngFor="let card of cards">
+            <app-insight-item-tile [data]="card"></app-insight-item-tile>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="col-md-9 my-auto">
-      <div class="insights-column" *ngFor="let card of cards">
-        <app-insight-item-tile [data]="card"></app-insight-item-tile>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="row">
-      <div class="card card-custom">
+      <div class="row mt-4">
         <div class="card-heading">Day by day Analysis</div>
-        <span class="widget-subtitle"
-        >Comparison of daily consumption</span
-      >
+        <span class="widget-subtitle">Comparison of daily consumption</span>
         <app-line-column [data]="dayAnalysisData"></app-line-column>
       </div>
-  </div>
-  
-  
-</div>
-
-<div class="row">
-  <div class="card card-custom">
-    <div class="yearly-usage mb-4">
-      <div class="card-heading">Monthly Usage</div>
-      <span class="widget-subtitle"
-        >Comparison of month-on-month consumption</span
-      >
     </div>
-    <app-predictive-range-chart
-      [data]="monthUsageData"
-    ></app-predictive-range-chart>
   </div>
-</div>
+  </div>
+
+    <div class="card card-custom mt-4">
+      <div class="yearly-usage mb-4">
+        <div class="card-heading">Monthly Usage</div>
+        <span class="widget-subtitle"
+          >Comparison of month-on-month consumption</span
+        >
+      </div>
+      <app-predictive-range-chart
+        [data]="monthUsageData"
+      ></app-predictive-range-chart>
+    </div>
+
 </div>

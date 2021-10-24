@@ -27,6 +27,8 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
       this.chart = new Chart({
         chart: {
           height: '100%',
+          margin: 0,
+          spacing: [0, 0, 0, 0]
         },
         title: {
           text: '',

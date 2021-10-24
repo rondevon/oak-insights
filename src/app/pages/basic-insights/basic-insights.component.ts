@@ -15,13 +15,13 @@ export class BasicInsightsComponent implements OnInit {
     month: this.pipe.transform(new Date(), 'MMMM'),
     year: this.pipe.transform(new Date(), 'YYYY'),
   };
-  showMonthlyStats: boolean = true;
-  selectedTile: any = {};
+  showMonthlyStats: boolean = false;
+  selectedTileIndex: number = -1;
   dayAnalysisData: any = {};
   monthUsageData: any = {};
   cards: any[] = [];
   oakScore: number = 0;
-  totalSize: any = {total:'0.8vw',text:'0.5vw',y:'-14'}
+  totalSize: any = {total:'1vw',text:'0.7vw',y:'-17'}
 
   customOptions: OwlOptions = {
     items:3,
@@ -62,8 +62,6 @@ export class BasicInsightsComponent implements OnInit {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
       });
-    this.getMonthlyStats(this.currentDate.month, this.currentDate.year);
-    this.getDayAnalysisData(this.currentDate.month, this.currentDate.year);
     this.getMonthUsageData();
   }
 
@@ -122,9 +120,9 @@ export class BasicInsightsComponent implements OnInit {
     });
   }
 
-  openMonthlyStats(item: any) {
+  openMonthlyStats(item: any, index: number) {
     this.showMonthlyStats = true;
-    this.selectedTile = item;
+    this.selectedTileIndex = index;
     this.getMonthlyStats(item.month, item.year);
     this.getDayAnalysisData(item.month, item.year);
   }

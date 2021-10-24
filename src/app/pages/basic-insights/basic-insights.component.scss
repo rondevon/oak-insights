@@ -16,6 +16,24 @@
     margin-bottom: 2rem;
   }
   
+  .close-btn {
+    height: 30px;
+    width: 30px;
+    z-index: 1;
+    border:none;
+    padding:0;
+    float: right;
+  }
+
+  .close-btn img{
+    height: 100%;
+    width: 100%;
+  }
+
+  .border-red{
+    border: 2px solid var(--color3);
+  }
+
   .oakscore {
     text-align: center;
   }
@@ -75,7 +93,7 @@
   .trend-icon{
     width:13% !important;
     display: inline !important;
-    vertical-align: text-bottom !important;
+    vertical-align: sub !important;
   }
 
   .img-res {
