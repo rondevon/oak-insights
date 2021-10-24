@@ -21,6 +21,7 @@ export class BasicInsightsComponent implements OnInit {
   monthUsageData: any = {};
   cards: any[] = [];
   oakScore: number = 0;
+  totalSize: any = {total:'0.8vw',text:'0.5vw',y:'-14'}
 
   customOptions: OwlOptions = {
     items:3,

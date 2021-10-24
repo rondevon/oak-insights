@@ -10,7 +10,7 @@
         <div class="month">{{ item.month }} {{ item.year }}</div>
         <div class="col-md-6">
             <app-activity-gauge
-            [data]="item.consumption_overview"
+            [data]="item.consumption_overview" [totalSize]="totalSize"
           ></app-activity-gauge>
         </div>
         <div class="col-md-6 my-auto">
