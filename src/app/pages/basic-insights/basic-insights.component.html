@@ -1,4 +1,6 @@
-<div class="app-container">
+<loader *ngIf="loadings"></loader>
+
+<div class="app-container" *ngIf="!loadings">
   <div class="row">
   <owl-carousel-o [options]="customOptions">
     <ng-template

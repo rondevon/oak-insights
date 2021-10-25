@@ -22,7 +22,7 @@
                    #dp="bsDatepicker" bsDatepicker
                    [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"
                    [minDate]="minDate"
-                   [maxDate]="maxDate">{{selectedMonth.month}} {{selectedMonth.year}}</span>
+                   [maxDate]="maxDate">{{selectedMonth?.month}} {{selectedMonth?.year}}</span>
                   <div class="input-group-append">
                    <button class="btn btn-toggle"
                       (click)="dp.toggle()"
@@ -33,7 +33,8 @@
           </div>
   </div>
 </div>
-<div [chart]="chart"></div>
+<div [chart]="chart" *ngIf="chart"></div>
+<loader *ngIf="!chart"></loader>
 <div class="operating-hours-totals" *ngIf ="selectedGraph == 'consumption'">
     <div class="row">
       <div

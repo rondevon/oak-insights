@@ -23,6 +23,8 @@ export class BasicInsightsComponent implements OnInit {
   oakScore: number = 0;
   totalSize: any = {total:'1vw',text:'0.7vw',y:'-17'}
 
+  loadings: boolean = true;
+
   customOptions: OwlOptions = {
     items:3,
     margin:30,
@@ -53,6 +55,7 @@ export class BasicInsightsComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.loadings = true;
     this.apiService
       .getHistoricalMonthlyConsumption(
         this.currentDate.month,
@@ -61,6 +64,7 @@ export class BasicInsightsComponent implements OnInit {
       .subscribe((data: any) => {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
+        this.loadings = false;
       });
     this.getMonthUsageData();
   }

@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LineColumnComponent } from './line-column/line-column.component';
+import { LoaderModule } from '../loader/loader.module';
 
 
 export function highchartsModules() { 
@@ -64,7 +65,8 @@ export function highchartsModules() {
     ChartModule,
     FormsModule,
     BsDatepickerModule,
-    DatepickerModule
+    DatepickerModule,
+    LoaderModule
 
   ],
   exports: [

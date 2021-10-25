@@ -20,17 +20,16 @@ export class SavingsCalculatorComponent implements OnInit {
   selectedYear: any = this.pipe.transform(new Date(), 'YYYY');
   savingsResponseData: any = {};
   savingsProjectedData: any = {};
-
+  loading: boolean = true;
   ngOnInit(): void {
-
+    
     this.donutLegends = [
       { text:'Preparatory Hours', color:'var(--color3)'},
       { text: 'Operating Hours', color:'var(--color8)'},
       { text:'Non Operating Hours', color:'var(--color2)'},
       { text:'Closed Hours', color:'var(--color5)'},
     ];
-
-    this.getSavingsResponseData(this.selectedMonth, this.selectedYear);
+    this.getSavingsResponseData(this.selectedMonth, this.selectedYear)
   }
   
   onUpdatePrep(event: any){
@@ -43,9 +42,11 @@ export class SavingsCalculatorComponent implements OnInit {
   }
 
   getSavingsResponseData(selectedMonth: any, selectedYear: any){
+    this.loading = true;
     this.apiService.getSavingsData(selectedMonth,selectedYear).subscribe((data : any) => {
       this.savingsResponseData = data.data;
       this.savingsProjectedData = this.savingsResponseData;
+      this.loading = false;
     });
   }
 
