@@ -64,9 +64,9 @@ export class BasicInsightsComponent implements OnInit {
       .subscribe((data: any) => {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
-        this.loadings = false;
       });
-    this.getMonthUsageData();
+      this.getMonthUsageData();
+      this.loadings = false;
   }
 
   getMonthlyStats(month: any, year: any) {

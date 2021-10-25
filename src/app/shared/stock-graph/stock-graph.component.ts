@@ -49,6 +49,7 @@ export class StockGraphComponent implements OnInit {
   }
 
   updateMonth() {
+    this.chart = undefined;
     this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.pipe.transform(this.selectedDate, 'YYYY')};
     this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph);
     

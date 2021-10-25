@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   hourlyCostData: any = {};
   selectedDate: Date = new Date();
 
-  loading: boolean = true;
+  loading: boolean = false;
 
   oakScore: number = 0;
   newsData = [];
@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
@@ -62,6 +61,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonth() {
+    this.loading = true;
     this.selectedMonth = {
       month: this.pipe.transform(this.selectedDate, 'MMMM'),
       year: this.pipe.transform(this.selectedDate, 'YYYY')

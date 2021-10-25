@@ -2,7 +2,8 @@
   <div class="col-lg-6 col-xl-7">
       <div class="card-heading" *ngIf ="selectedGraph == 'phase'">Phase Distribution (Zoomable Graph)</div>
       <div class="card-heading" *ngIf ="selectedGraph == 'consumption'">Energy Consumption (Zoomable Graph)</div>
-      
+      <loader *ngIf="!selectedGraph"></loader>
+
       <span class="widget-subtitle" *ngIf ="selectedGraph == 'phase'">View the consumption pattern for each of the three phases</span>
       <span class="widget-subtitle" *ngIf ="selectedGraph == 'consumption'">View the energy signature of your site</span>
   </div>
@@ -35,7 +36,7 @@
 </div>
 <div [chart]="chart" *ngIf="chart"></div>
 <loader *ngIf="!chart"></loader>
-<div class="operating-hours-totals" *ngIf ="selectedGraph == 'consumption'">
+<div class="operating-hours-totals" *ngIf ="(selectedGraph == 'consumption') && chart">
     <div class="row">
       <div
         class="col-md-4"
