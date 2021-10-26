@@ -64,14 +64,15 @@ export class BasicInsightsComponent implements OnInit {
       .subscribe((data: any) => {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
+        this.loadings = false;
       });
       this.getMonthUsageData();
-      this.loadings = false;
-  }
-
-  getMonthlyStats(month: any, year: any) {
-    this.apiService.getHomepageApi(month, year).subscribe((data: any) => {
-      this.oakScore = data.data.oak_score;
+    }
+    
+    getMonthlyStats(month: any, year: any) {
+      this.oakScore = -1;
+      this.apiService.getHomepageApi(month, year).subscribe((data: any) => {
+        this.oakScore = data.data.oak_score;
       this.cards = [{
         image: '/assets/icons/icon-energy-usage.svg',
         title: 'Energy Usage',
@@ -118,7 +119,7 @@ export class BasicInsightsComponent implements OnInit {
   }
 
   getDayAnalysisData(month: any, year: any) {
-    this.dayAnalysisData = {};
+    this.dayAnalysisData = undefined;
     this.apiService.getDayAnalysisData(month, year).subscribe((data: any) => {
       this.dayAnalysisData = data.data;
     });
