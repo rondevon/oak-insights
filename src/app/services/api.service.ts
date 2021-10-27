@@ -288,4 +288,20 @@ export class ApiService {
       );
     } else return of(null);
   }
+
+  postevent(eventData: any): Observable<any> {
+    if (!localStorage.getItem('site_slug')) return of(null);    
+    let formdata = new FormData();
+    formdata.append('date', this.pipe.transform(eventData.date, 'YYYY-MM-dd') || '');
+    formdata.append('name', eventData.name);
+    formdata.append('site_id', localStorage.getItem('site_slug') || '');
+    formdata.append('type', eventData.type);
+
+    return this.httpClient.post(`${serviceBaseUrl}events`, formdata, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+  }
+
 }
