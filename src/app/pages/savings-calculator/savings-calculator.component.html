@@ -1,4 +1,6 @@
-<div class="app-container">
+<loader *ngIf="loading"></loader>
+
+<div class="app-container" *ngIf="!loading">
   <div class="row">
     <div class="col-md-9 my-auto">
       <h2>Savings Calculator</h2>

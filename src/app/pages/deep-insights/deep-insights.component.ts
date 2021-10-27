@@ -10,7 +10,6 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DeepInsightsComponent implements OnInit {
 
-
   constructor() { }
   
   consumption: any = {};

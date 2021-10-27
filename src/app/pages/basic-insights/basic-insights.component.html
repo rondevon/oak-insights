@@ -1,4 +1,6 @@
-<div class="app-container">
+<loader *ngIf="loadings"></loader>
+
+<div class="app-container" *ngIf="!loadings">
   <div class="row">
   <owl-carousel-o [options]="customOptions">
     <ng-template
@@ -58,7 +60,8 @@
   </owl-carousel-o>
 
   <div *ngIf="showMonthlyStats">
-    <div class="card card-custom mt-4">
+    <loader *ngIf="!dayAnalysisData && oakScore < 0"></loader>
+    <div class="card card-custom mt-4" *ngIf="dayAnalysisData && oakScore >= 0">
       <div class="close">
       <button class="close-btn" (click)="closeMonthlyStats()">
         <img src="/assets/icons/close-window.png" />

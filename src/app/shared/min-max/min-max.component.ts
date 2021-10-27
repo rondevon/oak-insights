@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./min-max.component.scss']
 })
 export class MinMaxComponent implements OnInit {
-
+  loading: boolean = true;
   constructor(private apiService: ApiService) { }
   @Input('data') data: any= {};
   pipe = new DatePipe('en-GB');
@@ -27,14 +27,15 @@ export class MinMaxComponent implements OnInit {
   }
 
   ngOnChanges() {
+    this.loading = true;
     this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);
   }
 
   getMinMaxData(selectedMonth: any, selectedYear: any, duration: String){
     this.apiService.getMinMaxData(selectedMonth,selectedYear,duration).subscribe((data : any) => {
       this.minMaxData = data.values;
-      console.log(this.minMaxData);
       this.setMinMaxData();
+      this.loading = false;
     });
   }
   
@@ -95,6 +96,7 @@ export class MinMaxComponent implements OnInit {
   }
 
   switchChart(switchType: string){
+    this.loading = true;
     if(switchType === '1'){
       this.bntStyle1 = 'open-days-button'
       this.bntStyle2 = 'closed-days-button' 

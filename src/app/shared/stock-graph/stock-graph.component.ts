@@ -14,8 +14,7 @@ export class StockGraphComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   pipe = new DatePipe('en-GB');
-  //data: any= {};
-  chart: any = {};
+  chart: any;
   consumptionTotals: any[] = [];
   stockChartData: any = {};
   selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
@@ -30,7 +29,7 @@ export class StockGraphComponent implements OnInit {
     'voltage',
     'power_factor'
   ];
-
+  loading: boolean = true;
   constructor(private apiService: ApiService) {
     this.minDate = new Date();
     this.maxDate = new Date();
@@ -45,10 +44,12 @@ export class StockGraphComponent implements OnInit {
     });
   }
   updateType(){
+    this.chart = undefined;
     this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph);
   }
 
   updateMonth() {
+    this.chart = undefined;
     this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.pipe.transform(this.selectedDate, 'YYYY')};
     this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph);
     

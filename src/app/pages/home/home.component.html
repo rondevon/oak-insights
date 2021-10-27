@@ -1,6 +1,6 @@
 <loader *ngIf="loading"></loader>
 
-<div class="app-container" *ngIf="!loading">
+<div class="app-container" [style.display]="loading ? 'none' : 'block'">
   <div class="row nomargin top-container">
     <div class="row">
       <div class="col-md-9 my-auto">
