@@ -22,6 +22,9 @@ export class NavbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    var x = '.'+location.pathname;
+    const y = this.menu.find(m => x.match(m.path));    
+    if (y) this.selected = y.index;
   }
 
 }
