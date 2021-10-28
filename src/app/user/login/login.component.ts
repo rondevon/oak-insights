@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     if(this.formGroup.valid) {
       this.authService.login(this.formGroup.value).subscribe(result => {
         if(result.success) {
+          localStorage.clear();
           // console.log(result.data.site.slug);
           localStorage.setItem('token', result.data.token);
           localStorage.setItem('role', result.data.user.role)

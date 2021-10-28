@@ -9,13 +9,14 @@ import { DeepInsightsComponent } from './deep-insights/deep-insights.component';
 import { BasicInsightsComponent } from './basic-insights/basic-insights.component';
 import { ApplianceComparisonComponent } from './appliance-comparison/appliance-comparison.component';
 import { AlertsComponent } from './alerts/alerts.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'  },
   { path: 'home', component: HomeComponent },
   { path: 'basic-insights', component: BasicInsightsComponent },
   { path: 'deep-insights', component: DeepInsightsComponent },
-  { path: 'multi-site-comparison', component: MultiSiteComparisonComponent },
+  { path: 'multi-site-comparison', canActivate: [AdminGuard], component: MultiSiteComparisonComponent },
   { path: 'phase-distribution', component: PhaseDistributionComponent },
   { path: 'appliance-comparison', component: ApplianceComparisonComponent },
   { path: 'savings-calculator', component: SavingsCalculatorComponent },
