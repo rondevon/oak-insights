@@ -32,6 +32,7 @@ import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LineColumnComponent } from './line-column/line-column.component';
 import { LoaderModule } from '../loader/loader.module';
+import { NotificationChartComponent } from './notification-chart/notification-chart.component';
 
 
 export function highchartsModules() { 
@@ -56,7 +57,8 @@ export function highchartsModules() {
     MinMaxComponent,
     MonthsDataComponent,
     DonutChartComponent,
-    LineColumnComponent
+    LineColumnComponent,
+    NotificationChartComponent
   ],
   imports: [
     CommonModule,

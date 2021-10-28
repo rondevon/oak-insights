@@ -8,6 +8,7 @@ import { MultiSiteComparisonComponent } from './multi-site-comparison/multi-site
 import { DeepInsightsComponent } from './deep-insights/deep-insights.component';
 import { BasicInsightsComponent } from './basic-insights/basic-insights.component';
 import { ApplianceComparisonComponent } from './appliance-comparison/appliance-comparison.component';
+import { AlertsComponent } from './alerts/alerts.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'  },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'appliance-comparison', component: ApplianceComparisonComponent },
   { path: 'savings-calculator', component: SavingsCalculatorComponent },
   { path: 'recommendations', component: RecommendationsComponent },
+  { path: 'alerts', component: AlertsComponent },
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  selected = 0;
+  selected = -1;
   menu = [
     { path: './pages/home', name: 'Home', index: 0 },
     { path: './pages/basic-insights', name: 'Basic Insights', index: 1 },
@@ -19,12 +20,20 @@ export class NavbarComponent implements OnInit {
     { path: './pages/recommendations', name: 'Recommendations', index: 7 },
   ]
   // menu = ['Home', 'Basic Insights', 'Deep Insights', 'Multi-site Comparison', 'Phase Distribution', 'Appliance Comparisons', 'Savings Calculator', 'Recommendations']
-  constructor() { }
+  constructor(private router: Router) {
+    router.events.subscribe((val) => {
+        if (val instanceof NavigationEnd) {
+          this.selected = -1;
+          var x = '.'+val.url;
+          const y = this.menu.find(m => x.match(m.path));    
+          if (y) this.selected = y.index;
+          console.log(val.url)
+        }
+    });
+  }
 
   ngOnInit(): void {
-    var x = '.'+location.pathname;
-    const y = this.menu.find(m => x.match(m.path));    
-    if (y) this.selected = y.index;
+
   }
 
 }
