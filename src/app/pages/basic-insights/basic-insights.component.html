@@ -2,15 +2,15 @@
 
 <div class="app-container" *ngIf="!loadings">
   <div class="row">
-  <owl-carousel-o [options]="customOptions">
+    <owl-carousel-o [options]="customOptions">
     <ng-template
       carouselSlide
       *ngFor="let item of historicalConsumptionData; let i = index"
     >
-      <div
+      <summary
         class="card card-custom"
         (click)="openMonthlyStats(item, i)"
-        [ngClass]="{ 'border-red': selectedTileIndex === i }"
+        [ngClass]="{ 'card-border': selectedTileIndex === i }"
       >
         <div class="row">
           <div class="month">{{ item.month }} {{ item.year }}</div>
@@ -55,7 +55,7 @@
             </span>
           </div>
         </div>
-      </div>
+      </summary>
     </ng-template>
   </owl-carousel-o>
 
@@ -64,12 +64,12 @@
     <div class="card card-custom mt-4" *ngIf="dayAnalysisData && oakScore >= 0">
       <div class="close">
       <button class="close-btn" (click)="closeMonthlyStats()">
-        <img src="/assets/icons/close-window.png" />
+        <img src="/assets/icons/cancel.png" />
       </button>
       </div>
       <div class="row">
         <div class="col-md-3">
-          <div class="card card-custom">
+          <div class="oakscore-card">
             <div class="oakscore">
               <div class="oak-score-badge">
                 <img
@@ -94,9 +94,9 @@
         </div>
       </div>
 
-      <div class="row mt-4">
-        <div class="card-heading">Day by day Analysis</div>
-        <span class="widget-subtitle">Comparison of daily consumption</span>
+      <div class="row mt-5">
+        <div class="card-heading ml-5">Day by day Analysis</div>
+        <span class="widget-subtitle ml-5">Comparison of daily consumption</span>
         <app-line-column [data]="dayAnalysisData"></app-line-column>
       </div>
     </div>

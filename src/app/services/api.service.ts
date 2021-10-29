@@ -178,6 +178,27 @@ export class ApiService {
     } else return of(null);
   }
 
+
+  public getLoadCurveData(
+    duration: String
+  ): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'insights/load_curve?&duration=' +
+          duration +
+          '&site_id=' +
+          localStorage.getItem('site_slug'),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
+
   public getMinMaxData(
     month: Date,
     year: Date,

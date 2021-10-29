@@ -1,10 +1,10 @@
 <div class="row mb-4">
     <div class="col-md-4">
-        <div class="card-heading">Daily Min Max</div>
+        <div class="card-heading">Hourly Min Max</div>
         <span class="widget-subtitle">Provides the range of consumption</span>
     </div>
-    <loader *ngIf="loading"></loader>
-    <div class="col-md-8 text-right" *ngIf="!loading">
+    
+    <div class="col-md-8 text-right">
         <div class="open-closed">
             <button type="button" [ngClass]="[bntStyle1]" (click)="switchChart('1')">
                 Last Month
@@ -21,5 +21,5 @@
         </div>
     </div>
 </div>
-
+<loader *ngIf="loading"></loader>
 <div [chart]="chart" *ngIf="!loading"></div>

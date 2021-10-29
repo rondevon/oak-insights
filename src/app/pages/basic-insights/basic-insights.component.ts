@@ -27,7 +27,7 @@ export class BasicInsightsComponent implements OnInit {
 
   customOptions: OwlOptions = {
     items:3,
-    margin:30,
+    margin:24,
     loop: false,
     mouseDrag: true,
     touchDrag: true,
