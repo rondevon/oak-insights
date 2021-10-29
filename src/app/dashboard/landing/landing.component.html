@@ -21,9 +21,10 @@
 
           <div class="row dashboard-row">
             <div class="col-md-7 my-auto">
-              <span class="text-heading">Your site at a glance</span>
+              <span class="text-heading" *ngIf="role === 'Site Manager'">Your site at a glance</span>
+              <span class="text-heading" *ngIf="role === 'Account Manager'">Performance Across Sites</span>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5" *ngIf="role === 'Site Manager'">
               <div class="go-to-dashboard">
                 <button class="go-to-dashboard-btn" routerLink="./dashboard">
                   GO TO DASHBOARD
@@ -59,6 +60,24 @@
               </div>
             </div>
           </div>
+
+
+
+          <div class="row recommendations" *ngIf="role === 'Account Manager'">
+            <div class="card-heading">Your Sites</div>
+                <span class="widget-subtitle"
+                  >Click any to load Site Dashboard</span
+                >
+            <div class="row">
+              <div class="col-md-6 card card-custom" *ngFor="let site of sites">
+                
+              </div>
+            </div>
+          </div>
+
+
+
+
 
           <div class="row">
             <div class="card card-custom">

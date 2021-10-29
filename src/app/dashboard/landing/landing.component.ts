@@ -13,6 +13,7 @@ export class LandingComponent implements OnInit {
   month = this.pipe.transform(new Date(), 'MMMM') as String;
   year = this.pipe.transform(new Date(), 'YYYY') as String;
   role = localStorage.getItem('role');
+  sites: any= {};
   LandingInsightsData: any = {};
   consumptionData: any;
   oakScore: number = 0;
@@ -27,6 +28,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
       this.getProfile();   
       this.getHomeInsightCards();
+      this.getSites();
       this.getMonthUsageData();
   }
 
@@ -35,16 +37,30 @@ export class LandingComponent implements OnInit {
   // }
 
   getMonthUsageData() {
+    if(localStorage.getItem('role')==='Site Manager'){
     this.apiService.getMonthlyUsageData(this.year).subscribe(data => {
       this.monthUsageData = data.data;
     });
   }
+  if(localStorage.getItem('role')==='Account Manager'){
+    this.apiService.getAccountMonthlyUsageData(this.year).subscribe(data => {
+      this.monthUsageData = data.data;
+    });
+  }
+    
+  }
 
   getProfile(){
     this.apiService.getMyprofileApi().subscribe((data: any)=> {
-      console.log(data.data);
       this.name= data.data.name;
       this.photo= data.data.photo;
+    });
+  }
+
+  getSites(){
+    this.apiService.getSitesData().subscribe((data: any)=> {
+      console.log(data.data);
+      this.sites= data.data;
     });
   }
 

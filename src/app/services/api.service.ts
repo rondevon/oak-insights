@@ -25,6 +25,39 @@ export class ApiService {
       environment.WeatherApi + 'city=' + location + environment.WeatherKey
     );
   }
+  
+
+  public getSitesData(): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'sites',
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
+
+  public getMultiSitesData(month: String, year: String): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'account/sites/comaparison?month=' +
+          month +
+          '&year' + year,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
 
   public getHomepageApi(month: String, year: String): Observable<any> {
     if (localStorage.getItem('token')) {
@@ -53,8 +86,7 @@ export class ApiService {
           'account/home?month=' +
           month +
           '&year=' +
-          year +
-          '&site_id=',
+          year,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -140,6 +172,21 @@ export class ApiService {
           year +
           '&site_id=' +
           localStorage.getItem('site_slug'),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
+  public getAccountMonthlyUsageData(year: String): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'account/consumption/yearly/month?year=' +
+          year,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
