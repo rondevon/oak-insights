@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.co
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  site_slug:any ;
   minDate: Date;
   maxDate: Date;
   pipe = new DatePipe('en-GB');
@@ -33,7 +35,7 @@ export class HomeComponent implements OnInit {
   name: any;
   data: any;
 
-  constructor(private apiService: ApiService, public dialog: MatDialog) {
+  constructor(private apiService: ApiService, public dialog: MatDialog, private route: ActivatedRoute) {
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setMonth(this.minDate.getMonth() - 4);
@@ -41,6 +43,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.site_slug = this.route.snapshot.queryParamMap.get('site_slug');
+    alert(this.site_slug);
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
@@ -67,7 +71,7 @@ export class HomeComponent implements OnInit {
       year: this.pipe.transform(this.selectedDate, 'YYYY')
     };
     this.apiService
-      .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year)
+      .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
         this.loading = false;
         this.consumptionData = data.data.consumption_overview;

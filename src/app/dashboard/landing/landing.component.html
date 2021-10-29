@@ -24,9 +24,9 @@
               <span class="text-heading" *ngIf="role === 'Site Manager'">Your site at a glance</span>
               <span class="text-heading" *ngIf="role === 'Account Manager'">Performance Across Sites</span>
             </div>
-            <div class="col-md-5" *ngIf="role === 'Site Manager'">
+            <div class="col-md-5">
               <div class="go-to-dashboard">
-                <button class="go-to-dashboard-btn" routerLink="./dashboard">
+                <button class="go-to-dashboard-btn" routerLink="./dashboard" [queryParams]="{site_slug: 'site-lcc-oxford-circus-65297'}">
                   GO TO DASHBOARD
                 </button>
               </div>
@@ -69,8 +69,28 @@
                   >Click any to load Site Dashboard</span
                 >
             <div class="row">
-              <div class="col-md-6 card card-custom" *ngFor="let site of sites">
-                
+              <div class="col-md-6" *ngFor="let site of sites; index as i">
+                <div class="card card-custom ">
+                  <div class="sites-container">
+                    <div class="sites-column">
+                      {{site.name}}
+                    </div>
+                    <div class="sites-column site-name-container">
+                      <div class= "site-name"><strong>Site {{i+1}}</strong> <br> {{site.name}}</div>
+                      <div class="site-stat-value">Oak Score : {{site.stats.oak_score}}</div>
+                    </div>
+                    <div class="sites-column">
+                      <div class="site-stat-heading">Operating</div>
+                      <div class="site-stat-value">{{site.stats.operating_energy? site.stats.operating_energy : 0}} KwH</div>
+                      <div class="site-stat-heading">Non Operating</div>
+                      <div class="site-stat-value">{{site.stats.non_operating_energy? site.stats.non_operating_energy : 0}} KwH</div>
+                      <div class="site-stat-heading">Preparatory</div>
+                      <div class="site-stat-value">{{site.stats.preparatory_energy? site.stats.preparatory_energy : 0}} KwH</div>
+                      <div class="site-stat-heading">Closed</div>
+                      <div class="site-stat-value">{{site.stats.closed_energy? site.stats.closed_energy : 0}} KwH</div>
+                    </div>
+                  </div>
+              </div>
               </div>
             </div>
           </div>

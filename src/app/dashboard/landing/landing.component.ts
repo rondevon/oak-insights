@@ -27,8 +27,8 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {
       this.getProfile();   
-      this.getHomeInsightCards();
       this.getSites();
+      this.getHomeInsightCards();
       this.getMonthUsageData();
   }
 
@@ -58,15 +58,15 @@ export class LandingComponent implements OnInit {
   }
 
   getSites(){
-    this.apiService.getSitesData().subscribe((data: any)=> {
-      console.log(data.data);
+    this.apiService.getMultiSitesData(this.month,this.year).subscribe((data: any)=> {
       this.sites= data.data;
+      console.log("multi",this.sites);
     });
   }
 
   getHomeInsightCards(){
     if(localStorage.getItem('role')==='Site Manager'){
-      this.apiService.getHomepageApi(this.month, this.year).subscribe((data: any) => {
+      this.apiService.getHomepageApi(this.month, this.year,'gsvd').subscribe((data: any) => {
       this.LandingInsightsData = data.data;
       console.log("landing",this.LandingInsightsData);
       this.setHomeInsightsCard();

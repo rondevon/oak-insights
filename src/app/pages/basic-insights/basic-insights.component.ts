@@ -71,7 +71,7 @@ export class BasicInsightsComponent implements OnInit {
     
     getMonthlyStats(month: any, year: any) {
       this.oakScore = -1;
-      this.apiService.getHomepageApi(month, year).subscribe((data: any) => {
+      this.apiService.getHomepageApi(month, year,'gyag').subscribe((data: any) => {
         this.oakScore = data.data.oak_score;
       this.cards = [{
         image: '/assets/icons/icon-energy-usage.svg',

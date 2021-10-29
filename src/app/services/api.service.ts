@@ -46,9 +46,9 @@ export class ApiService {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
         serviceBaseUrl +
-          'account/sites/comaparison?month=' +
+          'account/sites/comparison?month=' +
           month +
-          '&year' + year,
+          '&year=' + year,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -59,7 +59,7 @@ export class ApiService {
   }
 
 
-  public getHomepageApi(month: String, year: String): Observable<any> {
+  public getHomepageApi(month: String, year: String, site_slug: String): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
         serviceBaseUrl +
@@ -68,7 +68,7 @@ export class ApiService {
           '&year=' +
           year +
           '&site_id=' +
-          localStorage.getItem('site_slug'),
+          (!site_slug? localStorage.getItem('site_slug'):site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
