@@ -67,7 +67,7 @@ export class LineColumnComponent implements OnInit {
           name: 'Actual Consumption (kwH)',
           type: 'column',
           data: this.data.values,
-          pointWidth:20,
+          //pointWidth:20,
           color: {
             linearGradient: {
               x1: 0,

@@ -2,6 +2,11 @@
   padding-top: 3.5rem;
 }
 
+h2 {
+  font-family: var(--fontRegular);
+  margin: 1rem 0;
+}
+
 .landing-content {
   margin: 0 5.5rem;
 }
@@ -97,16 +102,43 @@
   letter-spacing: 1.5px;
 }
 
-.recommendation-btn:hover {
-  background-position: right center; /* change the direction of the change here */
-  color: #fff;
-  text-decoration: none;
-}
 .card-custom {
   border-radius: 1rem !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+}
+
+.sites-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sites-column {
+  float: left;
+  width: 30%;
+}
+.site-name{
+  font-size: 1.5vw;
+  color: var(--color9);
+}
+.site-stat-heading{
+  font-size:0.7vw;
+  font-weight: 800;
+  color:var(--color10);
+}
+
+.site-stat-value{
+  font-size:0.9vw;
+  font-weight: 800;
+  color:var(--color9);
+  margin-bottom: 0.8rem;
+}
+
+.site-name-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .oakscore {
@@ -119,6 +151,10 @@
 
 .oak-score {
   height: 100%;
+}
+
+.oak-score-label-extra{
+  top: 30% !important;
 }
 
 .oak-score-label {
@@ -141,7 +177,7 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  font-size: 4vw;
+  font-size: 5vw;
   font-weight: 800;
   font-family: var(--fontRegular);
   color: white;
@@ -158,21 +194,17 @@
   color: gray;
   margin-bottom: 2rem;
 }
-.recommendations{
-}
+// .recommendations{
+// }
 .insights-container {
-  
+  display: flex;
+  justify-content: space-between;
 }
 
 .insights-column {
   float: left;
   width: 30%;
-  margin-right: 3%;
   margin-bottom: 3%;
-}
-
-.insights-column:last-child{
-  margin-right:0;
 }
 
 

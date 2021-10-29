@@ -30,6 +30,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { AlertsComponent } from './alerts/alerts.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     RecommendationsComponent,
     AddEventDialogComponent,
     PhaseApplianceComponent,
+    AlertsComponent,
+    MyprofileComponent,
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.co
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  site_slug:any ;
   minDate: Date;
   maxDate: Date;
   pipe = new DatePipe('en-GB');
@@ -33,14 +35,17 @@ export class HomeComponent implements OnInit {
   name: any;
   data: any;
 
-  constructor(private apiService: ApiService, public dialog: MatDialog) {
+  constructor(private apiService: ApiService, public dialog: MatDialog, private route: ActivatedRoute) {
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setMonth(this.minDate.getMonth() - 4);
     this.maxDate.setMonth(this.maxDate.getMonth());
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+
+  this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
@@ -51,7 +56,7 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
+    this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
@@ -67,7 +72,7 @@ export class HomeComponent implements OnInit {
       year: this.pipe.transform(this.selectedDate, 'YYYY')
     };
     this.apiService
-      .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year)
+      .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
         this.loading = false;
         this.consumptionData = data.data.consumption_overview;
@@ -118,37 +123,40 @@ export class HomeComponent implements OnInit {
         ];
         this.getHeatMapDetails(
           this.selectedMonth.month,
-          this.selectedMonth.year
+          this.selectedMonth.year,
+          this.site_slug
         );
         this.getOperatingHoursDetails(
           this.selectedMonth.month,
-          this.selectedMonth.year
+          this.selectedMonth.year,
+          this.site_slug
         );
         this.getHourlyCostDetails(
           this.selectedMonth.month,
-          this.selectedMonth.year
+          this.selectedMonth.year,
+          this.site_slug
         );
       });
   }
 
-  getHeatMapDetails(selectedMonth: String, selectedYear: String) {
+  getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
-      .getHeatMapData(selectedMonth, selectedYear)
+      .getHeatMapData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
         this.heatMapData = data.data;
       });
   }
 
-  getOperatingHoursDetails(selectedMonth: String, selectedYear: String) {
+  getOperatingHoursDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
-      .getOperatingHoursData(selectedMonth, selectedYear)
+      .getOperatingHoursData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
         this.operatingHoursData = data.data;
       });
   }
-  getHourlyCostDetails(selectedMonth: String, selectedYear: String) {
+  getHourlyCostDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
-      .getHourlyCostData(selectedMonth, selectedYear)
+      .getHourlyCostData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
         this.hourlyCostData = data.data;
       });
@@ -157,9 +165,22 @@ export class HomeComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddEventDialogComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed', result);
-      if (result) this.data.push(result);
+    dialogRef.afterClosed().subscribe((eventData) => {
+      console.log('The dialog was closed', eventData);
+      this.apiService.postevent(eventData).subscribe((result) => {
+        console.log(result);
+        
+        if (result.success === 1) {
+          this.apiService.getEvents(this.selectedMonth,this.site_slug).subscribe((data: any) => {
+            if (data.data && data.data.length > 0) {
+              console.log(data.data)
+              this.data = data.data;
+            }
+          });
+        }
+        // this.data.push(eventData);
+        
+      })
     });
   }
 }

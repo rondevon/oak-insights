@@ -10,7 +10,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddEventDialogComponent implements OnInit {
   form: FormGroup = new FormGroup({
     date: new FormControl('', [Validators.required]),
-    name: new FormControl('', [Validators.required])
+    name: new FormControl('', [Validators.required]),
+    type: new FormControl('User')
   });
 
   ngOnInit(): void {}
@@ -18,7 +19,7 @@ export class AddEventDialogComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<AddEventDialogComponent>) {}
 
   onSubmitClick(): void {
-    console.log(this.form.value);
+    // console.log(this.form.value);
     if (this.form.valid)
     this.dialogRef.close(this.form.value);
     else this.form.markAllAsTouched()

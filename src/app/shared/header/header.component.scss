@@ -12,10 +12,15 @@ ngs-avater {
 }
 
 .header-img {
-    height: 48px;
+    height: 2vw;
 }
 
 .icon-list {
     display: flex;
     flex-direction: row;
+}
+
+.pointer{
+    cursor: pointer;
+    padding-right: 7vw;
 }

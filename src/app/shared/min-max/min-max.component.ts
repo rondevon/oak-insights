@@ -28,11 +28,11 @@ export class MinMaxComponent implements OnInit {
 
   ngOnChanges() {
     this.loading = true;
-    this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);
+    this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration,this.data);
   }
 
-  getMinMaxData(selectedMonth: any, selectedYear: any, duration: String){
-    this.apiService.getMinMaxData(selectedMonth,selectedYear,duration).subscribe((data : any) => {
+  getMinMaxData(selectedMonth: any, selectedYear: any, duration: String, site_slug: String){
+    this.apiService.getMinMaxData(selectedMonth,selectedYear,duration,site_slug).subscribe((data : any) => {
       this.minMaxData = data.values;
       this.setMinMaxData();
       this.loading = false;
@@ -103,7 +103,7 @@ export class MinMaxComponent implements OnInit {
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'closed-days-button'
       this.duration = '30'
-      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);    
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration,this.data);    
     } 
     if(switchType === '3'){
       this.bntStyle1 = 'closed-days-button' 
@@ -111,7 +111,7 @@ export class MinMaxComponent implements OnInit {
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'closed-days-button'  
       this.duration = '90'
-      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);  
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration,this.data);  
     }
     if(switchType === '6'){
       this.bntStyle1 = 'closed-days-button' 
@@ -119,7 +119,7 @@ export class MinMaxComponent implements OnInit {
       this.bntStyle3 = 'open-days-button' 
       this.bntStyle4 = 'closed-days-button'
       this.duration = '180'
-      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration,this.data);
     }
     if(switchType === '12'){
       this.bntStyle1 = 'closed-days-button' 
@@ -127,7 +127,7 @@ export class MinMaxComponent implements OnInit {
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'open-days-button'
       this.duration = '360'
-      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration);
+      this.getMinMaxData(this.selectedMonth,this.selectedYear,this.duration,this.data);
     }
   }
 

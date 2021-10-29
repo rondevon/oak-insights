@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AlertsComponent } from '../pages/alerts/alerts.component';
+import { MyprofileComponent } from '../pages/myprofile/myprofile.component';
+
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: 'oak', component: LandingComponent },
+  { path: 'alerts', component: AlertsComponent },
+  { path: 'myprofile', component: MyprofileComponent },
   {
-    path: 'dashboard',
+    path: 'oak/dashboard/:site_slug',
     component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'pages', pathMatch: 'full' },

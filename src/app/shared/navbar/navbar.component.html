@@ -1,3 +1,6 @@
-<div [routerLink]="item.path" *ngFor="let item of menu; let i = index" [class.selected]="i === selected" (click)="selected = item.index">
-    <a>{{item.name}}</a>
-</div>
+<ng-container *ngFor="let item of menu; let i = index">
+    <div [routerLink]="item.path" [class.selected]="i === selected" (click)="selected = item.index"
+    *ngIf="isAdmin || (!item.onlyadmin && !isAdmin)">
+        <a>{{item.name}}</a>
+    </div>
+</ng-container>

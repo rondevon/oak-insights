@@ -1,8 +1,8 @@
 <div>
   <app-header></app-header>
 </div>
-<loader *ngIf="loading"></loader>
-<div class="dash" *ngIf="!loading">
+<!-- <loader *ngIf="loading"></loader> -->
+<div class="dash">
   <div class="landing-container">
     <div class="landing-content">
       <div class="row">
@@ -21,11 +21,12 @@
 
           <div class="row dashboard-row">
             <div class="col-md-7 my-auto">
-              <span class="text-heading">Your site at a glance</span>
+              <span class="text-heading" *ngIf="role === 'Site Manager'">Your site at a glance</span>
+              <span class="text-heading" *ngIf="role === 'Account Manager'">Performance Across Sites</span>
             </div>
             <div class="col-md-5">
-              <div class="go-to-dashboard">
-                <button class="go-to-dashboard-btn" routerLink="./dashboard">
+              <div class="go-to-dashboard" *ngIf="role==='Site Manager'">
+                <button class="go-to-dashboard-btn" [routerLink]="['./dashboard','site-lcc-oxford-circus-65297']">
                   GO TO DASHBOARD
                 </button>
               </div>
@@ -40,7 +41,7 @@
             </div>
           </div>
 
-          <div class="row recommendations">
+          <div class="row recommendations" *ngIf="role === 'Site Manager'">
             <div class="card card-custom">
               <div class="row">
                 <div class="col-md-2 recommendation-number my-auto">
@@ -53,12 +54,51 @@
                 </div>
                 <div class="col-md-3 text-center my-auto">
                   <div class="go-to-dashboard">
-                  <button class="recommendation-btn">View All</button>
+                  <button class="recommendation-btn"routerLink="./dashboard/pages/recommendations">View All</button>
                 </div>
                 </div>
               </div>
             </div>
           </div>
+
+
+
+          <div class="row recommendations" *ngIf="role === 'Account Manager'">
+            <div class="card-heading">Your Sites</div>
+                <span class="widget-subtitle"
+                  >Click any to load Site Dashboard</span
+                >
+            <div class="row">
+              <div class="col-md-6" *ngFor="let site of sites; index as i">
+                <a [routerLink]="['./dashboard',site.slug]"><div class="card card-custom ">
+                  <div class="sites-container">
+                    <div class="sites-column my-auto">
+                      <img src="/assets/icons/icon-site.svg">
+                    </div>
+                    <div class="sites-column site-name-container">
+                      <div class= "site-name"><strong>Site {{i+1}}</strong> <br> {{site.name}}</div>
+                      <div class="site-stat-value">Oak Score : {{site.stats.oak_score}}</div>
+                    </div>
+                    <div class="sites-column">
+                      <div class="site-stat-heading">Operating</div>
+                      <div class="site-stat-value">{{site.stats.operating_energy? site.stats.operating_energy : 0}} KwH</div>
+                      <div class="site-stat-heading">Non Operating</div>
+                      <div class="site-stat-value">{{site.stats.non_operating_energy? site.stats.non_operating_energy : 0}} KwH</div>
+                      <div class="site-stat-heading">Preparatory</div>
+                      <div class="site-stat-value">{{site.stats.preparatory_energy? site.stats.preparatory_energy : 0}} KwH</div>
+                      <div class="site-stat-heading">Closed</div>
+                      <div class="site-stat-value">{{site.stats.closed_energy? site.stats.closed_energy : 0}} KwH</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              </div>
+            </div>
+          </div>
+
+
+
+
 
           <div class="row">
             <div class="card card-custom">
@@ -83,6 +123,7 @@
                 />
               </div>
               <div class="oak-score">
+                <div class="oak-score-label oak-score-label-extra" *ngIf="role==='Account Manager'">Overall</div>
                 <div class="oak-score-label">OAK Score</div>
                 <div class="oak-score-text">
                   {{ oakScore }}

@@ -1,16 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
-
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-load-curve',
   templateUrl: './load-curve.component.html',
   styleUrls: ['./load-curve.component.scss']
 })
 export class LoadCurveComponent implements OnInit {
-
-  constructor() { }
+  loading: boolean = true;
+  constructor(private apiService: ApiService) { }
   @Input('data') data: any= {};
   chart: any = {};
+  loadCurveData: any={};
+  duration: any = 30;
   bntStyle1: String = 'open-days-button';
   bntStyle2: String = 'closed-days-button';
   bntStyle3: String = 'closed-days-button';
@@ -20,8 +22,18 @@ export class LoadCurveComponent implements OnInit {
 
 
   ngOnChanges() {
-    this.setLoadCurveData();
+    this.loading = true;
+    this.getLoadCurveDetails(this.duration,this.data);
   }
+
+  getLoadCurveDetails(duration: any, site_slug: any){
+    this.apiService.getLoadCurveData(duration,site_slug).subscribe((data : any) => {
+      this.loadCurveData = data.data;
+      this.setLoadCurveData();
+      this.loading = false;
+    });
+  }
+
   setLoadCurveData() {
     this.chart = new Chart({
       chart:{
@@ -51,7 +63,7 @@ export class LoadCurveComponent implements OnInit {
   
     series: [{
         name: "Cost (£)",
-        data: [[0,100],[10,100],[20,100],[30,100],[30,90],[40,90],[50,90],[50,40],[60,40],[70,40],[70,10],[80,10],[90,10],[90,0],[100,0]],
+        data: this.loadCurveData.values,
         type: 'area',
         color:'#364096',
         fillColor: {
@@ -75,25 +87,33 @@ export class LoadCurveComponent implements OnInit {
       this.bntStyle1 = 'open-days-button'
       this.bntStyle2 = 'closed-days-button' 
       this.bntStyle3 = 'closed-days-button' 
-      this.bntStyle4 = 'closed-days-button'    
+      this.bntStyle4 = 'closed-days-button'
+      this.duration = '30'
+      this.getLoadCurveDetails(this.duration,this.data);    
     } 
     if(switchType === '3'){
       this.bntStyle1 = 'closed-days-button' 
       this.bntStyle2 = 'open-days-button'
       this.bntStyle3 = 'closed-days-button' 
-      this.bntStyle4 = 'closed-days-button'    
+      this.bntStyle4 = 'closed-days-button'
+      this.duration = '60'
+      this.getLoadCurveDetails(this.duration,this.data);    
     }
     if(switchType === '6'){
       this.bntStyle1 = 'closed-days-button' 
       this.bntStyle2 = 'closed-days-button'
       this.bntStyle3 = 'open-days-button' 
       this.bntStyle4 = 'closed-days-button'
+      this.duration = '90'
+      this.getLoadCurveDetails(this.duration,this.data);
     }
     if(switchType === '12'){
       this.bntStyle1 = 'closed-days-button' 
       this.bntStyle2 = 'closed-days-button'
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'open-days-button'
+      this.duration = '120'
+      this.getLoadCurveDetails(this.duration,this.data);
     }
   }
 }

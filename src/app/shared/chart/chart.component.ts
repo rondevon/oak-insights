@@ -50,7 +50,7 @@ export class ChartComponent implements OnInit {
           },
           lineWidth: 2,
           marker: {
-            enabled: true,
+            enabled: false,
           },
           shadow: false,
           states: {

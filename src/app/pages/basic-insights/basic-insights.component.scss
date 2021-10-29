@@ -15,22 +15,41 @@
     color: gray;
     margin-bottom: 2rem;
   }
+
+  .oakscore-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+  }
+  .ml-5{
+    margin-left: 3rem;
+  }
   
   .close-btn {
-    height: 30px;
-    width: 30px;
+    height: 2.5vw;
+    width: 2.5vw;
     z-index: 1;
     border:none;
     padding:0;
     float: right;
+    background-color:white;
+    border: 0.2px solid gray;
+    border-radius: 1rem;
+    margin-bottom: 0.5vw;
+    
   }
 
   .close-btn img{
     height: 100%;
     width: 100%;
+    padding: 5px;
   }
 
-  .border-red{
+  .card-border{
     border: 2px solid var(--color3);
   }
 
@@ -85,7 +104,7 @@
 
   .month{
       font-weight: 800;
-      font-size: 1.5vw;
+      font-size: 1.2vw;
   }
   .target{
     margin-left: 13%;
@@ -97,6 +116,5 @@
   }
 
   .img-res {
-    max-width: 80%;
     height: auto;
   }

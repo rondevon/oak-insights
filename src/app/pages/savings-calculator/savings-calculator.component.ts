@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-savings-calculator',
   templateUrl: './savings-calculator.component.html',
@@ -9,8 +10,8 @@ import { ApiService } from 'src/app/services/api.service';
 export class SavingsCalculatorComponent implements OnInit {
 
   constructor(private apiService: ApiService,
-    private cdRef: ChangeDetectorRef) { }
-  
+    private cdRef: ChangeDetectorRef,  private route: ActivatedRoute) { }
+    site_slug:any ;
   donutLegends: any[] =[];
   cost: any ={};
   consumption: any= {};
@@ -22,14 +23,14 @@ export class SavingsCalculatorComponent implements OnInit {
   savingsProjectedData: any = {};
   loading: boolean = true;
   ngOnInit(): void {
-    
+    this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
     this.donutLegends = [
       { text:'Preparatory Hours', color:'var(--color3)'},
       { text: 'Operating Hours', color:'var(--color8)'},
       { text:'Non Operating Hours', color:'var(--color2)'},
       { text:'Closed Hours', color:'var(--color5)'},
     ];
-    this.getSavingsResponseData(this.selectedMonth, this.selectedYear)
+    this.getSavingsResponseData(this.selectedMonth, this.selectedYear, this.site_slug)
   }
   
   onUpdatePrep(event: any){
@@ -41,9 +42,9 @@ export class SavingsCalculatorComponent implements OnInit {
     }
   }
 
-  getSavingsResponseData(selectedMonth: any, selectedYear: any){
+  getSavingsResponseData(selectedMonth: any, selectedYear: any, site_slug: String){
     this.loading = true;
-    this.apiService.getSavingsData(selectedMonth,selectedYear).subscribe((data : any) => {
+    this.apiService.getSavingsData(selectedMonth,selectedYear,site_slug).subscribe((data : any) => {
       this.savingsResponseData = data.data;
       this.savingsProjectedData = this.savingsResponseData;
       this.loading = false;

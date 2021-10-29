@@ -32,11 +32,21 @@ import { FormsModule } from '@angular/forms';
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LineColumnComponent } from './line-column/line-column.component';
 import { LoaderModule } from '../loader/loader.module';
+import { NotificationChartComponent } from './notification-chart/notification-chart.component';
 
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-export function highchartsModules() { 
+export function highchartsModules() {
   // apply Highcharts Modules to this array
-  return [ more, exporting, highmaps, solidgauge, accessibility, exportdata, stock];
+  return [
+    more,
+    exporting,
+    highmaps,
+    solidgauge,
+    accessibility,
+    exportdata,
+    stock,
+  ];
 }
 
 @NgModule({
@@ -56,18 +66,19 @@ export function highchartsModules() {
     MinMaxComponent,
     MonthsDataComponent,
     DonutChartComponent,
-    LineColumnComponent
+    LineColumnComponent,
+    NotificationChartComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule, 
+    RouterModule,
     NgsAvaterModule,
     ChartModule,
     FormsModule,
     BsDatepickerModule,
     DatepickerModule,
-    LoaderModule
-
+    LoaderModule,
+    BsDropdownModule.forRoot(),
   ],
   exports: [
     HeaderComponent,
@@ -85,10 +96,8 @@ export function highchartsModules() {
     MinMaxComponent,
     MonthsDataComponent,
     DonutChartComponent,
-    LineColumnComponent
+    LineColumnComponent,
   ],
-  providers: [
-    { provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }
-  ]
+  providers: [{ provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }],
 })
-export class SharedModule { }
+export class SharedModule {}
