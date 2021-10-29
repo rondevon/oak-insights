@@ -10,6 +10,7 @@ import { BasicInsightsComponent } from './basic-insights/basic-insights.componen
 import { ApplianceComparisonComponent } from './appliance-comparison/appliance-comparison.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { AdminGuard } from '../guards/admin.guard';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'  },
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'savings-calculator', component: SavingsCalculatorComponent },
   { path: 'recommendations', component: RecommendationsComponent },
   { path: 'alerts', component: AlertsComponent },
+  { path: 'myprofile', component: MyprofileComponent },
+
 ];
 
 @NgModule({

@@ -21,7 +21,8 @@ import { LoaderModule } from '../loader/loader.module';
     SharedModule,
     CustomPipesModule,
     NgsAvaterModule,
-    LoaderModule
+    LoaderModule,
+
   ]
 })
 export class DashboardModule { }

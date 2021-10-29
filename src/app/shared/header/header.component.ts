@@ -22,10 +22,12 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
+    console.log("hugfytft");
+    
     this.authService.logout().subscribe((result) => {
       if (result.success) {
         localStorage.clear();
-        this.router.navigate(['/user/login']);
+        this.router.navigate(['/login']);
       }
     });
   }
