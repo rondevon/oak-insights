@@ -42,9 +42,10 @@ export class HomeComponent implements OnInit {
     this.maxDate.setMonth(this.maxDate.getMonth());
   }
 
-  ngOnInit(): void {
-    this.site_slug = this.route.snapshot.queryParamMap.get('site_slug');
-    alert(this.site_slug);
+  ngOnInit(): void { 
+
+  this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
@@ -55,7 +56,7 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
+    this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
@@ -122,37 +123,40 @@ export class HomeComponent implements OnInit {
         ];
         this.getHeatMapDetails(
           this.selectedMonth.month,
-          this.selectedMonth.year
+          this.selectedMonth.year,
+          this.site_slug
         );
         this.getOperatingHoursDetails(
           this.selectedMonth.month,
-          this.selectedMonth.year
+          this.selectedMonth.year,
+          this.site_slug
         );
         this.getHourlyCostDetails(
           this.selectedMonth.month,
-          this.selectedMonth.year
+          this.selectedMonth.year,
+          this.site_slug
         );
       });
   }
 
-  getHeatMapDetails(selectedMonth: String, selectedYear: String) {
+  getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
-      .getHeatMapData(selectedMonth, selectedYear)
+      .getHeatMapData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
         this.heatMapData = data.data;
       });
   }
 
-  getOperatingHoursDetails(selectedMonth: String, selectedYear: String) {
+  getOperatingHoursDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
-      .getOperatingHoursData(selectedMonth, selectedYear)
+      .getOperatingHoursData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
         this.operatingHoursData = data.data;
       });
   }
-  getHourlyCostDetails(selectedMonth: String, selectedYear: String) {
+  getHourlyCostDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
-      .getHourlyCostData(selectedMonth, selectedYear)
+      .getHourlyCostData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
         this.hourlyCostData = data.data;
       });
@@ -167,7 +171,7 @@ export class HomeComponent implements OnInit {
         console.log(result);
         
         if (result.success === 1) {
-          this.apiService.getEvents(this.selectedMonth).subscribe((data: any) => {
+          this.apiService.getEvents(this.selectedMonth,this.site_slug).subscribe((data: any) => {
             if (data.data && data.data.length > 0) {
               console.log(data.data)
               this.data = data.data;

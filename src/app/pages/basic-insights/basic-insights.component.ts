@@ -2,13 +2,14 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-basic-insights',
   templateUrl: './basic-insights.component.html',
   styleUrls: ['./basic-insights.component.scss'],
 })
 export class BasicInsightsComponent implements OnInit {
+  site_slug: any;
   pipe = new DatePipe('en-GB');
   historicalConsumptionData: any = [];
   currentDate: any = {
@@ -52,14 +53,17 @@ export class BasicInsightsComponent implements OnInit {
     nav: false,
   };
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
     this.loadings = true;
+    
     this.apiService
       .getHistoricalMonthlyConsumption(
         this.currentDate.month,
-        this.currentDate.year
+        this.currentDate.year,
+        this.site_slug
       )
       .subscribe((data: any) => {
         this.historicalConsumptionData = data.data;
@@ -69,9 +73,9 @@ export class BasicInsightsComponent implements OnInit {
       this.getMonthUsageData();
     }
     
-    getMonthlyStats(month: any, year: any) {
+    getMonthlyStats(month: any, year: any, site_slug: String) {
       this.oakScore = -1;
-      this.apiService.getHomepageApi(month, year,'gyag').subscribe((data: any) => {
+      this.apiService.getHomepageApi(month, year, site_slug).subscribe((data: any) => {
         this.oakScore = data.data.oak_score;
       this.cards = [{
         image: '/assets/icons/icon-energy-usage.svg',
@@ -118,9 +122,9 @@ export class BasicInsightsComponent implements OnInit {
     });
   }
 
-  getDayAnalysisData(month: any, year: any) {
+  getDayAnalysisData(month: any, year: any,site_slug: String) {
     this.dayAnalysisData = undefined;
-    this.apiService.getDayAnalysisData(month, year).subscribe((data: any) => {
+    this.apiService.getDayAnalysisData(month, year,site_slug).subscribe((data: any) => {
       this.dayAnalysisData = data.data;
     });
   }
@@ -128,8 +132,8 @@ export class BasicInsightsComponent implements OnInit {
   openMonthlyStats(item: any, index: number) {
     this.showMonthlyStats = true;
     this.selectedTileIndex = index;
-    this.getMonthlyStats(item.month, item.year);
-    this.getDayAnalysisData(item.month, item.year);
+    this.getMonthlyStats(item.month, item.year, this.site_slug);
+    this.getDayAnalysisData(item.month, item.year, this.site_slug);
   }
 
   closeMonthlyStats() {
@@ -169,7 +173,7 @@ calculateTarget(target: number, actual: number)
 }
 
   getMonthUsageData() {
-    this.apiService.getMonthlyUsageData(this.currentDate.year).subscribe(data => {
+    this.apiService.getMonthlyUsageData(this.currentDate.year, this.site_slug).subscribe(data => {
       this.monthUsageData = data.data;
     });
   }

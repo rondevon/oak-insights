@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -8,6 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
+  site_slug: any;
   cards: any[] = [];
   pipe = new DatePipe('en-GB');
   month = this.pipe.transform(new Date(), 'MMMM') as String;
@@ -23,9 +25,10 @@ export class LandingComponent implements OnInit {
   monthUsageData: any;
   loading: boolean = true;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+      this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
       this.getProfile();   
       this.getSites();
       this.getHomeInsightCards();
@@ -38,7 +41,7 @@ export class LandingComponent implements OnInit {
 
   getMonthUsageData() {
     if(localStorage.getItem('role')==='Site Manager'){
-    this.apiService.getMonthlyUsageData(this.year).subscribe(data => {
+    this.apiService.getMonthlyUsageData(this.year, this.site_slug).subscribe(data => {
       this.monthUsageData = data.data;
     });
   }
@@ -66,7 +69,7 @@ export class LandingComponent implements OnInit {
 
   getHomeInsightCards(){
     if(localStorage.getItem('role')==='Site Manager'){
-      this.apiService.getHomepageApi(this.month, this.year,'gsvd').subscribe((data: any) => {
+      this.apiService.getHomepageApi(this.month, this.year, this.site_slug).subscribe((data: any) => {
       this.LandingInsightsData = data.data;
       console.log("landing",this.LandingInsightsData);
       this.setHomeInsightsCard();

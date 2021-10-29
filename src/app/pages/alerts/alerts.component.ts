@@ -18,16 +18,16 @@ export class AlertsComponent implements OnInit {
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.getHourlyCostDetails(
-      this.selectedMonth.month,
-      this.selectedMonth.year
-    );
+    // this.getHourlyCostDetails(
+    //   this.selectedMonth.month,
+    //   this.selectedMonth.year,
+    // );
   }
-  getHourlyCostDetails(selectedMonth: String, selectedYear: String) {
-    this.apiService
-      .getHourlyCostData(selectedMonth, selectedYear)
-      .subscribe((data) => {
-        this.hourlyCostData = data.data;
-      });
-  }
+  // getHourlyCostDetails(selectedMonth: String, selectedYear: String,) {
+  //   this.apiService
+  //     .getHourlyCostData(selectedMonth, selectedYear,)
+  //     .subscribe((data) => {
+  //       this.hourlyCostData = data.data;
+  //     });
+  // }
 }

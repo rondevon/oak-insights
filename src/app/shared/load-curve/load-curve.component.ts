@@ -23,11 +23,11 @@ export class LoadCurveComponent implements OnInit {
 
   ngOnChanges() {
     this.loading = true;
-    this.getLoadCurveDetails(this.duration);
+    this.getLoadCurveDetails(this.duration,this.data);
   }
 
-  getLoadCurveDetails(duration: any){
-    this.apiService.getLoadCurveData(duration).subscribe((data : any) => {
+  getLoadCurveDetails(duration: any, site_slug: any){
+    this.apiService.getLoadCurveData(duration,site_slug).subscribe((data : any) => {
       this.loadCurveData = data.data;
       this.setLoadCurveData();
       this.loading = false;
@@ -89,7 +89,7 @@ export class LoadCurveComponent implements OnInit {
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'closed-days-button'
       this.duration = '30'
-      this.getLoadCurveDetails(this.duration);    
+      this.getLoadCurveDetails(this.duration,this.data);    
     } 
     if(switchType === '3'){
       this.bntStyle1 = 'closed-days-button' 
@@ -97,7 +97,7 @@ export class LoadCurveComponent implements OnInit {
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'closed-days-button'
       this.duration = '60'
-      this.getLoadCurveDetails(this.duration);    
+      this.getLoadCurveDetails(this.duration,this.data);    
     }
     if(switchType === '6'){
       this.bntStyle1 = 'closed-days-button' 
@@ -105,7 +105,7 @@ export class LoadCurveComponent implements OnInit {
       this.bntStyle3 = 'open-days-button' 
       this.bntStyle4 = 'closed-days-button'
       this.duration = '90'
-      this.getLoadCurveDetails(this.duration);
+      this.getLoadCurveDetails(this.duration,this.data);
     }
     if(switchType === '12'){
       this.bntStyle1 = 'closed-days-button' 
@@ -113,7 +113,7 @@ export class LoadCurveComponent implements OnInit {
       this.bntStyle3 = 'closed-days-button' 
       this.bntStyle4 = 'open-days-button'
       this.duration = '120'
-      this.getLoadCurveDetails(this.duration);
+      this.getLoadCurveDetails(this.duration,this.data);
     }
   }
 }

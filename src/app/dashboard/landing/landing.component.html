@@ -25,8 +25,8 @@
               <span class="text-heading" *ngIf="role === 'Account Manager'">Performance Across Sites</span>
             </div>
             <div class="col-md-5">
-              <div class="go-to-dashboard">
-                <button class="go-to-dashboard-btn" routerLink="./dashboard" [queryParams]="{site_slug: 'site-lcc-oxford-circus-65297'}">
+              <div class="go-to-dashboard" *ngIf="role==='Site Manager'">
+                <button class="go-to-dashboard-btn" [routerLink]="['./dashboard','site-lcc-oxford-circus-65297']">
                   GO TO DASHBOARD
                 </button>
               </div>
@@ -70,10 +70,10 @@
                 >
             <div class="row">
               <div class="col-md-6" *ngFor="let site of sites; index as i">
-                <div class="card card-custom ">
+                <a [routerLink]="['./dashboard',site.slug]"><div class="card card-custom ">
                   <div class="sites-container">
-                    <div class="sites-column">
-                      {{site.name}}
+                    <div class="sites-column my-auto">
+                      <img src="/assets/icons/icon-site.svg">
                     </div>
                     <div class="sites-column site-name-container">
                       <div class= "site-name"><strong>Site {{i+1}}</strong> <br> {{site.name}}</div>
@@ -90,7 +90,8 @@
                       <div class="site-stat-value">{{site.stats.closed_energy? site.stats.closed_energy : 0}} KwH</div>
                     </div>
                   </div>
-              </div>
+                </div>
+              </a>
               </div>
             </div>
           </div>

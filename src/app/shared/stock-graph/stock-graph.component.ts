@@ -11,6 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class StockGraphComponent implements OnInit {
   @Input('data') data: any;
+  site_slug: any;
   minDate: Date;
   maxDate: Date;
   pipe = new DatePipe('en-GB');
@@ -37,25 +38,26 @@ export class StockGraphComponent implements OnInit {
     this.maxDate.setMonth(this.maxDate.getMonth());
    }
 
-  getStockChartDetails(selectedMonth: any, selectedYear: any, selectedType: String, selectedGraph: String){
-    this.apiService.getStockChartData(selectedMonth,selectedYear,selectedType,selectedGraph).subscribe((data : any) => {
+  getStockChartDetails(selectedMonth: any, selectedYear: any, selectedType: String, selectedGraph: String, site_slug: String){
+    this.apiService.getStockChartData(selectedMonth,selectedYear,selectedType,selectedGraph,site_slug).subscribe((data : any) => {
       this.stockChartData = data.data;
       this.setStockGraphData();
     });
   }
   updateType(){
     this.chart = undefined;
-    this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph);
+    this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph, this.site_slug);
   }
 
   updateMonth() {
     this.chart = undefined;
     this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.pipe.transform(this.selectedDate, 'YYYY')};
-    this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph);
+    this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph, this.site_slug);
     
   }
   ngOnInit(): void {
-    this.selectedGraph = this.data;
+    this.selectedGraph = this.data.graphType;
+    this.site_slug = this.data.site_slug;
   }
 
   ngOnChages(){

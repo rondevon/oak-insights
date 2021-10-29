@@ -1,5 +1,6 @@
 import { StockChart } from 'angular-highcharts';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,16 +11,17 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DeepInsightsComponent implements OnInit {
 
-  constructor() { }
-  
+  constructor(private route: ActivatedRoute) { }
+  site_slug: any={};
   consumption: any = {};
   loadCurveData: any = {};
   minMaxData: any ={};
   
   ngOnInit(): void {
-    this.consumption = 'consumption';
-    this.loadCurveData = 0;
-    this.minMaxData = 0;
+    this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+    this.consumption = {graphType:'consumption',site_slug:this.site_slug};
+    this.loadCurveData = this.site_slug;
+    this.minMaxData = this.site_slug;
   }
 
 }

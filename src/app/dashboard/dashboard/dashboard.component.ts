@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   site_slug:any ;
   ngOnInit(): void {
     this.site_slug = this.route.snapshot.queryParamMap.get('site_slug');
-    alert(this.site_slug);
+    //alert(this.site_slug);
   }
 
 }

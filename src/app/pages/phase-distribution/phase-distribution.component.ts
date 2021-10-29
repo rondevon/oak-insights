@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-phase-distribution',
   templateUrl: './phase-distribution.component.html',
@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhaseDistributionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
   
   phase: any ={};
   
-
+  site_slug: any={};
   ngOnInit(): void {
-    this.phase = 'phase'
+    this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+    this.phase = {graphType:'phase',site_slug:this.site_slug};
   }
 
 }

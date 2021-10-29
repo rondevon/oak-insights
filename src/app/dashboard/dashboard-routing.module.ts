@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'alerts', component: AlertsComponent },
   { path: 'myprofile', component: MyprofileComponent },
   {
-    path: 'oak/dashboard',
+    path: 'oak/dashboard/:site_slug',
     component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'pages', pathMatch: 'full' },
