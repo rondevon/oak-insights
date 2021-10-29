@@ -121,6 +121,10 @@
   height: 100%;
 }
 
+.oak-score-label-extra{
+  top: 30% !important;
+}
+
 .oak-score-label {
   margin: 0;
   position: absolute;
@@ -141,7 +145,7 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  font-size: 4vw;
+  font-size: 5vw;
   font-weight: 800;
   font-family: var(--fontRegular);
   color: white;
@@ -161,18 +165,14 @@
 .recommendations{
 }
 .insights-container {
-  
+  display: flex;
+  justify-content: space-between;
 }
 
 .insights-column {
   float: left;
   width: 30%;
-  margin-right: 3%;
   margin-bottom: 3%;
-}
-
-.insights-column:last-child{
-  margin-right:0;
 }
 
 

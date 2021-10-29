@@ -45,6 +45,26 @@ export class ApiService {
     } else return of(null);
   }
 
+
+  public getAccountLandingInsightsData(month: String, year: String): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'account/home?month=' +
+          month +
+          '&year=' +
+          year +
+          '&site_id=',
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
+
   public getMyprofileApi(): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(serviceBaseUrl + 'auth/me', {

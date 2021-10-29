@@ -40,7 +40,7 @@
             </div>
           </div>
 
-          <div class="row recommendations">
+          <div class="row recommendations" *ngIf="role === 'Site Manager'">
             <div class="card card-custom">
               <div class="row">
                 <div class="col-md-2 recommendation-number my-auto">
@@ -83,6 +83,7 @@
                 />
               </div>
               <div class="oak-score">
+                <div class="oak-score-label oak-score-label-extra" *ngIf="role==='Account Manager'">Overall</div>
                 <div class="oak-score-label">OAK Score</div>
                 <div class="oak-score-text">
                   {{ oakScore }}
