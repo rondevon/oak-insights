@@ -1,93 +1,72 @@
 <div class="row">
-    <div class="col-md-3">
-        <div>
-            <h1>Sites</h1>
-            <div>Dropdown</div>
-        </div>
+  <div class="col-md-3">
+    <div>
+      <h1>Sites</h1>
+      <div>Dropdown</div>
     </div>
-    <div class="col-md-9">
-        <div class="flex-container">
-            <div class="box" *ngFor="let item of siteComparisonData; let i = index">
-                <div>Site Image</div>
-                <div>Site Index: {{ i +1 }}</div>
-                <div> {{item.name}} </div>
-            </div>
-        </div>
+  </div>
+  <div class="col-md-9">
+    <div class="flex-container">
+      <div
+        class="box text-center"
+        *ngFor="let item of siteComparisonData; let i = index"
+      >
+        <img class="site-img" src="/assets/icons/icon-site.svg" />
+        <h4>
+          <strong>Site {{ i + 1 }}</strong>
+        </h4>
+        <h4 class="mb-4">{{ item.name }}</h4>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- Put card on below div -->
-<div>
-    <h2>Basic Insights</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="flex-container">
-                <div class="box">
-                    <div>Energy Supplier</div>
-                    <div>Energy Usage (kWh)</div>
-                    <div>CO2 Emission (kg)</div>
-                    <div>Enery Cost (&euro;)</div>
-                    <div>Peak Usage (kWh)</div>
-                </div>
-            </div>
+<div class="row card card-custom">
+  <h2>Basic Insights</h2>
+  <table>
+    <tr *ngFor="let label of basicInsightLabels">
+      <th class="heading">{{ label.name }}</th>
+      <td *ngFor="let item of siteComparisonData">
+        <div class="value" *ngIf="label.tertiaryKey">
+          {{ item[label.key][label.secondaryKey][label.tertiaryKey] }}
         </div>
-        <div class="col-md-9">
-            <div class="flex-container">
-                <div class="box" *ngFor="let item of siteComparisonData">
-                    <div>{{ item.electric_provider.name }}</div>
-                    <div>{{ item.stats.energy }}</div>
-                    <div>{{ item.stats.co2_emission }}</div>
-                    <div>{{ item.stats.cost }}</div>
-                    <div>{{ item.stats.peak.energy }}</div>
-                    <div>{{ item.stats.peak.time }}</div>
-                </div>
-            </div>
+        <div class="value" *ngIf="!label.tertiaryKey">
+          {{ item[label.key][label.secondaryKey] }}
         </div>
-    </div>
+      </td>
+    </tr>
+  </table>
 </div>
 
-<!-- Put card on below div -->
-<div>
-    <div class="row">
-        <div class="col-md-3">
-            <h2>Budget and Target Consumption</h2>
-        </div>
-        <div class="col-md-9">
-            <div class="flex-container">
-                <div class="box-activity" *ngFor="let item of siteComparisonData">
-                    <app-activity-gauge
-                        [data]="item.stats.consumption_overview"
-                        [totalSize]="totalSize"
-                    ></app-activity-gauge>
-                </div>
-            </div>
-        </div>
+<div class="row card card-custom">
+  <div class="col-md-3 my-auto">
+    <h2>Budget and Target Consumption</h2>
+  </div>
+  <div class="col-md-9">
+    <div class="flex-container">
+      <div class="box-activity" *ngFor="let item of siteComparisonData">
+        <app-activity-gauge
+          [data]="item.stats.consumption_overview"
+          [totalSize]="totalSize"
+        ></app-activity-gauge>
+      </div>
     </div>
+  </div>
 </div>
 
-<!-- Put card on below div -->
-<div>
-    <h2>Information</h2>
-    <div class="row">
-        <div class="col-md-3">
-            <div class="flex-container">
-                <div class="box">
-                    <div>Area (sq.m)</div>
-                    <div>No. of Employees</div>
-                    <div>No of Appliances</div>
-                    <div>No of Sensors</div>
-                </div>
-            </div>
+<div class="row card card-custom">
+  <h2>Information</h2>
+  <table>
+    <tr *ngFor="let label of informationLabels">
+      <th class="heading">{{ label.name }}</th>
+      <td *ngFor="let item of siteComparisonData">
+        <div class="value" *ngIf="label.secondaryKey">
+          {{ item[label.key][label.secondaryKey] }}
         </div>
-        <div class="col-md-9">
-            <div class="flex-container">
-                <div class="box" *ngFor="let item of siteComparisonData">
-                    <div>{{ item.area }}</div>
-                    <div>{{ item.employees }}</div>
-                    <div>{{ item.appliances }}</div>
-                    <div>{{ item.devices_count }}</div>
-                </div>
-            </div>
+        <div class="value" *ngIf="!label.secondaryKey">
+          {{ item[label.key] }}
         </div>
-    </div>
+      </td>
+    </tr>
+  </table>
 </div>
