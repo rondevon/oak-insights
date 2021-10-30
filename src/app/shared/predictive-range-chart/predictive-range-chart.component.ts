@@ -26,7 +26,7 @@ export class PredictiveRangeChartComponent implements OnInit {
       },
       exporting: { enabled: false },
       legend: {
-        enabled: false,
+        enabled: true,
       },
       xAxis: {
         categories: this.data.x_axis
@@ -40,7 +40,7 @@ export class PredictiveRangeChartComponent implements OnInit {
 
       tooltip: {
         shared: true,
-        valueSuffix: 'kWH',
+        valueSuffix: 'kWh',
       },
 
       series: [
@@ -49,16 +49,17 @@ export class PredictiveRangeChartComponent implements OnInit {
           type: 'line',
           data: this.data.values,
           zIndex: 1,
-          color: '#4164AD',
+          color: '#364096',
+          
         },
         {
           name: 'Predicted Range',
           data: this.data.predictive_range,
           type: 'arearange',
           lineWidth: 0,
-          linkedTo: ':previous',
-          color: '#4164AD',
-          fillOpacity: 0.3,
+          //linkedTo: ':previous',
+          color: '#4164ad5e',
+          //fillOpacity: 0.3,
           zIndex: 0,
           marker: {
             enabled: false,

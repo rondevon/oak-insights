@@ -56,6 +56,9 @@ export class MinMaxComponent implements OnInit {
     xAxis: {
       gridLineWidth: 1,
       tickInterval: 1,
+      title: {
+        text: 'Hours'
+    },
     },
 
     yAxis: {
