@@ -19,10 +19,10 @@ export class StackedBarChartComponent implements OnInit {
         });
     });
     this.operatingHoursTotals = [
-      { type:'Open Hours', value: this.data.open_total +'KwH', color: 'var(--color8'},
-      { type:'Prep Hours', value: this.data.preparatory_total +'KwH', color: 'var(--color5'},
-      { type:'Non-Operating Hours', value: this.data.non_operating_total +'KwH', color:'var(--color11'},
-      { type:'Closed Hours', value: this.data.closed_total +'KwH', color:'var(--color6'},
+      { type:'Open Hours', value: this.data.open_total +'kWh', color: 'var(--color8'},
+      { type:'Prep Hours', value: this.data.preparatory_total +'kWh', color: 'var(--color5'},
+      { type:'Non-Operating Hours', value: this.data.non_operating_total +'kWh', color:'var(--color11'},
+      { type:'Closed Hours', value: this.data.closed_total +'kWh', color:'var(--color6'},
     ];
 
     this.chart = new Chart({
@@ -39,7 +39,7 @@ export class StackedBarChartComponent implements OnInit {
       yAxis: {
         min: 0,
         title: {
-          text: 'Consumption (kwh)',
+          text: 'Consumption (kWh)',
         },
         stackLabels: {
           enabled: false,

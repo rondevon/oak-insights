@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonth() {
-    this.loading = true;
+    this.loading = false;
     this.selectedMonth = {
       month: this.pipe.transform(this.selectedDate, 'MMMM'),
       year: this.pipe.transform(this.selectedDate, 'YYYY')
@@ -121,22 +121,22 @@ export class HomeComponent implements OnInit {
             color: 'var(--color7)',
           },
         ];
-        this.getHeatMapDetails(
-          this.selectedMonth.month,
-          this.selectedMonth.year,
-          this.site_slug
-        );
-        this.getOperatingHoursDetails(
-          this.selectedMonth.month,
-          this.selectedMonth.year,
-          this.site_slug
-        );
-        this.getHourlyCostDetails(
-          this.selectedMonth.month,
-          this.selectedMonth.year,
-          this.site_slug
-        );
       });
+      this.getHeatMapDetails(
+        this.selectedMonth.month,
+        this.selectedMonth.year,
+        this.site_slug
+      );
+      this.getOperatingHoursDetails(
+        this.selectedMonth.month,
+        this.selectedMonth.year,
+        this.site_slug
+      );
+      this.getHourlyCostDetails(
+        this.selectedMonth.month,
+        this.selectedMonth.year,
+        this.site_slug
+      );
   }
 
   getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String) {

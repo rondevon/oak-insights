@@ -24,6 +24,7 @@ import more from 'highcharts/highcharts-more.src';
 import exporting from 'highcharts/modules/exporting.src';
 import highmaps from 'highcharts/modules/map.src';
 import solidgauge from 'highcharts/modules/solid-gauge.src';
+import treemap from 'highcharts/modules/treemap.src';
 import accessibility from 'highcharts/modules/accessibility.src';
 import exportdata from 'highcharts/modules/export-data.src';
 import stock from 'highcharts/modules/stock.src';
@@ -35,6 +36,8 @@ import { LoaderModule } from '../loader/loader.module';
 import { NotificationChartComponent } from './notification-chart/notification-chart.component';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TreeMapComponent } from './tree-map/tree-map.component';
+import { MultiLineChartComponent } from './multi-line-chart/multi-line-chart.component';
 
 export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -46,6 +49,7 @@ export function highchartsModules() {
     accessibility,
     exportdata,
     stock,
+    treemap
   ];
 }
 
@@ -68,6 +72,8 @@ export function highchartsModules() {
     DonutChartComponent,
     LineColumnComponent,
     NotificationChartComponent,
+    TreeMapComponent,
+    MultiLineChartComponent,
   ],
   imports: [
     CommonModule,
@@ -97,6 +103,8 @@ export function highchartsModules() {
     MonthsDataComponent,
     DonutChartComponent,
     LineColumnComponent,
+    TreeMapComponent,
+    MultiLineChartComponent
   ],
   providers: [{ provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }],
 })

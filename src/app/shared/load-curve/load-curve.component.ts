@@ -57,12 +57,12 @@ export class LoadCurveComponent implements OnInit {
     },
     yAxis: {
       title: {
-        text: 'Cost (£)',
+        text: 'Power (kW)',
       },
     },
   
     series: [{
-        name: "Cost (£)",
+        name: "Power (kW)",
         data: this.loadCurveData.values,
         type: 'area',
         color:'#364096',

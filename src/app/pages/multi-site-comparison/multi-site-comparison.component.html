@@ -1,1 +1,112 @@
 
+<div class="card card-custom">
+  <table>
+    <tr>
+      <th class="col-width">
+        <h1>Sites</h1>
+        <div class="my-auto">
+          <div class="input-group">
+            <span class="form-control"
+                   [(ngModel)]="currentDate" [(bsValue)]="currentDate" (bsValueChange)="updateMonth()"
+                   #dp="bsDatepicker" bsDatepicker
+                   [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"
+                   [minDate]="minDate"
+                   [maxDate]="maxDate">{{currentDate?.month}} {{currentDate?.year}}</span>
+                   <div class="input-group-append">
+                   <button class="btn btn-toggle"
+                      (click)="dp.toggle()"
+                      [attr.aria-expanded]="dp.isOpen"
+                      type="button">Change
+                  </button>
+                  </div>
+                </div>
+        </div>
+      </th>
+      <td class="col-width text-center" *ngFor="let item of siteComparisonData; let i = index">
+        <img class="site-img" src="/assets/icons/icon-site.svg" />
+        <h4>
+          <strong>Site {{ i + 1 }}</strong>
+        </h4>
+        <h4 class="mb-4">{{ item.name }}</h4>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="card card-custom">
+  <table>
+    <thead>
+      <tr>
+       <td class="col-width"> <h2>Basic Insights</h2>
+       </td>
+      </tr>
+    </thead>
+    <tr *ngFor="let label of basicInsightLabels">
+      <th class="heading my-auto col-width">{{ label.name }}</th>
+      <td class="col-width" *ngFor="let item of siteComparisonData">
+        <div class="value my-auto" *ngIf="label.tertiaryKey">
+          {{ item[label.key][label.secondaryKey][label.tertiaryKey] }}
+        </div>
+        <div class="value my-auto" *ngIf="!label.tertiaryKey">
+          {{ item[label.key][label.secondaryKey] }}
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="card card-custom">
+  <table>
+    <tr>
+      <th class="col-width">
+        <h2>Budget and Target Consumption</h2>
+      </th>
+      <td class="col-width text-center" *ngFor="let item of siteComparisonData">
+        <app-activity-gauge
+          [data]="item.stats.consumption_overview"
+          [totalSize]="totalSize"
+        ></app-activity-gauge>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="card card-custom">
+  <table>
+    <thead>
+      <tr>
+       <td class="col-width"> <h2>Information</h2>
+       </td>
+      </tr>
+    </thead>
+    <tr *ngFor="let label of informationLabels">
+      <th class="heading my-auto col-width">{{ label.name }}</th>
+      <td class="col-width" *ngFor="let item of siteComparisonData">
+        <div class="value my-auto" *ngIf="label.secondaryKey">
+          {{ item[label.key][label.secondaryKey] }}
+        </div>
+        <div class="value my-auto" *ngIf="!label.secondaryKey">
+          {{ item[label.key] }}
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+  <div class="card card-custom">
+    <table>
+      <tr>
+        <th class="col-width" >
+          <div style = "display: flex;flex-direction: column;justify-content: space-between;">
+          <h2>Consumption Distribution</h2>
+          <h2>Total<br>1026 kWh</h2>
+        </div>
+        </th>
+          <td class="width-treemap">
+          <app-tree-map [data]="treeMapData"></app-tree-map>
+          </td>
+    </tr>
+  </table>
+  </div>

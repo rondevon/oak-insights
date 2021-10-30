@@ -22,7 +22,7 @@ export class StockGraphComponent implements OnInit {
   selectedDate: Date = new Date();
   selectedType : string = 'energy';
   selectedGraph: string = '';
-  unit: string = 'KwH'
+  unit: string = 'kWh'
   typeList: String[] = [
     'energy',
     'power',
@@ -66,10 +66,10 @@ export class StockGraphComponent implements OnInit {
 
   setStockGraphData() {
     if(this.stockChartData.seq[1] == 'power'){
-      this.unit = 'KW'
+      this.unit = 'kW'
     }
     if(this.stockChartData.seq[1] == 'energy'){
-      this.unit = 'KwH'
+      this.unit = 'kWh'
     }
     if(this.stockChartData.seq[1] == 'current'){
       this.unit = 'A'
@@ -150,21 +150,21 @@ export class StockGraphComponent implements OnInit {
               selected: 0
           },
       series: [{
-        name: 'Phase R',
+        name: 'Phase L1',
         data: this.stockChartData.values_r,
         type: 'line',
         threshold: null,
         color:'#4164AD',
       },
       {
-        name: 'Phase S',
+        name: 'Phase L2',
         data: this.stockChartData.values_s,
         type: 'line',
         threshold: null,
         color:'#F3837A',
       },
       {
-        name: 'Phase T',
+        name: 'Phase L3',
         data: this.stockChartData.values_t,
         type: 'line',
         threshold: null,

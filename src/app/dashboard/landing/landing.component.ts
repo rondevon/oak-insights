@@ -28,7 +28,7 @@ export class LandingComponent implements OnInit {
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-      this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+      this.site_slug = localStorage.getItem('site_slug');
       this.getProfile();   
       this.getSites();
       this.getHomeInsightCards();
@@ -45,6 +45,7 @@ export class LandingComponent implements OnInit {
       this.monthUsageData = data.data;
     });
   }
+
   if(localStorage.getItem('role')==='Account Manager'){
     this.apiService.getAccountMonthlyUsageData(this.year).subscribe(data => {
       this.monthUsageData = data.data;

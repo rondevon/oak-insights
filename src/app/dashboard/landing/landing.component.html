@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-5">
               <div class="go-to-dashboard" *ngIf="role==='Site Manager'">
-                <button class="go-to-dashboard-btn" [routerLink]="['./dashboard','site-lcc-oxford-circus-65297']">
+                <button class="go-to-dashboard-btn" [routerLink]="['./dashboard', site_slug]">
                   GO TO DASHBOARD
                 </button>
               </div>
@@ -81,13 +81,13 @@
                     </div>
                     <div class="sites-column">
                       <div class="site-stat-heading">Operating</div>
-                      <div class="site-stat-value">{{site.stats.operating_energy? site.stats.operating_energy : 0}} KwH</div>
+                      <div class="site-stat-value">{{site.stats.operating_energy? site.stats.operating_energy : 0}} kWh</div>
                       <div class="site-stat-heading">Non Operating</div>
-                      <div class="site-stat-value">{{site.stats.non_operating_energy? site.stats.non_operating_energy : 0}} KwH</div>
+                      <div class="site-stat-value">{{site.stats.non_operating_energy? site.stats.non_operating_energy : 0}} kWh</div>
                       <div class="site-stat-heading">Preparatory</div>
-                      <div class="site-stat-value">{{site.stats.preparatory_energy? site.stats.preparatory_energy : 0}} KwH</div>
+                      <div class="site-stat-value">{{site.stats.preparatory_energy? site.stats.preparatory_energy : 0}} kWh</div>
                       <div class="site-stat-heading">Closed</div>
-                      <div class="site-stat-value">{{site.stats.closed_energy? site.stats.closed_energy : 0}} KwH</div>
+                      <div class="site-stat-value">{{site.stats.closed_energy? site.stats.closed_energy : 0}} kWh</div>
                     </div>
                   </div>
                 </div>

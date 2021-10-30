@@ -21,7 +21,7 @@ export class LineColumnComponent implements OnInit {
         text: '',
       },
       legend: {
-        enabled: false,
+        enabled: true,
       },
       exporting: { enabled: false },
       xAxis: {
@@ -32,7 +32,7 @@ export class LineColumnComponent implements OnInit {
       },
       yAxis: {
         title: {
-          text: 'Energy (kwH)',
+          text: 'Energy (kWh)',
         },
       },
       plotOptions: {
@@ -59,12 +59,12 @@ export class LineColumnComponent implements OnInit {
       },
       series: [
         {
-          name: 'Cost (£)',
+          showInLegend: false, 
           type: 'area',
           data: this.data.predictive_values,
         },
         {
-          name: 'Actual Consumption (kwH)',
+          name: 'Actual Consumption (kWh)',
           type: 'column',
           data: this.data.values,
           //pointWidth:20,
@@ -82,7 +82,7 @@ export class LineColumnComponent implements OnInit {
           }
         },
         {
-          name: 'Predicted Consumtion (kwH)',
+          name: 'Predicted Consumtion (kWh)',
           type: 'line',
           data: this.data.predictive_values,
           color: {
