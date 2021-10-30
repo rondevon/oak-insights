@@ -15,9 +15,9 @@ export class NavbarComponent implements OnInit {
     { path: './pages/deep-insights', name: 'Deep Insights', index: 2, onlyadmin: false  },
     { path: './pages/multi-site-comparison', name: 'Multi-site Comparison', index: 3, onlyadmin: true},
     { path: './pages/phase-distribution', name: 'Phase Distribution', index: 4, onlyadmin: false  },
-    { path: './pages/appliance-comparison', name: 'Appliance Comparisons', index: 5, onlyadmin: false  },
-    { path: './pages/savings-calculator', name: 'Savings Calculator', index: 6, onlyadmin: false  },
-    { path: './pages/recommendations', name: 'Recommendations', index: 7, onlyadmin: false  },
+    // { path: './pages/appliance-comparison', name: 'Appliance Comparisons', index: 5, onlyadmin: false  },
+    { path: './pages/savings-calculator', name: 'Savings Calculator', index: 5, onlyadmin: false  },
+    { path: './pages/recommendations', name: 'Recommendations', index: 6, onlyadmin: false  }
   ]
   isAdmin: boolean = false;
   // menu = ['Home', 'Basic Insights', 'Deep Insights', 'Multi-site Comparison', 'Phase Distribution', 'Appliance Comparisons', 'Savings Calculator', 'Recommendations']
