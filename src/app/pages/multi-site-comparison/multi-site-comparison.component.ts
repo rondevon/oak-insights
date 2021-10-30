@@ -13,8 +13,17 @@ export class MultiSiteComparisonComponent implements OnInit {
     month: this.pipe.transform(new Date(), 'MMMM'),
     year: this.pipe.transform(new Date(), 'YYYY'),
   };
+  minDate: Date;
+  maxDate: Date;
   siteComparisonData: any [] = [];
   totalSize: any = {total:'1vw',text:'0.7vw',y:'-17'};
+  treeMapData: any[] = [];
+  colors: String[] = [
+    '#364096',
+    '#70c49c',
+    '#F8A992',
+    '#FCC294'
+  ];
 
   basicInsightLabels: any[] = [{
     name: 'Energy Supplier',
@@ -32,7 +41,7 @@ export class MultiSiteComparisonComponent implements OnInit {
     secondaryKey: 'co2_emission'
   },
   {
-    name: 'Enery Cost (€)',
+    name: 'Enery Cost (£)',
     key: 'stats',
     secondaryKey: 'cost'
   }, 
@@ -87,13 +96,53 @@ export class MultiSiteComparisonComponent implements OnInit {
     secondaryKey: 'closed_energy'
   }];
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+    this.minDate = new Date();
+    this.maxDate = new Date();
+    this.minDate.setMonth(this.minDate.getMonth() - 4);
+    this.maxDate.setMonth(this.maxDate.getMonth());
+   }
 
   ngOnInit(): void {
-    this.apiService.getSiteComparisonData(this.currentDate.month, this.currentDate.year).
+    this.getMultiSiteComparison(this.currentDate.month,this.currentDate.year);
+  }
+
+  ngOnChanges() {
+  }
+
+  getMultiSiteComparison(month: string, year: string){
+    this.apiService.getSiteComparisonData(month, year).
       subscribe((data: any) => {
         this.siteComparisonData = data.data;
+
+        // Add extra site
+         //let item = this.siteComparisonData[0];
+         //this.siteComparisonData.push(item);
+        
+        // Remove sites
+        //this.siteComparisonData.pop();
+        // this.siteComparisonData.pop();
+        
+          var tree: any[] = []
+          this.siteComparisonData.forEach((site, index) => {
+            tree.push({
+              name: site.name,
+              value: site.stats.cost,
+              color: this.colors[index]
+            });
+          });
+          this.treeMapData = tree;
+
       });
+      
+  }
+
+  updateMonth(){
+    this.currentDate = {
+      month: this.pipe.transform(this.currentDate, 'MMMM'),
+      year: this.pipe.transform(this.currentDate, 'YYYY')
+    };
+    this.getMultiSiteComparison(this.currentDate.month,this.currentDate.year);
   }
 
 }

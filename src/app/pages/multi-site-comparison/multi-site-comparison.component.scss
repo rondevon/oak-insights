@@ -11,13 +11,13 @@
 .box {
     flex:1;
     -webkit-flex:1;
-    max-width:20vw;
+    width:20%;
 }
 
 .box-activity {
     flex:1;
     -webkit-flex:1;
-    max-width: 20vw;
+    width: 20%;
     padding: 0 2vw;
 }
 .row h2{
@@ -72,12 +72,19 @@
     text-align: center;
   }
 
-// table {
-// 	display: table;
-// }
-// table tr {
-// 	display: table-cell;
-// }
-// table tr td {
-// 	display: block;
-// }
+
+table {
+  border-spacing: 1vw;
+  th, td {
+    padding: 1vw;
+  }
+}
+
+.col-width {
+  min-width: 15vw !important;
+  width: 17vw;
+}
+
+.width-treemap{
+  width:90vw;
+}
