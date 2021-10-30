@@ -22,7 +22,7 @@ export class BasicInsightsComponent implements OnInit {
   monthUsageData: any = {};
   cards: any[] = [];
   oakScore: number = 0;
-  totalSize: any = {total:'1vw',text:'0.7vw',y:'-17'}
+  totalSize: any = {total:'1vw',text:'0.7vw',y:'-17'};
 
   loadings: boolean = true;
 

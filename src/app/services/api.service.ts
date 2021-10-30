@@ -398,4 +398,19 @@ export class ApiService {
     });
   }
 
+  getSiteComparisonData(month: String, year: String): Observable<any> {
+    return this.httpClient.get(
+      serviceBaseUrl +
+        'account/sites/comparison?month=' +
+        month +
+        '&year=' +
+        year,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      }
+    );
+  }
+
 }
