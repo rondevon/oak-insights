@@ -27,15 +27,15 @@
         </div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart total="Total<br>2000" [data]="savingsResponseData.values_cost"></app-donut-chart>
+        <app-donut-chart [total]="savingsResponseData.total_cost" [data]="savingsResponseData.values_cost"></app-donut-chart>
         <div class="donut-text">Cost (£)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart total="Total<br>4000" [data]="savingsResponseData.values_consumption"></app-donut-chart>
+        <app-donut-chart [total]="savingsResponseData.total_consumption" [data]="savingsResponseData.values_consumption"></app-donut-chart>
         <div class="donut-text">Consumption (kWh)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart total="Total<br>6000" [data]="savingsResponseData.values_c02"></app-donut-chart>
+        <app-donut-chart [total]="savingsResponseData.total_c02" [data]="savingsResponseData.values_c02"></app-donut-chart>
         <div class="donut-text">Emission (kg-CO2)</div>
       </div>
     </div>
@@ -51,13 +51,16 @@
         <div class="col-md-3">
           <p class="percent" [style.color]="donutLegends[0].color">Preparatory Hours</p>
           <div class="input-group mb-3">
-            <input type="tel" maxlength="2" (keyup)="onUpdatePrep($event)">
+            <input type="tel" maxlength="2" (keyup)="onUpdateSavings($event, 0)">
+            <div class="input-group-append">
+              <span class="input-group-text">%</span>
+            </div>
           </div>
         </div>
         <div class="col-md-3">
           <p class="percent" [style.color]="donutLegends[1].color">Operational Hours</p>
           <div class="input-group mb-3">
-            <input  type="tel" maxlength="2">
+            <input  type="tel" maxlength="2" (keyup)="onUpdateSavings($event, 1)">
             <div class="input-group-append">
               <span class="input-group-text">%</span>
             </div>
@@ -66,7 +69,7 @@
         <div class="col-md-3">
           <p class="percent" [style.color]="donutLegends[2].color">Non Operational Hours</p>
           <div class="input-group mb-3">
-            <input  type="tel" maxlength="2">
+            <input  type="tel" maxlength="2" (keyup)="onUpdateSavings($event, 2)">
             <div class="input-group-append">
               <span class="input-group-text">%</span>
             </div>
@@ -75,7 +78,7 @@
         <div class="col-md-3">
           <p class="percent" [style.color]="donutLegends[3].color">Closed Hours</p>
           <div class="input-group mb-3">
-            <input  type="tel" maxlength="2">
+            <input  type="tel" maxlength="2" (keyup)="onUpdateSavings($event, 3)">
             <div class="input-group-append">
               <span class="input-group-text">%</span>
             </div>
@@ -84,8 +87,6 @@
       </div>
     </div>
   </div>
-
-
 
   <div class="card card-custom">
     <div class="row">
@@ -107,21 +108,17 @@
         </div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart total="Total<br>2000*" [data]="savingsProjectedData.values_cost"></app-donut-chart>
+        <app-donut-chart [total]="savingsProjectedData.total_cost" [data]="savingsProjectedData.values_cost"></app-donut-chart>
         <div class="donut-text">Cost (£)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart total="Total<br>4000*" [data]="savingsProjectedData.values_consumption"></app-donut-chart>
+        <app-donut-chart [total]="savingsProjectedData.total_consumption" [data]="savingsProjectedData.values_consumption"></app-donut-chart>
         <div class="donut-text">Consumption (kWh)</div>
       </div>
       <div class="col-md-4 text-center">
-        <app-donut-chart total="Total<br>6000*" [data]="savingsProjectedData.values_c02"></app-donut-chart>
+        <app-donut-chart [total]="savingsProjectedData.total_c02" [data]="savingsProjectedData.values_c02"></app-donut-chart>
         <div class="donut-text">Emission (kg-CO2)</div>
       </div>
     </div>
   </div>
-
-
-
-
 </div>

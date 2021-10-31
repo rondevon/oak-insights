@@ -27,7 +27,7 @@ export class DonutChartComponent implements OnInit {
         height: 300,
       },
       title: {
-        text: total,
+        text: 'Total<br>' + parseFloat(total).toFixed(2),
         verticalAlign: 'middle',
         floating: true,
         style: {

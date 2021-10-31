@@ -11,7 +11,8 @@ export class SavingsCalculatorComponent implements OnInit {
 
   constructor(private apiService: ApiService,
     private cdRef: ChangeDetectorRef,  private route: ActivatedRoute) { }
-    site_slug:any ;
+  
+  site_slug:any ;
   donutLegends: any[] =[];
   cost: any ={};
   consumption: any= {};
@@ -22,6 +23,7 @@ export class SavingsCalculatorComponent implements OnInit {
   savingsResponseData: any = {};
   savingsProjectedData: any = {};
   loading: boolean = true;
+  
   ngOnInit(): void {
     this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
     this.donutLegends = [
@@ -33,20 +35,29 @@ export class SavingsCalculatorComponent implements OnInit {
     this.getSavingsResponseData(this.selectedMonth, this.selectedYear, this.site_slug)
   }
   
-  onUpdatePrep(event: any){
+  onUpdateSavings(event: any, index: number){
+    var projectedData = this.savingsProjectedData;
     if (event && event.target && event.target.value) {
-      this.savingsProjectedData.values_cost[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_cost[0].y;
-      this.savingsProjectedData.values_consumption[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_consumption[0].y;
-      this.savingsProjectedData.values_c02[0].y = (100-parseInt(event.target.value)) * this.savingsResponseData.values_c02[0].y;
-      // this.cdRef.detectChanges();
-    }
+      var percentage = parseInt(event.target.value) * 0.01;
+      projectedData.values_cost[index].y = percentage * this.savingsResponseData.values_cost[index].y;
+      projectedData.values_consumption[index].y = percentage * this.savingsResponseData.values_consumption[index].y;
+      projectedData.values_c02[index].y = percentage * this.savingsResponseData.values_c02[index].y;
+      projectedData.total_cost = this.getGroupTotals(projectedData.values_cost);
+      projectedData.total_consumption = this.getGroupTotals(projectedData.values_consumption);
+      projectedData.total_c02 = this.getGroupTotals(projectedData.values_c02);
+    } 
+    this.savingsProjectedData = projectedData;
+  }
+
+  getGroupTotals(arr: any[]) {
+    return arr.map((item: any) => item.y).reduce((prev: any, next: any) => prev + next);
   }
 
   getSavingsResponseData(selectedMonth: any, selectedYear: any, site_slug: String){
     this.loading = true;
-    this.apiService.getSavingsData(selectedMonth,selectedYear,site_slug).subscribe((data : any) => {
+    this.apiService.getSavingsData(selectedMonth, selectedYear, site_slug).subscribe((data : any) => {
       this.savingsResponseData = data.data;
-      this.savingsProjectedData = this.savingsResponseData;
+      this.savingsProjectedData = JSON.parse(JSON.stringify(this.savingsResponseData));
       this.loading = false;
     });
   }
