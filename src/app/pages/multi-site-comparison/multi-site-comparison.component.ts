@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-multi-site-comparison',
@@ -18,6 +19,7 @@ export class MultiSiteComparisonComponent implements OnInit {
   siteComparisonData: any [] = [];
   totalSize: any = {total:'1vw',text:'0.7vw',y:'-17'};
   treeMapData: any[] = [];
+  faCalendar = faCalendarAlt;
   colors: String[] = [
     '#364096',
     '#70c49c',
@@ -114,15 +116,6 @@ export class MultiSiteComparisonComponent implements OnInit {
     this.apiService.getSiteComparisonData(month, year).
       subscribe((data: any) => {
         this.siteComparisonData = data.data;
-
-        // Add extra site
-         //let item = this.siteComparisonData[0];
-         //this.siteComparisonData.push(item);
-        
-        // Remove sites
-        //this.siteComparisonData.pop();
-        // this.siteComparisonData.pop();
-        
           var tree: any[] = []
           this.siteComparisonData.forEach((site, index) => {
             tree.push({
@@ -132,7 +125,6 @@ export class MultiSiteComparisonComponent implements OnInit {
             });
           });
           this.treeMapData = tree;
-
       });
       
   }

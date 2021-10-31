@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { StockChart } from 'angular-highcharts';
-import { Chart } from 'angular-highcharts';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { ApiService } from 'src/app/services/api.service';
 @Component({
@@ -31,6 +31,8 @@ export class StockGraphComponent implements OnInit {
     'power_factor'
   ];
   loading: boolean = true;
+  faCalendar = faCalendarAlt;
+  
   constructor(private apiService: ApiService) {
     this.minDate = new Date();
     this.maxDate = new Date();

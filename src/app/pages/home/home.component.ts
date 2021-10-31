@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
 import { ActivatedRoute } from '@angular/router';
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
   operatingHoursData: any = {};
   hourlyCostData: any = {};
   selectedDate: Date = new Date();
+  faCalendar = faCalendarAlt;
 
   loading: boolean = false;
 

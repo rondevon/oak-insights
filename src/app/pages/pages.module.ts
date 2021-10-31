@@ -17,14 +17,14 @@ import { BasicInsightsComponent } from './basic-insights/basic-insights.componen
 import { DeepInsightsComponent } from './deep-insights/deep-insights.component';
 import { MultiSiteComparisonComponent } from './multi-site-comparison/multi-site-comparison.component';
 import { PhaseDistributionComponent } from './phase-distribution/phase-distribution.component';
-import { PhaseApplianceComponent } from './phase-distribution/phase-appliance/phase-appliance.component'; 
+import { PhaseApplianceComponent } from './phase-distribution/phase-appliance/phase-appliance.component';
 import { ApplianceComparisonComponent } from './appliance-comparison/appliance-comparison.component';
 import { SavingsCalculatorComponent } from './savings-calculator/savings-calculator.component';
 import { RecommendationsComponent } from './recommendations/recommendations.component';
 import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 
-import {MatDialogModule} from '@angular/material/dialog'; 
-import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,7 +32,7 @@ import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AlertsComponent } from './alerts/alerts.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
-
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -71,7 +71,8 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
-    CarouselModule
-  ]
+    CarouselModule,
+    FontAwesomeModule,
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}
