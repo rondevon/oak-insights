@@ -18,6 +18,7 @@ export class SavingsCalculatorComponent implements OnInit {
   savingsResponseData: any = {};
   savingsProjectedData: any = {};
   loading: boolean = true;
+  totalSavings: number = 0;
 
   ngOnInit(): void {
     this.site_slug = this.route.parent?.parent?.snapshot.params.site_slug;
@@ -32,7 +33,7 @@ export class SavingsCalculatorComponent implements OnInit {
 
   onUpdateSavings(event: any, index: number) {
     var projectedData = this.savingsProjectedData;
-    var percentage = (event && event.target && event.target.value)? parseInt(event.target.value) * 0.01 : 1;
+    var percentage = event && event.target && event.target.value ? (100-parseInt(event.target.value)) * 0.01: 1;
     projectedData.values_cost[index].y = percentage * this.savingsResponseData.values_cost[index].y;
     projectedData.values_consumption[index].y = percentage * this.savingsResponseData.values_consumption[index].y;
     projectedData.values_c02[index].y = percentage * this.savingsResponseData.values_c02[index].y;
@@ -40,6 +41,15 @@ export class SavingsCalculatorComponent implements OnInit {
     projectedData.total_consumption = this.getGroupTotals(projectedData.values_consumption);
     projectedData.total_c02 = this.getGroupTotals(projectedData.values_c02);
     this.savingsProjectedData = projectedData;
+    this.totalSavings = this.getSavingsTotal(this.savingsResponseData.values_consumption, this.savingsProjectedData.values_consumption);
+  }
+
+  getSavingsTotal(actualConsumption: any [], projectedConsumption: any[]): number {
+    var total = 0
+    for (let i=0; i<actualConsumption.length; i++){
+      total+= actualConsumption[i].y - projectedConsumption[i].y;
+    }
+    return total;
   }
 
   getGroupTotals(arr: any[]) {
@@ -51,9 +61,9 @@ export class SavingsCalculatorComponent implements OnInit {
   getSavingsResponseData(selectedMonth: any, selectedYear: any, site_slug: String) {
     this.loading = true;
     this.apiService.getSavingsData(selectedMonth,selectedYear,site_slug).subscribe((data : any) => {
-      this.savingsResponseData = data.data;
-      this.savingsProjectedData = JSON.parse(JSON.stringify(this.savingsResponseData));
-      this.loading = false;
+    this.savingsResponseData = data.data;
+    this.savingsProjectedData = JSON.parse(JSON.stringify(this.savingsResponseData));
+    this.loading = false;
     });
   }
 }
