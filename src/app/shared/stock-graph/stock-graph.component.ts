@@ -12,14 +12,14 @@ import { ApiService } from 'src/app/services/api.service';
 export class StockGraphComponent implements OnInit {
   @Input('data') data: any;
   site_slug: any;
-  minDate: Date;
-  maxDate: Date;
+  minDate: Date = new Date();
+  maxDate: Date = new Date();
   pipe = new DatePipe('en-GB');
   chart: any;
   consumptionTotals: any[] = [];
   stockChartData: any = {};
   selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
-  selectedDate: Date = new Date();
+  selectedDate: Date = new Date((new Date()).setMonth(this.minDate.getMonth() - 1));
   selectedType : string = 'energy';
   selectedGraph: string = '';
   unit: string = 'kWh'
@@ -34,9 +34,7 @@ export class StockGraphComponent implements OnInit {
   faCalendar = faCalendarAlt;
   
   constructor(private apiService: ApiService) {
-    this.minDate = new Date();
-    this.maxDate = new Date();
-    this.minDate.setMonth(this.minDate.getMonth() - 1);
+    this.minDate.setMonth(this.minDate.getMonth() - 4);
     this.maxDate.setMonth(this.maxDate.getMonth());
    }
 
