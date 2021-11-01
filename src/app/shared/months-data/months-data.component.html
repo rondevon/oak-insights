@@ -1,4 +1,9 @@
+<div *ngIf="!data;else other_content">
+  <h3>No data available</h3>
+</div>
+<ng-template #other_content>
 <div>
   <h3 class="card-heading">{{ data.title }}</h3>
   <div class="bcolor description" *ngFor="let description of data.descriptions"> {{ description }}</div>
 </div>
+<ng-template #other_content>

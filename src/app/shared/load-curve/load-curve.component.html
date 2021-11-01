@@ -1,4 +1,10 @@
-<div class="row mb-4">
+
+<div *ngIf="!data;else other_content">
+   <h3>No data available</h3> 
+  </div>
+  
+  <ng-template #other_content>
+      <div class="row mb-4">
     <div class="col-md-5">
         <div class="card-heading">Load Curve</div>
         <span class="widget-subtitle">Gives the minimum load present throughout the specified period</span>
@@ -22,3 +28,4 @@
 </div>
 
 <div [chart]="chart"></div>
+  </ng-template>

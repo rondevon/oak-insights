@@ -63,7 +63,9 @@ export class SavingsCalculatorComponent implements OnInit {
     this.apiService.getSavingsData(selectedMonth,selectedYear,site_slug).subscribe((data : any) => {
     this.savingsResponseData = data.data;
     this.savingsProjectedData = JSON.parse(JSON.stringify(this.savingsResponseData));
-    this.loading = false;
+  }, err => {
+      this.loading = false;
+
     });
   }
 }
