@@ -11,7 +11,7 @@
     routerLink="/alerts"
   />
   
-  <div class="btn-group pointer" dropdown #dropdown="bs-dropdown" >
+  <div class="btn-group" dropdown #dropdown="bs-dropdown" >
     <ngs-avater
     size="48px"
     isFixedColor="#FFFFFF"
@@ -22,7 +22,7 @@
     <ul
       id="dropdown-triggers-manual"
       *dropdownMenu
-      class="dropdown-menu"
+      class="dropdown-menu pointer"
       role="menu"
       aria-labelledby="button-triggers-manual"
     >
@@ -30,10 +30,6 @@
       <li role="menuitem">
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </li>
-      <!-- <li role="menuitem">
-        <a class="dropdown-item" href="#">Something else here</a>
-      </li>
-      <li class="divider dropdown-divider"></li> -->
     </ul>
   </div>
 </div>

@@ -25,18 +25,10 @@
               <span class="text-heading" *ngIf="role === 'Account Manager'">Performance Across Sites</span>
             </div>
             <div class="col-md-5">
-              <div class="go-to-dashboard" *ngIf="role==='Site Manager'">
+              <div class="go-to-dashboard">
                 <button class="go-to-dashboard-btn" [routerLink]="['./dashboard', site_slug]">
                   GO TO DASHBOARD
                 </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="insights-container">
-              <div class="insights-column" *ngFor="let card of cards">
-                <app-insight-item-tile [data]="card"></app-insight-item-tile>
               </div>
             </div>
           </div>
@@ -54,7 +46,7 @@
                 </div>
                 <div class="col-md-3 text-center my-auto">
                   <div class="go-to-dashboard">
-                  <button class="recommendation-btn"routerLink="./dashboard/pages/recommendations">View All</button>
+                  <button class="recommendation-btn" [routerLink]="['./dashboard/' + site_slug + '/pages/recommendations']">View All</button>
                 </div>
                 </div>
               </div>
