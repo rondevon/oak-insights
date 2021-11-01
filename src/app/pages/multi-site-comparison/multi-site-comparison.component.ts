@@ -98,11 +98,13 @@ export class MultiSiteComparisonComponent implements OnInit {
     secondaryKey: 'closed_energy'
   }];
 
+  loading: boolean = true;
+
   constructor(private apiService: ApiService) {
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setMonth(this.minDate.getMonth() - 4);
-    this.maxDate.setMonth(this.maxDate.getMonth());
+    this.maxDate.setMonth(this.maxDate.getMonth() - 1);
    }
 
   ngOnInit(): void {
@@ -113,8 +115,10 @@ export class MultiSiteComparisonComponent implements OnInit {
   }
 
   getMultiSiteComparison(month: string, year: string){
+    this.loading = true;
     this.apiService.getSiteComparisonData(month, year).
       subscribe((data: any) => {
+        this.loading = false;
         this.siteComparisonData = data.data;
           var tree: any[] = []
           this.siteComparisonData.forEach((site, index) => {
@@ -125,6 +129,10 @@ export class MultiSiteComparisonComponent implements OnInit {
             });
           });
           this.treeMapData = tree;
+      }, err => {
+        console.log(err);
+        
+        this.loading = false;
       });
       
   }

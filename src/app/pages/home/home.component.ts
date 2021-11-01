@@ -13,8 +13,8 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
   site_slug:any ;
-  minDate: Date;
-  maxDate: Date;
+  minDate: Date = new Date();;
+  maxDate: Date = new Date();
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
   selectedMonth: any = {
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   heatMapData: any = {};
   operatingHoursData: any = {};
   hourlyCostData: any = {};
-  selectedDate: Date = new Date();
+  selectedDate: Date = new Date(new Date().setMonth(this.minDate.getMonth() - 1));
   faCalendar = faCalendarAlt;
 
   loading: boolean = false;
@@ -38,8 +38,6 @@ export class HomeComponent implements OnInit {
   data: any;
 
   constructor(private apiService: ApiService, public dialog: MatDialog, private route: ActivatedRoute) {
-    this.minDate = new Date();
-    this.maxDate = new Date();
     this.minDate.setMonth(this.minDate.getMonth() - 4);
     this.maxDate.setMonth(this.maxDate.getMonth());
   }
