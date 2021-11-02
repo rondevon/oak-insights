@@ -9,10 +9,12 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./multi-site-comparison.component.scss']
 })
 export class MultiSiteComparisonComponent implements OnInit {
+  
   pipe = new DatePipe('en-GB');
+  selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   currentDate: any = {
-    month: this.pipe.transform(new Date(), 'MMMM'),
-    year: this.pipe.transform(new Date(), 'YYYY'),
+    month: this.pipe.transform(this.selectedDate, 'MMMM'),
+    year: this.pipe.transform(this.selectedDate, 'YYYY'),
   };
   minDate: Date;
   maxDate: Date;

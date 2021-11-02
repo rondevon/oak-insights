@@ -23,7 +23,7 @@ export class StockGraphComponent implements OnInit {
   selectedType : string = 'energy';
   selectedGraph: string = '';
   unit: string = 'kWh'
-  typeList: String[] = [
+  typeList: string[] = [
     'energy',
     'power',
     'current',

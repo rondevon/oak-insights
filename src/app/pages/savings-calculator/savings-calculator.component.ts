@@ -13,11 +13,14 @@ export class SavingsCalculatorComponent implements OnInit {
   site_slug: any;
   donutLegends: any[] = [];
   pipe = new DatePipe('en-GB');
-  selectedMonth: any = this.pipe.transform(new Date(), 'MMMM');
-  selectedYear: any = this.pipe.transform(new Date(), 'YYYY');
+  selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
+  selectedMonth: any = this.pipe.transform(this.selectedDate, 'MMMM');
+
+  selectedYear: any = this.pipe.transform(this.selectedDate, 'YYYY');
+
   savingsResponseData: any = {};
   savingsProjectedData: any = {};
-  loading: boolean = true;
+  // loading: boolean = true;
   totalSavings: number = 0;
 
   ngOnInit(): void {
@@ -59,12 +62,12 @@ export class SavingsCalculatorComponent implements OnInit {
   }
 
   getSavingsResponseData(selectedMonth: any, selectedYear: any, site_slug: String) {
-    this.loading = true;
+    // this.loading = true;
     this.apiService.getSavingsData(selectedMonth,selectedYear,site_slug).subscribe((data : any) => {
     this.savingsResponseData = data.data;
     this.savingsProjectedData = JSON.parse(JSON.stringify(this.savingsResponseData));
   }, err => {
-      this.loading = false;
+      // this.loading = false;
 
     });
   }

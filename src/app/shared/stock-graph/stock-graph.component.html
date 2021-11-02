@@ -16,7 +16,7 @@
     <div class="open-closed">
       <select class="form-select monthPicker" [(ngModel)]="selectedType" (change)="updateType()">
         <option *ngFor="let type of typeList" [value]="type">{{
-          type
+          (type === 'power_factor' ? 'power factor' : type) | titlecase
         }}</option>
       </select>
     </div>

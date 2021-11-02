@@ -12,10 +12,12 @@ export class BasicInsightsComponent implements OnInit {
   site_slug: any;
   pipe = new DatePipe('en-GB');
   historicalConsumptionData: any = [];
+  selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   currentDate: any = {
-    month: this.pipe.transform(new Date(), 'MMMM'),
-    year: this.pipe.transform(new Date(), 'YYYY'),
+    month: this.pipe.transform(this.selectedDate, 'MMMM'),
+    year: this.pipe.transform(this.selectedDate, 'YYYY'),
   };
+
   showMonthlyStats: boolean = false;
   selectedTileIndex: number = -1;
   dayAnalysisData: any = {};

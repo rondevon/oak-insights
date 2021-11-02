@@ -21,9 +21,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  logout() {
-    console.log("hugfytft");
-    
+  logout() {    
     this.authService.logout().subscribe((result) => {
       if (result.success) {
         localStorage.clear();

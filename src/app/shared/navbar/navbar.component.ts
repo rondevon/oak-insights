@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
           var x = '.'+val.url;
           const y = this.menu.find(m => x.match(m.path));    
           if (y) this.selected = y.index;
-          console.log(val.url)
         }
     });
   }
