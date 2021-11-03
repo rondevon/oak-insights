@@ -1,1 +1,6 @@
+<div *ngIf="!data;else other_content">
+    <loader [noData]="true"></loader>
+</div>
+<ng-template #other_content>
 <div [chart]="chart"></div>
+</ng-template>

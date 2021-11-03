@@ -1,31 +1,31 @@
 
 <div *ngIf="!data;else other_content">
-   <h3>No data available</h3> 
-  </div>
+    <loader [noData]="true"></loader>
+</div>
   
-  <ng-template #other_content>
-      <div class="row mb-4">
-    <div class="col-md-5">
-        <div class="card-heading">Load Curve</div>
-        <span class="widget-subtitle">Gives the minimum load present throughout the specified period</span>
-    </div>
-    <div class="col-md-7 text-right">
-        <div class="open-closed">
-            <button type="button" [ngClass]="[bntStyle1]" (click)="switchChart('1')">
-                Last Month
-            </button>
-            <button type="button" [ngClass]="[bntStyle2]" (click)="switchChart('3')">
-                3 Months
-            </button>
-            <button type="button" [ngClass]="[bntStyle3]" (click)="switchChart('6')">
-                6 Months
-            </button>
-            <button type="button" [ngClass]="[bntStyle4]" (click)="switchChart('12')">
-                12 Months
-            </button>
+<ng-template #other_content>
+    <div class="row mb-4">
+        <div class="col-md-5">
+            <div class="card-heading">Load Curve</div>
+            <span class="widget-subtitle">Gives the minimum load present throughout the specified period</span>
+        </div>
+        <div class="col-md-7 text-right">
+            <div class="open-closed">
+                <button type="button" [ngClass]="[bntStyle1]" (click)="switchChart('1')">
+                    Last Month
+                </button>
+                <button type="button" [ngClass]="[bntStyle2]" (click)="switchChart('3')">
+                    3 Months
+                </button>
+                <button type="button" [ngClass]="[bntStyle3]" (click)="switchChart('6')">
+                    6 Months
+                </button>
+                <button type="button" [ngClass]="[bntStyle4]" (click)="switchChart('12')">
+                    12 Months
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
-<div [chart]="chart"></div>
-  </ng-template>
+    <div [chart]="chart"></div>
+</ng-template>

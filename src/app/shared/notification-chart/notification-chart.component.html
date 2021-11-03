@@ -1,17 +1,15 @@
-<div *ngIf="!data;else other_content">
- <h1> No data available</h1>
+<div *ngIf="!data; else other_content">
+  <loader [noData]="true"></loader>
 </div>
 
 <ng-template #other_content>
-<div class="row mb-4">
-  <div class="col-md-8">
-    <div class="card-heading">Energy Cost throughout the day</div>
-    <span class="widget-subtitle"
-      >Mean energy consumption during the various time of the day</span
-    >
-<div class="row">
-  <div class="consumption-line" [chart]="chart"></div>
-</div>
-</div>
-</div>
+  <div class="row mb-4">
+    <div class="col-md-8">
+      <div class="card-heading">Energy Cost throughout the day</div>
+      <span class="widget-subtitle">Mean energy consumption during the various time of the day</span>
+      <div class="row">
+        <div class="consumption-line" [chart]="chart"></div>
+      </div>
+    </div>
+  </div>
 </ng-template>

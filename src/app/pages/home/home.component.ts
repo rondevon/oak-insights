@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   selectedDate: Date = new Date(new Date().setMonth(this.minDate.getMonth() - 1));
   faCalendar = faCalendarAlt;
 
-  loading: boolean = false;
+  loading: boolean = true;
 
   oakScore: number = 0;
   newsData = [];
@@ -43,30 +43,29 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-
-  this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+    
+    this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
 
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
+      this.apiService.getWeather('London,GB').subscribe((data: any) => {
+        if (data.data && data.data.length > 0) {
+          this.weatherData = data.data[0];
+        }
+        this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
+          if (data.data && data.data.length > 0) {
+            this.data = data.data;
+          }
+          this.updateMonth();
+        });
+      });
     });
 
-    this.apiService.getWeather('London,GB').subscribe((data: any) => {
-      if (data.data && data.data.length > 0) {
-        this.weatherData = data.data[0];
-      }
-    });
 
-    this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
-      if (data.data && data.data.length > 0) {
-        this.data = data.data;
-      }
-    });
 
-    this.updateMonth();
   }
 
   updateMonth() {
-    this.loading = false;
     this.selectedMonth = {
       month: this.pipe.transform(this.selectedDate, 'MMMM'),
       year: this.pipe.transform(this.selectedDate, 'YYYY')
@@ -74,7 +73,6 @@ export class HomeComponent implements OnInit {
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
-        this.loading = false;
         this.consumptionData = data.data.consumption_overview;
         this.oakScore = data.data.oak_score;
         this.cards = [
@@ -159,6 +157,7 @@ export class HomeComponent implements OnInit {
       .getHourlyCostData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
         this.hourlyCostData = data.data;
+        this.loading = false;
       });
   }
 

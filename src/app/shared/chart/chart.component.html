@@ -1,15 +1,5 @@
 <div *ngIf="!data;else other_content">
-  <div class="row mb-4">
-    <div class="col-md-8">
-      <div class="card-heading"></div>
-      <span class="widget-subtitle"
-        >Mean energy consumption during the various time of the day</span
-      >
-    </div>
-    <div class="col-md-4">
-       <h3> No data available</h3>
-    </div>
-  </div>
+    <loader [noData]="true"></loader>
 </div>
 
 <ng-template #other_content>

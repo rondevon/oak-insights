@@ -1,5 +1,5 @@
 <div *ngIf="!data;else other_content">
-  No data available
+  <loader [noData]="true"></loader>
 </div>
 
 <ng-template #other_content>
