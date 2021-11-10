@@ -70,6 +70,17 @@ export class BasicInsightsComponent implements OnInit {
       .subscribe((data: any) => {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
+        this.historicalConsumptionData.forEach((monthData:any) => {
+         if (monthData.month === this.pipe.transform(new Date(), 'MMMM') && 
+          monthData.year == this.pipe.transform(new Date(), 'YYYY'))
+          {
+            monthData.consumption_overview.isCurrrentMonth = true;
+          }
+          else
+          {
+            monthData.consumption_overview.isCurrrentMonth = false;
+          }
+        });
         this.loadings = false;
       });
       this.getMonthUsageData();

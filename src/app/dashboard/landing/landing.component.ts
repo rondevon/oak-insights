@@ -87,7 +87,7 @@ export class LandingComponent implements OnInit {
 
   setHomeInsightsCard(){
     this.consumptionData = this.LandingInsightsData.consumption_overview;
-    console.log("cons", this.consumptionData);
+    this.consumptionData.isCurrrentMonth = true;
     this.oakScore = this.LandingInsightsData.oak_score;
       this.cards= [
         {

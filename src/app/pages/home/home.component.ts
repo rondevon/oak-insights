@@ -74,6 +74,17 @@ export class HomeComponent implements OnInit {
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
         this.consumptionData = data.data.consumption_overview;
+        
+        if(this.selectedMonth.month === this.pipe.transform(new Date(), 'MMMM') && 
+        this.selectedMonth.year === this.pipe.transform(new Date(), 'YYYY'))
+        {
+          this.consumptionData.isCurrrentMonth = true;  
+        }
+        else
+        {
+          this.consumptionData.isCurrrentMonth = false;
+        }
+        
         this.oakScore = data.data.oak_score;
         this.cards = [
           {
