@@ -225,26 +225,32 @@ export class ApiService {
     } else return of(null);
   }
 
-  // public getPhaseStockChartData(month: Date, type: String, site_slug: String): Observable<any> {
-  //   if (localStorage.getItem('token')) {
-  //     return this.httpClient.get(
-  //       serviceBaseUrl +
-  //         'insights/phase/minute?month=' +
-  //         this.getMonthFromDate(month) +
-  //         '&field=' +
-  //         type +
-  //         '&year=' +
-  //         +month.getFullYear() +
-  //         '&site_id=' +
-  //         (!site_slug? localStorage.getItem('site_slug'):site_slug),
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${localStorage.getItem('token')}`,
-  //         },
-  //       }
-  //     );
-  //   } else return of(null);
-  // }
+
+  public getPhaseApplianceData(
+    month: Date,
+    year: Date,
+    type: String,
+    site_slug: String
+  ): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          '/phase/distribution?&month=' +
+          month +
+          '&year=' +
+          +year +
+          '&field=' +
+          type +
+          '&site_id=' +
+          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
 
 
   public getLoadCurveData(

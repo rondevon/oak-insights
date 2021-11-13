@@ -54,3 +54,18 @@
   border-width: 1px 1px 1px 0px ;
   border-radius: 0rem;
   }
+
+  .alternate{
+    display: flex;
+    padding: 0.5vw 5vw;
+    img{
+      flex:1;
+      padding: 1vw;
+    }
+    p{
+      font-size: 1.2vw;
+      font-weight: 800;
+      color: var(--color10);
+      flex:1
+    }
+  }
