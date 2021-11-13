@@ -6,7 +6,7 @@
   <div class="row mb-4">
   <div class="col-lg-6 col-xl-7">
       <div class="card-heading" *ngIf ="selectedGraph == 'phase'">Phase Distribution (Zoomable Graph)</div>
-      <div class="card-heading" *ngIf ="selectedGraph == 'consumption'"></div>
+      <div class="card-heading" *ngIf ="selectedGraph == 'consumption'">Consumption (Zoomable Graph)</div>
       <loader *ngIf="!selectedGraph"></loader>
 
       <span class="widget-subtitle" *ngIf ="selectedGraph == 'phase'">View the consumption pattern for each of the three phases</span>

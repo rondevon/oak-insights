@@ -25,7 +25,7 @@
               <span class="text-heading" *ngIf="role === 'Account Manager'">Performance Across Sites</span>
             </div>
             <div class="col-md-5">
-              <div class="go-to-dashboard">
+              <div class="go-to-dashboard" *ngIf="role == 'Site Manager'">
                 <button class="go-to-dashboard-btn" [routerLink]="['./dashboard', site_slug]">
                   GO TO DASHBOARD
                 </button>
@@ -33,7 +33,7 @@
             </div>
           </div>
 
-          <div class="row recommendations" *ngIf="role === 'Site Manager'">
+          <div class="row recommendations" *ngIf="role == 'Site Manager'">
             <div class="card card-custom">
               <div class="row">
                 <div class="col-md-2 recommendation-number my-auto">
