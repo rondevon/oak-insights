@@ -21,7 +21,8 @@ export class SavingsCalculatorComponent implements OnInit {
   savingsResponseData: any = {};
   savingsProjectedData: any = {};
   loading: boolean = true;
-  totalSavings: number = 0;
+  totalEnergySavings: number = 0;
+  totalSavings: any = {};
 
   ngOnInit(): void {
     this.site_slug = this.route.parent?.parent?.snapshot.params.site_slug;
@@ -44,7 +45,13 @@ export class SavingsCalculatorComponent implements OnInit {
     projectedData.total_consumption = this.getGroupTotals(projectedData.values_consumption);
     projectedData.total_c02 = this.getGroupTotals(projectedData.values_c02);
     this.savingsProjectedData = projectedData;
-    this.totalSavings = this.getSavingsTotal(this.savingsResponseData.values_consumption, this.savingsProjectedData.values_consumption);
+    this.totalEnergySavings = this.getSavingsTotal(this.savingsResponseData.values_consumption, this.savingsProjectedData.values_consumption);
+    this.totalSavings.petrol = Math.round((this.totalEnergySavings*0.000709)/0.01018);
+    this.totalSavings.distance = Math.round((this.totalEnergySavings*0.000709)/0.000398);
+    this.totalSavings.smartphone = Math.round((this.totalEnergySavings*0.000709)/0.00000822);
+    this.totalSavings.trees = Math.round((this.totalEnergySavings*0.000709)/0.06);
+    this.totalSavings.electricity = Math.round((this.totalEnergySavings*0.000709)/5.505*365);
+    this.totalSavings.trash = Math.round((this.totalEnergySavings*0.000709)/0.023);
   }
 
   getSavingsTotal(actualConsumption: any [], projectedConsumption: any[]): number {
