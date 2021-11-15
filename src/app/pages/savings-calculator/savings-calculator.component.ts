@@ -32,6 +32,12 @@ export class SavingsCalculatorComponent implements OnInit {
       { text: 'Non Operating Hours', color: 'var(--color2)' },
       { text: 'Closed Hours', color: 'var(--color5)' },
     ];
+    this.totalSavings.petrol = 0;
+    this.totalSavings.distance = 0;
+    this.totalSavings.smartphone = 0;
+    this.totalSavings.trees = 0;
+    this.totalSavings.electricity = 0;
+    this.totalSavings.trash = 0;
     this.getSavingsResponseData(this.selectedMonth, this.selectedYear, this.site_slug);
   }
 
