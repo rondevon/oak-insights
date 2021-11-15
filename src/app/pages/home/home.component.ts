@@ -105,7 +105,7 @@ export class HomeComponent implements OnInit {
             image: '/assets/icons/icon-closed-hours.svg',
             title: 'Closed-hours',
             value: data.data.stats.closed_hour_energy,
-            unit: 'kWh',
+            unit: '%',
             color: 'var(--color8)',
           },
           {

@@ -17,6 +17,7 @@ export class BasicInsightsComponent implements OnInit {
     month: this.pipe.transform(this.selectedDate, 'MMMM'),
     year: this.pipe.transform(this.selectedDate, 'YYYY'),
   };
+  date = this.pipe.transform(new Date(), 'dd') as string;
 
   showMonthlyStats: boolean = false;
   selectedTileIndex: number = -1;
@@ -108,7 +109,7 @@ export class BasicInsightsComponent implements OnInit {
         image: '/assets/icons/icon-closed-hours.svg',
         title: 'Closed-hours',
         value: data.data.stats.closed_hour_energy,
-        unit: 'kWh',
+        unit: '%',
         color: 'var(--color8)',
       },
       {
@@ -164,9 +165,18 @@ setTrendIcon(value: number){
   }
 }
 
-calculateTarget(target: number, actual: number)
+calculateTarget(target: number, actual: number, month: String)
 {
-    let value: number = Math.round((actual-target)/target*100);
+    let value: number
+    if(month == this.pipe.transform(new Date(), 'MMMM'))
+    {
+      let currentTargetValue = (Number(target)/30*Number(this.date));
+      value = Math.round((actual-currentTargetValue)/currentTargetValue*100);
+    }
+    else{
+      value = Math.round((actual-target)/target*100);
+    }
+    
     let color: String = '';
     let text: String = '';
     if(value>0)
