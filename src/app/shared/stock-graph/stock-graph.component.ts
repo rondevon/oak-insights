@@ -41,6 +41,20 @@ export class StockGraphComponent implements OnInit {
   getStockChartDetails(selectedMonth: any, selectedYear: any, selectedType: String, selectedGraph: String, site_slug: String){
     this.apiService.getStockChartData(selectedMonth,selectedYear,selectedType,selectedGraph,site_slug).subscribe((data : any) => {
       this.stockChartData = data.data;
+      
+      if(selectedGraph == 'consumption'){
+        for (let i=0; i<this.stockChartData.values.length; i++){
+          console.log("trye")
+          this.stockChartData.values[i][1] = (this.stockChartData.values[i][1]/100);
+         }
+      }
+      if(selectedGraph == 'phase'){
+        for (let i=0; i<this.stockChartData.values_r.length; i++){
+          this.stockChartData.values_r[i][1] = (this.stockChartData.values_r[i][1]/100);
+          this.stockChartData.values_s[i][1] = (this.stockChartData.values_s[i][1]/100);
+          this.stockChartData.values_t[i][1] = (this.stockChartData.values_t[i][1]/100);
+         }
+      }      
       this.setStockGraphData();
     });
   }
@@ -82,9 +96,9 @@ export class StockGraphComponent implements OnInit {
     }
     if(this.selectedGraph == 'consumption'){
       this.consumptionTotals = [
-      { type:'Peak Consumption', value: this.stockChartData.peak +' '+ this.unit, date: this.pipe.transform(new Date(this.stockChartData.peak_time), 'medium'), color: 'var(--color6'},
-      { type:'Average Consumption', value: this.stockChartData.avg +' '+ this.unit, color: 'var(--color8'},
-      { type:'Lowest Consumption', value: this.stockChartData.lowest +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time), 'medium'), color:'var(--color5'},
+      { type:'Peak Consumption', value: (this.stockChartData.peak /100).toFixed(2)+' '+ this.unit, date: this.pipe.transform(new Date(this.stockChartData.peak_time), 'medium'), color: 'var(--color6'},
+      { type:'Average Consumption', value: (this.stockChartData.avg/100).toFixed(2) +' '+ this.unit, color: 'var(--color8'},
+      { type:'Lowest Consumption', value: (this.stockChartData.lowest/100).toFixed(2) +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time), 'medium'), color:'var(--color5'},
     ];
   }
     
