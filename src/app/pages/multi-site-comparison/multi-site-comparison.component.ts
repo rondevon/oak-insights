@@ -122,7 +122,11 @@ export class MultiSiteComparisonComponent implements OnInit {
       subscribe((data: any) => {
         this.loading = false;
         this.siteComparisonData = data.data;
-          var tree: any[] = []
+          var tree: any[] = [];
+          console.log(this.siteComparisonData)
+          for (let i=0;i<this.siteComparisonData.length;i++){
+                (this.siteComparisonData[i].stats.co2_emission).toLocaleString();
+          }
           this.siteComparisonData.forEach((site, index) => {
             tree.push({
               name: site.name,

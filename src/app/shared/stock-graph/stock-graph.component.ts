@@ -50,9 +50,14 @@ export class StockGraphComponent implements OnInit {
       }
       if(selectedGraph == 'phase'){
         for (let i=0; i<this.stockChartData.values_r.length; i++){
-          this.stockChartData.values_r[i][1] = (this.stockChartData.values_r[i][1]/100);
+          if(this.stockChartData.values_r && this.stockChartData.values_s && this.stockChartData.values_t)
+          {
+            this.stockChartData.values_r[i][1] = (this.stockChartData.values_r[i][1]/100);
           this.stockChartData.values_s[i][1] = (this.stockChartData.values_s[i][1]/100);
           this.stockChartData.values_t[i][1] = (this.stockChartData.values_t[i][1]/100);
+
+          }
+          
          }
       }      
       this.setStockGraphData();
@@ -108,6 +113,17 @@ export class StockGraphComponent implements OnInit {
         chart:{
           marginTop: 40,
           height: 500,
+          events: {
+            load: function() {
+              var chart = this;
+              chart.renderer.text('Click on legends to modify chart',this.chartWidth/2.3,this.chartHeight-2)
+              .attr({
+                zIndex: 3,
+                fill: 'black'
+              })
+              .add();
+            }
+          }
         },
         exporting: { 
           enabled: false 

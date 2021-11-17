@@ -11,7 +11,10 @@ export class AppComponent {
 
   constructor(router: Router) {
     router.events.subscribe((val) => {      
-      if (val instanceof NavigationEnd) localStorage.setItem('url', val.url);
+      if (val instanceof NavigationEnd) {
+        localStorage.setItem('url', val.url);
+      }
+      
     });
   }
 }

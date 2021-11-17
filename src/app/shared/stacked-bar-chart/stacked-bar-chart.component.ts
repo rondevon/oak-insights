@@ -19,10 +19,10 @@ export class StackedBarChartComponent implements OnInit {
         });
     });
     this.operatingHoursTotals = [
-      { type:'Open Hours', value: this.data.open_total +'kWh', color: 'var(--color8'},
-      { type:'Prep Hours', value: this.data.preparatory_total +'kWh', color: 'var(--color5'},
-      { type:'Non-Operating Hours', value: this.data.non_operating_total +'kWh', color:'var(--color11'},
-      { type:'Closed Hours', value: this.data.closed_total +'kWh', color:'var(--color6'},
+      { type:'Open Hours', value: (this.data.open_total).toLocaleString() +'kWh', color: 'var(--color8'},
+      { type:'Prep Hours', value: (this.data.preparatory_total).toLocaleString() +'kWh', color: 'var(--color5'},
+      { type:'Non-Operating Hours', value: (this.data.non_operating_total).toLocaleString() +'kWh', color:'var(--color11'},
+      { type:'Closed Hours', value: (this.data.closed_total).toLocaleString() +'kWh', color:'var(--color6'},
     ];
 
     this.chart = new Chart({
@@ -31,6 +31,17 @@ export class StackedBarChartComponent implements OnInit {
       },
       chart:{
         marginTop: 40,
+        events: {
+          load: function() {
+            var chart = this;
+            chart.renderer.text('Click on legends to modify chart',this.chartWidth/2.45,this.chartHeight-2)
+            .attr({
+              zIndex: 3,
+              fill: 'black'
+            })
+            .add();
+          }
+        }
       },
       exporting: { enabled: false },
       xAxis: {

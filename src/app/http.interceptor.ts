@@ -25,7 +25,7 @@ export class MyHttpInterceptor implements HttpInterceptor {
             localStorage.removeItem('token');
             this.router.navigate(['/login']);
             break;
-          case 403:
+          case 402:
             localStorage.setItem('temp_url', localStorage.getItem('url') || '/')
             localStorage.removeItem('token');
             this.router.navigate(['/login']);

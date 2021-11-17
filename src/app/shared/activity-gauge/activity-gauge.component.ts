@@ -15,7 +15,7 @@ import { Chart } from 'angular-highcharts';
 })
 export class ActivityGaugeComponent implements OnInit, OnChanges {
   @Input('data') data: any;
-  @Input('totalSize') totalSize: any = {total: '1.2vw', text:'1vw', y:'-24'};
+  @Input('totalSize') totalSize: any = {total: '1.5vw', text:'1vw', y:'-24'};
   pipe = new DatePipe('en-GB');
   date = this.pipe.transform(new Date(), 'dd') as string;
   seriesTarget: any;
@@ -102,6 +102,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
 
         plotOptions: {
           solidgauge: {
+            //showInLegend: true,
             dataLabels: {
               style: {
                 fontFamily: 'Avenir-Roman',
@@ -112,10 +113,9 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
               y: parseInt(this.totalSize.y),
               format:
                 '<div style="width:100%;text-align:center;"><span style="font-size:' + this.totalSize.total + '; color: {point.color}; font-weight: bold">' +
-                Math.abs(this.differ) +
+                Math.abs(this.differ).toLocaleString() +
                 ' kWh</span><br><span style="font-size:' + this.totalSize.text + '; color: black; font-weight: bold">'+ this.abvbel + ' Target</span></div>',
             },
-
             linecap: 'round',
             stickyTracking: false,
             rounded: true,
