@@ -36,6 +36,9 @@
   </div>
 </div>
 
-<div class="chat-pop" *ngIf="show"></div>
-<shared-alerts class="chat-popup" *ngIf="show" (onclose)="show = false"></shared-alerts>
+<div class="chat-pop" *ngIf="show">
+  <div>
+    <shared-alerts class="chat-popup" *ngIf="show" (onclose)="show = false"></shared-alerts>
+  </div>
+</div>
 
