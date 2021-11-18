@@ -1,9 +1,6 @@
-form-container{
-  position: center;
+:host {
+  padding: 32px;
 }
-// .form-container .cancel {
-//   background-color: var(--color4);
-// }
 
 .bcolor1 {
   background-color: var(--color2);
@@ -22,4 +19,9 @@ form-container{
   font-size: 1vw;
   color: gray;
   margin-bottom: 2rem;
+}
+
+.button{
+  display: flex;
+flex-direction: row-reverse;
 }
