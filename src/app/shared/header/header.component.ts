@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/user/auth.service';
 
@@ -10,10 +10,26 @@ import { AuthService } from 'src/app/user/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  [x: string]: any;
   notification = true;
   photo: any;
-  constructor(private authService: AuthService, private router: Router, private apiService: ApiService) {}
+  sitename: string = localStorage.getItem('site_name') || '';
+  show: boolean = false;
+  
+  constructor(private authService: AuthService, private router: Router, private apiService: ApiService) {
+    router.events.subscribe((val) => {
+      if (val instanceof NavigationEnd) {
+        const x = val.url.split('/');
+        if (x.length >= 4) {
+          const y = x[3].split('-');
+          y.shift();
+          y.pop();
+          const z = y.toString().replace(/\,/g, ' ');
+          if (this.sitename === '') this.sitename = z;
+        }
+        
+      }
+  });
+  }
 
   ngOnInit(): void {
     this.apiService.getMyprofileApi().subscribe((data: any)=> {

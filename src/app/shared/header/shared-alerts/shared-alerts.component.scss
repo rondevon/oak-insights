@@ -1,0 +1,25 @@
+form-container{
+  position: center;
+}
+.form-container .cancel {
+  background-color: var(--color4);
+}
+
+.bcolor1 {
+  background-color: var(--color2);
+}
+.bcolor2 {
+  background-color: var(--color4);
+}
+
+.card-heading {
+  font: var(--fontBold);
+  font-size: 1.5vw;
+  font-weight: 800;
+}
+
+.widget-subtitle {
+  font-size: 1vw;
+  color: gray;
+  margin-bottom: 2rem;
+}

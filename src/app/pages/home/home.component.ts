@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void { 
     
     this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+    this.updateMonth();
 
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
@@ -57,7 +58,6 @@ export class HomeComponent implements OnInit {
           if (data.data && data.data.length > 0) {
             this.data = data.data;
           }
-          this.updateMonth();
         });
       });
     

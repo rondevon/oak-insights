@@ -9,12 +9,17 @@
 
 input {
   width: 320px;
-  margin-bottom: 24px;
   height: 40px;
   outline: 0;
   border: 3px solid var(--color1);
   padding: 0 0 0 10px;
   font-size: 14px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  height: 72px;
 }
 
 .btn-login {

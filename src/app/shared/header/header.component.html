@@ -1,5 +1,5 @@
-<img class="header-img" src="/assets/OakInsightsLogo.svg" />
-<div class="site-name">{{sitename}}</div>
+<img class="header-img" src="/assets/OakInsightsLogo.svg" routerLink="/oak"/>
+<h3>{{sitename}}</h3>
 <div class="icon-list">
   <img
     [src]="
@@ -9,8 +9,9 @@
     "
     height="48px"
     style="cursor: pointer"
-    routerLink="/alerts"
-  />
+    (click)="show = true"
+    />
+    <!-- routerLink="/alerts" -->
   
   <div class="btn-group" dropdown #dropdown="bs-dropdown" >
     <ngs-avater class="pointer1"
@@ -34,3 +35,7 @@
     </ul>
   </div>
 </div>
+
+<div class="chat-pop" *ngIf="show"></div>
+<shared-alerts class="chat-popup" *ngIf="show" (onclose)="show = false"></shared-alerts>
+
