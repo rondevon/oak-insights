@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -23,12 +24,13 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {}
 
-  login() {    
+  login() {
     if (this.formGroup.valid) {
       this.loading = true;
       this.authService.login(this.formGroup.value).subscribe(
@@ -53,12 +55,23 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         },
         (err) => {
-          console.log(err);
-          this.loading = false;
+          const data = err.error;
+          if (data.success === 0) {
+            if (typeof data.message === 'string') {
+              this.openSnackBar(data.message, 'Dismiss');
+            } else {
+              this.openSnackBar(data.message.email[0], 'Dismiss');
+            }
+            this.loading = false;
+          }
         }
       );
     } else {
       this.formGroup.markAllAsTouched();
     }
+  }
+
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
   }
 }
