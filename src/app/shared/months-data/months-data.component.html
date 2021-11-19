@@ -14,7 +14,7 @@
       <button
         class="btn btn-block justify-content-between d-flex w-100  shadow-none  bcolor description"
         accordion-heading type="button" (click)="onChange(i)">
-        <div class="pull-left float-left">{{description.title}}</div>
+        <div class="pull-left float-left my-auto">{{description.title}}</div>
         <button class="btn" *ngIf="description.description"><i [ngClass]="description.class ? description.class : class"></i></button>
       </button>
       {{description.description}}
