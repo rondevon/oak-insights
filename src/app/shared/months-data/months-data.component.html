@@ -12,9 +12,9 @@
     <h3 class="card-heading">{{ data.month }}</h3>
     <accordion-group *ngFor="let description of data.data; let i = index" [isDisabled]="!description.description">
       <button
-        class="btn btn-block justify-content-between d-flex w-100  shadow-none "
+        class="btn btn-block justify-content-between d-flex w-100  shadow-none  bcolor description"
         accordion-heading type="button" (click)="onChange(i)">
-        <div class="pull-left float-left bcolor description">{{description.title}}</div>
+        <div class="pull-left float-left">{{description.title}}</div>
         <button class="btn" *ngIf="description.description"><i [ngClass]="description.class ? description.class : class"></i></button>
       </button>
       {{description.description}}
