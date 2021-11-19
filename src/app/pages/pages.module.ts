@@ -34,6 +34,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+
 @NgModule({
   declarations: [
     HomeComponent,

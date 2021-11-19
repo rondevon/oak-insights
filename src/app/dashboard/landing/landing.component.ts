@@ -24,6 +24,7 @@ export class LandingComponent implements OnInit {
   photo: any;
   monthUsageData: any;
   loading: boolean = true;
+  showNotification: boolean = localStorage.getItem('role') === 'Account Manager' ? false : true;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 

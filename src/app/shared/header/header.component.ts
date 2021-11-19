@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/user/auth.service';
@@ -10,10 +10,12 @@ import { AuthService } from 'src/app/user/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @Input() showNotification = true;
   notification = true;
   photo: any;
-  sitename: string = localStorage.getItem('site_name') || '';
+  sitename: string = '';// = localStorage.getItem('site_name') || '';
   show: boolean = false;
+  // showNotification: boolean = localStorage.getItem('role') === 'Account Manager' ? false : true;
   
   constructor(private authService: AuthService, private router: Router, private apiService: ApiService) {
     router.events.subscribe((val) => {

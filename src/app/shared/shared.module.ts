@@ -40,6 +40,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TreeMapComponent } from './tree-map/tree-map.component';
 import { MultiLineChartComponent } from './multi-line-chart/multi-line-chart.component';
 import { SharedAlertsComponent } from './header/shared-alerts/shared-alerts.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+
 
 export function highchartsModules() {
   // apply Highcharts Modules to this array
@@ -88,7 +90,8 @@ export function highchartsModules() {
     DatepickerModule,
     LoaderModule,
     BsDropdownModule.forRoot(),
-    FontAwesomeModule
+    FontAwesomeModule,
+    AccordionModule
   ],
   exports: [
     HeaderComponent,

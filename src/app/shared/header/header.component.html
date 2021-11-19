@@ -1,7 +1,7 @@
 <img class="header-img" src="/assets/OakInsightsLogo.svg" routerLink="/oak"/>
-<h3>{{sitename}}</h3>
+<h3>{{sitename | uppercase}}</h3>
 <div class="icon-list">
-  <img
+  <img *ngIf="showNotification"
     [src]="
       notification
         ? '/assets/icon-notification-active.svg'

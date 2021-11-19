@@ -1,11 +1,12 @@
 <form class="form-container">
+  <div class="button">
+    <button class="btn" (click)="onclose.emit()"><i class="fa fa-close"></i> Close</button>
+    </div> 
   <div class="card-heading">Summary</div>
   <span class="widget-subtitle"
     >Summary of all the alerts that has been generated in the system</span
   >
-  <div class="button">
-  <button class="btn" (click)="onclose.emit()"><i class="fa fa-close"></i> Close</button>
-  </div>  
+  
   <table class="table table-bordered">
     <thead>
       <tr>
