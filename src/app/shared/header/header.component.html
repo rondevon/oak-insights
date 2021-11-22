@@ -1,6 +1,7 @@
 <img class="header-img" src="/assets/OakInsightsLogo.svg" routerLink="/oak"/>
-<h3 class="my-auto">{{sitename | uppercase}}</h3>
+
 <div class="icon-list">
+  <h4 class="my-auto site-name">{{sitename | uppercase}}</h4>
   <img *ngIf="showNotification"
     [src]="
       notification

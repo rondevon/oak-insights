@@ -38,7 +38,7 @@ export class BasicInsightsComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['Prev', 'Next'],
     responsive: {
       0: {
         items: 1,
@@ -53,7 +53,7 @@ export class BasicInsightsComponent implements OnInit {
         items: 3,
       },
     },
-    nav: false,
+    nav: true,
   };
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
