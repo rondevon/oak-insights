@@ -8,22 +8,35 @@
       </div>
       <div class="col-md-3 my-auto">
         <div class="input-group">
-          <span class="form-control"
-                 [(ngModel)]="selectedDate" [(bsValue)]="selectedDate" (bsValueChange)="updateMonth()"
-                 #dp="bsDatepicker" bsDatepicker
-                 [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"
-                 [minDate]="minDate"
-                 [maxDate]="maxDate">{{selectedMonth?.month}} {{selectedMonth?.year}}</span>
-                 <div class="input-group-append">
-                 <button class="btn btn-toggle"
-                    (click)="dp.toggle()"
-                    [attr.aria-expanded]="dp.isOpen"
-                    type="button"><fa-icon [icon]="faCalendar"></fa-icon>
-                </button>
-                </div>
-              </div>
+          <span
+            class="form-control"
+            [(ngModel)]="selectedDate"
+            [(bsValue)]="selectedDate"
+            (bsValueChange)="updateMonth()"
+            #dp="bsDatepicker"
+            bsDatepicker
+            [bsConfig]="{
+              minMode: 'month',
+              adaptivePosition: true,
+              isAnimated: true,
+              dateInputFormat: 'MMMM YYYY'
+            }"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            >{{ selectedMonth?.month }} {{ selectedMonth?.year }}</span
+          >
+          <div class="input-group-append">
+            <button
+              class="btn btn-toggle"
+              (click)="dp.toggle()"
+              [attr.aria-expanded]="dp.isOpen"
+              type="button"
+            >
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
       </div>
-      
     </div>
     <div class="row">
       <div class="col-md-9">
@@ -43,7 +56,18 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card card-custom">
-              <div class="card-heading">Calendar Heat Map</div>
+              <div class="card-heading">
+                Calendar Heat Map
+                <div class="tog">
+                  <span [class.blue]="!isChecked">Hourly</span
+                  ><mat-slide-toggle
+                    [(ngModel)]="isChecked"
+                    class="slide"
+                    (change)="change()"
+                  ></mat-slide-toggle
+                  ><span [class.red]="isChecked">Daily</span>
+                </div>
+              </div>
               <span class="widget-subtitle"
                 >Compare areas of high consumption with respect to other
                 day</span
@@ -79,14 +103,20 @@
         <div class="card card-custom">
           <div class="card-heading">List of Events</div>
           <span class="widget-subtitle">A list of non-trading days</span>
-          <div class="events-list" *ngFor="let d of data" [style.color]="d.type==='User' ? 'var(--color2)' : 'black'">
+          <div
+            class="events-list"
+            *ngFor="let d of data"
+            [style.color]="d.type === 'User' ? 'var(--color2)' : 'black'"
+          >
             {{ d.date | dateSuffix }}
             <span>
               {{ d.name }}
             </span>
           </div>
           <div class="add-new-event">
-            <button class="add-new-btn" (click)="openDialog()">Add an Event</button>
+            <button class="add-new-btn" (click)="openDialog()">
+              Add an Event
+            </button>
           </div>
         </div>
       </div>
@@ -99,7 +129,8 @@
         <div class="card card-custom">
           <div class="card-heading">Operating Hours Analysis</div>
           <span class="widget-subtitle"
-            >Activity wise break up of average energy consumption throughout the month</span
+            >Activity wise break up of average energy consumption throughout the
+            month</span
           >
           <app-stacked-bar-chart
             [data]="operatingHoursData"
@@ -107,7 +138,7 @@
         </div>
 
         <div class="card card-custom">
-          <app-chart [data]="hourlyCostData" [showButtons]=true></app-chart>
+          <app-chart [data]="hourlyCostData" [showButtons]="true"></app-chart>
         </div>
       </div>
 

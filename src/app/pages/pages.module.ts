@@ -33,7 +33,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AlertsComponent } from './alerts/alerts.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 
 @NgModule({
   declarations: [
@@ -74,6 +74,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DatepickerModule.forRoot(),
     CarouselModule,
     FontAwesomeModule,
+    MatSlideToggleModule,
   ],
 })
 export class PagesModule {}

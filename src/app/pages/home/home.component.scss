@@ -209,6 +209,9 @@
   font: var(--fontBold);
   font-size: 1.5vw;
   font-weight: 800;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
 }
 
 .widget-subtitle {
@@ -229,10 +232,33 @@
 }
 
 .btn-toggle {
-  color:var(--color3);
+  color: var(--color3);
   border-color: var(--color3);
 }
 
-.consumption-height{
-  height: 95%
+.consumption-height {
+  height: 95%;
+}
+
+::ng-deep {
+  .mat-slide-toggle-bar {
+    background-color: var(--color3);
+    color: var(--color3);
+  }
+}
+
+.red {
+  color: var(--color4);
+}
+
+.blue {
+  color: var(--color3);
+}
+.tog {
+  display: flex;
+  justify-content: end;
+}
+
+.slide {
+  margin: 5px 16px 0 16px;
 }

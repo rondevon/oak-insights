@@ -17,6 +17,6 @@ export class MonthsDataComponent implements OnInit {
   onChange(i: number): void { 
     // if (!this.data.data[i].description) return;
     this.data.data[i].class = (this.data.data[i]?.click === true) ? 'fa fa-plus' : 'fa fa-minus';
-    this.data.data[i].click = this.data.data[i].click ? !this.data.data[i].click : true;
+    this.data.data[i].click = this.data.data[i]?.click ? !this.data.data[i].click : true;
   }
 }

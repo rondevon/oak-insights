@@ -12,6 +12,7 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  isChecked: boolean = false;
   site_slug:any ;
   minDate: Date = new Date();;
   maxDate: Date = new Date();
@@ -60,10 +61,6 @@ export class HomeComponent implements OnInit {
           }
         });
       });
-    
-
-
-
   }
 
   updateMonth() {
@@ -193,5 +190,23 @@ export class HomeComponent implements OnInit {
         
       })
     });
+  }
+
+  change() {
+    console.log(this.isChecked);
+    if (this.isChecked) {
+      this.getHeatMapDetails(
+        this.selectedMonth.month,
+        this.selectedMonth.year,
+        this.site_slug
+      );
+    } else {
+      console.log(this.isChecked);
+      this.getHeatMapDetails(
+        this.selectedMonth.month,
+        this.selectedMonth.year,
+        this.site_slug
+      );
+    }
   }
 }
