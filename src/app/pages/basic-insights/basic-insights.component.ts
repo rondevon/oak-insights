@@ -38,7 +38,7 @@ export class BasicInsightsComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
-    navText: ['Prev', 'Next'],
+    navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
     responsive: {
       0: {
         items: 1,
