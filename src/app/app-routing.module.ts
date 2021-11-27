@@ -4,7 +4,7 @@ import { LoginGuardsGuard } from './guards/login-guards.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', canActivate: [LoginGuardsGuard], loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
+  { path: '', canActivate: [LoginGuardsGuard], loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: '', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) }
 ];
 

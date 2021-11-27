@@ -106,9 +106,8 @@ export class StockGraphComponent implements OnInit {
       { type:'Lowest Consumption', value: (this.stockChartData.lowest/100).toFixed(2) +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time), 'medium'), color:'var(--color5'},
     ];
   }
-    
-    if(this.selectedGraph == 'phase')
-    {
+  if(this.selectedGraph == 'phase')
+  {
       this.chart = new StockChart({
         chart:{
           marginTop: 40,
@@ -250,8 +249,8 @@ export class StockGraphComponent implements OnInit {
               selected: 0
           },
       series: [{
-        name: this.stockChartData.seq[1],
-        data: this.stockChartData.values,
+        name: "hvhgvhg",
+        data: this.stockChartData.data,
         type: 'area',
         threshold: null,
         color:'#364096',
