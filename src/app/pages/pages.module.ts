@@ -35,6 +35,9 @@ import { MyprofileComponent } from './myprofile/myprofile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 
+import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -75,6 +78,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     CarouselModule,
     FontAwesomeModule,
     MatSlideToggleModule,
+    MatTooltipModule,
+    MatButtonModule
   ],
 })
 export class PagesModule {}
