@@ -59,13 +59,13 @@
               <div class="card-heading">
                 Calendar Heat Map
                 <div class="tog">
-                  <span [class.blue]="!isChecked">Hourly</span
+                  <span [class.blue]="!isChecked">Daily</span
                   ><mat-slide-toggle
                     [(ngModel)]="isChecked"
                     class="slide"
                     (change)="change()"
                   ></mat-slide-toggle
-                  ><span [class.red]="isChecked">Daily</span>
+                  ><span [class.red]="isChecked">Hourly</span>
                 </div>
               </div>
               <span class="widget-subtitle"

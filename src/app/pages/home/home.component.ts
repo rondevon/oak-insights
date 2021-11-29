@@ -132,7 +132,8 @@ export class HomeComponent implements OnInit {
       this.getHeatMapDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
-        this.site_slug
+        this.site_slug,
+        'daily'
       );
       this.getOperatingHoursDetails(
         this.selectedMonth.month,
@@ -197,14 +198,14 @@ export class HomeComponent implements OnInit {
       this.getHeatMapDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
-        this.site_slug,
-        'daily'
-      );
-    } else {
-      this.getHeatMapDetails(
-        this.selectedMonth.month,
-        this.selectedMonth.year,
         this.site_slug
+        );
+      } else {
+        this.getHeatMapDetails(
+          this.selectedMonth.month,
+          this.selectedMonth.year,
+          this.site_slug,
+          'daily'
       );
     }
   }

@@ -34,7 +34,7 @@ export class HeatMapComponent implements OnInit {
     this.chart = new Chart({
       chart: {
         type: 'heatmap',
-        height: 800,
+        // height: 800,
         marginTop: 20,
         marginBottom: 60,
         plotBorderWidth: 0,
