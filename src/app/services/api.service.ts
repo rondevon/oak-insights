@@ -107,12 +107,11 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getHeatMapData(month: String, year: String, site_slug: String): Observable<any> {
+  public getHeatMapData(month: String, year: String, site_slug: String, type?: String): Observable<any> {
+    const url = (type === 'daily') ? "site/consumption/daily/heatmap?month=" : "site/consumption/month/hour?month=";
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
-        serviceBaseUrl +
-          'site/consumption/month/hour?month=' +
-          month +
+        serviceBaseUrl + url + month +
           '&year=' +
           year +
           '&site_id=' +

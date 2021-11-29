@@ -6,24 +6,25 @@ import { matchPassword } from 'src/app/shared/functions/validators.functions';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-forgot-password',
-  templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
 })
-export class ForgotPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.email, Validators.required])
+    newpassword: new FormControl('', [Validators.minLength(8), Validators.maxLength(20), Validators.required, matchPassword]),
+    confirmpassword: new FormControl('', [matchPassword, Validators.required])
   })
   loading: boolean = false;
-
   constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
     private _snackBar: MatSnackBar
   ) { }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void {
+  }
   login() {
     if (this.form.valid) {
       this.loading = true;

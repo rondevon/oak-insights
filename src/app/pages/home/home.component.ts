@@ -146,9 +146,9 @@ export class HomeComponent implements OnInit {
       );
   }
 
-  getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
+  getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String, type?: string) {
     this.apiService
-      .getHeatMapData(selectedMonth, selectedYear, site_slug)
+      .getHeatMapData(selectedMonth, selectedYear, site_slug, type)
       .subscribe((data) => {
         this.heatMapData = data.data;
       });
@@ -193,15 +193,14 @@ export class HomeComponent implements OnInit {
   }
 
   change() {
-    console.log(this.isChecked);
     if (this.isChecked) {
       this.getHeatMapDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
-        this.site_slug
+        this.site_slug,
+        'daily'
       );
     } else {
-      console.log(this.isChecked);
       this.getHeatMapDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
