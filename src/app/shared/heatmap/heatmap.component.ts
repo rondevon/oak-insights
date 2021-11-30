@@ -8,6 +8,7 @@ import { Chart } from 'angular-highcharts';
 })
 export class HeatMapComponent implements OnInit {
   @Input('data') data: any;
+  @Input('type') type: any = '';
   chart: any = {};
   heatmapranges: any[] = [];
   ngOnInit() {}
@@ -34,7 +35,7 @@ export class HeatMapComponent implements OnInit {
     this.chart = new Chart({
       chart: {
         type: 'heatmap',
-        // height: 800,
+        height: this.type==='daily' ? 300 : 800,
         marginTop: 20,
         marginBottom: 60,
         plotBorderWidth: 0,

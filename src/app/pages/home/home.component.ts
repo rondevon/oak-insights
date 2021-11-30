@@ -14,7 +14,8 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
   isChecked: boolean = false;
   site_slug:any ;
-  minDate: Date = new Date();;
+  minDate: Date = new Date();type: string | undefined;
+;
   maxDate: Date = new Date();
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
@@ -152,6 +153,7 @@ export class HomeComponent implements OnInit {
       .getHeatMapData(selectedMonth, selectedYear, site_slug, type)
       .subscribe((data) => {
         this.heatMapData = data.data;
+        this.type = type;
       });
   }
 

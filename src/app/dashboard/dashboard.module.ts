@@ -8,6 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CustomPipesModule } from '../custom-pipes/custom-pipes.module';
 import { NgsAvaterModule } from 'ngs-avater';
 import { LoaderModule } from '../loader/loader.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip'; 
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { LoaderModule } from '../loader/loader.module';
     CustomPipesModule,
     NgsAvaterModule,
     LoaderModule,
+    MatTooltipModule,
+    MatButtonModule
 
   ]
 })
