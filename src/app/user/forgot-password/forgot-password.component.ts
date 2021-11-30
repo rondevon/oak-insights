@@ -24,11 +24,17 @@ export class ForgotPasswordComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  login() {
+  forgotPassword() {
     if (this.form.valid) {
       this.loading = true;
-      this.openSnackBar("Password reset successfully", 'Dismiss');
-      this.loading = false;
+      this.authService.forgot(this.form.value.email).subscribe(()=>{
+        this.openSnackBar("Please check your mail", 'Dismiss');
+        this.loading = false;
+        localStorage.setItem('email', this.form.value.email)
+      }, err => {
+        this.openSnackBar("Internal Error", 'Dismiss');
+        this.loading = false;
+      })
     } else {
       this.form.markAllAsTouched();
     }

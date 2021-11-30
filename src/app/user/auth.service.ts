@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { serviceBaseUrl } from 'src/environments/environment';
 
 @Injectable({
@@ -19,6 +19,22 @@ export class AuthService {
     //   password: 'oak'
     // };
     return this.http.post(`${serviceBaseUrl}auth/login`, formdata);
+  }
+
+  forgot(email: string): Observable<any> {
+    let formdata = new FormData();
+    formdata.append('email', email);
+    return this.http.post(`${serviceBaseUrl}auth/forgot-password`, formdata);
+  }
+
+  resetPassword(userData: any): Observable<any> {
+    if(!localStorage.getItem('email')) return of(null)
+    let formdata = new FormData();
+    formdata.append('email', localStorage.getItem('email') || '');
+    formdata.append('password', userData.password);
+    formdata.append('password_confirmation', userData.password_confirmation);
+    formdata.append('token', userData.token);
+    return this.http.post(`${serviceBaseUrl}auth/reset-password`, formdata);
   }
 
   logout(): Observable<any> {
