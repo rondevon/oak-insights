@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { matchPassword } from 'src/app/shared/functions/validators.functions';
 import { AuthService } from '../auth.service';
 
@@ -16,20 +16,39 @@ export class ResetPasswordComponent implements OnInit {
     confirmpassword: new FormControl('', [matchPassword, Validators.required])
   })
   loading: boolean = false;
+  token: string = '';
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    route: ActivatedRoute,
     private _snackBar: MatSnackBar
-  ) { }
-
-  ngOnInit(): void {
+  ) {
+    route.queryParams.subscribe(params => {
+      if(!params.token || !localStorage.getItem('email')) this.router.navigate(['/login']);
+      this.token = params.token;
+    })
   }
-  login() {
+
+  ngOnInit(): void { }
+
+  resetPassword() {
     if (this.form.valid) {
       this.loading = true;
-      this.openSnackBar("Password reset successfully", 'Dismiss');
-      this.loading = false;
+      this.authService.resetPassword({
+        password: this.form.value.newpassword,
+        password_confirmation: this.form.value.confirmpassword,
+        token: this.token
+      }).subscribe(response => {
+        console.log(response);
+        localStorage.removeItem('email');
+        this.openSnackBar("Password reset successfully", 'Dismiss');
+        this.loading = false;
+        this.router.navigate(['/login']);
+      }, err => {
+        this.openSnackBar("Some error occurred", 'Dismiss');
+        this.loading = false;
+      })
     } else {
       this.form.markAllAsTouched();
     }
