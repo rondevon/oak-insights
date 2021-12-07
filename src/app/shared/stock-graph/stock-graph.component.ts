@@ -44,7 +44,6 @@ export class StockGraphComponent implements OnInit {
       
       if(selectedGraph == 'consumption'){
         for (let i=0; i<this.stockChartData.values.length; i++){
-          console.log("trye")
           this.stockChartData.values[i][1] = (this.stockChartData.values[i][1]/100);
          }
       }
@@ -214,7 +213,7 @@ export class StockGraphComponent implements OnInit {
           text: ''
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.y}</b> '+this.unit,
+        pointFormat: '{series.name} : <b>{point.y}</b> '+this.unit,
       },  
       rangeSelector: {
               allButtonsEnabled: true,
@@ -249,8 +248,8 @@ export class StockGraphComponent implements OnInit {
               selected: 0
           },
       series: [{
-        name: "hvhgvhg",
-        data: this.stockChartData.data,
+        name: this.stockChartData.seq[1] ,
+        data: this.stockChartData.values,
         type: 'area',
         threshold: null,
         color:'#364096',
