@@ -25,65 +25,22 @@ export class ApiService {
       environment.WeatherApi + 'city=' + location + environment.WeatherKey
     );
   }
-  
 
   public getSitesData(): Observable<any> {
     if (localStorage.getItem('token')) {
-      return this.httpClient.get(
-        serviceBaseUrl +
-          'sites',
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
+      return this.httpClient.get(serviceBaseUrl + 'sites', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
     } else return of(null);
   }
-
 
   public getMultiSitesData(month: String, year: String): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
         serviceBaseUrl +
           'account/sites/comparison?month=' +
-          month +
-          '&year=' + year,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
-    } else return of(null);
-  }
-
-
-  public getHomepageApi(month: String, year: String,site_slug: String): Observable<any> {
-    if (localStorage.getItem('token')) {
-      return this.httpClient.get(
-        serviceBaseUrl +
-          'site/home?month=' +
-          month +
-          '&year=' +
-          year +
-          '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
-    } else return of(null);
-  }
-
-
-  public getAccountLandingInsightsData(month: String, year: String): Observable<any> {
-    if (localStorage.getItem('token')) {
-      return this.httpClient.get(
-        serviceBaseUrl +
-          'account/home?month=' +
           month +
           '&year=' +
           year,
@@ -96,6 +53,44 @@ export class ApiService {
     } else return of(null);
   }
 
+  public getHomepageApi(
+    month: String,
+    year: String,
+    site_slug: String
+  ): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'site/home?month=' +
+          month +
+          '&year=' +
+          year +
+          '&site_id=' +
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
+  public getAccountLandingInsightsData(
+    month: String,
+    year: String
+  ): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl + 'account/home?month=' + month + '&year=' + year,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
 
   public getMyprofileApi(): Observable<any> {
     if (localStorage.getItem('token')) {
@@ -107,15 +102,25 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getHeatMapData(month: String, year: String, site_slug: String, type?: String): Observable<any> {
-    const url = (type === 'daily') ? "site/consumption/daily/heatmap?month=" : "site/consumption/month/hour?month=";
+  public getHeatMapData(
+    month: String,
+    year: String,
+    site_slug: String,
+    type?: String
+  ): Observable<any> {
+    const url =
+      type === 'daily'
+        ? 'site/consumption/daily/heatmap?month='
+        : 'site/consumption/month/hour?month=';
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
-        serviceBaseUrl + url + month +
+        serviceBaseUrl +
+          url +
+          month +
           '&year=' +
           year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -125,7 +130,11 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getOperatingHoursData(month: String, year: String, site_slug: String): Observable<any> {
+  public getOperatingHoursData(
+    month: String,
+    year: String,
+    site_slug: String
+  ): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
         serviceBaseUrl +
@@ -134,7 +143,7 @@ export class ApiService {
           '&year=' +
           year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -144,7 +153,11 @@ export class ApiService {
     } else return of(null);
   }
 
-  public getHourlyCostData(month: String, year: String, site_slug: String): Observable<any> {
+  public getHourlyCostData(
+    month: String,
+    year: String,
+    site_slug: String
+  ): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
         serviceBaseUrl +
@@ -153,7 +166,7 @@ export class ApiService {
           '&year=' +
           year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -170,7 +183,7 @@ export class ApiService {
           'site/consumption/yearly/month?year=' +
           year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -183,9 +196,7 @@ export class ApiService {
   public getAccountMonthlyUsageData(year: String): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
-        serviceBaseUrl +
-          'account/consumption/yearly/month?year=' +
-          year,
+        serviceBaseUrl + 'account/consumption/yearly/month?year=' + year,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -214,7 +225,7 @@ export class ApiService {
           '&field=' +
           type +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -223,7 +234,6 @@ export class ApiService {
       );
     } else return of(null);
   }
-
 
   public getPhaseApplianceData(
     month: Date,
@@ -241,7 +251,7 @@ export class ApiService {
           '&field=' +
           type +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -250,7 +260,6 @@ export class ApiService {
       );
     } else return of(null);
   }
-
 
   public getLoadCurveData(
     duration: String,
@@ -262,7 +271,7 @@ export class ApiService {
           'insights/load_curve?&duration=' +
           duration +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -271,7 +280,6 @@ export class ApiService {
       );
     } else return of(null);
   }
-
 
   public getMinMaxData(
     month: Date,
@@ -289,7 +297,7 @@ export class ApiService {
           '&duration=' +
           duration +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -298,7 +306,6 @@ export class ApiService {
       );
     } else return of(null);
   }
-
 
   public getSavingsData(
     month: Date,
@@ -313,7 +320,7 @@ export class ApiService {
           '&year=' +
           +year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -332,7 +339,7 @@ export class ApiService {
           '&year=' +
           +monthList.year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -355,7 +362,7 @@ export class ApiService {
           '&year=' +
           year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -378,7 +385,7 @@ export class ApiService {
           '&year=' +
           year +
           '&site_id=' +
-          (!site_slug? localStorage.getItem('site_slug'):site_slug),
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -389,9 +396,12 @@ export class ApiService {
   }
 
   postevent(eventData: any): Observable<any> {
-    if (!localStorage.getItem('site_slug')) return of(null);    
+    if (!localStorage.getItem('site_slug')) return of(null);
     let formdata = new FormData();
-    formdata.append('date', this.pipe.transform(eventData.date, 'YYYY-MM-dd') || '');
+    formdata.append(
+      'date',
+      this.pipe.transform(eventData.date, 'YYYY-MM-dd') || ''
+    );
     formdata.append('name', eventData.name);
     formdata.append('site_id', localStorage.getItem('site_slug') || '');
     formdata.append('type', eventData.type);
@@ -418,4 +428,24 @@ export class ApiService {
     );
   }
 
+  public getRecommendations(
+    selectedMonth: any,
+  ): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'site/recommendations?site_id=' +
+          localStorage.getItem('site_slug') +
+          '&year=' +
+          +selectedMonth.year +
+          '&month=' +
+          selectedMonth.month,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+          }
+      );
+    } else return of(null);
+  }
 }
