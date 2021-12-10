@@ -16,12 +16,12 @@
 
 .card-heading {
   font: var(--fontRegular);
-  font-size: 1.5vw;
+  font-size: 1.2vw;
   font-weight: 600;
 }
 .description, ::ng-deep { .card-header {
   font: var(--fontRegular);
-  font-size: 1.5rem;
+  font-size: 1.1vw;
   font-weight: 500;
 }
 }
@@ -38,17 +38,17 @@
   };
   .btn {
     color: black;
-    font-size: 1.3vw;
+    font-size: 1.2vw;
   font-weight: 600;
   };
   .btn:hover {
     color: white;
-    font-size: 1.3vw;
+    font-size: 1.2vw;
   font-weight: 600;
   }
   .panel-body {
     color: white;
-    font-size: 1.2vw;
+    font-size: 1vw;
   font-weight: 600;
   }
 }
