@@ -178,7 +178,7 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(AddEventDialogComponent);
 
     dialogRef.afterClosed().subscribe((eventData) => {
-      console.log('The dialog was closed', eventData);
+      console.log('The dialog was closed', eventData, this.site_slug);
       this.apiService.postevent(eventData, this.site_slug).subscribe((result) => {        
         if (result.success === 1) {
           this.apiService.getEvents(this.selectedMonth,this.site_slug).subscribe((data: any) => {

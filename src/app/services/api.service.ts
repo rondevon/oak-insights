@@ -396,7 +396,9 @@ export class ApiService {
   }
 
   postevent(eventData: any, site_slug: any): Observable<any> {
-    if (!site_slug || !localStorage.getItem('site_slug')) return of(null);
+    console.log(site_slug);
+    
+    if (!site_slug && !localStorage.getItem('site_slug')) return of(null);
     let formdata = new FormData();
     formdata.append(
       'date',

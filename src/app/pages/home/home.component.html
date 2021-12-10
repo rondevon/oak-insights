@@ -115,7 +115,7 @@
           <div
             class="events-list"
             *ngFor="let d of data"
-            [style.color]="d.type === 'User' ? 'var(--color2)' : 'black'"
+            [style.color]="d.type === 'Site' ? 'var(--color2)' : 'black'"
           >
             {{ d.date | dateSuffix }}
             <span>
