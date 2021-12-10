@@ -56,11 +56,6 @@ export class HomeComponent implements OnInit {
         if (data.data && data.data.length > 0) {
           this.weatherData = data.data[0];
         }
-        this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
-          if (data.data && data.data.length > 0) {
-            this.data = data.data;
-          }
-        });
       });
   }
 
@@ -146,6 +141,12 @@ export class HomeComponent implements OnInit {
         this.selectedMonth.year,
         this.site_slug
       );
+
+    this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
+      if (data.data && data.data.length > 0) {
+        this.data = data.data;
+      }
+    });
   }
 
   getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String, type?: string) {
