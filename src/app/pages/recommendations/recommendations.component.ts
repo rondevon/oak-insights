@@ -18,12 +18,14 @@ export class RecommendationsComponent implements OnInit {
     month: this.pipe.transform(new Date(), 'MMMM'),
     year: this.pipe.transform(new Date(), 'YYYY')
   }
+  error: any;
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
     this.apiService.getRecommendations(this.selectedMonth, this.site_slug).subscribe((data: any) => { 
       console.log(data);
+      this.error = undefined;
       this.monthsList = data.data.map((element: any) => {
         return ({
           month: element.month + element.year,
@@ -92,9 +94,8 @@ export class RecommendationsComponent implements OnInit {
       //   },
       // ];
     }, err => {
-      console.log(err);
-      
-    }, () => {console.log(":hgffht");
+      console.log(err.error.message);
+      this.error = err.error.message;
     });
   }
 }

@@ -4,7 +4,11 @@
         <h2>Recommendations</h2>
       </div>
     </div>
-
+<div *ngIf="error" class="card card-custom">
+  <div class="error">
+  {{error}}
+</div>
+</div>
 <div class="row">
     <div class="col-md-12">
       <div class="card card-custom" *ngFor="let monthList of monthsList">
