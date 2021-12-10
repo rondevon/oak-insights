@@ -49,7 +49,7 @@
           <div class="col-md-4 activity-gauge-container">
             <div class="card card-custom consumption-height">
               <div class="card-heading">Consumption Overview</div>
-              <app-activity-gauge [data]="consumptionData"></app-activity-gauge>
+              <app-activity-gauge [data]="consumptionData" *ngIf="consumptionData"></app-activity-gauge>
             </div>
           </div>
         </div>

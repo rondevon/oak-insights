@@ -377,7 +377,7 @@ export class ApiService {
     year: String,
     site_slug: any
   ): Observable<any> {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') || site_slug) {
       return this.httpClient.get(
         serviceBaseUrl +
           'insights/consumption/daily?month=' +
@@ -430,12 +430,13 @@ export class ApiService {
 
   public getRecommendations(
     selectedMonth: any,
+    site_slug: string
   ): Observable<any> {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') || site_slug) {
       return this.httpClient.get(
         serviceBaseUrl +
           'site/recommendations?site_id=' +
-          localStorage.getItem('site_slug') +
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug) +
           '&year=' +
           +selectedMonth.year +
           '&month=' +

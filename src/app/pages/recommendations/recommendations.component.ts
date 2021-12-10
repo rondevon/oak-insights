@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,14 +13,16 @@ export class RecommendationsComponent implements OnInit {
   monthsList: any[] = [];
   pipe = new DatePipe('en-GB');
   data: any;
+  site_slug: any;
   selectedMonth: any = {
     month: this.pipe.transform(new Date(), 'MMMM'),
     year: this.pipe.transform(new Date(), 'YYYY')
   }
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.apiService.getRecommendations(this.selectedMonth).subscribe((data: any) => { 
+    this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+    this.apiService.getRecommendations(this.selectedMonth, this.site_slug).subscribe((data: any) => { 
       console.log(data);
       this.monthsList = data.data.map((element: any) => {
         return ({
@@ -88,6 +91,10 @@ export class RecommendationsComponent implements OnInit {
       //     ],
       //   },
       // ];
+    }, err => {
+      console.log(err);
+      
+    }, () => {console.log(":hgffht");
     });
   }
 }
