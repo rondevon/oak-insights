@@ -25,6 +25,16 @@ export class ApiService {
       environment.WeatherApi + 'city=' + location + environment.WeatherKey
     );
   }
+  
+  public getProfile(): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(serviceBaseUrl + 'auth/profile', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+    } else return of(null);
+  }
 
   public getSitesData(): Observable<any> {
     if (localStorage.getItem('token')) {
