@@ -1,45 +1,159 @@
 <div class="dash">
-<!-- <div class="row">
+  <!-- <div class="row">
     <h2>My Profile</h2>
 </div> -->
 
-    <div class="row">
-        <div class="col-md-4 left-area">
-          <div class="text-center">
-            <img class="avatar-big" src="{{data?.user?.photo}}" alt="{{data?.user?.name}}" />
-            <div class="user-name">{{data?.user?.name}}<br /></div>
-            <div class="info">{{data?.user?.email}}</div>
-          </div>
-          <div class="row m-4">
-              <div class="col-md-6 text-center">
-                <div class="heading">Company</div>
-                <div class="info">{{data?.company?.name}}</div>
-              </div>
-              <div class="col-md-6 text-center">
-                <div class="heading">Role</div>
-                <div class="info" *ngif="data?.user?.role_id == 2"> Account Manager</div>
-                <div class="info" *ngif="data?.user?.role_id == 3"> Site Manager</div>
-              </div>
-          </div>
-          
-          <div>
-              <div class="h2 m-2">Sites</div>
-                <div *ngFor="let site of data.sites; index as i" class="card card-custom">
-                    <div class="sites-container">
-                        <div class="sites-column-left my-auto">
-                            <img src="/assets/icons/icon-site.svg">
-                          </div>
-                          <div class="sites-column-right">
-                            <div class="heading">{{site.name}}</div>
-                            <div class=info>{{site.city}}</div>
-                            <div class=info>{{site.country}}</div>
-                          </div>
-                    </div>
-                    
-                </div>
-          </div>
+  <div class="row" *ngIf="data">
+    <div class="col-md-4 left-area">
+      <div class="text-center">
+        <img
+          class="avatar-big"
+          src="{{ data?.user?.photo }}"
+          alt="{{ data?.user?.name }}"
+        />
+        <div class="user-name">{{ data?.user?.name }}<br /></div>
+        <div class="info">{{ data?.user?.email }}</div>
+      </div>
+      <div class="row m-4">
+        <div class="col-md-6 text-center">
+          <div class="heading">Company</div>
+          <div class="info">{{ data?.company?.name }}</div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 text-center">
+          <div class="heading">Role</div>
+          <div class="info" *ngIf="data?.user?.role_id == 2">
+            Account Manager
+          </div>
+          <div class="info" *ngIf="data?.user?.role_id == 3">Site Manager</div>
+        </div>
+      </div>
 
+      <div>
+        <div class="h2 m-2">Sites</div>
+        <div
+          *ngFor="let site of data.site; index as i"
+          class="card card-custom"
+          (click)="open(site)"
+        >
+          <div class="sites-container">
+            <div class="sites-column-left my-auto">
+              <img src="/assets/icons/icon-site.svg" />
+            </div>
+            <div class="sites-column-right">
+              <div class="heading">{{ site.name }}</div>
+              <div class="info">{{ site.city }}</div>
+              <div class="info">{{ site.country }}</div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="col-md-8" *ngIf="site">
+      <div>{{ site.slug }}</div>
+      <div>{{ site.company_id }}</div>
+      <div>{{ site.electric_provider_id }}</div>
+      <div>{{ site.site_reference_id }}</div>
+      <div>{{ site.name }}</div>
+      <div>{{ site.billing_cycle.start }}</div>
+      <div>{{ site.locale }}</div>
+      <div>{{ site.city }}</div>
+      <div>{{ site.country }}</div>
+      <div>{{ site.country_short }}</div>
+      <div>{{ site.area }}</div>
+      <div>{{ site.employees }}</div>
+      <div>{{ site.appliances }}</div>
+
+      <div
+        class="card-heading"
+        [style.display]="dataSource.data.length > 0 ? 'block' : 'none'"
+      >
+        Tabular Format
+        <div class="set-width">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            class="mat-elevation-z0 set-width"
+          >
+            <ng-container matColumnDef="{{ displayedColumns[0] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+                mat-sort-header
+              >
+                {{ displayedColumns[0] }}
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.site_id }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="{{ displayedColumns[1] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+                mat-sort-header
+              >
+                {{ displayedColumns[1] }}
+              </th>
+              <td mat-cell *matCellDef="let element">
+                {{ element.day }}
+              </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="{{ displayedColumns[2] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+                mat-sort-header
+              >
+                {{ displayedColumns[2] }}
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.start }}</td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="{{ displayedColumns[3] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+                mat-sort-header
+              >
+                {{ displayedColumns[3] }}
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.end }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="{{ displayedColumns[4] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+                mat-sort-header
+              >
+                {{ displayedColumns[4] }}
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              [ngClass]="'header-color'"
+              *matHeaderRowDef="displayedColumns"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator
+            #paginator
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page"
+          ></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

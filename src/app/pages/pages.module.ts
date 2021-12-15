@@ -37,6 +37,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -79,7 +82,11 @@ import { MatButtonModule } from '@angular/material/button';
     FontAwesomeModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule
   ],
 })
 export class PagesModule {}

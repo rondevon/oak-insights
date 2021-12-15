@@ -10,6 +10,7 @@ import { NgsAvaterModule } from 'ngs-avater';
 import { LoaderModule } from '../loader/loader.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -25,8 +26,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     NgsAvaterModule,
     LoaderModule,
     MatTooltipModule,
-    MatButtonModule
-
+    MatButtonModule,
+MatSelectModule
   ]
 })
 export class DashboardModule { }
