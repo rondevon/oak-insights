@@ -1,4 +1,45 @@
-<p>myprofile works!</p>
-<p>{{data?.user?.name}}</p>
-<p>{{data?.user?.email}}</p>
-<img src="{{data?.user?.photo}}" alt="{{data?.user?.name}}"/>
+<div class="dash">
+<!-- <div class="row">
+    <h2>My Profile</h2>
+</div> -->
+
+    <div class="row">
+        <div class="col-md-4 left-area">
+          <div class="text-center">
+            <img class="avatar-big" src="{{data?.user?.photo}}" alt="{{data?.user?.name}}" />
+            <div class="user-name">{{data?.user?.name}}<br /></div>
+            <div class="info">{{data?.user?.email}}</div>
+          </div>
+          <div class="row m-4">
+              <div class="col-md-6 text-center">
+                <div class="heading">Company</div>
+                <div class="info">{{data?.company?.name}}</div>
+              </div>
+              <div class="col-md-6 text-center">
+                <div class="heading">Role</div>
+                <div class="info" *ngif="data?.user?.role_id == 2"> Account Manager</div>
+                <div class="info" *ngif="data?.user?.role_id == 3"> Site Manager</div>
+              </div>
+          </div>
+          
+          <div>
+              <div class="h2 m-2">Sites</div>
+                <div *ngFor="let site of data.sites; index as i" class="card card-custom">
+                    <div class="sites-container">
+                        <div class="sites-column-left my-auto">
+                            <img src="/assets/icons/icon-site.svg">
+                          </div>
+                          <div class="sites-column-right">
+                            <div class="heading">{{site.name}}</div>
+                            <div class=info>{{site.city}}</div>
+                            <div class=info>{{site.country}}</div>
+                          </div>
+                    </div>
+                    
+                </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
