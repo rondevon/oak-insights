@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-home',
@@ -106,7 +107,7 @@ export class HomeComponent implements OnInit {
             image: '/assets/icons/icon-energy-intensity.svg',
             title: 'Energy Intensity ',
             value: data.data.stats.energy_intensity,
-            unit: 'kWh/m2',
+            unit: 'kWh/m²',
             color: 'var(--color5)',
           },
           {

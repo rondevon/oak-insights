@@ -17,8 +17,8 @@ export class MyprofileComponent implements OnInit, AfterViewInit {
   @ViewChild('paginator2') paginator2: any;
   @ViewChild('paginator') paginator: any;
   @ViewChild(MatSort) sort: any;
-  displayedColumns: string[] = ['site_id', 'day', 'start', 'end', 'type'];
-  displayedColumns2: string[] = ['site_id', 'electric_provider_id', 'start', 'end', 'cost'];
+  displayedColumns: string[] = ['day', 'start', 'end', 'type'];
+  displayedColumns2: string[] = ['start', 'end', 'cost'];
   sites: any;
 
 
@@ -46,7 +46,6 @@ export class MyprofileComponent implements OnInit, AfterViewInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-    console.log(this.dataSource.data);
     this.dataSource2 = new MatTableDataSource(site.usage_costs);
     this.dataSource2.sort = this.sort;
     this.dataSource2.paginator = this.paginator2;
