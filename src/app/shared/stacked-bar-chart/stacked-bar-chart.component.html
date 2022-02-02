@@ -1,4 +1,22 @@
-<div *ngIf="!data;else other_content">
+  <div class="row">
+  <div class="col-md-10">
+    <div class="card-heading">Operating Hours Analysis</div>
+    <span class="widget-subtitle"
+      >Activity wise break up of average energy consumption throughout the
+      month</span
+    >
+  </div>
+    <div class="col-md-2 text-right my-auto">
+      <select class="form-select" [(ngModel)]="selectedType" (change)="updateType()">
+        <option *ngFor="let type of typeList" [value]="type">{{ type | titlecase }}</option>
+      </select>
+    </div>
+  </div>  
+  <div *ngIf="!data;else other_content">
+    <loader [noData]="true"></loader>
+  </div>
+  
+<!-- <div *ngIf="!data;else other_content">
   <div class="consumption-line" [chart]="chart"></div>
   <div class="operating-hours-totals">
       <div class="row">
@@ -7,10 +25,13 @@
         </div>
       </div>
 </div>
-</div>
+</div> -->
+
+
 <ng-template #other_content>
-  <div class="consumption-line" [chart]="chart"></div>
-<div class="operating-hours-totals">
+  <div class="consumption-line" [chart]="chart" *ngIf="chart"></div>
+  <loader *ngIf="!chart"></loader>
+<div class="operating-hours-totals" *ngIf="chart">
     <div class="row">
       <div
         class="col-md-3"
@@ -18,11 +39,24 @@
       >
         <span class="total-text"
           >{{ operatingHoursTotal.type }}<br></span
-        ><span
+        >
+        <span
           class="total-value"
           [style.color]="operatingHoursTotal.color"
         >
-          {{ operatingHoursTotal.value }}</span
+          {{operatingHoursTotal.value }}</span
+        >
+        <span *ngIf="selectedType!='cost'"
+          class="total-unit"
+          [style.color]="operatingHoursTotal.color"
+        >
+          {{ operatingHoursTotal.unit }}</span
+        >
+        <span
+          class="total-percent-value"
+          [style.color]="operatingHoursTotal.color"
+        >
+          ({{ operatingHoursTotal.percent }}%)</span
         >
       </div>
     </div>

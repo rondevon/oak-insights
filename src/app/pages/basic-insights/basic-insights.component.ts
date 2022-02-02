@@ -158,10 +158,10 @@ export class BasicInsightsComponent implements OnInit {
 setTrendIcon(value: number){
   if (value > 0)
   {
-    return '/assets/icons/icon-up.svg';
+    return '/assets/icons/icon-down.svg';
   }
   else{
-    return '/assets/icons/icon-down.svg';
+    return '/assets/icons/icon-up.svg';
   }
 }
 

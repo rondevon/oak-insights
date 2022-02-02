@@ -1,30 +1,65 @@
 import { Component, Input, OnInit} from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 import { Chart } from 'angular-highcharts';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-stacked-bar-chart',
   templateUrl: './stacked-bar-chart.component.html',
   styleUrls: ['./stacked-bar-chart.component.scss'],
 })
 export class StackedBarChartComponent implements OnInit {
-  @Input('data') data: any = {};
+  @Input('data') operatingHours: any;
   chart: any = {};
+  data: any = {};
   chartValues: any[][] = [[],[],[],[]];
   operatingHoursTotals: any[] = [];
+  selectedType : string = 'energy';
+  typeList: string[] = [
+    'energy',
+    'cost',
+  ];
+
+  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  }
+
+  updateType(){
+    this.chart = undefined;
+    this.getOperatingHoursDetails(this.operatingHours.selectedDate.month, this.operatingHours.selectedDate.year, this.operatingHours.site_slug, this.selectedType);
+  }
   
+  getOperatingHoursDetails(month: String, year: String, slug: String, type: String) {
+    this.apiService
+      .getOperatingHoursData(month,year,slug,type)
+      .subscribe((data) => {
+        this.data = data.data;
+        this.setOperatingHoursData();
+      });
+  }
+
     setOperatingHoursData() {
     this.data && this.data.values && this.data.values.forEach((value: any []) => {
         value.forEach((item: any, index: any) => {
           this.chartValues[index].push(item);
         });
     });
+    if(this.selectedType == 'energy')
+    {
     this.operatingHoursTotals = [
-      { type:'Open Hours', value: (this.data.open_total).toLocaleString() +'kWh', color: 'var(--color8'},
-      { type:'Prep Hours', value: (this.data.preparatory_total).toLocaleString() +'kWh', color: 'var(--color5'},
-      { type:'Non-Operating Hours', value: (this.data.non_operating_total).toLocaleString() +'kWh', color:'var(--color11'},
-      { type:'Closed Hours', value: (this.data.closed_total).toLocaleString() +'kWh', color:'var(--color6'},
+      { type:'Open Hours', value: (this.data.open_total).toLocaleString(), unit:'kWh', color: 'var(--color8)', percent:(this.data.open_total_percent)},
+      { type:'Prep Hours', value: (this.data.preparatory_total).toLocaleString(), unit:'kWh', color: 'var(--color5)', percent:(this.data.preparatory_total_percent)},
+      { type:'Non-Operating Hours', value: (this.data.non_operating_total).toLocaleString(), unit:'kWh', color:'var(--color11)', percent:(this.data.non_operating_total_percent)},
+      { type:'Closed Hours', value: (this.data.closed_total).toLocaleString(), unit:'kWh', color:'var(--color6)', percent:(this.data.closed_total_percent)},
     ];
-
+    }
+    if(this.selectedType == 'cost')
+    {
+    this.operatingHoursTotals = [
+      { type:'Open Hours', value: '£'+(this.data.open_total).toLocaleString(), color: 'var(--color8)', percent:(this.data.open_total_percent)},
+      { type:'Prep Hours', value: '£'+(this.data.preparatory_total).toLocaleString(), color: 'var(--color5)', percent:(this.data.preparatory_total_percent)},
+      { type:'Non-Operating Hours', value: '£'+(this.data.non_operating_total).toLocaleString(), color:'var(--color11)', percent:(this.data.non_operating_total_percent)},
+      { type:'Closed Hours', value: '£'+(this.data.closed_total).toLocaleString(), color:'var(--color6)', percent:(this.data.closed_total_percent)},
+    ];
+    }
     this.chart = new Chart({
       title: {
         text: '',
@@ -102,9 +137,11 @@ export class StackedBarChartComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedType = this.operatingHours.graphType;
+  }
 
   ngOnChanges() {
-    this.setOperatingHoursData();
+    this.getOperatingHoursDetails(this.operatingHours.selectedDate.month, this.operatingHours.selectedDate.year, this.operatingHours.site_slug, this.operatingHours.graphType);
   }
 }

@@ -25,8 +25,9 @@ export class HomeComponent implements OnInit {
     year: this.pipe.transform(new Date(), 'YYYY')
   };
   heatMapData: any = {};
-  operatingHoursData: any = {};
+  operatingHours: any = {};
   hourlyCostData: any = {};
+  sensorStatus: any = {};
   selectedDate: Date = new Date(new Date().setMonth(this.minDate.getMonth() - 1));
   faCalendar = faCalendarAlt;
 
@@ -46,10 +47,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    
     this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
     this.updateMonth();
-
+    this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
@@ -61,10 +61,13 @@ export class HomeComponent implements OnInit {
   }
 
   updateMonth() {
+    //this.loading = true;
+    console.log('again')
     this.selectedMonth = {
       month: this.pipe.transform(this.selectedDate, 'MMMM'),
       year: this.pipe.transform(this.selectedDate, 'YYYY')
     };
+    this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
@@ -132,23 +135,21 @@ export class HomeComponent implements OnInit {
         this.site_slug,
         'daily'
       );
-      this.getOperatingHoursDetails(
-        this.selectedMonth.month,
-        this.selectedMonth.year,
-        this.site_slug
-      );
       this.getHourlyCostDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
         this.site_slug
       );
-
+      this.getSensorStatusDetails(this.site_slug);
+        
     this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
     });
   }
+
+ 
 
   getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String, type?: string) {
     this.apiService
@@ -159,19 +160,20 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  getOperatingHoursDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
-    this.apiService
-      .getOperatingHoursData(selectedMonth, selectedYear, site_slug)
-      .subscribe((data) => {
-        this.operatingHoursData = data.data;
-      });
-  }
   getHourlyCostDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
       .getHourlyCostData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
-        this.hourlyCostData = data.data;
+        this.hourlyCostData = data;
         this.loading = false;
+      });
+  }
+  getSensorStatusDetails(site_slug: String)
+  {
+    this.apiService
+      .getSensorStatusData(site_slug)
+      .subscribe((data) => {
+        this.sensorStatus = data.data;
       });
   }
 

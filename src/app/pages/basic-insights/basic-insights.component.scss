@@ -91,6 +91,7 @@
     color: white;
   }
 
+
 .insights-column {
     float: left;
     width: 30%;
@@ -105,6 +106,16 @@
   .month{
       font-weight: 800;
       font-size: 1.2vw;
+  }
+  
+  .oak-score-small{
+    font-weight: 800;
+    font-size: 1.2vw;
+    text-align: center;
+    color: var(--color3);
+    span{
+      color:var(--color9)
+    }
   }
   .target{
     margin-left: 13%;

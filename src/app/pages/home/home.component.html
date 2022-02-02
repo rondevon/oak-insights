@@ -136,14 +136,7 @@
     <div class="row">
       <div class="col-md-8">
         <div class="card card-custom">
-          <div class="card-heading">Operating Hours Analysis</div>
-          <span class="widget-subtitle"
-            >Activity wise break up of average energy consumption throughout the
-            month</span
-          >
-          <app-stacked-bar-chart
-            [data]="operatingHoursData"
-          ></app-stacked-bar-chart>
+          <app-stacked-bar-chart [data]="operatingHours"></app-stacked-bar-chart>
         </div>
 
         <div class="card card-custom">
@@ -152,18 +145,46 @@
       </div>
 
       <div class="col-md-4">
-        <div class="card card-custom">
+        <!-- <div class="card card-custom">
           <div class="card-heading">Top Consuming Appliances</div>
           <span class="widget-subtitle"
             >A list of appliances in decreasing order of consumption</span
           >
           <app-appliance-consumption></app-appliance-consumption>
+        </div> -->
+        <div class="card card-custom">
+          <div class="card-heading">Sensor List</div>
+          <span class="widget-subtitle"
+            >Status of installed sensors</span
+          >
+          <div class="row sensorStat" *ngFor="let sensor of sensorStatus">
+            <div class="col-8">
+              {{sensor.name}}
+            </div>
+            <div class="col-4 text-end status" [class.red]="!sensor.online" [class.green]="sensor.online">
+              <strong>{{!sensor.online? 'Offline':'Online'}}</strong>
+            </div>
+            <div class="col-12 text-end" *ngIf="!sensor.online">
+              <span>since {{sensor.last_data}}</span>
+            </div>
+            <hr>
+          </div>
         </div>
-
         <div class="card card-custom">
           <div class="card-heading">News Updates</div>
           <div *ngFor="let news of newsData">
             <app-google-news [data]="news"></app-google-news>
+          </div>
+        </div>
+        <div class="card card-custom">
+          <div class="card-heading">OAK Manual</div>
+          <span
+            >Get our official manual on how OAK makes your life easier</span
+          >
+          <div class="add-new-event">
+            <button class="add-new-btn">
+              Download
+            </button>
           </div>
         </div>
       </div>

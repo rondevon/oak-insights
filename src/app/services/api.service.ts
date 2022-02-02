@@ -143,7 +143,8 @@ export class ApiService {
   public getOperatingHoursData(
     month: String,
     year: String,
-    site_slug: String
+    site_slug: String,
+    type:String
   ): Observable<any> {
     if (localStorage.getItem('token')) {
       return this.httpClient.get(
@@ -152,6 +153,8 @@ export class ApiService {
           month +
           '&year=' +
           year +
+          '&field=' +
+          type +
           '&site_id=' +
           (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
@@ -176,6 +179,21 @@ export class ApiService {
           '&year=' +
           year +
           '&site_id=' +
+          (!site_slug ? localStorage.getItem('site_slug') : site_slug),
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+    } else return of(null);
+  }
+
+  public getSensorStatusData(site_slug: String): Observable<any> {
+    if (localStorage.getItem('token')) {
+      return this.httpClient.get(
+        serviceBaseUrl +
+          'site/devices?status=1&site_id=' +
           (!site_slug ? localStorage.getItem('site_slug') : site_slug),
         {
           headers: {

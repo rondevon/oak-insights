@@ -254,6 +254,9 @@
 .blue {
   color: var(--color3);
 }
+.green{
+  color: var(--color5);
+}
 .tog {
   display: flex;
   justify-content: end;
@@ -269,4 +272,14 @@
   position: absolute;
   top: 10px;
   right: 0;
+}
+
+.sensorStat{
+  font-size: 1.1rem;
+  span{
+    font-size: 0.8rem;
+  }
+  .status{
+    font-weight: 600;
+  }
 }

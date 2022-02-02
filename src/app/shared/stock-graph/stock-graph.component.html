@@ -13,13 +13,11 @@
       <span class="widget-subtitle" *ngIf ="selectedGraph == 'consumption'">View the energy signature of your site</span>
   </div>
   <div class="col-md-2 text-right my-auto">
-    <div class="open-closed">
-      <select class="form-select monthPicker" [(ngModel)]="selectedType" (change)="updateType()">
+      <select class="form-select" [(ngModel)]="selectedType" (change)="updateType()">
         <option *ngFor="let type of typeList" [value]="type">{{
           (type === 'power_factor' ? 'power factor' : type) | titlecase
         }}</option>
       </select>
-    </div>
   </div>
   <div class="col-lg-4 col-xl-3 my-auto">
           <div class="input-group">

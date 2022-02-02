@@ -38,6 +38,45 @@ export class ChartComponent implements OnInit {
         title: {
           text: 'Cost (£)',
         },
+        plotLines: [{
+          id: 'limit-max',
+          color: 'var(--heatmap-color5)',
+          dashStyle: 'ShortDash',
+          width: 2,
+          value: this.data.max_open,
+          zIndex: 10,
+          label: {
+            text: 'Max',
+            align: 'right',
+            x: 0
+        }
+      },
+      {
+        id: 'limit-avg',
+        color: 'var(--heatmap-color4)',
+        dashStyle: 'ShortDash',
+        width: 2,
+        value: this.data.avg_open,
+        zIndex: 10,
+        label: {
+          text: 'Avg',
+          align: 'right',
+          x: 0
+        }
+      }, 
+      {
+          id: 'limit-min',
+          color: 'var(--heatmap-color2)',
+          dashStyle: 'ShortDash',
+          width: 2,
+          value: this.data.min_open,
+          zIndex: 10,
+          label: {
+            text: 'Min',
+            align: 'right',
+            x: 0
+        }
+      }]
       },
       plotOptions: {
         area: {
@@ -66,7 +105,7 @@ export class ChartComponent implements OnInit {
           name: 'Cost (£)',
           type: 'area',
           pointInterval: 10,
-          data: this.data.values_open,
+          data: this.data.data.values_open,
         },
       ],
     });
@@ -82,15 +121,22 @@ export class ChartComponent implements OnInit {
         data: {}
     };
     if(switchType === 'Open'){
-      series.data = this.data.values_open;
+      series.data = this.data.data.values_open;
       this.bntStyle2 = 'closed-days-button' 
-      this.bntStyle1 = 'open-days-button'   
+      this.bntStyle1 = 'open-days-button'
+      this.chart.options.yAxis.plotLines[0].value = this.data.max_open
+      this.chart.options.yAxis.plotLines[1].value = this.data.avg_open 
+      this.chart.options.yAxis.plotLines[2].value = this.data.min_open 
     } else {
-      series.data = this.data.values_closed;
+      series.data = this.data.data.values_closed;
       this.bntStyle2 = 'open-days-button' 
       this.bntStyle1 = 'closed-days-button'
+      this.chart.options.yAxis.plotLines[0].value = this.data.max_closed
+      this.chart.options.yAxis.plotLines[1].value = this.data.avg_closed 
+      this.chart.options.yAxis.plotLines[2].value = this.data.min_closed 
     }
     this.chart.addSeries(series);
+    
   }
 
   constructor() {}
