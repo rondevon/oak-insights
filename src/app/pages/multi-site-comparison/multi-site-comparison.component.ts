@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-multi-site-comparison',
@@ -102,7 +103,8 @@ export class MultiSiteComparisonComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private _snackBar: MatSnackBar
+    ) {
     this.minDate = new Date();
     this.maxDate = new Date();
     this.minDate.setMonth(this.minDate.getMonth() - 4);
@@ -136,8 +138,7 @@ export class MultiSiteComparisonComponent implements OnInit {
           });
           this.treeMapData = tree;
       }, err => {
-        console.log(err);
-        
+       this.openSnackBar(err.error.message, 'Dismiss')
         this.loading = false;
       });
       
@@ -149,6 +150,10 @@ export class MultiSiteComparisonComponent implements OnInit {
       year: this.pipe.transform(this.currentDate, 'YYYY')
     };
     this.getMultiSiteComparison(this.currentDate.month,this.currentDate.year);
+  }
+
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
   }
 
 }

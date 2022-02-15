@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-basic-insights',
   templateUrl: './basic-insights.component.html',
@@ -56,7 +57,11 @@ export class BasicInsightsComponent implements OnInit {
     nav: true,
   };
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(
+    private apiService: ApiService, 
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
+    ) {}
 
   ngOnInit(): void {
     this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
@@ -83,7 +88,7 @@ export class BasicInsightsComponent implements OnInit {
           }
         });
         this.loadings = false;
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
       this.getMonthUsageData();
     }
     
@@ -133,14 +138,16 @@ export class BasicInsightsComponent implements OnInit {
         unit: '%',
         color: 'var(--color7)',
       }];
-    });
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+
   }
 
   getDayAnalysisData(month: any, year: any,site_slug: String) {
     this.dayAnalysisData = undefined;
     this.apiService.getDayAnalysisData(month, year,site_slug).subscribe((data: any) => {
       this.dayAnalysisData = data.data;
-    });
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+
   }
 
   openMonthlyStats(item: any, index: number) {
@@ -198,6 +205,10 @@ calculateTarget(target: number, actual: number, month: String)
   getMonthUsageData() {
     this.apiService.getMonthlyUsageData(this.currentDate.year, this.site_slug).subscribe(data => {
       this.monthUsageData = data.data;
-    });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+  }
+
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
   }
 }

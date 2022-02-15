@@ -24,7 +24,7 @@ export class RecommendationsComponent implements OnInit {
   ngOnInit(): void {
     this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
     this.apiService.getRecommendations(this.selectedMonth, this.site_slug).subscribe((data: any) => { 
-      console.log(data);
+      // console.log(data);
       this.error = undefined;
       this.monthsList = data.data.map((element: any) => {
         return ({
@@ -35,64 +35,6 @@ export class RecommendationsComponent implements OnInit {
           }]
         })
       })
-      // this.data = [
-      //   {
-      //     month: 'April 2021',
-      //     data: [
-      //       {
-      //         title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //           service the HVAC systems.`,
-      //         description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa? `,
-      //       },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.`, description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?` },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.` },
-      //     ],
-      //   },
-      //   {
-      //     month: 'February 2021',
-      //     data: [
-      //       {
-      //         title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //           service the HVAC systems.`,
-      //         description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa? `,
-      //       },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.`, description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?` },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.` },
-      //     ],
-      //   },
-      //   {
-      //     month: 'April 2021',
-      //     data: [
-      //       {
-      //         title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //           service the HVAC systems.`,
-      //         description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa? `,
-      //       },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.`, description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?` },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.` },
-      //     ],
-      //   },
-      //   {
-      //     month: 'March 2021',
-      //     data: [
-      //       {
-      //         title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //           service the HVAC systems.`,
-      //         description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa? `,
-      //       },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.`, description: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?` },
-      //       { title: `Some of the ACs are consuming more than the manufacturers ratings. Please consider to clean and
-      //       service the HVAC systems.` },
-      //     ],
-      //   },
-      // ];
     }, err => {
       console.log(err.error.message);
       this.error = err.error.message;

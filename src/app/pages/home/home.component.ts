@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-import { text } from '@fortawesome/fontawesome-svg-core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -41,7 +41,13 @@ export class HomeComponent implements OnInit {
   name: any;
   data: any;
 
-  constructor(private apiService: ApiService, public dialog: MatDialog, private route: ActivatedRoute) {
+  constructor(
+    private apiService: ApiService, 
+    public dialog: MatDialog, 
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar
+    
+    ) {
     this.minDate.setMonth(this.minDate.getMonth() - 4);
     this.maxDate.setMonth(this.maxDate.getMonth());
   }
@@ -51,13 +57,13 @@ export class HomeComponent implements OnInit {
     this.updateMonth();
     this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService.getNews().subscribe((data: any) => {
-      this.newsData = data.articles.slice(0, 3);
-    });
+      this.newsData = data.articles.slice(0, 3);      
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
       this.apiService.getWeather('London,GB').subscribe((data: any) => {
         if (data.data && data.data.length > 0) {
           this.weatherData = data.data[0];
         }
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
 
   updateMonth() {
@@ -128,7 +134,7 @@ export class HomeComponent implements OnInit {
             color: 'var(--color7)',
           },
         ];
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
       this.getHeatMapDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
@@ -146,7 +152,7 @@ export class HomeComponent implements OnInit {
       if (data.data && data.data.length > 0) {
         this.data = data.data;
       }
-    });
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
 
  
@@ -157,7 +163,7 @@ export class HomeComponent implements OnInit {
       .subscribe((data) => {
         this.heatMapData = data.data;
         this.type = type;
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
 
   getHourlyCostDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
@@ -166,7 +172,7 @@ export class HomeComponent implements OnInit {
       .subscribe((data) => {
         this.hourlyCostData = data;
         this.loading = false;
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
   getSensorStatusDetails(site_slug: String)
   {
@@ -174,7 +180,7 @@ export class HomeComponent implements OnInit {
       .getSensorStatusData(site_slug)
       .subscribe((data) => {
         this.sensorStatus = data.data;
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
 
   openDialog(): void {
@@ -189,7 +195,7 @@ export class HomeComponent implements OnInit {
               console.log(data.data)
               this.data = data.data;
             }
-          });
+          }, err => this.openSnackBar(err.error.message, 'Dismiss'));
         }
         // this.data.push(eventData);
         
@@ -212,5 +218,9 @@ export class HomeComponent implements OnInit {
           'daily'
       );
     }
+  }
+
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
   }
 }

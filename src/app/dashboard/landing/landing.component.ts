@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-landing',
@@ -26,7 +27,10 @@ export class LandingComponent implements OnInit {
   loading: boolean = true;
   showNotification: boolean = localStorage.getItem('role') === 'Account Manager' ? false : true;
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute
+    , private _snackBar: MatSnackBar
+
+    ) {}
 
   ngOnInit(): void {
       this.site_slug = localStorage.getItem('site_slug');
@@ -44,13 +48,13 @@ export class LandingComponent implements OnInit {
     if(localStorage.getItem('role')==='Site Manager'){
     this.apiService.getMonthlyUsageData(this.year, this.site_slug).subscribe(data => {
       this.monthUsageData = data.data;
-    });
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
 
   if(localStorage.getItem('role')==='Account Manager'){
     this.apiService.getAccountMonthlyUsageData(this.year).subscribe(data => {
       this.monthUsageData = data.data;
-    });
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
     
   }
@@ -59,30 +63,30 @@ export class LandingComponent implements OnInit {
     this.apiService.getMyprofileApi().subscribe((data: any)=> {
       this.name= data.data.name;
       this.photo= data.data.photo;
-    });
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
 
   getSites(){
     this.apiService.getMultiSitesData(this.month,this.year).subscribe((data: any)=> {
       this.sites= data.data;
-      console.log("multi",this.sites);
-    });
+      // console.log("multi",this.sites);
+    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
 
   getHomeInsightCards(){
     if(localStorage.getItem('role')==='Site Manager'){
       this.apiService.getHomepageApi(this.month, this.year, this.site_slug).subscribe((data: any) => {
       this.LandingInsightsData = data.data;
-      console.log("landing",this.LandingInsightsData);
+      // console.log("landing",this.LandingInsightsData);
       this.setHomeInsightsCard();
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
     }
     if(localStorage.getItem('role')==='Account Manager'){
       this.apiService.getAccountLandingInsightsData(this.month, this.year).subscribe((data: any) => {
       this.LandingInsightsData = data.data;
-      console.log("landing",this.LandingInsightsData);
+      // console.log("landing",this.LandingInsightsData);
       this.setHomeInsightsCard();
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
     }
   }
 
@@ -117,4 +121,7 @@ export class LandingComponent implements OnInit {
     
   }
   
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
 }

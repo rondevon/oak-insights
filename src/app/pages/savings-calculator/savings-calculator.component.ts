@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-savings-calculator',
   templateUrl: './savings-calculator.component.html',
   styleUrls: ['./savings-calculator.component.scss'],
 })
 export class SavingsCalculatorComponent implements OnInit {
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {}
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private _snackBar: MatSnackBar
+    ) {}
 
   site_slug: any;
   donutLegends: any[] = [];
@@ -80,8 +82,10 @@ export class SavingsCalculatorComponent implements OnInit {
     this.savingsResponseData = data.data;
     this.savingsProjectedData = JSON.parse(JSON.stringify(this.savingsResponseData));
     this.loading = false;
-  }, err => {
+     }, err => this.openSnackBar(err.error.message, 'Dismiss'));
 
-    });
+  }
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
   }
 }

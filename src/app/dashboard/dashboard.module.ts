@@ -11,6 +11,7 @@ import { LoaderModule } from '../loader/loader.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip'; 
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
     LoaderModule,
     MatTooltipModule,
     MatButtonModule,
-MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule 
   ]
 })
 export class DashboardModule { }

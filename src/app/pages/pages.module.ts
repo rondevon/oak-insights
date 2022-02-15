@@ -40,6 +40,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { MatTableModule } from '@angular/material/table';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
 })
 export class PagesModule {}

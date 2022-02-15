@@ -1,5 +1,6 @@
 import { ApiService } from 'src/app/services/api.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-phase-appliance',
@@ -12,7 +13,8 @@ export class PhaseApplianceComponent implements OnInit {
   phaseTotals: any = {};
   applianceList: any = {};
   loading: boolean = true;
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,    private _snackBar: MatSnackBar
+    ) { }
   ngOnInit(): void {
     this.phaseTotals = [
       { name:'Phase L1', value: '(150kWh, 33.33%)', color: 'var(--color8'},
@@ -38,7 +40,9 @@ export class PhaseApplianceComponent implements OnInit {
       .subscribe((data) => {
         this.phaseApplianceData = data.data;
         this.loading = false;
-      });
+      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
   }
-
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
 }
