@@ -1,25 +1,54 @@
-.bcolor {
-background-image: linear-gradient(to right, var(--color8),var(--color5));
-border-radius: 1rem !important;
-padding: 1.5rem;
-margin-bottom: 1.5rem;
-color: var(--color12);
+.bcolor, ::ng-deep { .panel-default  {
+  background-image: linear-gradient(to right, var(--color8), var(--color5)) !important;
+  border-radius: 1rem !important;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  // color: var(--color12);
+}
+}
+//bcolor description
+.card-custom {
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.card-custom {
-    border-radius: 1rem !important;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-  }
+.card-heading {
+  font: var(--fontRegular);
+  font-size: 1.2vw;
+  font-weight: 600;
+}
+.description, ::ng-deep { .card-header {
+  font: var(--fontRegular);
+  font-size: 1.1vw;
+  font-weight: 500;
+}
+}
 
-  .card-heading {
-    font: var(--fontRegular);
-    font-size: 1.5vw;
-    font-weight: 600;
+// .card-header {
+//   padding: 0.5rem 1rem;
+//   margin-bottom: 0;
+// }
+
+::ng-deep {
+  .panel-heading, .card-header, .panel-enabled {
+    border: 0;
+    background-color: initial;
+  };
+  .btn {
+    color: black;
+    font-size: 1.2vw;
+  font-weight: 600;
+  };
+  .btn:hover {
+    color: white;
+    font-size: 1.2vw;
+  font-weight: 600;
   }
-  .description{
-    font: var(--fontRegular);
-    font-size: 1.5rem;
-    font-weight: 500;
+  .panel-body {
+    color: white;
+    font-size: 1vw;
+  font-weight: 600;
   }
+}

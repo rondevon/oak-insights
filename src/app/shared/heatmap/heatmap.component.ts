@@ -8,6 +8,7 @@ import { Chart } from 'angular-highcharts';
 })
 export class HeatMapComponent implements OnInit {
   @Input('data') data: any;
+  @Input('type') type: any = '';
   chart: any = {};
   heatmapranges: any[] = [];
   ngOnInit() {}
@@ -23,18 +24,27 @@ export class HeatMapComponent implements OnInit {
         axis = series[isY ? 'yAxis' : 'xAxis'];
       return axis.categories[point[isY ? 'y' : 'x']];
     }
+    function getPointCost(point: any){
+      return point.cost
+    }
+    function getPointCo2(point: any){
+      return point.co2
+    }
+    function getPointDay(point: any){
+      return point.day
+    }
 
     this.heatmapranges = [
-      { range: '< 25%', color: 'var(--heatmap-color2)' },
-      { range: '25%-50%', color: 'var(--heatmap-color3)' },
-      { range: '50%-75%', color: 'var(--heatmap-color4)' },
-      { range: '> 75%', color: 'var(--heatmap-color5)' },
+      { range: '0 - '+ Math.ceil((this.data.max)*0.25), color: 'var(--heatmap-color2)' },
+      { range:  Math.ceil((this.data.max)*0.25) + ' - '+  Math.ceil((this.data.max)*0.5), color: 'var(--heatmap-color3)' },
+      { range:  Math.ceil((this.data.max)*0.5) + ' - '+  Math.ceil((this.data.max)*0.75), color: 'var(--heatmap-color4)' },
+      { range:  Math.ceil((this.data.max)*0.75) + ' - '+  Math.ceil(this.data.max), color: 'var(--heatmap-color5)' },
     ];
-
+    console.log('heatmap',this.data.max,this.heatmapranges)
     this.chart = new Chart({
       chart: {
         type: 'heatmap',
-        height: 800,
+        height: this.type==='daily' ? 300 : 800,
         marginTop: 20,
         marginBottom: 60,
         plotBorderWidth: 0,
@@ -68,7 +78,20 @@ export class HeatMapComponent implements OnInit {
           [1, '#ee6259'],
         ],
       },
-      tooltip: {
+      tooltip:this.type==='daily'? {
+        formatter: function () {
+          return (
+            '</b> Consumption - <b>' +
+            this.point.value +
+            'kWh</b> <br> Cost - £<b>' +
+            getPointCost(this.point.options) + 
+            '</b> <br> CO2 - <b>' +
+            getPointCo2(this.point.options) +
+            '</b> kg'
+          );
+        },
+      }
+      :{
         formatter: function () {
           return (
             '<b>' +
@@ -77,7 +100,11 @@ export class HeatMapComponent implements OnInit {
             getPointCategoryName(this.point, 'x') +
             ':00</b> <br> Consumption - <b>' +
             this.point.value +
-            'kWh</b>'
+            'kWh</b> <br> Cost - £<b>' +
+            getPointCost(this.point.options) + 
+            '</b> <br> CO2 - <b>' +
+            getPointCo2(this.point.options) +
+            '</b> kg'
           );
         },
       },
@@ -97,6 +124,13 @@ export class HeatMapComponent implements OnInit {
           // data:[{x:0,y:0,value:10,color:'#63c5bf'},{x:0,y:1,value:30,color:'#63c5bf'},{x:6,y:2,value:50,color:'#82c67c'}],
           // data: [[0, 0, 10], [0, 1, 19], [0, 2, 8], [0, 3, 24], [0, 4, 67], [1, 0, 92], [1, 1, 58], [1, 2, 78], [1, 3, 117], [1, 4, 45], [2, 0, 35], [2, 1, 15], [2, 2, 123], [2, 3, 64], [2, 4, 52], [3, 0, 72], [3, 1, 132], [3, 2, 114], [3, 3, 19], [3, 4, 16], [4, 0, 38], [4, 1, 5], [4, 2, 8], [4, 3, 117], [4, 4, 115], [5, 0, 88], [5, 1, 32], [5, 2, 12], [5, 3, 6], [5, 4, 120], [6, 0, 13], [6, 1, 44], [6, 2, 88], [6, 3, 98], [6, 4, 96],]
           data: this.data.values,
+          dataLabels: {
+            enabled: true,
+            color: '#000000',
+            formatter () {
+              return getPointDay(this.point.options)
+            }
+          }
         },
       ],
     });

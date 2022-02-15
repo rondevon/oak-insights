@@ -12,7 +12,14 @@ export class InsightItemTileComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.data.value = (this.data.value).toLocaleString();
+    if(this.data.title === 'Trend vs Last Month')
+    {
+      this.data.value = (this.data.value>0?"+":'')+(this.data.value).toLocaleString();
+    }
+    else{
+      this.data.value = (this.data.value).toLocaleString();
+    }
+    
   }
 
 }

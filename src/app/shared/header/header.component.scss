@@ -1,26 +1,62 @@
 :host {
-    display: flex;
-    flex-direction: row;
-    max-width: 100vw;
-    padding: 2rem 5rem;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  max-width: 100vw;
+  padding: 2rem 5rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
 ngs-avater {
-    margin-left: 24px;
+  margin-left: 24px;
 }
 
 .header-img {
-    height: 2vw;
+  height: 2.3vw;
+  cursor: pointer;
 }
 
 .icon-list {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.pointer{
-    cursor: pointer;
-    transform: translateX(-55px) !important;
+.site-name {
+  margin-right: 2vw;
+}
+
+.pointer1 {
+  cursor: pointer;
+}
+
+.pointer {
+  cursor: pointer;
+  transform: translateX(-55px) !important;
+}
+
+/* The popup chat - hidden by default */
+.chat-popup {
+  display: block;
+  border: 3px solid #f1f1f1;
+  z-index: 999;
+  background: white;
+}
+
+.chat-pop {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h3{
+    color: var(--color3);
 }

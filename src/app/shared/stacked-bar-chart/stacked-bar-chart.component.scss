@@ -1,3 +1,14 @@
+.card-heading {
+  font: var(--fontBold);
+  font-size: 1.5vw;
+  font-weight: 800;
+}
+
+.widget-subtitle {
+  font-size: 1vw;
+  color: gray;
+  margin-bottom: 2rem;
+}
 .operating-hours-totals {
     margin-top: 2rem;
     text-align: center;
@@ -10,5 +21,9 @@
   
   .total-value {
     font-size: 1.2rem;
+    font-weight: 800;
+  }
+  .total-percent-value {
+    font-size: 1rem;
     font-weight: 800;
   }

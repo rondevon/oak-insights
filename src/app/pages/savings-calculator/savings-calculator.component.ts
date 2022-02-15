@@ -13,12 +13,16 @@ export class SavingsCalculatorComponent implements OnInit {
   site_slug: any;
   donutLegends: any[] = [];
   pipe = new DatePipe('en-GB');
-  selectedMonth: any = this.pipe.transform(new Date(), 'MMMM');
-  selectedYear: any = this.pipe.transform(new Date(), 'YYYY');
+  selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
+  selectedMonth: any = this.pipe.transform(this.selectedDate, 'MMMM');
+
+  selectedYear: any = this.pipe.transform(this.selectedDate, 'YYYY');
+
   savingsResponseData: any = {};
   savingsProjectedData: any = {};
   loading: boolean = true;
-  totalSavings: number = 0;
+  totalEnergySavings: number = 0;
+  totalSavings: any = {};
 
   ngOnInit(): void {
     this.site_slug = this.route.parent?.parent?.snapshot.params.site_slug;
@@ -28,6 +32,12 @@ export class SavingsCalculatorComponent implements OnInit {
       { text: 'Non Operating Hours', color: 'var(--color2)' },
       { text: 'Closed Hours', color: 'var(--color5)' },
     ];
+    this.totalSavings.petrol = 0;
+    this.totalSavings.distance = 0;
+    this.totalSavings.smartphone = 0;
+    this.totalSavings.trees = 0;
+    this.totalSavings.electricity = 0;
+    this.totalSavings.trash = 0;
     this.getSavingsResponseData(this.selectedMonth, this.selectedYear, this.site_slug);
   }
 
@@ -41,7 +51,13 @@ export class SavingsCalculatorComponent implements OnInit {
     projectedData.total_consumption = this.getGroupTotals(projectedData.values_consumption);
     projectedData.total_c02 = this.getGroupTotals(projectedData.values_c02);
     this.savingsProjectedData = projectedData;
-    this.totalSavings = this.getSavingsTotal(this.savingsResponseData.values_consumption, this.savingsProjectedData.values_consumption);
+    this.totalEnergySavings = this.getSavingsTotal(this.savingsResponseData.values_consumption, this.savingsProjectedData.values_consumption);
+    this.totalSavings.petrol = (Math.round((this.totalEnergySavings*0.000709)/0.01018)).toLocaleString();
+    this.totalSavings.distance = (Math.round((this.totalEnergySavings*0.000709)/0.000398)).toLocaleString();
+    this.totalSavings.smartphone = (Math.round((this.totalEnergySavings*0.000709)/0.00000822)).toLocaleString();
+    this.totalSavings.trees = (Math.round((this.totalEnergySavings*0.000709)/0.06)).toLocaleString();
+    this.totalSavings.electricity = (Math.round((this.totalEnergySavings*0.000709)/5.505*365)).toLocaleString();
+    this.totalSavings.trash = (Math.round((this.totalEnergySavings*0.000709)/0.023)).toLocaleString();
   }
 
   getSavingsTotal(actualConsumption: any [], projectedConsumption: any[]): number {
@@ -63,8 +79,8 @@ export class SavingsCalculatorComponent implements OnInit {
     this.apiService.getSavingsData(selectedMonth,selectedYear,site_slug).subscribe((data : any) => {
     this.savingsResponseData = data.data;
     this.savingsProjectedData = JSON.parse(JSON.stringify(this.savingsResponseData));
+    this.loading = false;
   }, err => {
-      this.loading = false;
 
     });
   }

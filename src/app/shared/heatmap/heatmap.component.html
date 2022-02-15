@@ -1,17 +1,5 @@
 <div *ngIf="!data;else other_content">
-  <div [chart]="chart"></div>
-
-  <div class="heatmap-legends">
-    <span class="heatmap-legend-title">Energy (kWh)</span>
-    <div
-      *ngFor="let heatmaprange of heatmapranges"
-      class="rectangle"
-      [style.backgroundColor]="heatmaprange.color"
-    >
-      <div class="range-text"> No data available</div>
-    </div>
-  </div>
-  No data available
+<loader [noData]="true"></loader>
 </div>
 
 <ng-template #other_content>

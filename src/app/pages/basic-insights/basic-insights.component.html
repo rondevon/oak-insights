@@ -1,5 +1,4 @@
 <loader *ngIf="loadings"></loader>
-
 <div class="app-container" *ngIf="!loadings">
   <div class="row">
     <owl-carousel-o [options]="customOptions">
@@ -13,7 +12,11 @@
         [ngClass]="{ 'card-border': selectedTileIndex === i }"
       >
         <div class="row">
-          <div class="month">{{ item.month }} {{ item.year }}</div>
+          <div class="col-md-6 month">{{ item.month }} {{ item.year }}</div>
+          <div class="col-md-6 oak-score-small">
+            <span>OAK Score: </span>
+            {{item.oak_score}}
+          </div>
           <div class="col-md-6">
             <app-activity-gauge
               [data]="item.consumption_overview"
@@ -34,14 +37,16 @@
               [style.color]="
                 calculateTarget(
                   item.consumption_overview.target,
-                  item.consumption_overview.present
+                  item.consumption_overview.present,
+                  item.month
                 ).color
               "
             >
               {{
                 calculateTarget(
                   item.consumption_overview.target,
-                  item.consumption_overview.present
+                  item.consumption_overview.present,
+                  item.month
                 ).value
               }}%
             </span>
@@ -49,7 +54,8 @@
               >{{
                 calculateTarget(
                   item.consumption_overview.target,
-                  item.consumption_overview.present
+                  item.consumption_overview.present,
+                  item.month
                 ).text
               }}
             </span>
@@ -78,6 +84,14 @@
                 />
               </div>
               <div class="oak-score">
+                <button class="button "
+                mat-button
+                matTooltip="what is oak score"
+                matTooltipPosition="left"
+                aria-label="Button that displays a tooltip when focused or hovered over"
+              >
+              ⓘ
+              </button>
                 <div class="oak-score-label">OAK Score</div>
                 <div class="oak-score-text">
                   {{ oakScore }}

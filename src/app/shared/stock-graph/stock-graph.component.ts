@@ -23,7 +23,7 @@ export class StockGraphComponent implements OnInit {
   selectedType : string = 'energy';
   selectedGraph: string = '';
   unit: string = 'kWh'
-  typeList: String[] = [
+  typeList: string[] = [
     'energy',
     'power',
     'current',
@@ -41,6 +41,24 @@ export class StockGraphComponent implements OnInit {
   getStockChartDetails(selectedMonth: any, selectedYear: any, selectedType: String, selectedGraph: String, site_slug: String){
     this.apiService.getStockChartData(selectedMonth,selectedYear,selectedType,selectedGraph,site_slug).subscribe((data : any) => {
       this.stockChartData = data.data;
+      
+      if(selectedGraph == 'consumption'){
+        for (let i=0; i<this.stockChartData.values.length; i++){
+          this.stockChartData.values[i][1] = (this.stockChartData.values[i][1]/100);
+         }
+      }
+      if(selectedGraph == 'phase'){
+        for (let i=0; i<this.stockChartData.values_r.length; i++){
+          if(this.stockChartData.values_r && this.stockChartData.values_s && this.stockChartData.values_t)
+          {
+            this.stockChartData.values_r[i][1] = (this.stockChartData.values_r[i][1]/100);
+          this.stockChartData.values_s[i][1] = (this.stockChartData.values_s[i][1]/100);
+          this.stockChartData.values_t[i][1] = (this.stockChartData.values_t[i][1]/100);
+
+          }
+          
+         }
+      }      
       this.setStockGraphData();
     });
   }
@@ -82,18 +100,28 @@ export class StockGraphComponent implements OnInit {
     }
     if(this.selectedGraph == 'consumption'){
       this.consumptionTotals = [
-      { type:'Peak Consumption', value: this.stockChartData.peak +' '+ this.unit, date: this.pipe.transform(new Date(this.stockChartData.peak_time), 'medium'), color: 'var(--color6'},
-      { type:'Average Consumption', value: this.stockChartData.avg +' '+ this.unit, color: 'var(--color8'},
-      { type:'Lowest Consumption', value: this.stockChartData.lowest +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time), 'medium'), color:'var(--color5'},
+      { type:'Peak Consumption', value: (this.stockChartData.peak /100).toFixed(2)+' '+ this.unit, date: this.pipe.transform(new Date(this.stockChartData.peak_time), 'medium'), color: 'var(--color6'},
+      { type:'Average Consumption', value: (this.stockChartData.avg/100).toFixed(2) +' '+ this.unit, color: 'var(--color8'},
+      { type:'Lowest Consumption', value: (this.stockChartData.lowest/100).toFixed(2) +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time), 'medium'), color:'var(--color5'},
     ];
   }
-    
-    if(this.selectedGraph == 'phase')
-    {
+  if(this.selectedGraph == 'phase')
+  {
       this.chart = new StockChart({
         chart:{
           marginTop: 40,
           height: 500,
+          events: {
+            load: function() {
+              var chart = this;
+              chart.renderer.text('Click on legends to modify chart',this.chartWidth/2.3,this.chartHeight-2)
+              .attr({
+                zIndex: 3,
+                fill: 'black'
+              })
+              .add();
+            }
+          }
         },
         exporting: { 
           enabled: false 
@@ -185,7 +213,7 @@ export class StockGraphComponent implements OnInit {
           text: ''
       },
       tooltip: {
-        pointFormat: '{series.name}: <b>{point.y}</b> '+this.unit,
+        pointFormat: '{series.name} : <b>{point.y}</b> '+this.unit,
       },  
       rangeSelector: {
               allButtonsEnabled: true,
@@ -220,7 +248,7 @@ export class StockGraphComponent implements OnInit {
               selected: 0
           },
       series: [{
-        name: this.stockChartData.seq[1],
+        name: this.stockChartData.seq[1] ,
         data: this.stockChartData.values,
         type: 'area',
         threshold: null,

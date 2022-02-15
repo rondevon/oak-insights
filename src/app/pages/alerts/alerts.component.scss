@@ -1,0 +1,35 @@
+.card-custom {
+  border-radius: 1rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  margin: 1.5rem;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+.bcolor1 {
+  background-color: var(--color2);
+}
+.bcolor2 {
+  background-color: var(--color4);
+}
+
+.card-heading {
+  font: var(--fontBold);
+  font-size: 1.5vw;
+  font-weight: 800;
+}
+
+.widget-subtitle {
+    font-size: 1vw;
+    color: gray;
+    margin-bottom: 2rem;
+  }

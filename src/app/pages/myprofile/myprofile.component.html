@@ -1,1 +1,207 @@
-<p>myprofile works!</p>
+<div class="dash">
+  <!-- <div class="row">
+    <h2>My Profile</h2>
+</div> -->
+
+  <div class="row" *ngIf="data">
+    <div class="col-md-4 left-area">
+      <div class="text-center">
+        <img
+          class="avatar-big"
+          src="{{ data?.user?.photo }}"
+          alt="{{ data?.user?.name }}"
+        />
+        <div class="user-name">{{ data?.user?.name }}<br /></div>
+        <div class="info">{{ data?.user?.email }}</div>
+      </div>
+      <div class="row m-4">
+        <div class="col-md-6 text-center">
+          <div class="heading">Company</div>
+          <div class="info">{{ data?.company?.name }}</div>
+        </div>
+        <div class="col-md-6 text-center">
+          <div class="heading">Role</div>
+          <div class="info" *ngIf="data?.user?.role_id == 2">
+            Account Manager
+          </div>
+          <div class="info" *ngIf="data?.user?.role_id == 3">Site Manager</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="h2 m-2">Sites</div>
+        <div
+          *ngFor="let site of sites; index as i"
+          class="card card-custom"
+          (click)="open(site)"
+        >
+          <div class="sites-container">
+            <div class="sites-column-left my-auto">
+              <img src="/assets/icons/icon-site.svg" />
+            </div>
+            <div class="sites-column-right">
+              <div class="heading">{{ site.name }}</div>
+              <div class="info">{{ site.city }}</div>
+              <div class="info">{{ site.country }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8 right-area" *ngIf="site">
+      <div class="heading">{{ site.name }}</div>
+      <div class="right-rows">
+        <div class="right-heading">Company</div>
+        <div class="right-heading">City</div>
+        <div class="right-heading">Country</div>
+        <div class="right-info">{{data.company.name}}</div>
+        <div class="right-info">{{ site.city }}</div>
+        <div class="right-info">{{ site.country }}</div>
+        <div class="right-heading">Total Area</div>
+        <div class="right-heading">Electric Supplier</div>
+        <div class="right-heading">Billing Start Date</div>
+        <div class="right-info">{{site.area}} m<sup>2</sup></div>
+        <div class="right-info">{{ site.electric_provider.name }}</div>
+        <div class="right-info">{{ site.billing_cycle.start }} of every month</div>
+      </div>
+
+      <div class="heading mt-3">Devices</div>
+      <div
+        class="heading mt-3"
+        [style.display]="dataSource.data.length > 0 ? 'block' : 'none'"
+      >
+        Operating Hours
+      </div>
+        <div>
+        <div class="set-width">
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            class="mat-elevation-z0 set-width"
+          >
+            
+            <ng-container matColumnDef="{{ displayedColumns[0] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+              >
+                Day
+              </th>
+              <td mat-cell  *matCellDef="let element">
+                {{ element.day }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="{{ displayedColumns[1] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+              >
+                Start Time
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.start }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="{{ displayedColumns[2] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+              >
+                End Time
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.end }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="{{ displayedColumns[3] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+              >
+                Trading Category
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              [ngClass]="'header-color'"
+              *matHeaderRowDef="displayedColumns"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <mat-paginator
+            #paginator
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page"
+          ></mat-paginator>
+        </div>
+
+
+        <div
+        class="heading"
+        [style.display]="dataSource2.data.length > 0 ? 'block' : 'none'"
+      >
+        Usage Costs
+        </div>
+        <div>
+        <div class="set-width">
+          <table
+            mat-table
+            [dataSource]="dataSource2"
+            class="mat-elevation-z0 set-width"
+          >
+
+            <ng-container matColumnDef="{{ displayedColumns2[0] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+              >
+                Start Time
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.start }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="{{ displayedColumns2[1] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+              >
+                End Time
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.end }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="{{ displayedColumns2[2] }}">
+              <th
+                mat-header-cell
+                [ngClass]="'header-font'"
+                *matHeaderCellDef
+              >
+                Cost (£)
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.cost }}</td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              [ngClass]="'header-color'"
+              *matHeaderRowDef="displayedColumns2"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns2"></tr>
+          </table>
+          <mat-paginator
+            #paginator2
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page"
+          ></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

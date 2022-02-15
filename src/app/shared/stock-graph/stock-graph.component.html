@@ -1,25 +1,23 @@
 <div *ngIf="!data;else other_content">
-  No data available
+  <loader [noData]="true"></loader>
 </div>
 
 <ng-template #other_content>
   <div class="row mb-4">
   <div class="col-lg-6 col-xl-7">
       <div class="card-heading" *ngIf ="selectedGraph == 'phase'">Phase Distribution (Zoomable Graph)</div>
-      <div class="card-heading" *ngIf ="selectedGraph == 'consumption'"></div>
+      <div class="card-heading" *ngIf ="selectedGraph == 'consumption'">Consumption (Zoomable Graph)</div>
       <loader *ngIf="!selectedGraph"></loader>
 
       <span class="widget-subtitle" *ngIf ="selectedGraph == 'phase'">View the consumption pattern for each of the three phases</span>
       <span class="widget-subtitle" *ngIf ="selectedGraph == 'consumption'">View the energy signature of your site</span>
   </div>
   <div class="col-md-2 text-right my-auto">
-    <div class="open-closed">
-      <select class="form-select monthPicker" [(ngModel)]="selectedType" (change)="updateType()">
+      <select class="form-select" [(ngModel)]="selectedType" (change)="updateType()">
         <option *ngFor="let type of typeList" [value]="type">{{
-          type
+          (type === 'power_factor' ? 'power factor' : type) | titlecase
         }}</option>
       </select>
-    </div>
   </div>
   <div class="col-lg-4 col-xl-3 my-auto">
           <div class="input-group">

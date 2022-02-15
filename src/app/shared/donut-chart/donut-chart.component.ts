@@ -17,7 +17,8 @@ export class DonutChartComponent implements OnInit {
 
   ngOnChanges() {
     if(this.data && this.data.length > 0){
-      this.setDonutChartData(this.total, this.data);
+      this.setDonutChartData((this.total).toLocaleString(undefined,
+        {'minimumFractionDigits':2,'maximumFractionDigits':2}), this.data);
     }
   }
 
@@ -27,7 +28,7 @@ export class DonutChartComponent implements OnInit {
         height: 300,
       },
       title: {
-        text: 'Total<br>' + parseFloat(total).toFixed(2),
+        text: 'Total<br>' + total,
         verticalAlign: 'middle',
         floating: true,
         style: {

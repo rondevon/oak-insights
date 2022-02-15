@@ -1,3 +1,21 @@
 .consumption-gauge {
    // min-height: 300px;
 }
+
+.square1 {
+   width: 1rem;
+   height: 1rem;
+   border-radius: 50%;
+   display: inline-block;
+   background-color:var(--color2);
+   margin-right: 0.6vw;
+ }
+
+ .square2 {
+   width: 1rem;
+   height: 1rem;
+   border-radius: 50%;
+   display: inline-block;
+   background-color: var(--color3);
+   margin-right: 0.6vw;
+ }

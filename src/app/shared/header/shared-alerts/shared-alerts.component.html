@@ -1,0 +1,51 @@
+<form class="form-container">
+  <div class="button">
+    <button class="btn" (click)="onclose.emit()"><i class="fa fa-close"></i> Close</button>
+    </div> 
+  <div class="card-heading">Summary</div>
+  <span class="widget-subtitle"
+    >Summary of all the alerts that has been generated in the system</span
+  >
+  
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Main 1</th>
+        <th scope="col">Main 1 L1</th>
+        <th scope="col">Main 1 L2</th>
+        <th scope="col">Main 1 L3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Voltage Imbalance</th>
+        <td class="bcolor1">12</td>
+        <td>4</td>
+        <td>2</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <th scope="row">Load Imbalance</th>
+        <td>0</td>
+        <td class="bcolor2">8</td>
+        <td class="bcolor1">11</td>
+        <td>0</td>
+      </tr>
+      <tr>
+        <th scope="row">Low Power Factor</th>
+        <td>2</td>
+        <td>0</td>
+        <td class="bcolor2">8</td>
+        <td class="bcolor1">12</td>
+      </tr>
+      <tr>
+        <th scope="row">Abnormal Change In Energy Cons</th>
+        <td>0</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+  </table>
+</form>

@@ -8,26 +8,30 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./alerts.component.scss']
 })
 export class AlertsComponent implements OnInit {
+  site_slug:any ;
   hourlyCostData: any = {};
   pipe = new DatePipe('en-GB');
+  selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   selectedMonth: any = {
-    month: this.pipe.transform(new Date(), 'MMMM'),
-    year: this.pipe.transform(new Date(), 'YYYY')
+    month: this.pipe.transform(this.selectedDate, 'MMMM'),
+    year: this.pipe.transform(this.selectedDate, 'YYYY')
   };
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    // this.getHourlyCostDetails(
-    //   this.selectedMonth.month,
-    //   this.selectedMonth.year,
-    // );
+   this.getHourlyCostDetails(
+      this.selectedMonth.month,
+      this.selectedMonth.year,
+     );
   }
-  // getHourlyCostDetails(selectedMonth: String, selectedYear: String,) {
-  //   this.apiService
-  //     .getHourlyCostData(selectedMonth, selectedYear,)
-  //     .subscribe((data) => {
-  //       this.hourlyCostData = data.data;
-  //     });
-  // }
+   getHourlyCostDetails(selectedMonth: String, selectedYear: String,) {
+    this.apiService
+      .getHourlyCostData(selectedMonth, selectedYear, this.site_slug)
+      .subscribe((data) => {
+        this.hourlyCostData = data.data;
+      });
+   } 
 }
+
+

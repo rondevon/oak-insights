@@ -1,9 +1,23 @@
 <div *ngIf="!data;else other_content">
-  <h3>No data available</h3>
+  <loader [noData]="true"></loader>
 </div>
 <ng-template #other_content>
-<div>
-  <h3 class="card-heading">{{ data.title }}</h3>
-  <div class="bcolor description" *ngFor="let description of data.descriptions"> {{ description }}</div>
-</div>
-<ng-template #other_content>
+  <!-- <div>
+    <h3 class="card-heading">{{ data.month }}</h3>
+    <div class="bcolor description" *ngFor="let description of data.descriptions"> {{ description }}</div>
+    <div class="bcolor description"> {{ data.title }}</div>
+    <div class="bcolor description"> {{ data.description }}</div>
+  </div> -->
+  <accordion>
+    <h3 class="card-heading">{{ data.month }}</h3>
+    <accordion-group *ngFor="let description of data.data; let i = index" [isDisabled]="!description.description">
+      <button
+        class="btn btn-block justify-content-between d-flex w-100 shadow-none"
+        accordion-heading type="button" (click)="onChange(i)">
+        <div class="pull-left float-left my-auto">{{description.title}}</div>
+        <button class="btn" *ngIf="description.description"><i [ngClass]="description.class ? description.class : class"></i></button>
+      </button>
+      {{description.description}}
+    </accordion-group>
+  </accordion>
+</ng-template>

@@ -9,10 +9,12 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./multi-site-comparison.component.scss']
 })
 export class MultiSiteComparisonComponent implements OnInit {
+  
   pipe = new DatePipe('en-GB');
+  selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   currentDate: any = {
-    month: this.pipe.transform(new Date(), 'MMMM'),
-    year: this.pipe.transform(new Date(), 'YYYY'),
+    month: this.pipe.transform(this.selectedDate, 'MMMM'),
+    year: this.pipe.transform(this.selectedDate, 'YYYY'),
   };
   minDate: Date;
   maxDate: Date;
@@ -120,7 +122,11 @@ export class MultiSiteComparisonComponent implements OnInit {
       subscribe((data: any) => {
         this.loading = false;
         this.siteComparisonData = data.data;
-          var tree: any[] = []
+          var tree: any[] = [];
+          console.log(this.siteComparisonData)
+          for (let i=0;i<this.siteComparisonData.length;i++){
+                (this.siteComparisonData[i].stats.co2_emission).toLocaleString();
+          }
           this.siteComparisonData.forEach((site, index) => {
             tree.push({
               name: site.name,

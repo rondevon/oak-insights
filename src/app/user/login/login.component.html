@@ -2,10 +2,20 @@
     <img class="oak-logo" src="/assets/OakInsightsLogo.svg"/>
 
     <form [formGroup]="formGroup" class="login-form" (ngSubmit)="login()">
+        <div>
         <input type="text" placeholder="Username" formControlName="email"/>
-        <input type="password" placeholder="Password" formControlName="password"/>
-        <button mat-raised-button class="btn-login" type="submit">Login</button>
+        <mat-error *ngIf="formGroup.controls['email'].hasError('required') && formGroup.controls['email']?.touched">ⓘ Please enter your username – it's
+            required</mat-error>
+        <mat-error *ngIf="formGroup.controls['email'].hasError('email') && !formGroup.controls['email'].hasError('required')">ⓘ
+            Please enter a valid username – it's invalid</mat-error>
+        </div>
+        <div>
+            <input type="password" placeholder="Password" formControlName="password"/>
+        <mat-error *ngIf="formGroup.controls['password'].hasError('required') && formGroup.controls['password']?.touched">ⓘ Please enter your password – it's
+            required</mat-error>
+        </div>
+        <button mat-raised-button class="btn-login" type="submit" [disabled]="loading">Login</button>
     </form>
     
-    <a href="#" class="link-secondary">Forgot Password</a>
+    <a routerLink="/forgot-password" class="link-secondary">Forgot Password</a>
 </div>

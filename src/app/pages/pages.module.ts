@@ -33,6 +33,13 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AlertsComponent } from './alerts/alerts.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
+
+import { MatTooltipModule } from '@angular/material/tooltip'; 
+import { MatButtonModule } from '@angular/material/button';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -73,6 +80,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     DatepickerModule.forRoot(),
     CarouselModule,
     FontAwesomeModule,
+    MatSlideToggleModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule
   ],
 })
 export class PagesModule {}
+

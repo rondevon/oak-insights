@@ -12,10 +12,13 @@ export class BasicInsightsComponent implements OnInit {
   site_slug: any;
   pipe = new DatePipe('en-GB');
   historicalConsumptionData: any = [];
+  selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   currentDate: any = {
-    month: this.pipe.transform(new Date(), 'MMMM'),
-    year: this.pipe.transform(new Date(), 'YYYY'),
+    month: this.pipe.transform(this.selectedDate, 'MMMM'),
+    year: this.pipe.transform(this.selectedDate, 'YYYY'),
   };
+  date = this.pipe.transform(new Date(), 'dd') as string;
+
   showMonthlyStats: boolean = false;
   selectedTileIndex: number = -1;
   dayAnalysisData: any = {};
@@ -35,7 +38,7 @@ export class BasicInsightsComponent implements OnInit {
     pullDrag: true,
     dots: true,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
     responsive: {
       0: {
         items: 1,
@@ -50,7 +53,7 @@ export class BasicInsightsComponent implements OnInit {
         items: 3,
       },
     },
-    nav: false,
+    nav: true,
   };
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
@@ -68,6 +71,17 @@ export class BasicInsightsComponent implements OnInit {
       .subscribe((data: any) => {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
+        this.historicalConsumptionData.forEach((monthData:any) => {
+         if (monthData.month === this.pipe.transform(new Date(), 'MMMM') && 
+          monthData.year == this.pipe.transform(new Date(), 'YYYY'))
+          {
+            monthData.consumption_overview.isCurrrentMonth = true;
+          }
+          else
+          {
+            monthData.consumption_overview.isCurrrentMonth = false;
+          }
+        });
         this.loadings = false;
       });
       this.getMonthUsageData();
@@ -95,7 +109,7 @@ export class BasicInsightsComponent implements OnInit {
         image: '/assets/icons/icon-closed-hours.svg',
         title: 'Closed-hours',
         value: data.data.stats.closed_hour_energy,
-        unit: 'kWh',
+        unit: '%',
         color: 'var(--color8)',
       },
       {
@@ -144,16 +158,25 @@ export class BasicInsightsComponent implements OnInit {
 setTrendIcon(value: number){
   if (value > 0)
   {
-    return '/assets/icons/icon-up.svg';
+    return '/assets/icons/icon-down.svg';
   }
   else{
-    return '/assets/icons/icon-down.svg';
+    return '/assets/icons/icon-up.svg';
   }
 }
 
-calculateTarget(target: number, actual: number)
+calculateTarget(target: number, actual: number, month: String)
 {
-    let value: number = Math.round((actual-target)/target*100);
+    let value: number
+    if(month == this.pipe.transform(new Date(), 'MMMM'))
+    {
+      let currentTargetValue = (Number(target)/30*Number(this.date));
+      value = Math.round((actual-currentTargetValue)/currentTargetValue*100);
+    }
+    else{
+      value = Math.round((actual-target)/target*100);
+    }
+    
     let color: String = '';
     let text: String = '';
     if(value>0)

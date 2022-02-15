@@ -5,6 +5,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AddEventDialogComponent } from '../add-event-dialog/add-event-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { text } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,10 @@ import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  isChecked: boolean = false;
   site_slug:any ;
-  minDate: Date = new Date();;
+  minDate: Date = new Date();type: string | undefined;
+;
   maxDate: Date = new Date();
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
@@ -22,12 +25,13 @@ export class HomeComponent implements OnInit {
     year: this.pipe.transform(new Date(), 'YYYY')
   };
   heatMapData: any = {};
-  operatingHoursData: any = {};
+  operatingHours: any = {};
   hourlyCostData: any = {};
+  sensorStatus: any = {};
   selectedDate: Date = new Date(new Date().setMonth(this.minDate.getMonth() - 1));
   faCalendar = faCalendarAlt;
 
-  loading: boolean = false;
+  loading: boolean = true;
 
   oakScore: number = 0;
   newsData = [];
@@ -43,39 +47,42 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-
-  this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
-
+    this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
+    this.updateMonth();
+    this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService.getNews().subscribe((data: any) => {
       this.newsData = data.articles.slice(0, 3);
     });
-
-    this.apiService.getWeather('London,GB').subscribe((data: any) => {
-      if (data.data && data.data.length > 0) {
-        this.weatherData = data.data[0];
-      }
-    });
-
-    this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
-      if (data.data && data.data.length > 0) {
-        this.data = data.data;
-      }
-    });
-
-    this.updateMonth();
+      this.apiService.getWeather('London,GB').subscribe((data: any) => {
+        if (data.data && data.data.length > 0) {
+          this.weatherData = data.data[0];
+        }
+      });
   }
 
   updateMonth() {
-    this.loading = false;
+    //this.loading = true;
+    console.log('again')
     this.selectedMonth = {
       month: this.pipe.transform(this.selectedDate, 'MMMM'),
       year: this.pipe.transform(this.selectedDate, 'YYYY')
     };
+    this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
-        this.loading = false;
         this.consumptionData = data.data.consumption_overview;
+        
+        if(this.selectedMonth.month === this.pipe.transform(new Date(), 'MMMM') && 
+        this.selectedMonth.year === this.pipe.transform(new Date(), 'YYYY'))
+        {
+          this.consumptionData.isCurrrentMonth = true;  
+        }
+        else
+        {
+          this.consumptionData.isCurrrentMonth = false;
+        }
+        
         this.oakScore = data.data.oak_score;
         this.cards = [
           {
@@ -96,14 +103,14 @@ export class HomeComponent implements OnInit {
             image: '/assets/icons/icon-closed-hours.svg',
             title: 'Closed-hours',
             value: data.data.stats.closed_hour_energy,
-            unit: 'kWh',
+            unit: '%',
             color: 'var(--color8)',
           },
           {
             image: '/assets/icons/icon-energy-intensity.svg',
             title: 'Energy Intensity ',
             value: data.data.stats.energy_intensity,
-            unit: 'kWh/m2',
+            unit: 'kWh/m²',
             color: 'var(--color5)',
           },
           {
@@ -125,40 +132,48 @@ export class HomeComponent implements OnInit {
       this.getHeatMapDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
-        this.site_slug
-      );
-      this.getOperatingHoursDetails(
-        this.selectedMonth.month,
-        this.selectedMonth.year,
-        this.site_slug
+        this.site_slug,
+        'daily'
       );
       this.getHourlyCostDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
         this.site_slug
       );
+      this.getSensorStatusDetails(this.site_slug);
+        
+    this.apiService.getEvents(this.selectedMonth, this.site_slug).subscribe((data: any) => {
+      if (data.data && data.data.length > 0) {
+        this.data = data.data;
+      }
+    });
   }
 
-  getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
+ 
+
+  getHeatMapDetails(selectedMonth: String, selectedYear: String, site_slug: String, type?: string) {
     this.apiService
-      .getHeatMapData(selectedMonth, selectedYear, site_slug)
+      .getHeatMapData(selectedMonth, selectedYear, site_slug, type)
       .subscribe((data) => {
         this.heatMapData = data.data;
+        this.type = type;
       });
   }
 
-  getOperatingHoursDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
-    this.apiService
-      .getOperatingHoursData(selectedMonth, selectedYear, site_slug)
-      .subscribe((data) => {
-        this.operatingHoursData = data.data;
-      });
-  }
   getHourlyCostDetails(selectedMonth: String, selectedYear: String, site_slug: String) {
     this.apiService
       .getHourlyCostData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
-        this.hourlyCostData = data.data;
+        this.hourlyCostData = data;
+        this.loading = false;
+      });
+  }
+  getSensorStatusDetails(site_slug: String)
+  {
+    this.apiService
+      .getSensorStatusData(site_slug)
+      .subscribe((data) => {
+        this.sensorStatus = data.data;
       });
   }
 
@@ -166,10 +181,8 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(AddEventDialogComponent);
 
     dialogRef.afterClosed().subscribe((eventData) => {
-      console.log('The dialog was closed', eventData);
-      this.apiService.postevent(eventData).subscribe((result) => {
-        console.log(result);
-        
+      console.log('The dialog was closed', eventData, this.site_slug);
+      this.apiService.postevent(eventData, this.site_slug).subscribe((result) => {        
         if (result.success === 1) {
           this.apiService.getEvents(this.selectedMonth,this.site_slug).subscribe((data: any) => {
             if (data.data && data.data.length > 0) {
@@ -182,5 +195,22 @@ export class HomeComponent implements OnInit {
         
       })
     });
+  }
+
+  change() {
+    if (this.isChecked) {
+      this.getHeatMapDetails(
+        this.selectedMonth.month,
+        this.selectedMonth.year,
+        this.site_slug
+        );
+      } else {
+        this.getHeatMapDetails(
+          this.selectedMonth.month,
+          this.selectedMonth.year,
+          this.site_slug,
+          'daily'
+      );
+    }
   }
 }

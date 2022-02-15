@@ -25,10 +25,9 @@ export class NavbarComponent implements OnInit {
     router.events.subscribe((val) => {
         if (val instanceof NavigationEnd) {
           this.selected = -1;
-          var x = '.'+val.url;
+          var x = val.url;
           const y = this.menu.find(m => x.match(m.path));    
           if (y) this.selected = y.index;
-          console.log(val.url)
         }
     });
   }

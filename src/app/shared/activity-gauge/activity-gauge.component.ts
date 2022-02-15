@@ -15,15 +15,31 @@ import { Chart } from 'angular-highcharts';
 })
 export class ActivityGaugeComponent implements OnInit, OnChanges {
   @Input('data') data: any;
-  @Input('totalSize') totalSize: any = {total: '1.2vw', text:'1vw', y:'-24'};
+  @Input('totalSize') totalSize: any = {total: '1.5vw', text:'1vw', y:'-24'};
   pipe = new DatePipe('en-GB');
   date = this.pipe.transform(new Date(), 'dd') as string;
+  seriesTarget: any;
+  seriesPresent: any;
   differ: any = {};
   abvbel: any = {};
   chart: Chart = new Chart();
   ngOnChanges(changes: SimpleChanges): void {
-      this.differ=Math.round((Number(this.data.target)/30*Number(this.date)) - Number(this.data.present))
-      if(this.differ>0 ?this.abvbel = 'Below' : this.abvbel = 'Above')
+    if (this.data.isCurrrentMonth === true)
+     { 
+      let currentTargetValue = (Number(this.data.target)/30*Number(this.date));
+      this.differ=Math.round(currentTargetValue - Number(this.data.present));
+      this.seriesTarget = ((100/30)*Number(this.date));
+      this.seriesPresent = this.seriesTarget*(this.data.present/currentTargetValue);
+     }
+    else
+    {
+      this.differ = Math.round(this.data.target- this.data.present);
+      this.seriesTarget = 100;
+      this.seriesPresent = (Number(this.data.present)/Number(this.data.target))*100;
+    
+    }
+    
+      this.abvbel = this.differ>0? 'Below' : 'Above';
       this.chart = new Chart({
         chart: {
           height: '100%',
@@ -86,6 +102,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
 
         plotOptions: {
           solidgauge: {
+            //showInLegend: true,
             dataLabels: {
               style: {
                 fontFamily: 'Avenir-Roman',
@@ -96,10 +113,9 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
               y: parseInt(this.totalSize.y),
               format:
                 '<div style="width:100%;text-align:center;"><span style="font-size:' + this.totalSize.total + '; color: {point.color}; font-weight: bold">' +
-                Math.abs(this.differ) +
+                Math.abs(this.differ).toLocaleString() +
                 ' kWh</span><br><span style="font-size:' + this.totalSize.text + '; color: black; font-weight: bold">'+ this.abvbel + ' Target</span></div>',
             },
-
             linecap: 'round',
             stickyTracking: false,
             rounded: true,
@@ -121,7 +137,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
                 },
                 radius: '100%',
                 innerRadius: '88%',
-                y: ((Number(this.data.target)-Number(this.data.present))>0 ? (Number(this.data.target)-Number(this.data.present))/Number(this.data.target)*100 : 100),
+                y: this.seriesPresent,
               },
             ],
           },
@@ -140,7 +156,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
                 },
                 radius: '75%',
                 innerRadius: '63%',
-                y: ((100/30)*Number(this.date)),
+                y: this.seriesTarget,
               },
             ],
           },

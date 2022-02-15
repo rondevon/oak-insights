@@ -1,6 +1,8 @@
-<img class="header-img" src="/assets/OakInsightsLogo.svg" />
+<img class="header-img" src="/assets/OakInsightsLogo.svg" routerLink="/oak"/>
+
 <div class="icon-list">
-  <img
+  <h4 class="my-auto site-name">{{sitename | uppercase}}</h4>
+  <img *ngIf="showNotification"
     [src]="
       notification
         ? '/assets/icon-notification-active.svg'
@@ -8,11 +10,12 @@
     "
     height="48px"
     style="cursor: pointer"
-    routerLink="/alerts"
-  />
+    (click)="show = true"
+    />
+    <!-- routerLink="/alerts" -->
   
   <div class="btn-group" dropdown #dropdown="bs-dropdown" >
-    <ngs-avater
+    <ngs-avater class="pointer1"
     size="48px"
     isFixedColor="#FFFFFF"
     imageSize="48px"
@@ -33,3 +36,10 @@
     </ul>
   </div>
 </div>
+
+<div class="chat-pop" *ngIf="show">
+  <div>
+    <shared-alerts class="chat-popup" *ngIf="show" (onclose)="show = false"></shared-alerts>
+  </div>
+</div>
+

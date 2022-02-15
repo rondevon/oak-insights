@@ -23,7 +23,7 @@
     margin-bottom: 2rem;
   }
   .rectangle {
-    width: 50%;
+    width: 100%;
     height: 1.5rem;
     float: right;
   }
@@ -34,7 +34,7 @@
     margin-left: 1rem;
     text-align: left;
     font-weight: 800;
-    flex:1;
+    flex:3;
   }
   .donut-text{
     font: var(--fontLight);
@@ -53,4 +53,19 @@
   border:solid #000000;
   border-width: 1px 1px 1px 0px ;
   border-radius: 0rem;
+  }
+
+  .alternate{
+    display: flex;
+    padding: 0.5vw 5vw;
+    img{
+      flex:1;
+      padding: 1vw;
+    }
+    p{
+      font-size: 1.2vw;
+      font-weight: 800;
+      color: var(--color10);
+      flex:1
+    }
   }
