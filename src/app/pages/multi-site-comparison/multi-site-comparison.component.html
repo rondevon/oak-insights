@@ -47,8 +47,11 @@
         <div class="value my-auto" *ngIf="label.tertiaryKey">
           {{ item[label.key][label.secondaryKey][label.tertiaryKey] }}
         </div>
-        <div class="value my-auto" *ngIf="!label.tertiaryKey">
+        <div class="value my-auto" *ngIf="!label.tertiaryKey && label.key!='electric_provider'">
           {{ item[label.key][label.secondaryKey] }}
+        </div>
+        <div class="value my-auto" *ngIf="label.key=='electric_provider'">
+          Data Required
         </div>
       </td>
     </tr>
@@ -85,8 +88,11 @@
         <div class="value my-auto" *ngIf="label.secondaryKey">
           {{ item[label.key][label.secondaryKey] }}
         </div>
-        <div class="value my-auto" *ngIf="!label.secondaryKey">
+        <div class="value my-auto" *ngIf="!label.secondaryKey && (label.key != 'area' && label.key != 'employees' && label.key != 'appliances')">
           {{ item[label.key] }}
+        </div>
+        <div class="value my-auto" *ngIf="label.key == 'area' || label.key == 'employees' || label.key == 'appliances' ">
+          Data Required
         </div>
       </td>
     </tr>
