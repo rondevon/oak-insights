@@ -15,8 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class HomeComponent implements OnInit {
   isChecked: boolean = false;
   site_slug:any ;
-  minDate: Date = new Date();type: string | undefined;
-;
+  minDate: Date = new Date();
+  type: string | undefined;
   maxDate: Date = new Date();
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
@@ -52,13 +52,15 @@ export class HomeComponent implements OnInit {
     this.maxDate.setMonth(this.maxDate.getMonth());
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.site_slug=this.route.parent?.parent?.snapshot.params.site_slug;
     this.updateMonth();
     this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService.getNews().subscribe((data: any) => {
-      this.newsData = data.articles.slice(0, 3);      
-    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+      this.newsData = data.articles.slice(0, 3) || [];
+    }, err => {console.log(err);
+      this.newsData = []
+     this.openSnackBar(err.error.message, 'Dismiss')});
       this.apiService.getWeather('London,GB').subscribe((data: any) => {
         if (data.data && data.data.length > 0) {
           this.weatherData = data.data[0];
@@ -68,10 +70,9 @@ export class HomeComponent implements OnInit {
 
   updateMonth() {
     //this.loading = true;
-    console.log('again')
     this.selectedMonth = {
       month: this.pipe.transform(this.selectedDate, 'MMMM'),
-      year: this.pipe.transform(this.selectedDate, 'YYYY')
+      year: this.selectedDate.getFullYear()
     };
     this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService
@@ -135,12 +136,7 @@ export class HomeComponent implements OnInit {
           },
         ];
       }, err => this.openSnackBar(err.error.message, 'Dismiss'));
-      this.getHeatMapDetails(
-        this.selectedMonth.month,
-        this.selectedMonth.year,
-        this.site_slug,
-        'daily'
-      );
+      this.change();
       this.getHourlyCostDetails(
         this.selectedMonth.month,
         this.selectedMonth.year,
