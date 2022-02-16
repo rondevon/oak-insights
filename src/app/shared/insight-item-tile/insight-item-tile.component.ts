@@ -16,6 +16,11 @@ export class InsightItemTileComponent implements OnInit {
     {
       this.data.value = (this.data.value>0?"+":'')+(this.data.value).toLocaleString();
     }
+    if(this.data.title === 'Energy Intensity')
+    {
+      this.data.value= 'NA',
+      this.data.unit= ''
+    }
     else{
       this.data.value = (this.data.value).toLocaleString();
     }

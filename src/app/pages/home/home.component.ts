@@ -115,8 +115,8 @@ export class HomeComponent implements OnInit {
           },
           {
             image: '/assets/icons/icon-energy-intensity.svg',
-            title: 'Energy Intensity ',
-            value: data.data.stats.energy_intensity,
+            title: 'Energy Intensity',
+            value: 'data.data.stats.energy_intensity',
             unit: 'kWh/m²',
             color: 'var(--color5)',
           },

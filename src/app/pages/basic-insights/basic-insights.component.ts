@@ -120,8 +120,8 @@ export class BasicInsightsComponent implements OnInit {
       {
         image: '/assets/icons/icon-energy-intensity.svg',
         title: 'Energy Intensity ',
-        value: data.data.stats.energy_intensity,
-        unit: 'kWh/m2',
+        value: 'NA',
+        unit: '',
         color: 'var(--color5)',
       },
       {

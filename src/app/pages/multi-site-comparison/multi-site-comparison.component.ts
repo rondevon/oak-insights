@@ -22,6 +22,7 @@ export class MultiSiteComparisonComponent implements OnInit {
   siteComparisonData: any [] = [];
   totalSize: any = {total:'1vw',text:'0.7vw',y:'-17'};
   treeMapData: any[] = [];
+  treeMapTotal: number = 0;
   faCalendar = faCalendarAlt;
   colors: String[] = [
     '#364096',
@@ -46,7 +47,7 @@ export class MultiSiteComparisonComponent implements OnInit {
     secondaryKey: 'co2_emission'
   },
   {
-    name: 'Enery Cost (£)',
+    name: 'Energy Cost (£)',
     key: 'stats',
     secondaryKey: 'cost'
   }, 
@@ -81,22 +82,22 @@ export class MultiSiteComparisonComponent implements OnInit {
     key: 'devices_count'
   },
   {
-    name: 'Operating Hours Consumption',
+    name: 'Operating Hours Consumption (kWh)',
     key: 'stats',
     secondaryKey: 'operating_energy'
   },
   {
-    name: 'Non Operating Hours Consumption',
+    name: 'Non Operating Hours Consumption (kWh)',
     key: 'stats',
     secondaryKey: 'non_operating_energy'
   },
   {
-    name: 'Preparatory Hours Consumption',
+    name: 'Preparatory Hours Consumption (kWh)',
     key: 'stats',
     secondaryKey: 'preparatory_energy'
   },
   {
-    name: 'Closed Hours Consumption',
+    name: 'Closed Hours Consumption (kWh)',
     key: 'stats',
     secondaryKey: 'closed_energy'
   }];
@@ -135,6 +136,8 @@ export class MultiSiteComparisonComponent implements OnInit {
               value: site.stats.cost,
               color: this.colors[index]
             });
+            this.treeMapTotal+= Number(site.stats.cost);
+            console.log('site.stats.cost',site.stats.cost)
           });
           this.treeMapData = tree;
       }, err => {

@@ -25,6 +25,9 @@ export class TreeMapComponent implements OnInit {
       legend: {
         enabled: false,
       },
+      tooltip: {
+        pointFormat: '£ {point.value}',
+      },
       exporting: { enabled: false },
       series: [
         {
