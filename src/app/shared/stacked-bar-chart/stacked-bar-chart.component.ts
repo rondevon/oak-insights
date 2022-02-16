@@ -98,7 +98,7 @@ export class StackedBarChartComponent implements OnInit {
       
       tooltip: {
         headerFormat: '<b>{point.x}</b><br/>',
-        pointFormat: '{series.name}: {point.y} kWh<br/>Total: {point.stackTotal} kWh',
+        pointFormat: this.selectedType == 'cost'? '{series.name}: £{point.y} <br/>Total: £{point.stackTotal}' : '{series.name}: {point.y} kWh <br/>Total: {point.stackTotal} kWh',
       },
       plotOptions: {
         column: {
