@@ -15,7 +15,7 @@ export class MultiSiteComparisonComponent implements OnInit {
   selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   currentDate: any = {
     month: this.pipe.transform(this.selectedDate, 'MMMM'),
-    year: this.pipe.transform(this.selectedDate, 'YYYY'),
+    year: this.selectedDate.getFullYear()
   };
   minDate: Date;
   maxDate: Date;
@@ -150,7 +150,7 @@ export class MultiSiteComparisonComponent implements OnInit {
   updateMonth(){
     this.currentDate = {
       month: this.pipe.transform(this.currentDate, 'MMMM'),
-      year: this.pipe.transform(this.currentDate, 'YYYY')
+      year: this.currentDate.getFullYear()
     };
     this.getMultiSiteComparison(this.currentDate.month,this.currentDate.year);
   }

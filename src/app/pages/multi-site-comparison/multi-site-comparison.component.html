@@ -5,7 +5,7 @@
       <th class="col-width">
         <h1>Sites</h1>
         <div class="my-auto">
-          <div class="input-group">
+          <div class="input-group" *ngIf="currentDate && minDate && maxDate">
             <span class="form-control"
                    [(ngModel)]="currentDate" [(bsValue)]="currentDate" (bsValueChange)="updateMonth()"
                    #dp="bsDatepicker" bsDatepicker
