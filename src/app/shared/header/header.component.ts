@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/user/auth.service';
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ export class HeaderComponent implements OnInit {
   @Input() showNotification = true;
   notification = true;
   photo: any;
+  env: boolean = false;
   sitename: string = '';// = localStorage.getItem('site_name') || '';
   show: boolean = false;
   // showNotification: boolean = localStorage.getItem('role') === 'Account Manager' ? false : true;
@@ -34,6 +36,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (environment.production)
+    {
+      this.env=true
+    }
     this.apiService.getMyprofileApi().subscribe((data: any)=> {
       this.photo= data.data.photo;
     });

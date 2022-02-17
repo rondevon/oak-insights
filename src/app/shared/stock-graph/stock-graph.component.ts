@@ -42,23 +42,23 @@ export class StockGraphComponent implements OnInit {
     this.apiService.getStockChartData(selectedMonth,selectedYear,selectedType,selectedGraph,site_slug).subscribe((data : any) => {
       this.stockChartData = data.data;
       
-      if(selectedGraph == 'consumption'){
-        for (let i=0; i<this.stockChartData.values.length; i++){
-          this.stockChartData.values[i][1] = (this.stockChartData.values[i][1]);
-         }
-      }
-      if(selectedGraph == 'phase'){
-        for (let i=0; i<this.stockChartData.values_r.length; i++){
-          if(this.stockChartData.values_r && this.stockChartData.values_s && this.stockChartData.values_t)
-          {
-            this.stockChartData.values_r[i][1] = (this.stockChartData.values_r[i][1]);
-          this.stockChartData.values_s[i][1] = (this.stockChartData.values_s[i][1]);
-          this.stockChartData.values_t[i][1] = (this.stockChartData.values_t[i][1]);
+      // if(selectedGraph == 'consumption'){
+      //   for (let i=0; i<this.stockChartData.values.length; i++){
+      //     this.stockChartData.values[i][1] = (this.stockChartData.values[i][1]);
+      //    }
+      // }
+      // if(selectedGraph == 'phase'){
+      //   for (let i=0; i<this.stockChartData.values_r.length; i++){
+      //     if(this.stockChartData.values_r && this.stockChartData.values_s && this.stockChartData.values_t)
+      //     {
+      //       this.stockChartData.values_r[i][1] = (this.stockChartData.values_r[i][1]);
+      //     this.stockChartData.values_s[i][1] = (this.stockChartData.values_s[i][1]);
+      //     this.stockChartData.values_t[i][1] = (this.stockChartData.values_t[i][1]);
 
-          }
+      //     }
           
-         }
-      }      
+      //    }
+      // }      
       this.setStockGraphData();
     });
   }

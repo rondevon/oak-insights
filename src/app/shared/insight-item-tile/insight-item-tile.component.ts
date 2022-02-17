@@ -18,7 +18,7 @@ export class InsightItemTileComponent implements OnInit {
     }
     if(this.data.title === 'Energy Intensity')
     {
-      this.data.value= 'NA',
+      this.data.value= 'DR',
       this.data.unit= ''
     }
     else{

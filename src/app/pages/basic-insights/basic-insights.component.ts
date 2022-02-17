@@ -120,7 +120,7 @@ export class BasicInsightsComponent implements OnInit {
       {
         image: '/assets/icons/icon-energy-intensity.svg',
         title: 'Energy Intensity ',
-        value: 'NA',
+        value: 'DR',
         unit: '',
         color: 'var(--color5)',
       },
