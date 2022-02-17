@@ -10,7 +10,7 @@ export const environment = {
   production: false
 };
 
-export const serviceBaseUrl = 'https://api.oak-insights.com/';
+export const serviceBaseUrl = 'https://api.oak-insightsdemo.com/';
 
 /*
  * For easier debugging in development mode, you can import the following file

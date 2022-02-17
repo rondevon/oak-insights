@@ -86,13 +86,10 @@
       <th class="heading my-auto col-width">{{ label.name }}</th>
       <td class="col-width" *ngFor="let item of siteComparisonData">
         <div class="value my-auto" *ngIf="label.secondaryKey">
-          {{ item[label.key][label.secondaryKey] }}
+          {{ item[label.key][label.secondaryKey]?item[label.key][label.secondaryKey]:'0' }}
         </div>
-        <div class="value my-auto" *ngIf="!label.secondaryKey && (label.key != 'area' && label.key != 'employees' && label.key != 'appliances')">
-          {{ item[label.key] }}
-        </div>
-        <div class="value my-auto" *ngIf="label.key == 'area' || label.key == 'employees' || label.key == 'appliances' ">
-          Data Required
+        <div class="value my-auto" *ngIf="!label.secondaryKey">
+          {{ item[label.key]==0?'Data Required' : item[label.key]  }}
         </div>
       </td>
     </tr>
