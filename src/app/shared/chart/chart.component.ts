@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Chart } from 'angular-highcharts';
 
 @Component({
@@ -13,10 +13,10 @@ export class ChartComponent implements OnInit {
   @Input('showButtons') showButtons: boolean = false;
   chart: any = {};
   openValues: any[][] = [[],[]];
-  bntStyle1: String = 'open-days-button';
-  bntStyle2: String = 'closed-days-button';
-  ngOnChanges() {
+  switchType: string = 'Open';
+  ngOnChanges(changes: SimpleChanges): void {
     this.setHourlyCostData();
+    if (this.data && changes.data) this.switchChart('Open');
   }
 
   setHourlyCostData() {
@@ -112,8 +112,8 @@ export class ChartComponent implements OnInit {
   }
 
   switchChart(switchType: string){
-
-    this.chart.removeSeries(0);
+    this.switchType = switchType;
+    this.chart?.removeSeries(0);
     let series = {
         name: 'Cost (£)',
         type: 'area',
@@ -122,15 +122,11 @@ export class ChartComponent implements OnInit {
     };
     if(switchType === 'Open'){
       series.data = this.data.data.values_open;
-      this.bntStyle2 = 'closed-days-button' 
-      this.bntStyle1 = 'open-days-button'
       this.chart.options.yAxis.plotLines[0].value = this.data.max_open
       this.chart.options.yAxis.plotLines[1].value = this.data.avg_open 
       this.chart.options.yAxis.plotLines[2].value = this.data.min_open 
     } else {
       series.data = this.data.data.values_closed;
-      this.bntStyle2 = 'open-days-button' 
-      this.bntStyle1 = 'closed-days-button'
       this.chart.options.yAxis.plotLines[0].value = this.data.max_closed
       this.chart.options.yAxis.plotLines[1].value = this.data.avg_closed 
       this.chart.options.yAxis.plotLines[2].value = this.data.min_closed 

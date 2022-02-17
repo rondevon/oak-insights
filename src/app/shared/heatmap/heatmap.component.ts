@@ -40,7 +40,7 @@ export class HeatMapComponent implements OnInit {
       { range:  Math.ceil((this.data.max)*0.5) + ' - '+  Math.ceil((this.data.max)*0.75), color: 'var(--heatmap-color4)' },
       { range:  Math.ceil((this.data.max)*0.75) + ' - '+  Math.ceil(this.data.max), color: 'var(--heatmap-color5)' },
     ];
-    console.log('heatmap',this.data.max,this.heatmapranges)
+    // console.log('heatmap',this.data.max,this.heatmapranges)
     this.chart = new Chart({
       chart: {
         type: 'heatmap',
