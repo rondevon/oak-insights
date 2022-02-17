@@ -47,11 +47,8 @@
         <div class="value my-auto" *ngIf="label.tertiaryKey">
           {{ item[label.key][label.secondaryKey][label.tertiaryKey] }}
         </div>
-        <div class="value my-auto" *ngIf="!label.tertiaryKey && label.key!='electric_provider'">
-          {{ item[label.key][label.secondaryKey] }}
-        </div>
-        <div class="value my-auto" *ngIf="label.key=='electric_provider'">
-          Data Required
+        <div class="value my-auto" *ngIf="!label.tertiaryKey">
+          {{ item[label.key][label.secondaryKey]!='Dummy Provider'?item[label.key][label.secondaryKey]:'Data Required' }}
         </div>
       </td>
     </tr>

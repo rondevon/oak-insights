@@ -136,6 +136,7 @@ export class HomeComponent implements OnInit {
           },
         ];
       }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+      this.isChecked = false;
       this.change();
       this.getHourlyCostDetails(
         this.selectedMonth.month,
@@ -166,6 +167,8 @@ export class HomeComponent implements OnInit {
     this.apiService
       .getHourlyCostData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
+        console.log('data', data);
+        
         this.hourlyCostData = data;
         this.loading = false;
       }, err => this.openSnackBar(err.error.message, 'Dismiss'));
