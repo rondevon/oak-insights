@@ -17,7 +17,7 @@ export class TreeMapComponent implements OnInit {
   chart: any = {};
 
   ngOnChanges() {
-    console.log(this.data);
+    // console.log(this.data);
     this.chart = new Chart({
       title: {
         text: '',

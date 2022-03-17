@@ -4,6 +4,7 @@ import { LandingComponent } from './landing/landing.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AlertsComponent } from '../pages/alerts/alerts.component';
 import { MyprofileComponent } from '../pages/myprofile/myprofile.component';
+import { DashboardGuard } from '../guards/dashboard.guard';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'myprofile', component: MyprofileComponent },
   {
     path: 'oak/dashboard/:site_slug',
+    canActivate: [DashboardGuard],
     component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'pages', pathMatch: 'full' },

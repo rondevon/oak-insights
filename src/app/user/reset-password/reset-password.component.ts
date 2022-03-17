@@ -40,7 +40,7 @@ export class ResetPasswordComponent implements OnInit {
         password_confirmation: this.form.value.confirmpassword,
         token: this.token
       }).subscribe(response => {
-        console.log(response);
+        // console.log(response);
         localStorage.removeItem('email');
         this.openSnackBar("Password reset successfully", 'Dismiss');
         this.loading = false;

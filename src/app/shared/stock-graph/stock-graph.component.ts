@@ -4,6 +4,7 @@ import { StockChart } from 'angular-highcharts';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { ApiService } from 'src/app/services/api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-stock-graph',
   templateUrl: './stock-graph.component.html',
@@ -33,9 +34,10 @@ export class StockGraphComponent implements OnInit {
   loading: boolean = true;
   faCalendar = faCalendarAlt;
   
-  constructor(private apiService: ApiService) {
-    this.minDate.setMonth(this.minDate.getMonth() - 4);
-    this.maxDate.setMonth(this.maxDate.getMonth());
+  constructor(private apiService: ApiService,  private _snackBar: MatSnackBar) {
+    const x = localStorage.getItem('onboarding')?.split('-') || [];      
+    if (x.length > 0) this.minDate.setFullYear(+x[0], +x[1]-1, +x[2]);
+      this.maxDate.setMonth(this.maxDate.getMonth());
    }
 
   getStockChartDetails(selectedMonth: any, selectedYear: any, selectedType: String, selectedGraph: String, site_slug: String){
@@ -60,7 +62,7 @@ export class StockGraphComponent implements OnInit {
       //    }
       // }      
       this.setStockGraphData();
-    });
+    }, (err: any) => this.openSnackBar(err.error?.message, 'Dismiss'));
   }
   updateType(){
     this.chart = undefined;
@@ -270,4 +272,8 @@ export class StockGraphComponent implements OnInit {
       });
     }
   }
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
+  }
 }
+

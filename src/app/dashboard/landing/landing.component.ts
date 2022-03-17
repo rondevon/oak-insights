@@ -47,72 +47,72 @@ export class LandingComponent implements OnInit {
   getMonthUsageData() {
     if(localStorage.getItem('role')==='Site Manager'){
     this.apiService.getMonthlyUsageData(this.year, this.site_slug).subscribe(data => {
-      this.monthUsageData = data.data;
-    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+      this.monthUsageData = data?.data;
+    }, err => this.openSnackBar(err?.error?.message, 'Dismiss'));
   }
 
   if(localStorage.getItem('role')==='Account Manager'){
     this.apiService.getAccountMonthlyUsageData(this.year).subscribe(data => {
-      this.monthUsageData = data.data;
-    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+      this.monthUsageData = data?.data;
+    }, err => this.openSnackBar(err?.error?.message, 'Dismiss'));
   }
     
   }
 
   getProfile(){
     this.apiService.getMyprofileApi().subscribe((data: any)=> {
-      this.name= data.data.name;
-      this.photo= data.data.photo;
-    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+      this.name= data?.data?.name;
+      this.photo= data?.data?.photo;
+    }, err => this.openSnackBar(err?.error?.message, 'Dismiss'));
   }
 
   getSites(){
     this.apiService.getMultiSitesData(this.month,this.year).subscribe((data: any)=> {
-      this.sites= data.data;
+      this.sites= data?.data;
       // console.log("multi",this.sites);
-    }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+    }, err => this.openSnackBar(err?.error?.message, 'Dismiss'));
   }
 
   getHomeInsightCards(){
     if(localStorage.getItem('role')==='Site Manager'){
       this.apiService.getHomepageApi(this.month, this.year, this.site_slug).subscribe((data: any) => {
-      this.LandingInsightsData = data.data;
+      this.LandingInsightsData = data?.data;
       // console.log("landing",this.LandingInsightsData);
       this.setHomeInsightsCard();
-      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+      }, err => this.openSnackBar(err?.error?.message, 'Dismiss'));
     }
     if(localStorage.getItem('role')==='Account Manager'){
       this.apiService.getAccountLandingInsightsData(this.month, this.year).subscribe((data: any) => {
-      this.LandingInsightsData = data.data;
+      this.LandingInsightsData = data?.data;
       // console.log("landing",this.LandingInsightsData);
       this.setHomeInsightsCard();
-      }, err => this.openSnackBar(err.error.message, 'Dismiss'));
+      }, err => this.openSnackBar(err?.error?.message, 'Dismiss'));
     }
   }
 
   setHomeInsightsCard(){
-    this.consumptionData = this.LandingInsightsData.consumption_overview;
+    this.consumptionData = this.LandingInsightsData?.consumption_overview;
     this.consumptionData.isCurrrentMonth = true;
-    this.oakScore = this.LandingInsightsData.oak_score;
+    this.oakScore = this.LandingInsightsData?.oak_score;
       this.cards= [
         {
           image: '/assets/icons/icon-energy-usage.svg',
           title: 'Energy Usage',
-          value: this.LandingInsightsData.stats.energy,
+          value: this.LandingInsightsData?.stats?.energy,
           unit: 'kWh',
           color: 'var(--color5)',
         },
         {
           image: '/assets/icons/icon-co2-emission.svg',
           title: 'CO2 Emission(kg)',
-          value: this.LandingInsightsData.stats.co2_emission,
+          value: this.LandingInsightsData?.stats?.co2_emission,
           unit: 'kg',
           color: 'var(--color6)',
         },
         {
           image: '/assets/icons/icon-closed-hours.svg',
           title: 'Closed-hours',
-          value: this.LandingInsightsData.stats.closed_hour_energy,
+          value: this.LandingInsightsData?.stats?.closed_hour_energy,
           unit: 'kWh',
           color: 'var(--color8)',
         },
@@ -124,4 +124,6 @@ export class LandingComponent implements OnInit {
   openSnackBar(message: string, action: string = 'Cancel') {
     this._snackBar.open(message, action, { duration: 3000 });
   }
+
+
 }

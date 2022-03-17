@@ -22,6 +22,7 @@
   <div class="col-lg-4 col-xl-3 my-auto">
           <div class="input-group">
                   <span class="form-control"
+                  name="date"
                    [(ngModel)]="selectedDate" [(bsValue)]="selectedDate" (bsValueChange)="updateMonth()"
                    #dp="bsDatepicker" bsDatepicker
                    [bsConfig]="{ minMode:'month', adaptivePosition: true, isAnimated: true, dateInputFormat: 'MMMM YYYY' }"

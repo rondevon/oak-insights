@@ -32,7 +32,7 @@ export class MyprofileComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.apiService.getProfile().subscribe((data: any) => {
      this.data = data.data;
-     console.log(data.data);
+    //  console.log(data.data);
      
      this.sites = this.data?.sites ? this.data.sites : this.data.site
     });

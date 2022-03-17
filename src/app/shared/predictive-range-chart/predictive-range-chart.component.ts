@@ -19,7 +19,7 @@ export class PredictiveRangeChartComponent implements OnInit {
   }
 
   setYearlyConsumption() {
-    console.log('Data received from response', this.data);
+    // console.log('Data received from response', this.data);
     this.chart = new Chart({
       title: {
         text: '',
@@ -29,7 +29,7 @@ export class PredictiveRangeChartComponent implements OnInit {
         enabled: true,
       },
       xAxis: {
-        categories: this.data.x_axis
+        categories: this.data?.x_axis
       },
 
       yAxis: {
@@ -47,14 +47,14 @@ export class PredictiveRangeChartComponent implements OnInit {
         {
           name: 'Actual',
           type: 'line',
-          data: this.data.values,
+          data: this.data?.values,
           zIndex: 1,
           color: '#364096',
           
         },
         {
           name: 'Predicted Range',
-          data: this.data.predictive_range,
+          data: this.data?.predictive_range,
           type: 'arearange',
           lineWidth: 0,
           //linkedTo: ':previous',

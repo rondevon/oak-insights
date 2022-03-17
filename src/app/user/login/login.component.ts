@@ -46,8 +46,8 @@ export class LoginComponent implements OnInit {
               if (url) this.router.navigate([url]);
               else this.router.navigate(['../oak']);
             } else {
-              localStorage.setItem('site_slug', result.data.site.slug);
-              // localStorage.setItem('site_name', result.data.site.name);
+              localStorage.setItem('site_slug', result.data?.site?.slug);
+              localStorage.setItem('onboarding', result.data?.site?.onboarding);
               if (url) this.router.navigate([url]);
               else this.router.navigate(['../oak']);
             }

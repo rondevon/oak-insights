@@ -126,7 +126,7 @@ export class MultiSiteComparisonComponent implements OnInit {
         this.loading = false;
         this.siteComparisonData = data.data;
           var tree: any[] = [];
-          console.log(this.siteComparisonData)
+          // console.log(this.siteComparisonData)
           for (let i=0;i<this.siteComparisonData.length;i++){
                 (this.siteComparisonData[i].stats.co2_emission).toLocaleString();
           }
@@ -137,7 +137,7 @@ export class MultiSiteComparisonComponent implements OnInit {
               color: this.colors[index]
             });
             this.treeMapTotal+= Number(site.stats.cost);
-            console.log('site.stats.cost',site.stats.cost)
+            // console.log('site.stats.cost',site.stats.cost)
           });
           this.treeMapData = tree;
       }, err => {

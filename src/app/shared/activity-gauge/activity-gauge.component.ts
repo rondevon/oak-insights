@@ -24,18 +24,18 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
   abvbel: any = {};
   chart: Chart = new Chart();
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.data.isCurrrentMonth === true)
+    if (this.data?.isCurrrentMonth === true)
      { 
-      let currentTargetValue = (Number(this.data.target)/30*Number(this.date));
+      let currentTargetValue = (Number(this.data?.target)/30*Number(this.date));
       this.differ=Math.round(currentTargetValue - Number(this.data.present));
       this.seriesTarget = ((100/30)*Number(this.date));
-      this.seriesPresent = this.seriesTarget*(this.data.present/currentTargetValue);
+      this.seriesPresent = this.seriesTarget*(this.data?.present/currentTargetValue);
      }
     else
     {
-      this.differ = Math.round(this.data.target- this.data.present);
+      this.differ = Math.round(this.data?.target- this.data?.present);
       this.seriesTarget = 100;
-      this.seriesPresent = (Number(this.data.present)/Number(this.data.target))*100;
+      this.seriesPresent = (Number(this.data?.present)/Number(this.data?.target))*100;
     
     }
     

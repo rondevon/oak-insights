@@ -36,7 +36,7 @@ export class RecommendationsComponent implements OnInit {
         })
       })
     }, err => {
-      console.log(err.error.message);
+      // console.log(err.error.message);
       this.error = err.error.message;
     });
   }

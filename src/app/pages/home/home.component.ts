@@ -48,7 +48,8 @@ export class HomeComponent implements OnInit {
     private _snackBar: MatSnackBar
     
     ) {
-    this.minDate.setMonth(this.minDate.getMonth() - 4);
+      const x = sessionStorage.getItem('onboarding')?.split('-') || [];
+    if (x.length > 0) this.minDate.setFullYear(+x[0], +x[1]-1, +x[2]);
     this.maxDate.setMonth(this.maxDate.getMonth());
   }
 
@@ -57,8 +58,9 @@ export class HomeComponent implements OnInit {
     this.updateMonth();
     this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService.getNews().subscribe((data: any) => {
+      console.log(data);
       this.newsData = data.articles.slice(0, 3) || [];
-    }, err => {console.log(err);
+    }, err => {
       this.newsData = []
      this.openSnackBar(err.error.message, 'Dismiss')});
       this.apiService.getWeather('London,GB').subscribe((data: any) => {
@@ -167,7 +169,7 @@ export class HomeComponent implements OnInit {
     this.apiService
       .getHourlyCostData(selectedMonth, selectedYear, site_slug)
       .subscribe((data) => {
-        console.log('data', data);
+        // console.log('data', data);
         
         this.hourlyCostData = data;
         this.loading = false;
@@ -191,7 +193,7 @@ export class HomeComponent implements OnInit {
         if (result.success === 1) {
           this.apiService.getEvents(this.selectedMonth,this.site_slug).subscribe((data: any) => {
             if (data.data && data.data.length > 0) {
-              console.log(data.data)
+              // console.log(data.data)
               this.data = data.data;
             }
           }, err => this.openSnackBar(err.error.message, 'Dismiss'));
