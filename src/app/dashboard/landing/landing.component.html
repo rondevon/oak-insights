@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-5">
               <div class="go-to-dashboard" *ngIf="role == 'Site Manager'">
-                <button class="go-to-dashboard-btn" [routerLink]="['./dashboard', site_slug]">
+                <button class="go-to-dashboard-btn" [routerLink]="['./dashboard', site_slug + onboarding]">
                   GO TO DASHBOARD
                 </button>
               </div>

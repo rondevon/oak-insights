@@ -26,6 +26,7 @@ export class LandingComponent implements OnInit {
   monthUsageData: any;
   loading: boolean = true;
   showNotification: boolean = localStorage.getItem('role') === 'Account Manager' ? false : true;
+  onboarding: string = '';
 
   constructor(private apiService: ApiService, private route: ActivatedRoute
     , private _snackBar: MatSnackBar
@@ -34,6 +35,7 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {
       this.site_slug = localStorage.getItem('site_slug');
+      this.onboarding = '?onboarding=' + localStorage.getItem('onboarding');
       this.getProfile();   
       this.getSites();
       this.getHomeInsightCards();

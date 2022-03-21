@@ -35,7 +35,7 @@ export class StockGraphComponent implements OnInit {
   faCalendar = faCalendarAlt;
   
   constructor(private apiService: ApiService,  private _snackBar: MatSnackBar) {
-    const x = localStorage.getItem('onboarding')?.split('-') || [];      
+    const x = sessionStorage.getItem('onboarding')?.split('-') || [];      
     if (x.length > 0) this.minDate.setFullYear(+x[0], +x[1]-1, +x[2]);
       this.maxDate.setMonth(this.maxDate.getMonth());
    }
