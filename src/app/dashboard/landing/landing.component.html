@@ -62,7 +62,7 @@
                 >
             <div class="row">
               <div class="col-md-6" *ngFor="let site of sites; index as i">
-                <a [routerLink]="['./dashboard', site.slug + '?onboarding=' + site?.onboarding]" [state]="{onboarding: site?.onboarding}"><div class="card card-custom ">
+                <a [routerLink]="['./dashboard', site.slug + '?onboarding=' + site?.onboarding]"><div class="card card-custom ">
                   <div class="sites-container">
                     <div class="sites-column my-auto">
                       <img src="/assets/icons/icon-site.svg">
