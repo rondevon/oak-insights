@@ -17,7 +17,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
   @Input('data') data: any;
   @Input('totalSize') totalSize: any = {total: '1.5vw', text:'1vw', y:'-24'};
   pipe = new DatePipe('en-GB');
-  date = this.pipe.transform(new Date(), 'dd') as string;
+  date = this.pipe.transform(new Date(), 'dd','UTC') as string;
   seriesTarget: any;
   seriesPresent: any;
   differ: any = {};

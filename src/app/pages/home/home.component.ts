@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
   pipe = new DatePipe('en-GB');
   cards: any[] = [];
   selectedMonth: any = {
-    month: this.pipe.transform(new Date(), 'MMMM'),
-    year: this.pipe.transform(new Date(), 'YYYY')
+    month: this.pipe.transform(new Date(), 'MMMM','UTC'),
+    year: this.pipe.transform(new Date(), 'YYYY','UTC')
   };
   heatMapData: any = {};
   operatingHours: any = {};
@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
   updateMonth() {
     //this.loading = true;
     this.selectedMonth = {
-      month: this.pipe.transform(this.selectedDate, 'MMMM'),
+      month: this.pipe.transform(this.selectedDate, 'MMMM','UTC'),
       year: this.selectedDate.getFullYear()
     };
     this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
@@ -80,8 +80,8 @@ export class HomeComponent implements OnInit {
       .subscribe((data: any) => {
         this.consumptionData = data.data.consumption_overview;
         
-        if(this.selectedMonth.month === this.pipe.transform(new Date(), 'MMMM') && 
-        this.selectedMonth.year === this.pipe.transform(new Date(), 'YYYY'))
+        if(this.selectedMonth.month === this.pipe.transform(new Date(), 'MMMM','UTC') && 
+        this.selectedMonth.year === this.pipe.transform(new Date(), 'YYYY','UTC'))
         {
           this.consumptionData.isCurrrentMonth = true;  
         }

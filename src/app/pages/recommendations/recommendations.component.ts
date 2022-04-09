@@ -15,8 +15,8 @@ export class RecommendationsComponent implements OnInit {
   data: any;
   site_slug: any;
   selectedMonth: any = {
-    month: this.pipe.transform(new Date(), 'MMMM'),
-    year: this.pipe.transform(new Date(), 'YYYY')
+    month: this.pipe.transform(new Date(), 'MMMM','UTC'),
+    year: this.pipe.transform(new Date(), 'YYYY','UTC')
   }
   error: any;
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}

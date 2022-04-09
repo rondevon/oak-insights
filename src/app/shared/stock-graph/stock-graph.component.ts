@@ -18,7 +18,7 @@ export class StockGraphComponent implements OnInit {
   chart: any;
   consumptionTotals: any[] = [];
   stockChartData: any = {};
-  selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM'),year: this.pipe.transform(new Date(), 'YYYY')};
+  selectedMonth: any = {month: this.pipe.transform(new Date(), 'MMMM','UTC'),year: this.pipe.transform(new Date(), 'YYYY','UTC')};
   selectedDate: Date = new Date((new Date()).setMonth(this.minDate.getMonth() - 1));
   selectedType : string = 'energy';
   selectedGraph: string = '';
@@ -69,7 +69,7 @@ export class StockGraphComponent implements OnInit {
 
   updateMonth() {
     this.chart = undefined;
-    this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM'),year: this.selectedDate.getFullYear()};
+    this.selectedMonth = {month: this.pipe.transform(this.selectedDate, 'MMMM','UTC'),year: this.selectedDate.getFullYear()};
     this.getStockChartDetails(this.selectedMonth.month,this.selectedMonth.year,this.selectedType,this.selectedGraph, this.site_slug);
     
   }
@@ -100,9 +100,9 @@ export class StockGraphComponent implements OnInit {
     }
     if(this.selectedGraph == 'consumption'){
       this.consumptionTotals = [
-      { type:'Peak Consumption', value: (this.stockChartData.peak).toFixed(2)+' '+ this.unit, date: this.pipe.transform(new Date(this.stockChartData.peak_time), 'medium'), color: 'var(--color6'},
-      { type:'Average Consumption', value: (this.stockChartData.avg).toFixed(2) +' '+ this.unit, color: 'var(--color8'},
-      { type:'Lowest Consumption', value: (this.stockChartData.lowest).toFixed(2) +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time), 'medium'), color:'var(--color5'},
+      { type:'Peak Consumption', value: (this.stockChartData.peak).toLocaleString()+' '+ this.unit, date: this.pipe.transform(new Date(this.stockChartData.peak_time), 'medium','UTC'), color: 'var(--color6'},
+      { type:'Average Consumption', value: (this.stockChartData.avg).toLocaleString() +' '+ this.unit, color: 'var(--color8'},
+      { type:'Lowest Consumption', value: (this.stockChartData.lowest).toLocaleString() +' '+ this.unit,date: this.pipe.transform(new Date(this.stockChartData.lowest_time),'medium','UTC'), color:'var(--color5'},
     ];
   }
   if(this.selectedGraph == 'phase')
@@ -145,27 +145,27 @@ export class StockGraphComponent implements OnInit {
       tooltip: {
         pointFormat: '{series.name}: <b>{point.y}</b> '+this.unit,
       },
-      rangeSelector: {
+       rangeSelector: {
               allButtonsEnabled: true,
               buttons: [{
-                type: 'minute',
-                count: 1500,
-                text: '5 Min',
-                dataGrouping: {
-                    forced: true,
-                    units: [['minute', [5]]]
-                }
-            },{
-                  type: 'hour',
-                  count: 24,
+      //           type: 'minute',
+      //           count: 1500,
+      //           text: '5 Min',
+      //           dataGrouping: {
+      //               forced: true,
+      //               units: [['minute', [5]]]
+      //           }
+      //       },{
+                  type: 'day',
+                  count: 1,
                   text: 'Hour',
                   dataGrouping: {
                       forced: true,
                       units: [['hour', [1]]]
                   }
               },{
-                type: 'day',
-                count: 31,
+                type: 'month',
+                count: 1,
                 text: 'Day',
                 dataGrouping: {
                     forced: true,
@@ -218,24 +218,24 @@ export class StockGraphComponent implements OnInit {
       rangeSelector: {
               allButtonsEnabled: true,
               buttons: [{
-                type: 'minute',
-                count: 1500,
-                text: '5 Min',
-                dataGrouping: {
-                    forced: true,
-                    units: [['minute', [5]]]
-                }
-            },{
-                  type: 'hour',
-                  count: 24,
+            //     type: 'minute',
+            //     count: 1500,
+            //     text: '5 Min',
+            //     dataGrouping: {
+            //         forced: true,
+            //         units: [['minute', [5]]]
+            //     }
+            // },{
+                  type: 'day',
+                  count: 1,
                   text: 'Hour',
                   dataGrouping: {
                       forced: true,
                       units: [['hour', [1]]]
                   }
               },{
-                type: 'day',
-                count: 31,
+                type: 'month',
+                count: 1,
                 text: 'Day',
                 dataGrouping: {
                     forced: true,

@@ -13,7 +13,7 @@ export class ApiService {
   constructor(private httpClient: HttpClient) {}
 
   getMonthFromDate(date: Date): string {
-    return this.pipe.transform(date, 'MMMM') || '';
+    return this.pipe.transform(date, 'MMMM','UTC') || '';
   }
 
   public getNews(): Observable<any> {
@@ -428,7 +428,7 @@ export class ApiService {
     let formdata = new FormData();
     formdata.append(
       'date',
-      this.pipe.transform(eventData.date, 'YYYY-MM-dd') || ''
+      this.pipe.transform(eventData.date, 'YYYY-MM-dd','UTC') || ''
     );
     formdata.append('name', eventData.name);
     formdata.append('site_id', site_slug || localStorage.getItem('site_slug'));

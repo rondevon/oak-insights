@@ -45,10 +45,10 @@
       <th class="heading my-auto col-width">{{ label.name }}</th>
       <td class="col-width" *ngFor="let item of siteComparisonData">
         <div class="value my-auto" *ngIf="label.tertiaryKey">
-          {{ item[label.key][label.secondaryKey][label.tertiaryKey] }}
+          {{ item[label.key][label.secondaryKey][label.tertiaryKey].toLocaleString() }}
         </div>
         <div class="value my-auto" *ngIf="!label.tertiaryKey">
-          {{ item[label.key][label.secondaryKey]!='Dummy Provider'?item[label.key][label.secondaryKey]:'Data Required' }}
+          {{ item[label.key][label.secondaryKey]!='Dummy Provider'?item[label.key][label.secondaryKey].toLocaleString():'Data Required' }}
         </div>
       </td>
     </tr>
@@ -83,10 +83,10 @@
       <th class="heading my-auto col-width">{{ label.name }}</th>
       <td class="col-width" *ngFor="let item of siteComparisonData">
         <div class="value my-auto" *ngIf="label.secondaryKey">
-          {{ item[label.key][label.secondaryKey]?item[label.key][label.secondaryKey]:'0' }}
+          {{ item[label.key][label.secondaryKey]?item[label.key][label.secondaryKey].toLocaleString():'0' }}
         </div>
         <div class="value my-auto" *ngIf="!label.secondaryKey">
-          {{ item[label.key]==0?'Data Required' : item[label.key]  }}
+          {{ item[label.key]==0?'Data Required' : item[label.key].toLocaleString()  }}
         </div>
       </td>
     </tr>
@@ -101,7 +101,7 @@
         <th class="col-width" >
           <div style = "display: flex;flex-direction: column;justify-content: space-between;">
           <h2>Consumption Distribution</h2>
-          <h2>Total<br><strong>£{{treeMapTotal}}</strong></h2>
+          <h2>Total<br><strong>£{{treeMapTotal.toLocaleString()}}</strong></h2>
         </div>
         </th>
           <td class="width-treemap">
