@@ -15,10 +15,10 @@ export class BasicInsightsComponent implements OnInit {
   historicalConsumptionData: any = [];
   selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   currentDate: any = {
-    month: this.pipe.transform(this.selectedDate, 'MMMM'),
-    year: this.pipe.transform(this.selectedDate, 'YYYY'),
+    month: this.pipe.transform(this.selectedDate, 'MMMM','UTC'),
+    year: this.pipe.transform(this.selectedDate, 'YYYY','UTC'),
   };
-  date = this.pipe.transform(new Date(), 'dd') as string;
+  date = this.pipe.transform(new Date(), 'dd','UTC') as string;
 
   showMonthlyStats: boolean = false;
   selectedTileIndex: number = -1;
@@ -77,8 +77,8 @@ export class BasicInsightsComponent implements OnInit {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
         this.historicalConsumptionData.forEach((monthData:any) => {
-         if (monthData.month === this.pipe.transform(new Date(), 'MMMM') && 
-          monthData.year == this.pipe.transform(new Date(), 'YYYY'))
+         if (monthData.month === this.pipe.transform(new Date(), 'MMMM','UTC') && 
+          monthData.year == this.pipe.transform(new Date(), 'YYYY','UTC'))
           {
             monthData.consumption_overview.isCurrrentMonth = true;
           }
@@ -175,7 +175,7 @@ setTrendIcon(value: number){
 calculateTarget(target: number, actual: number, month: String)
 {
     let value: number
-    if(month == this.pipe.transform(new Date(), 'MMMM'))
+    if(month == this.pipe.transform(new Date(), 'MMMM','UTC'))
     {
       let currentTargetValue = (Number(target)/30*Number(this.date));
       value = Math.round((actual-currentTargetValue)/currentTargetValue*100);

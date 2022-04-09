@@ -16,9 +16,9 @@ export class SavingsCalculatorComponent implements OnInit {
   donutLegends: any[] = [];
   pipe = new DatePipe('en-GB');
   selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
-  selectedMonth: any = this.pipe.transform(this.selectedDate, 'MMMM');
+  selectedMonth: any = this.pipe.transform(this.selectedDate, 'MMMM','UTC');
 
-  selectedYear: any = this.pipe.transform(this.selectedDate, 'YYYY');
+  selectedYear: any = this.pipe.transform(this.selectedDate, 'YYYY','UTC');
 
   savingsResponseData: any = {};
   savingsProjectedData: any = {};

@@ -15,8 +15,8 @@ export class MinMaxComponent implements OnInit {
   pipe = new DatePipe('en-GB');
   chart: any = {};
   minMaxData: any = {};
-  selectedMonth: any = this.pipe.transform(new Date(), 'MMMM');
-  selectedYear: any = this.pipe.transform(new Date(), 'YYYY');
+  selectedMonth: any = this.pipe.transform(new Date(), 'MMMM','UTC');
+  selectedYear: any = this.pipe.transform(new Date(), 'YYYY','UTC');
   duration: any = 30;
   bntStyle1: String = 'open-days-button';
   bntStyle2: String = 'closed-days-button';

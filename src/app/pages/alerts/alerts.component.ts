@@ -13,8 +13,8 @@ export class AlertsComponent implements OnInit {
   pipe = new DatePipe('en-GB');
   selectedDate: Date = new Date(new Date().setMonth((new Date()).getMonth() - 1));
   selectedMonth: any = {
-    month: this.pipe.transform(this.selectedDate, 'MMMM'),
-    year: this.pipe.transform(this.selectedDate, 'YYYY')
+    month: this.pipe.transform(this.selectedDate, 'MMMM','UTC'),
+    year: this.pipe.transform(this.selectedDate, 'YYYY','UTC')
   };
 
   constructor(private apiService: ApiService) { }
