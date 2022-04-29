@@ -69,3 +69,151 @@
       flex:1
     }
   }
+
+  .col-md-4 {
+    padding-left: 2rem;
+  }
+
+  .card-custom {
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .card-heading {
+    font: var(--fontBold);
+    font-size: 1.5vw;
+    font-weight: 800;
+  }
+
+  .widget-subtitle {
+    font-size: 1vw;
+    color: gray;
+    margin-bottom: 2rem;
+  }
+
+  .oakscore-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+  }
+  .ml-5{
+    margin-left: 3rem;
+  }
+  
+  .close-btn {
+    height: 2.5vw;
+    width: 2.5vw;
+    z-index: 1;
+    border:none;
+    padding:0;
+    float: right;
+    background-color:white;
+    border: 0.2px solid gray;
+    border-radius: 1rem;
+    margin-bottom: 0.5vw;
+    
+  }
+
+  .close-btn img{
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .card-border{
+    border: 2px solid var(--color3);
+  }
+
+  .oakscore {
+    text-align: center;
+  }
+  
+  .oak-score-badge {
+    position: relative;
+  }
+  
+  .oak-score {
+    height: 100%;
+  }
+  
+  .oak-score-label {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 1.5vw;
+    font-weight: 800;
+    font-family: var(--fontRegular);
+    color: white;
+  }
+  
+  .oak-score-text {
+    margin: 0;
+    position: absolute;
+    top: 57%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 4vw;
+    font-weight: 800;
+    font-family: var(--fontRegular);
+    color: white;
+  }
+
+
+.insights-column {
+    float: left;
+    width: 30%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+  }
+  
+  .insights-column:last-child{
+    margin-right:0;
+  }
+
+  .month{
+      font-weight: 800;
+      font-size: 1.2vw;
+  }
+  
+  .oak-score-small{
+    font-weight: 800;
+    font-size: 1.2vw;
+    text-align: center;
+    color: var(--color3);
+    span{
+      color:var(--color9)
+    }
+  }
+  .target{
+    margin-left: 13%;
+  }
+  .trend-icon{
+    width:13% !important;
+    display: inline !important;
+    vertical-align: sub !important;
+  }
+
+  .img-res {
+    height: auto;
+  }
+
+  .owl-next{
+    background: var(--color3) !important;
+  }
+  .button {
+    font-size: x-large;
+    font-weight: bolder;
+    position: absolute;
+    top: 10px;
+    right: 0;
+  }
+  

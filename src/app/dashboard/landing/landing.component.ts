@@ -13,7 +13,7 @@ export class LandingComponent implements OnInit {
   site_slug: any;
   cards: any[] = [];
   pipe = new DatePipe('en-GB');
-  month = this.pipe.transform(new Date(), 'MMMM','UTC') as String;
+  month = this.pipe.transform((new Date().setMonth(new Date().getMonth() - 1)), 'MMMM','UTC') as String;
   year = this.pipe.transform(new Date(), 'YYYY','UTC') as String;
   role = localStorage.getItem('role');
   sites: any= {};

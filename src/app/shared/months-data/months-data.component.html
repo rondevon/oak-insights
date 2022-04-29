@@ -9,7 +9,7 @@
     <div class="bcolor description"> {{ data.description }}</div>
   </div> -->
   <accordion>
-    <h3 class="card-heading">{{ data.month }}</h3>
+    <h3 class="card-heading">{{ data.date | date: 'MMMM YYYY' }}</h3>
     <accordion-group *ngFor="let description of data.data; let i = index" [isDisabled]="!description.description">
       <button
         class="btn btn-block justify-content-between d-flex w-100 shadow-none"

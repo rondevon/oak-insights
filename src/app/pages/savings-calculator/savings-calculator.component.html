@@ -165,3 +165,154 @@
     </div>
   </div>
 </div>
+
+<div class="card card-custom">
+  <loader *ngIf="loading"></loader>
+  <div class="app-container" *ngIf="!loading">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-heading">Savings</div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <p class="percent" [style.color]="donutLegends[0].color"> Target</p>
+          <div class="input-group mb-3">
+            <input type="tel" (keyup)="calc(a.value, 0)" #a>
+           
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="percent" [style.color]="donutLegends[1].color"> Target</p>
+          <div class="input-group mb-3">
+            <input type="tel" (keyup)="calc(b.value, 1)" #b>
+           
+          </div>
+        </div>
+        <div class="col-md-4">
+          <p class="percent" [style.color]="donutLegends[1].color"> Target</p>
+          <div class="input-group mb-3">
+            <input  type="tel" (keyup)="calc(c.value, 2)" #c>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <owl-carousel-o [options]="customOptions">
+      <ng-template
+        carouselSlide
+        *ngFor="let item of historicalConsumptionData; let i = index"
+      >
+        <summary
+          class="card card-custom"
+          (click)="openMonthlyStats(item, i)"
+          [ngClass]="{ 'card-border': selectedTileIndex === i }"
+          *ngIf="!smallLoading[i]"
+        >
+          <div class="row">
+            <div class="col-md-6 month">{{ item.month }} {{ item.year }}</div>
+            <div class="col-md-6 oak-score-small">
+              <span>OAK Score: </span>
+              {{item.oak_score}}
+            </div>
+            <div class="col-md-6">
+              <app-activity-gauge
+                [data]="item.consumption_overview"
+                [totalSize]="totalSize"
+              ></app-activity-gauge>
+            </div>
+            <div class="col-md-6 my-auto">
+              <div class="mb-3">
+                <img class="trend-icon" [src]="setTrendIcon(item.target_trend)" />
+                <span class="month">{{ item.energy.toLocaleString() }}</span> kWh
+              </div>
+              <div class="mb-3">
+                <img class="trend-icon" [src]="setTrendIcon(item.target_trend)" />
+                <span class="month">{{ item.co2_emission.toLocaleString() }}</span> kg CO2
+              </div>
+              <span
+                class="month"
+                [style.color]="
+                  calculateTarget(
+                    item.consumption_overview.target,
+                    item.consumption_overview.present,
+                    item.month
+                  ).color
+                "
+              >
+                {{
+                  calculateTarget(
+                    item.consumption_overview.target,
+                    item.consumption_overview.present,
+                    item.month
+                  ).value
+                }}%
+              </span>
+              <span
+                >{{
+                  calculateTarget(
+                    item.consumption_overview.target,
+                    item.consumption_overview.present,
+                    item.month
+                  ).text
+                }}
+              </span>
+            </div>
+          </div>
+        </summary>
+      </ng-template>
+    </owl-carousel-o>
+  
+    <div *ngIf="showMonthlyStats">
+      <loader *ngIf="!dayAnalysisData && oakScore < 0"></loader>
+      <div class="card card-custom mt-4" *ngIf="dayAnalysisData && oakScore >= 0">
+        <div class="close">
+        <button class="close-btn" (click)="closeMonthlyStats()">
+          <img src="/assets/icons/cancel.png" />
+        </button>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="oakscore-card">
+              <div class="oakscore">
+                <div class="oak-score-badge">
+                  <img
+                    class="img-res"
+                    src="/assets/icons/icon-oakscore-green.svg"
+                  />
+                </div>
+                <div class="oak-score">
+                  <button class="button "
+                  mat-button
+                  matTooltip="what is oak score"
+                  matTooltipPosition="left"
+                  aria-label="Button that displays a tooltip when focused or hovered over"
+                >
+                ⓘ
+                </button>
+                  <div class="oak-score-label">OAK Score</div>
+                  <div class="oak-score-text">
+                    {{ oakScore }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-9 my-auto">
+            <div class="insights-column" *ngFor="let card of cards">
+              <app-insight-item-tile [data]="card"></app-insight-item-tile>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row mt-5">
+          <div class="card-heading ml-5">Day by day Analysis</div>
+          <span class="widget-subtitle ml-5">Comparison of daily consumption</span>
+          <app-line-column [data]="dayAnalysisData"></app-line-column>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

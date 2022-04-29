@@ -11,7 +11,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-      <div class="card card-custom" *ngFor="let monthList of monthsList">
+      <div class="card card-custom" *ngFor="let monthList of monthsList; let i = index">
           <app-months-data [data]="monthList"></app-months-data>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-basic-insights',
   templateUrl: './basic-insights.component.html',
@@ -76,6 +77,8 @@ export class BasicInsightsComponent implements OnInit {
       .subscribe((data: any) => {
         this.historicalConsumptionData = data.data;
         this.historicalConsumptionData.reverse();
+        if(environment.production===false) {
+        this.historicalConsumptionData = this.historicalConsumptionData.slice(0, 4);}
         this.historicalConsumptionData.forEach((monthData:any) => {
          if (monthData.month === this.pipe.transform(new Date(), 'MMMM','UTC') && 
           monthData.year == this.pipe.transform(new Date(), 'YYYY','UTC'))
