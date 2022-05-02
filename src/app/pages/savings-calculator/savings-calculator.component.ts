@@ -315,7 +315,7 @@ export class SavingsCalculatorComponent implements OnInit {
         ((actual - currentTargetValue) / currentTargetValue) * 100
       );
     } else {
-      value = Math.round(((actual - target) / target) * 100);
+      value = Math.round(((actual - target) / target) * 100) || 0;
     }
 
     let color: String = '';
