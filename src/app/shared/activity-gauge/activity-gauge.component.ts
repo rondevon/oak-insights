@@ -44,9 +44,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
         this.seriesPresent = ((Number(this.data?.present)/Number(this.data?.target))*100) ;
      // }
     }
-    console.log(this.data.target, 'target');
-    console.log(this.differ, 'differ');
-
+  
     
       this.abvbel = this.differ>0? 'Below' : 'Above';
       this.chart = new Chart({

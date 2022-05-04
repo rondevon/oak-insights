@@ -58,7 +58,6 @@ export class HomeComponent implements OnInit {
     this.updateMonth();
     this.operatingHours = {graphType:'energy', selectedDate:this.selectedMonth, site_slug:this.site_slug};
     this.apiService.getNews().subscribe((data: any) => {
-      console.log(data);
       this.newsData = data.articles.slice(0, 3) || [];
     }, err => {
       this.newsData = []
@@ -80,12 +79,7 @@ export class HomeComponent implements OnInit {
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
-        console.log(this.selectedMonth.month, 'current')
-        console.log(this.selectedMonth.year, 'year')
-        console.log(this.pipe.transform(new Date(), 'MMMM','UTC'), 'utccurrent')
-        console.log(this.pipe.transform(new Date(), 'YYYY','UTC'), 'utcyear')
-
-        this.consumptionData = data.data.consumption_overview;
+      this.consumptionData = data.data.consumption_overview;
         
         if(this.selectedMonth.month === this.pipe.transform(new Date(), 'MMMM','UTC') && 
         this.selectedMonth.year == this.pipe.transform(new Date(), 'YYYY','UTC'))
