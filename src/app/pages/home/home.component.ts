@@ -80,10 +80,15 @@ export class HomeComponent implements OnInit {
     this.apiService
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
+        console.log(this.selectedMonth.month, 'current')
+        console.log(this.selectedMonth.year, 'year')
+        console.log(this.pipe.transform(new Date(), 'MMMM','UTC'), 'utccurrent')
+        console.log(this.pipe.transform(new Date(), 'YYYY','UTC'), 'utcyear')
+
         this.consumptionData = data.data.consumption_overview;
         
         if(this.selectedMonth.month === this.pipe.transform(new Date(), 'MMMM','UTC') && 
-        this.selectedMonth.year === this.pipe.transform(new Date(), 'YYYY','UTC'))
+        this.selectedMonth.year == this.pipe.transform(new Date(), 'YYYY','UTC'))
         {
           this.consumptionData.isCurrrentMonth = true;  
         }

@@ -106,6 +106,7 @@ export class SavingsCalculatorComponent implements OnInit {
       )
       .subscribe(
         (data: any) => {
+          
           this.historicalConsumptionData = data.data;
           this.historicalConsumptionData.reverse();
           // if (environment.production === false) {
@@ -127,7 +128,7 @@ export class SavingsCalculatorComponent implements OnInit {
         },
         (err) => this.openSnackBar(err.error.message, 'Dismiss')
       );
-    this.getMonthUsageData();
+    // this.getMonthUsageData();
   }
 
   getMonthlyStats(month: any, year: any, site_slug: String) {
@@ -296,16 +297,16 @@ export class SavingsCalculatorComponent implements OnInit {
     this._snackBar.open(message, action, { duration: 3000 });
   }
 
-  getMonthUsageData() {
-    this.apiService
-      .getMonthlyUsageData(this.currentDate.year, this.site_slug)
-      .subscribe(
-        (data) => {
-          this.monthUsageData = data.data;
-        },
-        (err) => this.openSnackBar(err.error.message, 'Dismiss')
-      );
-  }
+  // getMonthUsageData() {
+  //   this.apiService
+  //     .getMonthlyUsageData(this.currentDate.year, this.site_slug)
+  //     .subscribe(
+  //       (data) => {
+  //         this.monthUsageData = data.data;
+  //       },
+  //       (err) => this.openSnackBar(err.error.message, 'Dismiss')
+  //     );
+  // }
 
   calculateTarget(target: number, actual: number, month: String) {
     let value: number;
@@ -338,6 +339,7 @@ export class SavingsCalculatorComponent implements OnInit {
     this.smallLoading[index] = true;
     setTimeout(() => {
       this.historicalConsumptionData[index].consumption_overview.target = val;
+      // this.historicalConsumptionData[index].consumption_overview.present = this.historicalConsumptionData[index].consumption_overview.present;
       this.smallLoading[index] = false;
     }, 0);
   }

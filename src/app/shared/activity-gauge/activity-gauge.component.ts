@@ -29,15 +29,24 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
       let currentTargetValue = (Number(this.data?.target)/30*Number(this.date));
       this.differ=Math.round(currentTargetValue - Number(this.data.present));
       this.seriesTarget = ((100/30)*Number(this.date));
-      this.seriesPresent = this.seriesTarget*(this.data?.present/currentTargetValue);
+      this.seriesPresent = (this.seriesTarget*(this.data?.present/currentTargetValue));
      }
     else
     {
       this.differ = Math.round(this.data?.target- this.data?.present);
       this.seriesTarget = 100;
-      this.seriesPresent = (Number(this.data?.present)/Number(this.data?.target))*100;
-    
+      // if(this.data?.target==0){
+      //   this.seriesTarget = 0;
+      //   this.seriesPresent = 100;
+      // }
+      // else{
+        //this.seriesTarget = 100;
+        this.seriesPresent = ((Number(this.data?.present)/Number(this.data?.target))*100) ;
+     // }
     }
+    console.log(this.data.target, 'target');
+    console.log(this.differ, 'differ');
+
     
       this.abvbel = this.differ>0? 'Below' : 'Above';
       this.chart = new Chart({
@@ -137,7 +146,7 @@ export class ActivityGaugeComponent implements OnInit, OnChanges {
                 },
                 radius: '100%',
                 innerRadius: '88%',
-                y: this.seriesPresent,
+                y: this.seriesPresent === Infinity ? 0 : this.seriesPresent,
               },
             ],
           },
