@@ -41,6 +41,8 @@ import { TreeMapComponent } from './tree-map/tree-map.component';
 import { MultiLineChartComponent } from './multi-line-chart/multi-line-chart.component';
 import { SharedAlertsComponent } from './header/shared-alerts/shared-alerts.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { MultiConsumptionCostComponent } from './multi-consumption-cost/multi-consumption-cost.component';
+import { MultiDonutChatComponent } from './multi-donut-chat/multi-donut-chat.component';
 
 
 export function highchartsModules() {
@@ -79,6 +81,8 @@ export function highchartsModules() {
     TreeMapComponent,
     MultiLineChartComponent,
     SharedAlertsComponent,
+    MultiConsumptionCostComponent,
+    MultiDonutChatComponent,
   ],
   imports: [
     CommonModule,
@@ -111,7 +115,9 @@ export function highchartsModules() {
     DonutChartComponent,
     LineColumnComponent,
     TreeMapComponent,
-    MultiLineChartComponent
+    MultiLineChartComponent,
+    MultiConsumptionCostComponent,
+    MultiDonutChatComponent
   ],
   providers: [{ provide: HIGHCHARTS_MODULES, useFactory: highchartsModules }],
 })

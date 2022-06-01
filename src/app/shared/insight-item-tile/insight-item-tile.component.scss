@@ -6,13 +6,13 @@
 
 .unit {
     color: var(--color9);
-    font-size: 1.1vw !important;
+    font-size: 0.9vw !important;
     font: var(--fontRegular);
 }
 
 .val {
-    font-size: 2vw!important;
-    font-weight: 900 !important;
+    font-size: 1vw!important;
+    font-weight: 800 !important;
 }
 
 .insights-image {
@@ -21,4 +21,8 @@
 
 .card-indent {
     margin-top: -0.5rem;
+}
+
+.sm-size{
+    font-size: 0.9vw!important;
 }

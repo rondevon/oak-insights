@@ -41,6 +41,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MultisiteNewComponent } from './multisite-new/multisite-new.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     PhaseApplianceComponent,
     AlertsComponent,
     MyprofileComponent,
+    MultisiteNewComponent,
   ],
   imports: [
     CommonModule,
@@ -88,7 +92,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    AgmCoreModule
   ],
 })
 export class PagesModule {}

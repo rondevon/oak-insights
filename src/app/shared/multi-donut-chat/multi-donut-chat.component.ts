@@ -1,18 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chart } from 'angular-highcharts';
+
 @Component({
-  selector: 'app-donut-chart',
-  templateUrl: './donut-chart.component.html',
-  styleUrls: ['./donut-chart.component.scss'],
+  selector: 'app-multi-donut-chat',
+  templateUrl: './multi-donut-chat.component.html',
+  styleUrls: ['./multi-donut-chat.component.scss']
 })
-export class DonutChartComponent implements OnInit {
-  constructor() {}
+export class MultiDonutChatComponent implements OnInit {
   @Input('data') data: any;
   @Input('total') total: any = '';
   chart: any = {};
 
-  ngOnInit(): void {
+  constructor() { }
 
+  ngOnInit(): void {
+    
   }
 
   ngOnChanges() {
@@ -60,4 +62,5 @@ export class DonutChartComponent implements OnInit {
       ],
     });
   }
+
 }

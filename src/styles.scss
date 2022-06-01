@@ -150,3 +150,79 @@ position: absolute;
 transform: translate(-50%, -50%);
 
 }
+
+.card-heading {
+  font: var(--fontBold);
+  font-size: 1.5vw;
+  font-weight: 800;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+
+.widget-subtitle {
+  font-size: 1vw;
+  color: gray;
+  margin-bottom: 2rem;
+}
+
+.open-closed {
+  margin-bottom: 1rem;
+}
+.open-days-button {
+  background-image: linear-gradient(
+    to right,
+    var(--color3) 0%,
+    var(--color5) 51%,
+    var(--color3) 100%
+  );
+  padding: 0.5vw 1.65vw;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  border-width: 0;
+  border-radius: 100px;
+  border-color: #ffffff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  margin: 0.6rem 1rem;
+}
+
+.open-days-button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.closed-days-button {
+  background-image: linear-gradient(
+    to right,
+    var(--color11) 0%,
+    var(--color12) 51%,
+    var(--color11) 100%
+  );
+  padding: 0.5vw 1.65vw;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: black;
+  border-width: 0;
+  border-radius: 100px;
+  border-color: #ffffff;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  margin: 0.6rem 1rem;
+}
+
+.closed-days-button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #000;
+  text-decoration: none;
+}
+
+.cursor{
+cursor: pointer;
+}

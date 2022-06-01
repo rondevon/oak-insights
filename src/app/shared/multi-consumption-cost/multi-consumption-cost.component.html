@@ -1,0 +1,21 @@
+
+<div *ngIf="!chart;else other_content">
+    <loader [noData]="true"></loader>
+</div>
+  
+<ng-template #other_content>
+    <div class="row mb-4">
+        <div class="col-md-5">
+            <div class="card-heading">{{title}}</div>
+            <span class="widget-subtitle">{{description}}</span>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                  <div [chart]="chart"></div>
+ 
+            </div>
+
+        </div>
+    </div>
+
+</ng-template>

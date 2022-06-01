@@ -11,6 +11,7 @@ import { ApplianceComparisonComponent } from './appliance-comparison/appliance-c
 import { AlertsComponent } from './alerts/alerts.component';
 import { AdminGuard } from '../guards/admin.guard';
 import { MyprofileComponent } from './myprofile/myprofile.component';
+import { MultisiteNewComponent } from './multisite-new/multisite-new.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'  },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'basic-insights', component: BasicInsightsComponent },
   { path: 'deep-insights', component: DeepInsightsComponent },
   { path: 'multi-site-comparison', canActivate: [AdminGuard], component: MultiSiteComparisonComponent },
+  { path: 'Multisite-new', component: MultisiteNewComponent },
   { path: 'phase-distribution', component: PhaseDistributionComponent },
   { path: 'appliance-comparison', component: ApplianceComparisonComponent },
   { path: 'savings-calculator', component: SavingsCalculatorComponent },

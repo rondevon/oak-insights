@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit {
       .getHomepageApi(this.selectedMonth.month, this.selectedMonth.year,this.site_slug)
       .subscribe((data: any) => {
       this.consumptionData = data.data.consumption_overview;
+      // console.log(this.consumptionData, data.data.consumption_overview);
         
         if(this.selectedMonth.month === this.pipe.transform(new Date(), 'MMMM','UTC') && 
         this.selectedMonth.year == this.pipe.transform(new Date(), 'YYYY','UTC'))
@@ -117,7 +118,7 @@ export class HomeComponent implements OnInit {
           {
             image: '/assets/icons/icon-energy-intensity.svg',
             title: 'Energy Intensity',
-            value: 'data.data.stats.energy_intensity',
+            value: data.data.stats.energy_intensity,
             unit: 'kWh/m²',
             color: 'var(--color5)',
           },

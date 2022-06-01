@@ -1,0 +1,331 @@
+<div class="app-container">
+  <div class="nomargin top-container">
+    <div class="row">
+      <div class="col-md-10 my-auto"></div>
+      <div class="col-md-2 my-auto">
+        <div class="input-group" *ngIf="selectedMonth">
+          <span
+            class="form-control"
+            [(ngModel)]="selectedDate"
+            [(bsValue)]="selectedDate"
+            (bsValueChange)="updateMonth()"
+            #dp="bsDatepicker"
+            bsDatepicker
+            [bsConfig]="{
+              minMode: 'month',
+              adaptivePosition: true,
+              isAnimated: true,
+              dateInputFormat: 'MMMM YYYY'
+            }"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            >{{ selectedMonth?.month }} {{ selectedMonth?.year }}</span
+          >
+          <div class="input-group-append">
+            <button
+              class="btn btn-toggle color"
+              (click)="dp.toggle()"
+              [attr.aria-expanded]="dp.isOpen"
+              type="button"
+            >
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gap">
+      <div class="col-md-9">
+        <div class="card card-custom">
+          <label class="card-heading">Highlighted Sites </label>
+          <div>
+            <label class="font colorblue">IMPROVED</label>
+            <div class="row">
+              <div *ngFor="let card of cards" class="col-md-4">
+                <div class="card flex-row insights-card card-custom">
+                  <img
+                    class="cards-image"
+                    src="/assets/icons/icon-oakscore-green.svg"
+                  />
+                  <div class="number">{{ card.number }}</div>
+
+                  <div class="card-body">
+                    <div class="card-text card-indent">
+                      <h4 class="val">{{ card.name }}</h4>
+                      <span class="unit"
+                        >&nbsp;Change: &nbsp;
+                        <span class="colorblue">{{ card.Change }}</span></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div></div>
+            <label class="font colorpink">WORSENED</label>
+            <div class="row">
+              <div *ngFor="let car of card" class="col-md-4">
+                <div class="card flex-row insights-card card-custom">
+                  <img
+                    class="cards-image"
+                    src="/assets/icons/icon-oakscore-green.svg"
+                  />
+                  <div class="number">{{ car.number }}</div>
+
+                  <div class="card-body">
+                    <div class="card-text card-indent">
+                      <h4 class="val">{{ car.name }}</h4>
+                      <span class="unit"
+                        >&nbsp;Change: &nbsp;
+                        <span class="colorpink">{{ car.Change }}</span></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card card-custom">
+          <div class="oakscore">
+            <label class="font">ORG Wide Rating</label>
+            <div class="oak-score-badge">
+              <img
+                class="img-res"
+                src="/assets/icons/icon-oakscore-green.svg"
+              />
+            </div>
+            <div class="oak-score">
+              <button
+                class="button"
+                mat-button
+                matTooltip="Oak Score is a rating system devised based on potential savings opportunities and improving the equipment reliability."
+                matTooltipPosition="right"
+                aria-label="Button that displays a tooltip when focused or hovered over"
+              >
+                ⓘ
+              </button>
+              <div class="oak-score-label">OAK Score</div>
+              <div class="oak-score-text">56</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="my-auto col-md-12 d-flex">
+              <div class="col-md-6">
+                <img
+                  class="trend-icon"
+                  [src]="setTrendIcon(card3[0].target_trend)"
+                />
+                <span class="month">{{
+                  card3[0].target_trend.toLocaleString()
+                }}</span>
+                kWh
+              </div>
+              <div class="col-md-6">
+                <img
+                  class="trend-icon"
+                  [src]="setTrendIcon(card3[0].target_trend)"
+                />
+                <span class="month">{{
+                  card3[0].target_trend.toLocaleString()
+                }}</span>
+                kg CO2
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gap">
+      <div class="col-md-12">
+        <div class="card card-custom">
+          <label class="card-heading">Ranked </label>
+          <div>
+            <div class="row">
+              <div *ngFor="let card of card3" class="md-3">
+                <div class="card flex-row insights-card card-custom">
+                  <img
+                    class="cards-image"
+                    src="/assets/icons/icon-oakscore-green.svg"
+                  />
+                  <div class="number font">{{ card.number }}</div>
+
+                  <div class="card-body">
+                    <div class="card-text card-indent">
+                      <h5 class="val font2">{{ card.name }}</h5>
+                    </div>
+                    <div class="row">
+                      <div class="my-auto col-md-12 d-flex">
+                        <div class="col-md-6">
+                          <img
+                            class="trend-icon-with"
+                            [src]="setTrendIcon(card.target_trend)"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row gap">
+      <div class="col-md-12">
+        <div class="card card-custom">
+          <div class="row">
+            <div class="col-md-7 text-right">
+              <div class="open-closed">
+                  <button type="button"  (click)="switchChart(1)" [ngClass]="[bntStyle1]">
+                    Top 10%
+                  </button>
+                  <button type="button"  (click)="switchChart(3)" [ngClass]="[bntStyle2]">
+                    Top 25%
+                  </button>
+                  <button type="button"  (click)="switchChart(6)" [ngClass]="[bntStyle3]">
+                    Top 50%
+                  </button>
+                  <button type="button"  (click)="switchChart(12)" [ngClass]="[bntStyle4]">
+                    All Sites
+                  </button>
+              </div>
+          </div>
+          <div class="col-md-6" *ngIf="data3">
+            <label class="card-heading">Consumption %</label>
+            <label class="widget-subtitle">A graphical representation of the consumption % of the selected criteria</label>
+            <app-multi-donut-chat [data]="energy"></app-multi-donut-chat>
+            <label class="card-heading">Cost %</label>
+            <label class="widget-subtitle">A graphical representation of the cost % of the selected criteria</label>
+            <app-multi-donut-chat [data]="cost"></app-multi-donut-chat>
+            </div>
+            <div class="col-md-6">
+              <label class="card-heading">Map View</label>
+              <agm-map [latitude]="lat[0]" [longitude]="lng[0]" [zoom]="13">
+                <agm-marker [latitude]="latitude" [longitude]="lng[i]" *ngFor="let latitude of lat; index as i;"></agm-marker>
+              </agm-map>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gap">
+      <div class="col-md-12">
+        <div class="card card-custom">
+          <div class="row">
+            <label class="card-heading">Quick Analysis</label>
+
+            <div class="col-md-4">
+              <div class="card card-custom">
+                <select
+                  class="form-select"
+                  [(ngModel)]="selectedType"
+                  (change)="quickanalysisupdateType()"
+                >
+                  <option *ngFor="let type of typeList" [value]="type">
+                    {{ type | titlecase }}
+                  </option>
+                </select>
+                  <div class="row gap cursor" *ngFor="let dataSource of selected" [class.selected]="selectedIndex === dataSource.index" (click)="quickanalysisSelect(dataSource.index)">
+                    <div class="col-md-7">{{ dataSource.name }}</div>
+                    <div class="col-md-5">{{ dataSource.value }}</div>
+                  </div>
+              </div>
+            </div>
+            <div class="col-md-3 activity-gauge-container">
+              <div class="card card-custom consumption-height">
+                <div class="card-heading">Consumption Overview</div>
+                <app-activity-gauge
+                  [data]="consumptionData"
+                  *ngIf="consumptionData"
+                ></app-activity-gauge>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="row flex-wrap">
+                <app-insight-item-tile
+                  [data]="card"
+                  class="carsfx"
+                  *ngFor="let card of card6"
+                ></app-insight-item-tile>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6">
+        <div  *ngFor="let card of card6">
+          <app-insight-item-tile [data]="card"></app-insight-item-tile>
+        </div>
+      </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row gap">
+      <div class="col-md-12">
+        <div class="card card-custom">
+          <div class="row">
+            <label class="card-heading">Comparison Between Sites</label>
+              <div class="widget-subtitle col-md-5">A total of all the sites combined</div>
+              <div class="col-md-2">
+                <div class="input-group" *ngIf="selectedMonth">
+                  <span
+                    class="form-control"
+                    [(ngModel)]="selectedDate"
+                    [(bsValue)]="selectedDate"
+                    (bsValueChange)="updateMonth()"
+                    #dp="bsDatepicker"
+                    bsDatepicker
+                    [bsConfig]="{
+                      minMode: 'month',
+                      adaptivePosition: true,
+                      isAnimated: true,
+                      dateInputFormat: 'MMMM YYYY'
+                    }"
+                    [minDate]="minDate"
+                    [maxDate]="maxDate"
+                    >{{ selectedMonth?.month }} {{ selectedMonth?.year }}</span
+                  >
+                  <div class="input-group-append">
+                    <button
+                      class="btn btn-toggle color"
+                      (click)="dp.toggle()"
+                      [attr.aria-expanded]="dp.isOpen"
+                      type="button"
+                    >
+                      <fa-icon [icon]="faCalendar"></fa-icon>
+                    </button>
+                  </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+              <ng-multiselect-dropdown
+                [placeholder]="'Sites'"
+                [settings]="dropdownSettings"
+                [data]="dropdownList"
+                [(ngModel)]="selectedItems"
+                (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)"
+                (click)="multiselectdropdownClick()"
+              >
+              </ng-multiselect-dropdown>
+            </div>
+            <div class="col-md-2">
+                <select class="form-select" [(ngModel)]="sitesCombinedSelectedType" (change)="sitescombinedupdateType()">
+                  <option *ngFor="let type of sitesCombinedtypeList" [value]="type">{{ type | titlecase }}</option>
+                </select>
+            </div>
+            <div [chart]="chart"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
