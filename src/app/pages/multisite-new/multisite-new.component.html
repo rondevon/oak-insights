@@ -5,6 +5,10 @@
       <div class="col-md-2 my-auto">
         <div class="input-group" *ngIf="selectedMonth">
           <span
+            name="fieldName" 
+            ngDefaultControl
+            name="fieldName"
+             ngDefaultControl
             class="form-control"
             [(ngModel)]="selectedDate"
             [(bsValue)]="selectedDate"
@@ -275,12 +279,14 @@
             <label class="card-heading">Comparison Between Sites</label>
               <div class="widget-subtitle col-md-5">A total of all the sites combined</div>
               <div class="col-md-2">
-                <div class="input-group" *ngIf="selectedMonth">
+                <div class="input-group" *ngIf="selectedComparisonMonth">
                   <span
+                    name="fieldName" 
+                    ngDefaultControl
                     class="form-control"
-                    [(ngModel)]="selectedDate"
-                    [(bsValue)]="selectedDate"
-                    (bsValueChange)="updateMonth()"
+                    [(ngModel)]="selectedComparisonDate"
+                    [(bsValue)]="selectedComparisonDate"
+                    (bsValueChange)="updateDatePicker()"
                     #dp="bsDatepicker"
                     bsDatepicker
                     [bsConfig]="{
@@ -289,10 +295,10 @@
                       isAnimated: true,
                       dateInputFormat: 'MMMM YYYY'
                     }"
-                    [minDate]="minDate"
-                    [maxDate]="maxDate"
-                    >{{ selectedMonth?.month }} {{ selectedMonth?.year }}</span
-                  >
+                    >{{ selectedComparisonMonth?.month }} {{ selectedComparisonMonth?.year }}</span
+                    >
+                    <!-- [minDate]="minDate"
+                    [maxDate]="maxDate" -->
                   <div class="input-group-append">
                     <button
                       class="btn btn-toggle color"
@@ -318,9 +324,12 @@
               </ng-multiselect-dropdown>
             </div>
             <div class="col-md-2">
-                <select class="form-select" [(ngModel)]="sitesCombinedSelectedType" (change)="sitescombinedupdateType()">
+                <select class="form-select" [(ngModel)]="sitesCombinedSelectedType" (change)="multiselectdropdownClick()">
                   <option *ngFor="let type of sitesCombinedtypeList" [value]="type">{{ type | titlecase }}</option>
                 </select>
+            </div>
+            <div *ngIf="selectedItems.length == 0">
+             <h3 class="stylestext"> Select sites to view data. You can choose up to three sites</h3>
             </div>
             <div [chart]="chart"></div>
           </div>

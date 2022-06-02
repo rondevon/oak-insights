@@ -9,6 +9,8 @@
       <div class="col-md-3 my-auto">
         <div class="input-group" *ngIf="selectedMonth">
           <span
+            name="fieldName" 
+            ngDefaultControl
             class="form-control"
             [(ngModel)]="selectedDate"
             [(bsValue)]="selectedDate"

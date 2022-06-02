@@ -18,9 +18,14 @@ export class MultisiteNewComponent implements OnInit {
     month: this.pipe.transform(new Date(), 'MMMM', 'UTC'),
     year: this.pipe.transform(new Date(), 'YYYY', 'UTC'),
   };
+  selectedComparisonMonth: any = {
+    month: null,
+    year: null,
+  };
   minDate: Date = new Date();
   maxDate: Date = new Date();
-  selectedDate: Date = new Date(new Date().setMonth(this.minDate.getMonth()));
+  selectedDate: Date = new Date(new Date().setMonth(this.minDate.getMonth()- 1));
+  selectedComparisonDate: Date = new Date(new Date().setMonth(this.minDate.getMonth()- 1));
   faCalendar = faCalendarAlt;
   data1: any;
   data2: any[] = [];
@@ -45,8 +50,8 @@ export class MultisiteNewComponent implements OnInit {
     'voltage',
     'power factor',
   ];
-  sitesCombinedSelectedType: string = 'energy';
-  sitesCombinedtypeList: string[] = ['energy', 'cost'];
+  sitesCombinedSelectedType: string = 'Energy';
+  sitesCombinedtypeList: string[] = ['Energy', 'Cost'];
   energyData: any;
   maximumDemand: any;
   selected: any;
@@ -267,14 +272,9 @@ export class MultisiteNewComponent implements OnInit {
     this.dropdownList = this.data2.map((ele: any, i: number) => ({
       item_text: ele.name,
       item_id: i,
+      item_slug: ele.slug
     }));
 
-    // { item_id: 1, item_text: 'Mumbai' },
-    // { item_id: 2, item_text: 'Bangaluru' },
-    // { item_id: 3, item_text: 'Pune' },
-    // { item_id: 4, item_text: 'Navsari' },
-    // { item_id: 5, item_text: 'New Delhi' }
-    // ];
     this.selectedItems = [];
     this.dropdownSettings = {
       singleSelection: false,
@@ -380,7 +380,6 @@ export class MultisiteNewComponent implements OnInit {
     this.quickanalysisSelect(0);
 
     this.quickanalysisupdateType();
-    this.sitescombinedupdateType();
   }
 
   updateMonth() {
@@ -688,10 +687,17 @@ export class MultisiteNewComponent implements OnInit {
     });
   }
 
-  sitescombinedupdateType() {}
   multiselectdropdownClick() {
     let x: any[] = [];
     this.selectedItems.forEach((ele) => x.push(this.data2[ele.item_id]));
+    const params = {
+      comparison_selected_month: this.selectedComparisonMonth.month,
+      comparison_selected_year: this.selectedComparisonMonth.year,
+      comaprison_selected_parameter: this.sitesCombinedSelectedType,
+      comparison_selected_sites: x.map(d=>d.slug)
+    }
+    console.log(params)
+    
     this.x = x.map(ele=> ({
       name: ele.name,
           type: 'line',
@@ -701,7 +707,16 @@ export class MultisiteNewComponent implements OnInit {
             description: '',
           },
     }))
-    // x.forEach((ele: any) => this.x.push(ele.values));
     this.setLoadCurveData();
+  }
+
+  updateDatePicker() {
+    if (this.selectedComparisonDate) {
+      this.selectedComparisonMonth = {
+        month: this.pipe.transform(this.selectedComparisonDate , 'MMMM', 'UTC'),
+        year: this.selectedComparisonDate.getFullYear(),
+      };
+      this.multiselectdropdownClick();
+    }
   }
 }
