@@ -1,8 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { Chart } from 'angular-highcharts';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { ApiService } from 'src/app/services/api.service';
 @Component({
   selector: 'app-multisite-new',
   templateUrl: './multisite-new.component.html',
@@ -24,10 +26,13 @@ export class MultisiteNewComponent implements OnInit {
   };
   minDate: Date = new Date();
   maxDate: Date = new Date();
-  selectedDate: Date = new Date(new Date().setMonth(this.minDate.getMonth()- 1));
-  selectedComparisonDate: Date = new Date(new Date().setMonth(this.minDate.getMonth()- 1));
+  selectedDate: Date = new Date(
+    new Date().setMonth(this.minDate.getMonth() - 1)
+  );
+  selectedComparisonDate: Date = new Date(
+    new Date().setMonth(this.minDate.getMonth() - 1)
+  );
   faCalendar = faCalendarAlt;
-  data1: any;
   data2: any[] = [];
   data3: any[] = [];
   data: any[] = [];
@@ -71,10 +76,19 @@ export class MultisiteNewComponent implements OnInit {
   x: any[] = [];
   maximumDemandenergy: any;
   selectedIndex: number = 0;
+  changedecending:any[] = [];
+  changeacending: any[] = [];
+  oakScore: number = 0;
+  emission: any;
 
-  constructor() {}
+  constructor(private apiService: ApiService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.setHomeInsightsCard();
+    const datacard: any[] = [...this.card.sites];
+    this.changedecending = datacard.sort((b, a) => a.change - b.change).filter(b=>b.change>0).slice(0, 3);
+    this.changeacending = datacard.sort((b, a) =>  b.change - a.change).filter(b=>b.change<0).slice(0, 3);
+   
     this.data2 = [
       {
         slug: 'site-lcc-old-street-66244',
@@ -272,7 +286,7 @@ export class MultisiteNewComponent implements OnInit {
     this.dropdownList = this.data2.map((ele: any, i: number) => ({
       item_text: ele.name,
       item_id: i,
-      item_slug: ele.slug
+      item_slug: ele.slug,
     }));
 
     this.selectedItems = [];
@@ -387,13 +401,61 @@ export class MultisiteNewComponent implements OnInit {
       month: this.pipe.transform(this.selectedDate, 'MMMM', 'UTC'),
       year: this.selectedDate.getFullYear(),
     };
+    this.setHomeInsightsCard();
   }
 
-  card = [
-    { number: 84, name: 'Oxford Boulevard', Change: '-9' },
-    { number: 86, name: 'Samilton Heights', Change: '-6' },
-    { number: 86, name: 'Picadilly Circus', Change: '-4' },
-  ];
+  card: any = {
+    sites: [
+      {
+        site_name: 'Site 3',
+        oak_score_current: 100,
+        oak_score_last: 80,
+        change: 20,
+      },
+      {
+        site_name: 'Site 5',
+        oak_score_current: 98,
+        oak_score_last: 90,
+        change: 8,
+      },
+      {
+        site_name: 'Site 2',
+        oak_score_current: 90,
+        oak_score_last: 95,
+        change: -5,
+      },
+      {
+        site_name: 'Site 6',
+        oak_score_current: 75,
+        oak_score_last: 90,
+        change: -15,
+      },
+      {
+        site_name: 'Site 1',
+        oak_score_current: 70,
+        oak_score_last: 68,
+        change: 2,
+      },
+      {
+        site_name: 'Site 4',
+        oak_score_current: 60,
+        oak_score_last: 80,
+        change: -20,
+      },
+      {
+        site_name: 'Site 7',
+        oak_score_current: 50,
+        oak_score_last: 85,
+        change: -35,
+      },
+      {
+        site_name: 'Site 8',
+        oak_score_current: 30,
+        oak_score_last: 45,
+        change: -15,
+      },
+    ],
+  };
 
   cards = [
     { number: 97, name: 'Scotland Yard', Change: '+12' },
@@ -401,21 +463,8 @@ export class MultisiteNewComponent implements OnInit {
     { number: 95, name: 'Manchester', Change: '+7' },
   ];
 
-  card3 = [
-    { number: 84, name: 'Oxford Boulevard', Change: '-9', target_trend: 0 },
-    { number: 86, name: 'Samilton Heights', Change: '-6', target_trend: 0 },
-    { number: 86, name: 'Picadilly Circus', Change: '-4', target_trend: -4 },
-    { number: 97, name: 'Scotland Yard', Change: '+12', target_trend: 8 },
-    { number: 95, name: 'Surrey', Change: '+8', target_trend: 7 },
-    { number: 95, name: 'Manchester', Change: '+7', target_trend: -8 },
-    { number: 86, name: 'Picadilly Circus', Change: '-4', target_trend: -8 },
-    { number: 97, name: 'Scotland Yard', Change: '+12', target_trend: 5 },
-    { number: 95, name: 'Surrey', Change: '+8', target_trend: -5 },
-    { number: 95, name: 'Manchester', Change: '+7', target_trend: 7 },
-  ];
 
   quickanalysisupdateType() {
-    // console.log(this.selectedType);
     let data: any[] = [];
     switch (this.selectedType) {
       case 'energy':
@@ -484,8 +533,6 @@ export class MultisiteNewComponent implements OnInit {
   quickanalysisSelect(i: number) {
     const x = this.data[i];
     this.selectedIndex = i;
-
-    // const values = this.data.map(x=>x.stats.phase_load_distribution);
     const commaJoinedValues = Object.values(
       x.stats.phase_load_distribution
     ).join('-');
@@ -497,12 +544,9 @@ export class MultisiteNewComponent implements OnInit {
       'UTC'
     );
     this.maximumDemandenergy = valu.energy;
-
-    // const val = this.data.map(x=>x.stats.consumption_overview);
     this.consumptionData = x.stats.consumption_overview;
 
     const energy = this.data.map((x) => x.stats.energy_usage);
-    //  console.log(this.energyData)
 
     this.card6 = [
       {
@@ -622,11 +666,12 @@ export class MultisiteNewComponent implements OnInit {
   }
 
   setTrendIcon(value: number) {
-    if (value > 0) {
+    if (value < 0) {
       return '/assets/icons/icon-down.svg';
-    } else {
+    } else if (value > 0) {
       return '/assets/icons/icon-up.svg';
     }
+    return;
   }
 
   onItemSelect(item: any) {
@@ -694,29 +739,42 @@ export class MultisiteNewComponent implements OnInit {
       comparison_selected_month: this.selectedComparisonMonth.month,
       comparison_selected_year: this.selectedComparisonMonth.year,
       comaprison_selected_parameter: this.sitesCombinedSelectedType,
-      comparison_selected_sites: x.map(d=>d.slug)
-    }
-    console.log(params)
-    
-    this.x = x.map(ele=> ({
+      comparison_selected_sites: x.map((d) => d.slug),
+    };
+
+    this.x = x.map((ele) => ({
       name: ele.name,
-          type: 'line',
-          data: ele.values,
-          color: '#'+Math.floor(Math. random()*16777215). toString(16),
-          accessibility: {
-            description: '',
-          },
-    }))
+      type: 'line',
+      data: ele.values,
+      color: '#' + Math.floor(Math.random() * 16777215).toString(16),
+      accessibility: {
+        description: '',
+      },
+    }));
     this.setLoadCurveData();
   }
 
   updateDatePicker() {
     if (this.selectedComparisonDate) {
       this.selectedComparisonMonth = {
-        month: this.pipe.transform(this.selectedComparisonDate , 'MMMM', 'UTC'),
+        month: this.pipe.transform(this.selectedComparisonDate, 'MMMM', 'UTC'),
         year: this.selectedComparisonDate.getFullYear(),
       };
       this.multiselectdropdownClick();
     }
+  }
+
+  setHomeInsightsCard(){
+    if(localStorage.getItem('role')==='Account Manager'){
+      this.apiService.getAccountLandingInsightsData(this.selectedMonth.month, this.selectedMonth.year).subscribe((data: any) => {
+        this.oakScore = data?.data?.oak_score;
+        this.emission = data?.data?.stats?.co2_emission
+      }, err => this.openSnackBar(err?.error?.message, 'Dismiss'));
+    }
+  }
+
+
+  openSnackBar(message: string, action: string = 'Cancel') {
+    this._snackBar.open(message, action, { duration: 3000 });
   }
 }

@@ -39,27 +39,28 @@
       </div>
     </div>
 
-    <div class="row gap">
+    <div class="col gap">
+      <div class="row">
       <div class="col-md-9">
         <div class="card card-custom">
           <label class="card-heading">Highlighted Sites </label>
           <div>
             <label class="font colorblue">IMPROVED</label>
             <div class="row">
-              <div *ngFor="let card of cards" class="col-md-4">
+              <div *ngFor="let cardimproved of changedecending" class="col-md-4">
                 <div class="card flex-row insights-card card-custom">
                   <img
                     class="cards-image"
                     src="/assets/icons/icon-oakscore-green.svg"
                   />
-                  <div class="number">{{ card.number }}</div>
+                  <div class="number">{{ cardimproved.oak_score_current }}</div>
 
                   <div class="card-body">
                     <div class="card-text card-indent">
-                      <h4 class="val">{{ card.name }}</h4>
+                      <h4 class="val">{{ cardimproved.site_name }}</h4>
                       <span class="unit"
                         >&nbsp;Change: &nbsp;
-                        <span class="colorblue">{{ card.Change }}</span></span
+                        <span class="colorblue">{{ cardimproved.change }}</span></span
                       >
                     </div>
                   </div>
@@ -69,20 +70,20 @@
             <div></div>
             <label class="font colorpink">WORSENED</label>
             <div class="row">
-              <div *ngFor="let car of card" class="col-md-4">
+              <div *ngFor="let info of changeacending" class="col-md-4">
                 <div class="card flex-row insights-card card-custom">
                   <img
                     class="cards-image"
                     src="/assets/icons/icon-oakscore-green.svg"
                   />
-                  <div class="number">{{ car.number }}</div>
+                  <div class="number">{{ info.oak_score_current }}</div>
 
                   <div class="card-body">
                     <div class="card-text card-indent">
-                      <h4 class="val">{{ car.name }}</h4>
+                      <h4 class="val">{{ info.site_name }}</h4>
                       <span class="unit"
                         >&nbsp;Change: &nbsp;
-                        <span class="colorpink">{{ car.Change }}</span></span
+                        <span class="colorpink">{{ info.change }}</span></span
                       >
                     </div>
                   </div>
@@ -90,7 +91,9 @@
               </div>
             </div>
           </div>
+         
         </div>
+
       </div>
       <div class="col-md-3">
         <div class="card card-custom">
@@ -113,28 +116,28 @@
                 ⓘ
               </button>
               <div class="oak-score-label">OAK Score</div>
-              <div class="oak-score-text">56</div>
+              <div class="oak-score-text">{{oakScore}}</div>
             </div>
           </div>
           <div class="row">
             <div class="my-auto col-md-12 d-flex">
               <div class="col-md-6">
-                <img
+                <!-- <img
                   class="trend-icon"
-                  [src]="setTrendIcon(card3[0].target_trend)"
-                />
-                <span class="month">{{
-                  card3[0].target_trend.toLocaleString()
-                }}</span>
+                  [src]="setTrendIcon()"
+                /> -->
+                <span class="month">
+                
+                </span>
                 kWh
               </div>
               <div class="col-md-6">
                 <img
                   class="trend-icon"
-                  [src]="setTrendIcon(card3[0].target_trend)"
+                  [src]="setTrendIcon(emission)"
                 />
-                <span class="month">{{
-                  card3[0].target_trend.toLocaleString()
+                <span class="emission">{{
+                  emission
                 }}</span>
                 kg CO2
               </div>
@@ -143,34 +146,27 @@
         </div>
       </div>
     </div>
-
-    <div class="row gap">
-      <div class="col-md-12">
-        <div class="card card-custom">
+    <div class="row gap card card-custom">
+      <div class="col-md-12 ">
           <label class="card-heading">Ranked </label>
           <div>
             <div class="row">
-              <div *ngFor="let card of card3" class="md-3">
-                <div class="card flex-row insights-card card-custom">
+              <div *ngFor="let info of card.sites" class="md-3">
+                <div class="cardborderhidden flex-row insights-card ">
                   <img
                     class="cards-image"
                     src="/assets/icons/icon-oakscore-green.svg"
                   />
-                  <div class="number font">{{ card.number }}</div>
+                  <div class="scorenumber font">{{  info.oak_score_current}}</div>
 
-                  <div class="card-body">
-                    <div class="card-text card-indent">
-                      <h5 class="val font2">{{ card.name }}</h5>
-                    </div>
-                    <div class="row">
-                      <div class="my-auto col-md-12 d-flex">
-                        <div class="col-md-6">
-                          <img
+                  <div class="card-body ">
+                    <div class="card-text card-indent row">
+                      <span class="d-flex justify-content">
+                      <h5 class="val font2">{{ info.site_name}}</h5>
+                      <img
                             class="trend-icon-with"
-                            [src]="setTrendIcon(card.target_trend)"
-                          />
-                        </div>
-                      </div>
+                            [src]="setTrendIcon(info.change)"
+                          /></span>
                     </div>
                   </div>
                 </div>
@@ -178,9 +174,11 @@
               <div></div>
             </div>
           </div>
-        </div>
       </div>
     </div>
+    </div>
+
+
     <div class="row gap">
       <div class="col-md-12">
         <div class="card card-custom">
@@ -244,7 +242,7 @@
               </div>
             </div>
             <div class="col-md-3 activity-gauge-container">
-              <div class="card card-custom consumption-height">
+              <div class="consumption-height">
                 <div class="card-heading">Consumption Overview</div>
                 <app-activity-gauge
                   [data]="consumptionData"

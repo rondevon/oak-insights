@@ -114,6 +114,19 @@ height: auto;
     font-weight: 800;
     word-wrap: break-word;
 }
+
+.scorenumber{
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%,-50%);
+  display: block;
+  margin: 0;
+  color: white;
+  font-size: 1rem;
+  font-weight: 800;
+  word-wrap: break-word;
+}
 .card-custom{
 border-radius: 1rem !important;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -157,8 +170,13 @@ margin-bottom: 1.5rem;
   font-size: 1.2vw;
 }
 
+.emission{
+  font-weight: 800;
+  font-size: 1vw;
+}
+
 .trend-icon-with{
-  width:58% !important;
+  width:20% !important;
   display: inline !important;
   vertical-align: sub !important;
   margin-left: 1rem;
@@ -183,4 +201,15 @@ font-weight: 800;
 text-align: center;
 margin-top: 5rem;
 color: var(--color5) ;
+}
+
+.cardborderhidden {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: hidden;
 }
