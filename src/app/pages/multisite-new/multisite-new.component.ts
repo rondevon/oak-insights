@@ -14,6 +14,8 @@ export class MultisiteNewComponent implements OnInit {
   dropdownList: any[] = [];
   selectedItems: any[] = [];
   dropdownSettings!: IDropdownSettings;
+  latMap!: number;
+  lngMap!: number;
 
   pipe = new DatePipe('en-GB');
   selectedMonth: any = {
@@ -661,6 +663,10 @@ export class MultisiteNewComponent implements OnInit {
     this.cost_sorted_data = data.sort((a, b) => b.cost - a.cost);
     this.lat = data.map((e) => +(e.location as string).split(',')[0]);
     this.lng = data.map((e) => +(e.location as string).split(',')[1]);
+    this.latMap = this.lat.reduce((a, b) => a + b, 0)/this.lat.length;
+    this.lngMap = this.lng.reduce((a, b) => a + b, 0)/this.lng.length;
+    console.log(this.lngMap, 'lng');
+    console.log(this.latMap , 'lat');
     this.energy = data.map((e) => e.energy);
     this.cost = data.map((e) => e.cost);
   }

@@ -209,7 +209,7 @@
             </div>
             <div class="col-md-6">
               <label class="card-heading">Map View</label>
-              <agm-map [latitude]="lat[0]" [longitude]="lng[0]" [zoom]="13">
+              <agm-map [latitude]="latMap" [longitude]="lngMap" [zoom]="5">
                 <agm-marker [latitude]="latitude" [longitude]="lng[i]" *ngFor="let latitude of lat; index as i;"></agm-marker>
               </agm-map>
             </div>
