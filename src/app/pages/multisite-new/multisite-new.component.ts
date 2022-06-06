@@ -665,8 +665,8 @@ export class MultisiteNewComponent implements OnInit {
     this.lng = data.map((e) => +(e.location as string).split(',')[1]);
     this.latMap = this.lat.reduce((a, b) => a + b, 0)/this.lat.length;
     this.lngMap = this.lng.reduce((a, b) => a + b, 0)/this.lng.length;
-    console.log(this.lngMap, 'lng');
-    console.log(this.latMap , 'lat');
+    // console.log(this.lngMap, 'lng');
+    // console.log(this.latMap , 'lat');
     this.energy = data.map((e) => e.energy);
     this.cost = data.map((e) => e.cost);
   }
